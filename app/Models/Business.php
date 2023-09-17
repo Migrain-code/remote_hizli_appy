@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use PhpParser\Node\Expr\AssignOp\Mod;
 
 
-class Business extends Authenticatable
+class Business extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['business'];
+
     //protected $dates=['start_time', 'end_time'];
     public function package()
     {

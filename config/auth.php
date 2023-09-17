@@ -40,9 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'admin',
         ],
-        'business' => [
+        'official' => [
             'driver' => 'session',
-            'provider' => 'business',
+            'provider' => 'official',
+        ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'official',
         ],
     ],
 
@@ -68,14 +72,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'business' => [
+        'official' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Business::class,
+            'model' => App\Models\BusinessOfficial::class,
         ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+
     ],
 
     /*
@@ -100,14 +101,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'customer' => [
-            'provider' => 'customer',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-        'business' => [
-            'provider' => 'business',
+        'official' => [
+            'provider' => 'official',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

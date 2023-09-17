@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://127.0.0.1:8001'
+paths:
+  /api/auth/login:
+    post:
+      summary: 'POST api/auth/login'
+      operationId: pOSTApiauthlogin
+      description: "Status Codes\n<ul>\n<li>phone</li>\n<li>password</li>\n<li> 401 Unauthorized Hatası </li>\n</ul>\nLogin apisi"
+      parameters: []
+      responses: {  }
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: ''
+                  example: assumenda
+                password:
+                  type: string
+                  description: ''
+                  example: ".bM8hQK)Ofm'"
+              required:
+                - phone
+                - password
+      security: []
+  /api/auth/check-phone:
+    post:
+      summary: 'POST api/auth/check-phone'
+      operationId: pOSTApiauthcheckPhone
+      description: "<ul>\n<li>phone | string | required</li>\n</ul>\ntelefon numarası kontrol apisi"
+      parameters: []
+      responses: {  }
+      tags:
+        - Authentication
+      security: []
+  /api/auth/verify:
+    post:
+      summary: 'POST api/auth/verify'
+      operationId: pOSTApiauthverify
+      description: "<ul>\n<li>code | string | required | Doğrulama Kodu</li>\n<li>phone | string | required | Kullanıcı Telefon Numarası</li>\n<li>name | string | required | Kullanıcı Adı</li>\n<li>business_name | string | required | İşletme Adı</li>\n<li>phone | string | required</li>\n</ul>\nKod doğrulama ve kullanıcı kayıt apisi"
+      parameters: []
+      responses: {  }
+      tags:
+        - Authentication
+      security: []
+  /api/auth/logout:
+    post:
+      summary: 'POST api/auth/logout'
+      operationId: pOSTApiauthlogout
+      description: "<ul>\n<li>Token Göndermeniz Yeterli</li>\n</ul>\nLogout apisi"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentication
+      security: []
+  /api/auth/user:
+    get:
+      summary: 'GET api/auth/user'
+      operationId: gETApiauthuser
+      description: "<ul>\n<li>Token Göndermeniz Yeterli</li>\n</ul>\nLogout apisi"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Authentication
+      security: []
+tags:
+  -
+    name: Authentication
+    description: ''
