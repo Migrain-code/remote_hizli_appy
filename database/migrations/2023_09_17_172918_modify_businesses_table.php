@@ -14,10 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::table('businesses', function (Blueprint $table) {
-            $table->dropColumn('owner');
-            $table->dropColumn('owner_email');
-            $table->dropColumn('email');
-            $table->dropColumn('password');
             $table->dropColumn('long');
             $table->dropColumn('verification_code');
             $table->dropColumn('password_status');
