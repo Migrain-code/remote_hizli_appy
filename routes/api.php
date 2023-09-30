@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use \App\Http\Controllers\Api\SetupController;
 use \App\Http\Controllers\Api\City\CityController;
 use \App\Http\Controllers\Api\OfficialCreditCardController;
+use App\Http\Controllers\Api\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,5 +42,9 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/delete', 'delete');
         Route::post('/save', 'store');
         Route::post('/update', 'update');
+    });
+    Route::controller(PaymentController::class)->prefix('payment')->group(function (){
+        Route::get('/', 'index');
+        Route::post('/pay', 'pay');
     });
 });
