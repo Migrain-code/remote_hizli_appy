@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "e7d54fce-21fd-4c3e-ad37-7172054540a1",
+        "_postman_id": "48685395-79bb-45fa-bf1c-94d5c8b872bd",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone\":\"in\",\"password\":\"P8GijPSjQ2_p\"}"
+                            "raw": "{\"phone\":\"eius\",\"password\":\"i\\\/#};-!;e*BkKm#Cxa\"}"
                         },
                         "description": "Status Codes\n<ul>\n<li>phone<\/li>\n<li>password<\/li>\n<li> 401 Unauthorized Hatas\u0131 <\/li>\n<\/ul>\nLogin apisi",
                         "auth": {
@@ -283,6 +283,178 @@
             ]
         },
         {
+            "name": "Credit Cart",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/cart",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cart",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cart"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "<ul>\n<li>Bearer Token | string | required | Kullan\u0131c\u0131 Token<\/li>\n<\/ul>\nKullan\u0131c\u0131n\u0131n T\u00fcm Kartlar\u0131 Apisi",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/cart\/get",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cart\/get",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cart\/get"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "<ul>\n<li>Bearer Token | string | required | Kullan\u0131c\u0131 Token<\/li>\n<li>cart_id | numeric | required | Kredi kart\u0131 id si <\/li>\n<\/ul>\nKullan\u0131c\u0131n\u0131n T\u00fcm Kartlar\u0131 Apisi",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/cart\/delete",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cart\/delete",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cart\/delete"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "<ul>\n<li>Bearer Token | string | required | Kullan\u0131c\u0131 Token<\/li>\n<li>cart_id | numeric | required | Kredi kart\u0131 id si <\/li>\n<\/ul>\nKullan\u0131c\u0131n\u0131n T\u00fcm Kartlar\u0131 Apisi",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/cart\/save",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cart\/save",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cart\/save"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"gcwblerwedaayjtklxywytyls\",\"number\":65,\"month\":1,\"year\":2874672.07575,\"cvc\":\"9597\",\"name_on_the_card\":\"qzmk\",\"is_default\":\"1\"}"
+                        },
+                        "description": "<ul>\n<li>Bearer Token | required | Kullan\u0131c\u0131 Tokeni<\/li>\n<li>name | string | required | Kart\u0131n\u0131z\u0131n Ad\u0131<\/li>\n<li>cvc | number | required | CVC kodu<\/li>\n<li>number | string | required | Kart Numaras\u0131 <\/li>\n<li>month  | string | required | Ay Bilgisi<\/li>\n<li>year  | string | required | Y\u0131l Bilgisi<\/li>\n<li>name_on_the_card  | string | required | Kart \u00dczerindeki isim<\/li>\n<li>is_default  | numeric | required | Varsay\u0131lan Kart se\u00e7imi is_default == 0 \"se\u00e7ili de\u011fil\" is_default == 1 \"se\u00e7ili\" <\/li>\n<\/ul>\nKullan\u0131c\u0131 kart kay\u0131t Apisi",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/cart\/update",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cart\/update",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cart\/update"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"cart_id\":\"lyqlgyaixijqfhpmk\",\"name\":\"j\",\"number\":51,\"month\":2,\"year\":6563.81527965,\"cvc\":\"7489\",\"name_on_the_card\":\"yznxlcksrdmrlbggdw\",\"is_default\":\"0\"}"
+                        },
+                        "description": "<ul>\n<li>Bearer Token | required | Kullan\u0131c\u0131 Tokeni<\/li>\n<li>cart_id | required | Kullan\u0131c\u0131 Tokeni<\/li>\n<li>name | string | required | Kart\u0131n\u0131z\u0131n Ad\u0131<\/li>\n<li>cvc | number | required | CVC kodu<\/li>\n<li>number | string | required | Kart Numaras\u0131 <\/li>\n<li>month  | string | required | Ay Bilgisi<\/li>\n<li>year  | string | required | Y\u0131l Bilgisi<\/li>\n<li>name_on_the_card  | string | required | Kart \u00dczerindeki isim<\/li>\n<li>is_default  | numeric | required | Varsay\u0131lan Kart se\u00e7imi is_default == 0 \"se\u00e7ili de\u011fil\" is_default == 1 \"se\u00e7ili\" <\/li>\n<\/ul>\nKullan\u0131c\u0131 kart g\u00fcncelleme Apisi",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
             "name": "Setup",
             "description": "",
             "item": [
@@ -291,9 +463,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/setup",
+                            "path": "api\/setup\/get",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/setup"
+                            "raw": "{{baseUrl}}\/api\/setup\/get"
                         },
                         "method": "GET",
                         "header": [
@@ -355,7 +527,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "<ul>\n<li>category_id | string | required | \u0130\u015fletme Kategorisi<\/li>\n<li>name | string | required | \u0130\u015fletme Ad\u0131<\/li>\n<li>type_id | string | required | Hizmet T\u00fcr\u00fc businessTypes de\u011fi\u015fkeninden alabilirsiniz <\/li>\n<li>city_id  | string | required | \u015eehir<\/li>\n<li>district_id  | string | required | \u0130l\u00e7e<\/li>\n<li>off_day_id  | string | required | Kapal\u0131 Oldu\u011fu G\u00fcn<\/li>\n<li>phone | string | required | Kullan\u0131c\u0131 Telefon Numaras\u0131<\/li>\n<li>about_content | string | required| \u0130\u015fletme Hakk\u0131nda Yaz\u0131s\u0131<\/li>\n<li>start_time | string | required| \u0130\u015fletme A\u00e7\u0131l\u0131\u015f Saati \u00d6rne\u011fin (12:08)<\/li>\n<li>end_time | string | required| \u0130\u015fletme Kapan\u0131\u015f Saati \u00d6rne\u011fin (18:08)<\/li>\n<li>latitude | string | required| Haritadan se\u00e7ilen lat bilgisi<\/li>\n<li>longitude | string | required| Haritadan se\u00e7ilen long bilgisi<\/li>\n<li>address | text | required| Address Metni<\/li>\n<li>package_id | integer or string | required| Se\u00e7ili Paket idsi<\/li>\n<\/ul>\nKay\u0131t Ekran\u0131 T\u00fcm Bilgiler g\u00fcncelleme Apisi",
+                        "description": "<ul>\n<li>Bearer Token | required | \u0130\u015fletme Kategorisi<\/li>\n<li>category_id | string | required | \u0130\u015fletme Kategorisi<\/li>\n<li>name | string | required | \u0130\u015fletme Ad\u0131<\/li>\n<li>type_id | string | required | Hizmet T\u00fcr\u00fc businessTypes de\u011fi\u015fkeninden alabilirsiniz <\/li>\n<li>city_id  | string | required | \u015eehir<\/li>\n<li>district_id  | string | required | \u0130l\u00e7e<\/li>\n<li>off_day_id  | string | required | Kapal\u0131 Oldu\u011fu G\u00fcn<\/li>\n<li>phone | string | required | Kullan\u0131c\u0131 Telefon Numaras\u0131<\/li>\n<li>about_content | string | required| \u0130\u015fletme Hakk\u0131nda Yaz\u0131s\u0131<\/li>\n<li>start_time | string | required| \u0130\u015fletme A\u00e7\u0131l\u0131\u015f Saati \u00d6rne\u011fin (12:08)<\/li>\n<li>end_time | string | required| \u0130\u015fletme Kapan\u0131\u015f Saati \u00d6rne\u011fin (18:08)<\/li>\n<li>latitude | string | required| Haritadan se\u00e7ilen lat bilgisi<\/li>\n<li>longitude | string | required| Haritadan se\u00e7ilen long bilgisi<\/li>\n<li>address | text | required| Address Metni<\/li>\n<li>package_id | integer or string | required| Se\u00e7ili Paket idsi<\/li>\n<\/ul>\nKay\u0131t Ekran\u0131 T\u00fcm Bilgiler g\u00fcncelleme Apisi",
                         "auth": {
                             "type": "noauth"
                         }

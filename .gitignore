@@ -9,7 +9,6 @@
 /public/docs.html
 /public/scribe/*
 /public/scribe.html
-/.scribe/*
 /vendor
 .env
 .env.backup

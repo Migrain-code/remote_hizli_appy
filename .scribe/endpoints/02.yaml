@@ -4,7 +4,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/setup
+    uri: api/setup/get
     metadata:
       groupName: Setup
       groupDescription: ''
@@ -56,6 +56,7 @@ endpoints:
       title: 'POST api/setup/update'
       description: |-
         <ul>
+        <li>Bearer Token | required | İşletme Kategorisi</li>
         <li>category_id | string | required | İşletme Kategorisi</li>
         <li>name | string | required | İşletme Adı</li>
         <li>type_id | string | required | Hizmet Türü businessTypes değişkeninden alabilirsiniz </li>

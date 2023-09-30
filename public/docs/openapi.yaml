@@ -26,11 +26,11 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: in
+                  example: eius
                 password:
                   type: string
                   description: ''
-                  example: P8GijPSjQ2_p
+                  example: 'i/#};-!;e*BkKm#Cxa'
               required:
                 - phone
                 - password
@@ -793,7 +793,166 @@ paths:
       tags:
         - City
       security: []
-  /api/setup:
+  /api/cart:
+    get:
+      summary: 'GET api/cart'
+      operationId: gETApicart
+      description: "<ul>\n<li>Bearer Token | string | required | Kullanıcı Token</li>\n</ul>\nKullanıcının Tüm Kartları Apisi"
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Credit Cart'
+      security: []
+  /api/cart/get:
+    post:
+      summary: 'POST api/cart/get'
+      operationId: pOSTApicartget
+      description: "<ul>\n<li>Bearer Token | string | required | Kullanıcı Token</li>\n<li>cart_id | numeric | required | Kredi kartı id si </li>\n</ul>\nKullanıcının Tüm Kartları Apisi"
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Credit Cart'
+      security: []
+  /api/cart/delete:
+    post:
+      summary: 'POST api/cart/delete'
+      operationId: pOSTApicartdelete
+      description: "<ul>\n<li>Bearer Token | string | required | Kullanıcı Token</li>\n<li>cart_id | numeric | required | Kredi kartı id si </li>\n</ul>\nKullanıcının Tüm Kartları Apisi"
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Credit Cart'
+      security: []
+  /api/cart/save:
+    post:
+      summary: 'POST api/cart/save'
+      operationId: pOSTApicartsave
+      description: "<ul>\n<li>Bearer Token | required | Kullanıcı Tokeni</li>\n<li>name | string | required | Kartınızın Adı</li>\n<li>cvc | number | required | CVC kodu</li>\n<li>number | string | required | Kart Numarası </li>\n<li>month  | string | required | Ay Bilgisi</li>\n<li>year  | string | required | Yıl Bilgisi</li>\n<li>name_on_the_card  | string | required | Kart Üzerindeki isim</li>\n<li>is_default  | numeric | required | Varsayılan Kart seçimi is_default == 0 \"seçili değil\" is_default == 1 \"seçili\" </li>\n</ul>\nKullanıcı kart kayıt Apisi"
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Credit Cart'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
+                  example: gcwblerwedaayjtklxywytyls
+                number:
+                  type: number
+                  description: 'value değeri 16 değerinden büyük olmalıdır.'
+                  example: 65
+                month:
+                  type: number
+                  description: 'value 1 - 12 arasında olmalıdır.'
+                  example: 1
+                year:
+                  type: number
+                  description: ''
+                  example: 2874672.07575
+                cvc:
+                  type: string
+                  description: 'Must match the regex /^\d{3,4}$/.'
+                  example: '9597'
+                name_on_the_card:
+                  type: string
+                  description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
+                  example: qzmk
+                is_default:
+                  type: number
+                  description: ''
+                  example: '1'
+                  enum:
+                    - '0'
+                    - '1'
+              required:
+                - name
+                - number
+                - month
+                - year
+                - cvc
+                - name_on_the_card
+                - is_default
+      security: []
+  /api/cart/update:
+    post:
+      summary: 'POST api/cart/update'
+      operationId: pOSTApicartupdate
+      description: "<ul>\n<li>Bearer Token | required | Kullanıcı Tokeni</li>\n<li>cart_id | required | Kullanıcı Tokeni</li>\n<li>name | string | required | Kartınızın Adı</li>\n<li>cvc | number | required | CVC kodu</li>\n<li>number | string | required | Kart Numarası </li>\n<li>month  | string | required | Ay Bilgisi</li>\n<li>year  | string | required | Yıl Bilgisi</li>\n<li>name_on_the_card  | string | required | Kart Üzerindeki isim</li>\n<li>is_default  | numeric | required | Varsayılan Kart seçimi is_default == 0 \"seçili değil\" is_default == 1 \"seçili\" </li>\n</ul>\nKullanıcı kart güncelleme Apisi"
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Credit Cart'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_id:
+                  type: string
+                  description: 'value değeri 1 karakter değerinden büyük olmalıdır.'
+                  example: lyqlgyaixijqfhpmk
+                name:
+                  type: string
+                  description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
+                  example: j
+                number:
+                  type: number
+                  description: 'value değeri 16 değerinden büyük olmalıdır.'
+                  example: 51
+                month:
+                  type: number
+                  description: 'value 1 - 12 arasında olmalıdır.'
+                  example: 2
+                year:
+                  type: number
+                  description: ''
+                  example: 6563.81527965
+                cvc:
+                  type: string
+                  description: 'Must match the regex /^\d{3,4}$/.'
+                  example: '7489'
+                name_on_the_card:
+                  type: string
+                  description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
+                  example: yznxlcksrdmrlbggdw
+                is_default:
+                  type: number
+                  description: ''
+                  example: '0'
+                  enum:
+                    - '0'
+                    - '1'
+              required:
+                - cart_id
+                - name
+                - number
+                - month
+                - year
+                - cvc
+                - name_on_the_card
+                - is_default
+      security: []
+  /api/setup/get:
     get:
       summary: 'GET api/setup'
       operationId: gETApisetup
@@ -819,7 +978,7 @@ paths:
     post:
       summary: 'POST api/setup/update'
       operationId: pOSTApisetupupdate
-      description: "<ul>\n<li>category_id | string | required | İşletme Kategorisi</li>\n<li>name | string | required | İşletme Adı</li>\n<li>type_id | string | required | Hizmet Türü businessTypes değişkeninden alabilirsiniz </li>\n<li>city_id  | string | required | Şehir</li>\n<li>district_id  | string | required | İlçe</li>\n<li>off_day_id  | string | required | Kapalı Olduğu Gün</li>\n<li>phone | string | required | Kullanıcı Telefon Numarası</li>\n<li>about_content | string | required| İşletme Hakkında Yazısı</li>\n<li>start_time | string | required| İşletme Açılış Saati Örneğin (12:08)</li>\n<li>end_time | string | required| İşletme Kapanış Saati Örneğin (18:08)</li>\n<li>latitude | string | required| Haritadan seçilen lat bilgisi</li>\n<li>longitude | string | required| Haritadan seçilen long bilgisi</li>\n<li>address | text | required| Address Metni</li>\n<li>package_id | integer or string | required| Seçili Paket idsi</li>\n</ul>\nKayıt Ekranı Tüm Bilgiler güncelleme Apisi"
+      description: "<ul>\n<li>Bearer Token | required | İşletme Kategorisi</li>\n<li>category_id | string | required | İşletme Kategorisi</li>\n<li>name | string | required | İşletme Adı</li>\n<li>type_id | string | required | Hizmet Türü businessTypes değişkeninden alabilirsiniz </li>\n<li>city_id  | string | required | Şehir</li>\n<li>district_id  | string | required | İlçe</li>\n<li>off_day_id  | string | required | Kapalı Olduğu Gün</li>\n<li>phone | string | required | Kullanıcı Telefon Numarası</li>\n<li>about_content | string | required| İşletme Hakkında Yazısı</li>\n<li>start_time | string | required| İşletme Açılış Saati Örneğin (12:08)</li>\n<li>end_time | string | required| İşletme Kapanış Saati Örneğin (18:08)</li>\n<li>latitude | string | required| Haritadan seçilen lat bilgisi</li>\n<li>longitude | string | required| Haritadan seçilen long bilgisi</li>\n<li>address | text | required| Address Metni</li>\n<li>package_id | integer or string | required| Seçili Paket idsi</li>\n</ul>\nKayıt Ekranı Tüm Bilgiler güncelleme Apisi"
       parameters: []
       responses: {  }
       tags:
@@ -831,6 +990,9 @@ tags:
     description: ''
   -
     name: City
+    description: ''
+  -
+    name: 'Credit Cart'
     description: ''
   -
     name: Setup

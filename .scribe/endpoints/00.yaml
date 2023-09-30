@@ -33,7 +33,7 @@ endpoints:
         name: phone
         description: ''
         required: true
-        example: in
+        example: eius
         type: string
         enumValues: []
         custom: []
@@ -41,13 +41,13 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: P8GijPSjQ2_p
+        example: 'i/#};-!;e*BkKm#Cxa'
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      phone: in
-      password: P8GijPSjQ2_p
+      phone: eius
+      password: 'i/#};-!;e*BkKm#Cxa'
     fileParameters: []
     responses: []
     responseFields: []
