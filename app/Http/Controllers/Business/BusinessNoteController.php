@@ -36,7 +36,11 @@ class BusinessNoteController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'name' => "required"
+        ], [], [
+            'name' => "Kullanıcı Adı"
+        ]);
         $businessNote=new BusinessNote();
         $businessNote->title=$request->input('title');
         $businessNote->content=$request->input('content');

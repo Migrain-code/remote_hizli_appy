@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BusinessCategoryResource;
 use App\Http\Resources\BusinessPackageResource;
 use App\Http\Resources\BusinessResource;
+use App\Http\Resources\OfficialCardResource;
 use App\Models\BusinessCategory;
 use App\Models\BusinnessType;
 use App\Models\BussinessPackage;
@@ -37,7 +38,9 @@ class SetupController extends Controller
         $dayList = DayList::orderBy('id', 'asc')->select('id', 'name')->get();
         $monthlyPackages=BussinessPackage::where('type', 0)->get();
         $yearlyPackages=BussinessPackage::where('type', 1)->get();
-        $business = $request->user()->business;
+        $user = $request->user();
+        $business = $user->business;
+
         return response()->json([
             'dayList' => $dayList,
             'businessTypes' => $business_types,
@@ -45,6 +48,8 @@ class SetupController extends Controller
             'monthlyPackages' => BusinessPackageResource::collection($monthlyPackages),
             'yearlyPackages' => BusinessPackageResource::collection($yearlyPackages),
             'business' => BusinessResource::make($business),
+            'cards' => OfficialCardResource::collection($user->cards),
+
         ]);
     }
     /**

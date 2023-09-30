@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use \App\Http\Controllers\Api\SetupController;
 use \App\Http\Controllers\Api\City\CityController;
-
+use \App\Http\Controllers\Api\OfficialCreditCardController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,9 +31,15 @@ Route::prefix('city')->group(function (){
     Route::post('get', [CityController::class, 'get']);
 });
 Route::middleware('auth:api')->group(function () {
-    Route::controller(SetupController::class)->prefix('setup')->as('setup.')->group(function (){
-        Route::get('/', 'get');
+    Route::controller(SetupController::class)->prefix('setup')->group(function (){
+        Route::get('/get', 'get');
         Route::post('/update', 'update');
     });
-
+    Route::controller(OfficialCreditCardController::class)->prefix('cart')->group(function (){
+        Route::get('/', 'index');
+        Route::post('/get', 'get');
+        Route::post('/delete', 'delete');
+        Route::post('/save', 'store');
+        Route::post('/update', 'update');
+    });
 });

@@ -62,7 +62,7 @@ return array(
     "required_without_all" => ":attribute alanı :values yokken zorunludur.",
     "same" => ":attribute ile :other eşleşmelidir.",
     "size" => array(
-        "numeric" => ":attribute :size olmalıdır.",
+        "numeric" => ":attribute :size karakter olmalıdır.",
         "file" => ":attribute :size kilobyte olmalıdır.",
         "string" => ":attribute :size karakter olmalıdır.",
         "array" => ":attribute :size nesneye sahip olmalıdır."

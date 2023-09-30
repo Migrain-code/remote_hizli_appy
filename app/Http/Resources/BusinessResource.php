@@ -27,7 +27,15 @@ class BusinessResource extends JsonResource
            'start_time' => $this->start_time,
            'end_time' => $this->end_time,
            'is_main' => $this->is_main == 1 ? "Ana İşletme" : "Alt İşletme",
-            
+           'packet' => new BusinessPackageResource($this->package),
+           'packet_end_date' => $this->packet_end_date,
+           'packet_start_date' => $this->packet_start_date,
+           'appointment_range' => $this->appoinment_range,
+           'type' => $this->type,
+           'about' => $this->about,
+           'embed' => $this->embed,
+           'address' => $this->address,
+           'setup' => $this->setup_status,
         ];
     }
 }
