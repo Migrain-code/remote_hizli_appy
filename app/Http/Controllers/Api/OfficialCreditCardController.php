@@ -64,7 +64,7 @@ class OfficialCreditCardController extends Controller
     }
     /**
      * POST api/cart/delete
-     *
+     * @headers BearerToken
      *
      * <ul>
      * <li>Bearer Token | string | required | Kullanıcı Token</li>
