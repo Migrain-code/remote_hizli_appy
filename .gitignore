@@ -5,6 +5,10 @@
 /public/storage
 /storage/framework
 /storage/logs/laravel.log
+/public/docs/*
+/public/docs.html
+/public/scribe/*
+/public/scribe.html
 /vendor
 .env
 .env.backup
