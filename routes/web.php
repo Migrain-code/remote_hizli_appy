@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::controller(\App\Http\Controllers\HomeController::class)->group(function (){
+    Route::get('language/{locale}', 'language')->name('language');
     Route::get('/', 'index')->name('welcome');
     Route::post('/bilgi-al', 'getInfo')->name('getInfo');
     Route::get('/kategori-detay/{slug}', 'categoryDetail')->name('categoryDetail');
@@ -20,12 +21,13 @@ Route::group(['prefix' => 'business', 'as' => 'business.'], function () {
     Route::post('/login', [\App\Http\Controllers\Business\Auth\LoginController::class, 'login']);
     Route::get('/register', [\App\Http\Controllers\Business\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [\App\Http\Controllers\Business\Auth\RegisterController::class, 'register']);
-    Route::get('/verify-phone', [\App\Http\Controllers\Business\Auth\VerifyController::class, 'index'])->name('verify');
+    Route::get('/verify/phone', [\App\Http\Controllers\Business\Auth\VerifyController::class, 'index'])->name('verify.showForm');
+    Route::post('/verify', [\App\Http\Controllers\Business\Auth\RegisterController::class, 'verify'])->name('verify');
     Route::get('/logout', [\App\Http\Controllers\Business\Auth\LoginController::class, 'logout'])->name('logout');
     Route::get('/sifremi-unuttum', [\App\Http\Controllers\Business\Auth\VerifyController::class, 'showForgotView'])->name('showForgotView');
     Route::post('/sifremi-unuttum', [\App\Http\Controllers\Business\Auth\VerifyController::class, 'forgotPassword'])->name('forgotPassword');
     Route::post('/verify/mobil', [\App\Http\Controllers\Business\Auth\VerifyController::class, 'verify'])->name('verifyPhone');
-    Route::middleware(['auth:business', 'active'])->group(function () {
+    Route::middleware(['auth:official', 'active', 'setup_status'])->group(function () {
         Route::controller(\App\Http\Controllers\SetupController::class)->prefix('isletme-kurulum')->as('setup.')->group(function (){
             Route::get('/adim-1', 'step1')->name('step1');
             Route::post('/adim-1', 'step1Form')->name('step1Form');

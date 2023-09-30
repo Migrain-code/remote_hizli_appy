@@ -26,11 +26,11 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: assumenda
+                  example: in
                 password:
                   type: string
                   description: ''
-                  example: ".bM8hQK)Ofm'"
+                  example: P8GijPSjQ2_p
               required:
                 - phone
                 - password
@@ -51,23 +51,6 @@ paths:
       operationId: pOSTApiauthverify
       description: "<ul>\n<li>code | string | required | Doğrulama Kodu</li>\n<li>phone | string | required | Kullanıcı Telefon Numarası</li>\n<li>name | string | required | Kullanıcı Adı</li>\n<li>business_name | string | required | İşletme Adı</li>\n<li>phone | string | required</li>\n</ul>\nKod doğrulama ve kullanıcı kayıt apisi"
       parameters: []
-      responses: {  }
-      tags:
-        - Authentication
-      security: []
-  /api/auth/logout:
-    post:
-      summary: 'POST api/auth/logout'
-      operationId: pOSTApiauthlogout
-      description: "<ul>\n<li>Token Göndermeniz Yeterli</li>\n</ul>\nLogout apisi"
-      parameters:
-        -
-          in: header
-          name: Bearer
-          description: ''
-          example: '{token}'
-          schema:
-            type: string
       responses: {  }
       tags:
         - Authentication
@@ -101,7 +84,754 @@ paths:
       tags:
         - Authentication
       security: []
+  /api/auth/logout:
+    post:
+      summary: 'POST api/auth/logout'
+      operationId: pOSTApiauthlogout
+      description: "<ul>\n<li>Token Göndermeniz Yeterli</li>\n</ul>\nLogout apisi"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Authentication
+      security: []
+  /api/city/list:
+    get:
+      summary: 'GET api/city/list'
+      operationId: gETApicitylist
+      description: 'Şehir Listesi. Direk get isteği atılacak Header veya body gönderimine gerek yok'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  cities:
+                    -
+                      id: 1
+                      slug: adana
+                      name: ADANA
+                    -
+                      id: 2
+                      slug: adiyaman
+                      name: ADIYAMAN
+                    -
+                      id: 3
+                      slug: afyon
+                      name: AFYON
+                    -
+                      id: 4
+                      slug: agri
+                      name: AĞRI
+                    -
+                      id: 5
+                      slug: amasya
+                      name: AMASYA
+                    -
+                      id: 6
+                      slug: ankara
+                      name: ANKARA
+                    -
+                      id: 7
+                      slug: antalya
+                      name: ANTALYA
+                    -
+                      id: 8
+                      slug: artvin
+                      name: ARTVİN
+                    -
+                      id: 9
+                      slug: aydin
+                      name: AYDIN
+                    -
+                      id: 10
+                      slug: balikesir
+                      name: BALIKESİR
+                    -
+                      id: 11
+                      slug: bilecik
+                      name: BİLECİK
+                    -
+                      id: 12
+                      slug: bingol
+                      name: BİNGÖL
+                    -
+                      id: 13
+                      slug: bitlis
+                      name: BİTLİS
+                    -
+                      id: 14
+                      slug: bolu
+                      name: BOLU
+                    -
+                      id: 15
+                      slug: burdur
+                      name: BURDUR
+                    -
+                      id: 16
+                      slug: bursa
+                      name: BURSA
+                    -
+                      id: 17
+                      slug: canakkale
+                      name: ÇANAKKALE
+                    -
+                      id: 18
+                      slug: cankiri
+                      name: ÇANKIRI
+                    -
+                      id: 19
+                      slug: corum
+                      name: ÇORUM
+                    -
+                      id: 20
+                      slug: denizli
+                      name: DENİZLİ
+                    -
+                      id: 21
+                      slug: diyarbakir
+                      name: DİYARBAKIR
+                    -
+                      id: 22
+                      slug: edirne
+                      name: EDİRNE
+                    -
+                      id: 23
+                      slug: elazig
+                      name: ELAZIĞ
+                    -
+                      id: 24
+                      slug: erzincan
+                      name: ERZİNCAN
+                    -
+                      id: 25
+                      slug: erzurum
+                      name: ERZURUM
+                    -
+                      id: 26
+                      slug: eskisehir
+                      name: ESKİŞEHİR
+                    -
+                      id: 27
+                      slug: gaziantep
+                      name: GAZİANTEP
+                    -
+                      id: 28
+                      slug: giresun
+                      name: GİRESUN
+                    -
+                      id: 29
+                      slug: gumushane
+                      name: GÜMÜŞHANE
+                    -
+                      id: 30
+                      slug: hakkari
+                      name: HAKKARİ
+                    -
+                      id: 31
+                      slug: hatay
+                      name: HATAY
+                    -
+                      id: 32
+                      slug: isparta
+                      name: ISPARTA
+                    -
+                      id: 33
+                      slug: icel
+                      name: İÇEL
+                    -
+                      id: 34
+                      slug: istanbul
+                      name: İSTANBUL
+                    -
+                      id: 35
+                      slug: izmir
+                      name: İZMİR
+                    -
+                      id: 36
+                      slug: kars
+                      name: KARS
+                    -
+                      id: 37
+                      slug: kastamonu
+                      name: KASTAMONU
+                    -
+                      id: 38
+                      slug: kayseri
+                      name: KAYSERİ
+                    -
+                      id: 39
+                      slug: kirklareli
+                      name: KIRKLARELİ
+                    -
+                      id: 40
+                      slug: kirsehir
+                      name: KIRŞEHİR
+                    -
+                      id: 41
+                      slug: kocaeli
+                      name: KOCAELİ
+                    -
+                      id: 42
+                      slug: konya
+                      name: KONYA
+                    -
+                      id: 43
+                      slug: kutahya
+                      name: KÜTAHYA
+                    -
+                      id: 44
+                      slug: malatya
+                      name: MALATYA
+                    -
+                      id: 45
+                      slug: manisa
+                      name: MANİSA
+                    -
+                      id: 46
+                      slug: kahramanmaras
+                      name: KAHRAMANMARAŞ
+                    -
+                      id: 47
+                      slug: mardin
+                      name: MARDİN
+                    -
+                      id: 48
+                      slug: mugla
+                      name: MUĞLA
+                    -
+                      id: 49
+                      slug: mus
+                      name: MUŞ
+                    -
+                      id: 50
+                      slug: nevsehir
+                      name: NEVŞEHİR
+                    -
+                      id: 51
+                      slug: nigde
+                      name: NİĞDE
+                    -
+                      id: 52
+                      slug: ordu
+                      name: ORDU
+                    -
+                      id: 53
+                      slug: rize
+                      name: RİZE
+                    -
+                      id: 54
+                      slug: sakarya
+                      name: SAKARYA
+                    -
+                      id: 55
+                      slug: samsun
+                      name: SAMSUN
+                    -
+                      id: 56
+                      slug: siirt
+                      name: SİİRT
+                    -
+                      id: 57
+                      slug: sinop
+                      name: SİNOP
+                    -
+                      id: 58
+                      slug: sivas
+                      name: SİVAS
+                    -
+                      id: 59
+                      slug: tekirdag
+                      name: TEKİRDAĞ
+                    -
+                      id: 60
+                      slug: tokat
+                      name: TOKAT
+                    -
+                      id: 61
+                      slug: trabzon
+                      name: TRABZON
+                    -
+                      id: 62
+                      slug: tunceli
+                      name: TUNCELİ
+                    -
+                      id: 63
+                      slug: sanliurfa
+                      name: ŞANLIURFA
+                    -
+                      id: 64
+                      slug: usak
+                      name: UŞAK
+                    -
+                      id: 65
+                      slug: van
+                      name: VAN
+                    -
+                      id: 66
+                      slug: yozgat
+                      name: YOZGAT
+                    -
+                      id: 67
+                      slug: zonguldak
+                      name: ZONGULDAK
+                    -
+                      id: 68
+                      slug: aksaray
+                      name: AKSARAY
+                    -
+                      id: 69
+                      slug: bayburt
+                      name: BAYBURT
+                    -
+                      id: 70
+                      slug: karaman
+                      name: KARAMAN
+                    -
+                      id: 71
+                      slug: kirikkale
+                      name: KIRIKKALE
+                    -
+                      id: 72
+                      slug: batman
+                      name: BATMAN
+                    -
+                      id: 73
+                      slug: sirnak
+                      name: ŞIRNAK
+                    -
+                      id: 74
+                      slug: bartin
+                      name: BARTIN
+                    -
+                      id: 75
+                      slug: ardahan
+                      name: ARDAHAN
+                    -
+                      id: 76
+                      slug: igdir
+                      name: IĞDIR
+                    -
+                      id: 77
+                      slug: yalova
+                      name: YALOVA
+                    -
+                      id: 78
+                      slug: karabuk
+                      name: KARABÜK
+                    -
+                      id: 79
+                      slug: kilis
+                      name: KİLİS
+                    -
+                      id: 80
+                      slug: osmaniye
+                      name: OSMANİYE
+                    -
+                      id: 81
+                      slug: duzce
+                      name: DÜZCE
+                properties:
+                  cities:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        slug: adana
+                        name: ADANA
+                      -
+                        id: 2
+                        slug: adiyaman
+                        name: ADIYAMAN
+                      -
+                        id: 3
+                        slug: afyon
+                        name: AFYON
+                      -
+                        id: 4
+                        slug: agri
+                        name: AĞRI
+                      -
+                        id: 5
+                        slug: amasya
+                        name: AMASYA
+                      -
+                        id: 6
+                        slug: ankara
+                        name: ANKARA
+                      -
+                        id: 7
+                        slug: antalya
+                        name: ANTALYA
+                      -
+                        id: 8
+                        slug: artvin
+                        name: ARTVİN
+                      -
+                        id: 9
+                        slug: aydin
+                        name: AYDIN
+                      -
+                        id: 10
+                        slug: balikesir
+                        name: BALIKESİR
+                      -
+                        id: 11
+                        slug: bilecik
+                        name: BİLECİK
+                      -
+                        id: 12
+                        slug: bingol
+                        name: BİNGÖL
+                      -
+                        id: 13
+                        slug: bitlis
+                        name: BİTLİS
+                      -
+                        id: 14
+                        slug: bolu
+                        name: BOLU
+                      -
+                        id: 15
+                        slug: burdur
+                        name: BURDUR
+                      -
+                        id: 16
+                        slug: bursa
+                        name: BURSA
+                      -
+                        id: 17
+                        slug: canakkale
+                        name: ÇANAKKALE
+                      -
+                        id: 18
+                        slug: cankiri
+                        name: ÇANKIRI
+                      -
+                        id: 19
+                        slug: corum
+                        name: ÇORUM
+                      -
+                        id: 20
+                        slug: denizli
+                        name: DENİZLİ
+                      -
+                        id: 21
+                        slug: diyarbakir
+                        name: DİYARBAKIR
+                      -
+                        id: 22
+                        slug: edirne
+                        name: EDİRNE
+                      -
+                        id: 23
+                        slug: elazig
+                        name: ELAZIĞ
+                      -
+                        id: 24
+                        slug: erzincan
+                        name: ERZİNCAN
+                      -
+                        id: 25
+                        slug: erzurum
+                        name: ERZURUM
+                      -
+                        id: 26
+                        slug: eskisehir
+                        name: ESKİŞEHİR
+                      -
+                        id: 27
+                        slug: gaziantep
+                        name: GAZİANTEP
+                      -
+                        id: 28
+                        slug: giresun
+                        name: GİRESUN
+                      -
+                        id: 29
+                        slug: gumushane
+                        name: GÜMÜŞHANE
+                      -
+                        id: 30
+                        slug: hakkari
+                        name: HAKKARİ
+                      -
+                        id: 31
+                        slug: hatay
+                        name: HATAY
+                      -
+                        id: 32
+                        slug: isparta
+                        name: ISPARTA
+                      -
+                        id: 33
+                        slug: icel
+                        name: İÇEL
+                      -
+                        id: 34
+                        slug: istanbul
+                        name: İSTANBUL
+                      -
+                        id: 35
+                        slug: izmir
+                        name: İZMİR
+                      -
+                        id: 36
+                        slug: kars
+                        name: KARS
+                      -
+                        id: 37
+                        slug: kastamonu
+                        name: KASTAMONU
+                      -
+                        id: 38
+                        slug: kayseri
+                        name: KAYSERİ
+                      -
+                        id: 39
+                        slug: kirklareli
+                        name: KIRKLARELİ
+                      -
+                        id: 40
+                        slug: kirsehir
+                        name: KIRŞEHİR
+                      -
+                        id: 41
+                        slug: kocaeli
+                        name: KOCAELİ
+                      -
+                        id: 42
+                        slug: konya
+                        name: KONYA
+                      -
+                        id: 43
+                        slug: kutahya
+                        name: KÜTAHYA
+                      -
+                        id: 44
+                        slug: malatya
+                        name: MALATYA
+                      -
+                        id: 45
+                        slug: manisa
+                        name: MANİSA
+                      -
+                        id: 46
+                        slug: kahramanmaras
+                        name: KAHRAMANMARAŞ
+                      -
+                        id: 47
+                        slug: mardin
+                        name: MARDİN
+                      -
+                        id: 48
+                        slug: mugla
+                        name: MUĞLA
+                      -
+                        id: 49
+                        slug: mus
+                        name: MUŞ
+                      -
+                        id: 50
+                        slug: nevsehir
+                        name: NEVŞEHİR
+                      -
+                        id: 51
+                        slug: nigde
+                        name: NİĞDE
+                      -
+                        id: 52
+                        slug: ordu
+                        name: ORDU
+                      -
+                        id: 53
+                        slug: rize
+                        name: RİZE
+                      -
+                        id: 54
+                        slug: sakarya
+                        name: SAKARYA
+                      -
+                        id: 55
+                        slug: samsun
+                        name: SAMSUN
+                      -
+                        id: 56
+                        slug: siirt
+                        name: SİİRT
+                      -
+                        id: 57
+                        slug: sinop
+                        name: SİNOP
+                      -
+                        id: 58
+                        slug: sivas
+                        name: SİVAS
+                      -
+                        id: 59
+                        slug: tekirdag
+                        name: TEKİRDAĞ
+                      -
+                        id: 60
+                        slug: tokat
+                        name: TOKAT
+                      -
+                        id: 61
+                        slug: trabzon
+                        name: TRABZON
+                      -
+                        id: 62
+                        slug: tunceli
+                        name: TUNCELİ
+                      -
+                        id: 63
+                        slug: sanliurfa
+                        name: ŞANLIURFA
+                      -
+                        id: 64
+                        slug: usak
+                        name: UŞAK
+                      -
+                        id: 65
+                        slug: van
+                        name: VAN
+                      -
+                        id: 66
+                        slug: yozgat
+                        name: YOZGAT
+                      -
+                        id: 67
+                        slug: zonguldak
+                        name: ZONGULDAK
+                      -
+                        id: 68
+                        slug: aksaray
+                        name: AKSARAY
+                      -
+                        id: 69
+                        slug: bayburt
+                        name: BAYBURT
+                      -
+                        id: 70
+                        slug: karaman
+                        name: KARAMAN
+                      -
+                        id: 71
+                        slug: kirikkale
+                        name: KIRIKKALE
+                      -
+                        id: 72
+                        slug: batman
+                        name: BATMAN
+                      -
+                        id: 73
+                        slug: sirnak
+                        name: ŞIRNAK
+                      -
+                        id: 74
+                        slug: bartin
+                        name: BARTIN
+                      -
+                        id: 75
+                        slug: ardahan
+                        name: ARDAHAN
+                      -
+                        id: 76
+                        slug: igdir
+                        name: IĞDIR
+                      -
+                        id: 77
+                        slug: yalova
+                        name: YALOVA
+                      -
+                        id: 78
+                        slug: karabuk
+                        name: KARABÜK
+                      -
+                        id: 79
+                        slug: kilis
+                        name: KİLİS
+                      -
+                        id: 80
+                        slug: osmaniye
+                        name: OSMANİYE
+                      -
+                        id: 81
+                        slug: duzce
+                        name: DÜZCE
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        slug:
+                          type: string
+                          example: adana
+                        name:
+                          type: string
+                          example: ADANA
+      tags:
+        - City
+      security: []
+  /api/city/get:
+    post:
+      summary: 'POST api/city/get'
+      operationId: pOSTApicityget
+      description: "City id gönderilen şehrin bilgilerini ve ilçe verisini döndürür.\ncity_id |required| int or string"
+      parameters: []
+      responses: {  }
+      tags:
+        - City
+      security: []
+  /api/setup:
+    get:
+      summary: 'GET api/setup'
+      operationId: gETApisetup
+      description: "<ul>\n<li>Bearer Token | string | required | Kullanıcı Token</li>\n</ul>\nKayıt Ekranı Tüm Bilgiler Apisi"
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Setup
+      security: []
+  /api/setup/update:
+    post:
+      summary: 'POST api/setup/update'
+      operationId: pOSTApisetupupdate
+      description: "<ul>\n<li>category_id | string | required | İşletme Kategorisi</li>\n<li>name | string | required | İşletme Adı</li>\n<li>type_id | string | required | Hizmet Türü businessTypes değişkeninden alabilirsiniz </li>\n<li>city_id  | string | required | Şehir</li>\n<li>district_id  | string | required | İlçe</li>\n<li>off_day_id  | string | required | Kapalı Olduğu Gün</li>\n<li>phone | string | required | Kullanıcı Telefon Numarası</li>\n<li>about_content | string | required| İşletme Hakkında Yazısı</li>\n<li>start_time | string | required| İşletme Açılış Saati Örneğin (12:08)</li>\n<li>end_time | string | required| İşletme Kapanış Saati Örneğin (18:08)</li>\n<li>latitude | string | required| Haritadan seçilen lat bilgisi</li>\n<li>longitude | string | required| Haritadan seçilen long bilgisi</li>\n<li>address | text | required| Address Metni</li>\n<li>package_id | integer or string | required| Seçili Paket idsi</li>\n</ul>\nKayıt Ekranı Tüm Bilgiler güncelleme Apisi"
+      parameters: []
+      responses: {  }
+      tags:
+        - Setup
+      security: []
 tags:
   -
     name: Authentication
+    description: ''
+  -
+    name: City
+    description: ''
+  -
+    name: Setup
     description: ''

@@ -1,310 +1,293 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
+<!DOCTYPE html>
 
+<html lang="en">
+<!--begin::Head-->
 <head>
+    <title>HizliAppy</title>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('meta_description')">
-    <meta name="keywords" content="@yield('meta_keys')">
-    <title>@yield('title', config('settings.bussiness_site_title') .'|'. ' İşletme Giriş')</title>
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="">
+    <link rel="canonical" href="">
+    <link rel="shortcut icon" href="">
+
+    <link href="/business_admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css">
+    <link href="/business_admin/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css">
+
+    <link href="/business_admin/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css">
+    <link href="/business_admin/assets/css/style.bundle.css" rel="stylesheet" type="text/css">
+    <link href="/business_admin/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.14.1/dist/sweetalert2.min.css">
     <style>
-        .btn-mobile-menu-free{
-            background: #4CAF50 !important;
-            color: white !important;
-            box-shadow: #4CAF50;
-            transform: scale(1);
-            animation: pulseBtn 2s infinite;
+        .swal2-popup{
+            font-size: 1.2rem;
+            font-weight: 600;
         }
-        .btn-mobile-menu-free:hover{
-            color: black !important;
+        .swal2-popup.swal2-toast .swal2-title {
+            flex-grow: 1;
+            justify-content: flex-start;
+            margin: 0 0.6em;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
-        @keyframes pulseBtn {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.71);
-            }
-
-            70% {
-                transform: scale(1);
-                box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
-            }
-
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-            }
+        .swal2-popup.swal2-toast {
+            border-radius: 15px;
+            box-sizing: border-box;
+            grid-column: 1/4!important;
+            grid-row: 1/4!important;
+            grid-template-columns: min-content auto min-content;
+            padding: 1em;
+            overflow-y: hidden;
+            background: #fff;
+            box-shadow: 0 0 1px hsla(0,0%,0%,.075), 0 1px 2px hsla(0,0%,0%,.075), 1px 2px 4px hsla(0,0%,0%,.075), 1px 3px 8px hsla(0,0%,0%,.075), 2px 4px 16px hsla(0,0%,0%,.075);
+            pointer-events: all;
         }
     </style>
-    <!-- Place favicon.ico in the root directory -->
-    @include('layouts.component.styles')
 </head>
 
-<body>
+<body id="kt_app_body" data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+<!--begin::Theme mode-->
+<script>
+    var defaultThemeMode = "light";
+    var themeMode;
 
-<!-- preloader -->
-<div id="preloader">
-    <div class="preloader">
-        <span></span>
-        <span></span>
-    </div>
-</div>
-<!-- preloader end  -->
+    if ( document.documentElement ) {
+        if ( document.documentElement.hasAttribute("data-bs-theme-mode")) {
+            themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+        } else {
+            if ( localStorage.getItem("data-bs-theme") !== null ) {
+                themeMode = localStorage.getItem("data-bs-theme");
+            } else {
+                themeMode = defaultThemeMode;
+            }
+        }
 
-<!-- back-to-top-start  -->
-<button class="scroll-top scroll-to-target" data-target="html">
-    <i class="far fa-angle-double-up"></i>
-</button>
-<!-- back-to-top-end  -->
+        if (themeMode === "system") {
+            themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
 
-<!-- tp-offcanvus-area-start -->
-<div class="tpoffcanvas-area">
-    <div class="tpoffcanvas">
-        <div class="tpoffcanvas__close-btn">
-            <button class="close-btn"><i class="fal fa-times"></i></button>
-        </div>
-        <div class="tpoffcanvas__logo text-center">
-            <a href="{{route('welcome')}}">
-                <img src="{{asset(config('settings.bussiness_main_white_logo'))}}" alt="">
-            </a>
-        </div>
-        <div class="mobile-menu"></div>
-        <div class="tpoffcanvas__instagram text-center">
-            <div class="row text-center">
-                <div class="col-md-6 mb-2">
-                    <a class="d-block w-100" style="color: #000000;font-weight: bold;background-color: #ffce5a;border-radius: 25px;padding: 15px;" href="{{route('business.register')}}">
-                        <span class="white-text"><i class="far fa-user-edit"></i> Kayıt Ol</span>
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a  class="d-block w-100"  style="color: #000229;background-color: white;border-radius: 25px;padding: 15px;" href="{{route('business.login')}}">
-                        <span class="white-text"><i class="far fa-user"></i> Giriş Yap</span>
-                    </a>
-                </div>
+        document.documentElement.setAttribute("data-bs-theme", themeMode);
+    }
+</script>
+<!--end::Theme mode -->
+<!--begin::Page-->
+<div class="d-flex flex-column flex-root" id="kt_app_root">
+    <!--begin::Page bg image-->
+    <style>
+        body {
+            background-image: url('/business_admin/assets/media/auth/bg10.jpeg');
+        }
 
+        [data-bs-theme="dark"] body {
+            background-image: url('/business_admin/assets/media/auth/bg10-dark.jpeg');
+        }
+    </style>
+    <!--end::Page bg image-->
 
-            </div>
-        </div>
+    <!--begin::Authentication - Sign-in -->
+    <div class="d-flex flex-column flex-lg-row flex-column-fluid">
 
-        <div class="tpoffcanvas__social">
-            <div class="mt-30 mb-30">
-                <a class="tp-btn-yellow-lg circle-effect w-100 btn-mobile-menu-free" href="{{route('business.register')}}">14 Gün Ücretsiz Dene</a>
-            </div>
-            <div class="social-icon text-center">
-                <a href="{{config('settings.twitter')}}"><i class="fab fa-twitter"></i></a>
-                <a href="{{config('settings.instagram')}}"><i class="fab fa-instagram"></i></a>
-                <a href="{{config('settings.facebook')}}"><i class="fab fa-facebook-square"></i></a>
+        <!--begin::Body-->
+        <div class="d-flex flex-column-fluid w-lg-50 flex-lg-row-auto justify-content-center justify-content-lg-center p-12 order-2">
+            <!--begin::Wrapper-->
+            <div class="bg-body d-flex flex-column flex-center rounded-4 w-md-600px p-10">
+                <!--begin::Content-->
+                <div class="d-flex flex-center flex-column align-items-stretch h-lg-100 w-md-400px">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-center flex-column flex-column-fluid pb-15 pb-lg-20">
 
-            </div>
-
-        </div>
-    </div>
-</div>
-<div class="body-overlay"></div>
-<!-- tp-offcanvus-area-end -->
-
-<header>
-    <!-- tp-header-area-start -->
-    <div class="header-signin-area header-bottom__transparent header-signin-ptb z-index-5">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-6">
-                    <div class="header-signin-logo">
-                        <a href="{{route('welcome')}}">
-                            <img src="{{asset(config('settings.bussiness_main_white_logo'))}}" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="header-signin-bar text-end tp-menu-bar">
-                        <button>
-                            <i>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="header-bottom__area header-bottom__transparent header-bottom__bdr z-index-5 d-none">
-        <div class="container">
-            <div class="row g-0 align-items-center">
-                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-6">
-                    <div class="header-bottom__logo">
-                        <a href="{{route('welcome')}}">
-                            <img src="{{asset(config('settings.bussiness_main_white_logo'))}}" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xxl-7 col-xl-7 col-lg-7 d-none d-lg-block">
-                    <div class="header-bottom__main-menu header-bottom__main-menu-4 header-bottom__main-menu-inner">
-                        <nav id="mobile-menu-2">
-                            <ul>
-                                <li>
-                                    <a href="{{route('welcome')}}.html">Anasayfa</a>
-                                </li>
-                                <li><a href="{{route('propartie.index')}}">Özellikler</a></li>
-                                <li>
-                                    <a href="{{route('blog.index')}}">Blog</a>
-                                </li>
-                                <li><a href="{{route('packages')}}">Paketlerimiz</a></li>
-                                <li><a href="{{route('faq')}}"><i class="fa fa-headphones me-1"></i>Destek</a></li>
-
-                                <li><a href="{{route('contact')}}">İletişim</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-8 col-6">
-                    <div class="header-bottom__right d-flex align-items-center justify-content-end">
-                        <div class="header-bottom__action header-bottom__action-4">
-                            <a class="d-none d-lg-inline-block header-bottom__action-2 border-none" href="register.html">
-                                <span></span>
-                            </a>
-                        </div>
-                        <div class="header-bottom__btn d-flex align-items-center">
-                            <a class="tp-btn-yellow d-none d-md-inline-block inner-color" href="#"></a>
-                            <a class="header-bottom__bar tp-menu-bar d-lg-none" href="#"><i class="fal fa-bars"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- tp-header-area-end -->
-</header>
-
-
-
-<div id="smooth-wrapper">
-    <div id="smooth-content">
-
-        <main style="background-color: rgba(240,240,243,0.53)">
-
-            <!-- tp-banner-area-start -->
-            <div class="signin-banner-area signin-banner-main-wrap d-flex align-items-center">
-                <div class="signin-banner-left-box signin-banner-bg p-relative" data-background="/business/assets/img/login/login-bg-shape.png">
-                    <div class="signin-banner-bottom-shape">
-                        <img src="/business/assets/img/login/login-shape-1.png" alt="">
-                    </div>
-                    <div class="signin-banner-left-wrap">
-                        <div class="signin-banner-title-box mb-100">
-                            <h4 class="signin-banner-title tp-char-animation">HızlıAppy <br>
-                                Sistemine Hoşgeldiniz.</h4>
-                        </div>
-                        <div class="signin-banner-img-box position-relative">
-                            <div class="signin-banner-img signin-img-1 d-none d-md-block z-index-3">
-                                <img src="/business/assets/img/login/login-2.png" alt="">
+                        <!--begin::Form-->
+                        <form class="form w-100" method="post" novalidate="novalidate" id="kt_sign_in_form" action="{{route('business.login')}}">
+                            <!--begin::Heading-->
+                            @csrf
+                            <div class="text-center mb-11">
+                                <!--begin::Title-->
+                                <h1 class="text-dark fw-bolder mb-3">
+                                    {{__('profile.login')}}
+                                </h1>
+                                <!--end::Title-->
+                                <!--begin::Subtitle-->
+                                <div class="text-gray-500 fw-semibold fs-6">
+                                    @lang('profile.loginText')
+                                </div>
+                                <!--end::Subtitle--->
                             </div>
-                            <div class="signin-banner-img signin-img-2 d-none d-md-block">
-                                <img src="/business/assets/img/login/login-1.png" alt="">
+                            <!--begin::Heading-->
+
+                            <!--begin::Separator-->
+                            <div class="separator separator-content my-14">
+                                <span class="w-250px text-gray-500 fw-semibold fs-7">@lang('profile.loginHrText')</span>
                             </div>
-                            <div class="signin-banner-img signin-img-3 d-none d-md-block z-index-5">
-                                <img src="/business/assets/img/login/login-3.png" alt="">
+                            <!--end::Separator-->
+
+                            <!--begin::Input group--->
+                            <div class="fv-row mb-8">
+                                <!--begin::Email-->
+                                <input type="text" placeholder="@lang('profile.phone')" name="phone" id="phone" value="{{old("phone") ?? "05"}}" autocomplete="off" class="form-control bg-transparent">
+                                <!--end::Email-->
                             </div>
-                            <div class="signin-banner-img signin-img-4 d-none d-sm-block">
-                                <img src="/business/assets/img/login/login-4.png" alt="">
+
+                            <!--end::Input group--->
+                            <div class="fv-row mb-3">
+                                <!--begin::Password-->
+                                <input type="password" placeholder="@lang('profile.password')" name="password" autocomplete="off" class="form-control bg-transparent">
+                                <!--end::Password-->
                             </div>
-                        </div>
+                            <!--end::Input group--->
+
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
+                                <div></div>
+
+                                <!--begin::Link-->
+                                <a href="reset-password.html" class="link-primary">
+                                    @lang('profile.forgotPassword')
+                                </a>
+                                <!--end::Link-->
+                            </div>
+                            <!--end::Wrapper-->
+
+                            <!--begin::Submit button-->
+                            <div class="d-grid mb-10">
+                                <button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+
+                                    <!--begin::Indicator label-->
+                                    <span class="indicator-label">@lang('profile.login')</span>
+                                    <!--end::Indicator label-->
+
+                                </button>
+                            </div>
+                            <!--end::Submit button-->
+
+                            <!--begin::Sign up-->
+                            <div class="text-gray-500 text-center fw-semibold fs-6">
+                               @lang('profile.noRegister')
+
+                                <a href="{{route('business.register')}}" class="link-primary">
+                                    @lang('profile.newRegister')
+                                </a>
+                            </div>
+                            <!--end::Sign up-->
+                        </form>
+                        <!--end::Form-->
+
                     </div>
-                </div>
+                    <!--end::Wrapper-->
 
-                <div class="signin-banner-from d-flex justify-content-center align-items-center">
+                    <!--begin::Footer-->
+                    <div class=" d-flex flex-stack">
+                        <!--begin::Languages-->
+                        <div class="me-10">
+                            <!--begin::Toggle-->
+                            <button class="btn btn-flex btn-link btn-color-gray-700 btn-active-color-primary rotate fs-base" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start" data-kt-menu-offset="0px, 0px">
+                                <img data-kt-element="current-lang-flag" class="w-20px h-20px rounded me-3" src="/business_admin/assets/media/flags/tr.svg" alt="">
 
-                    <div class="signin-banner-from-wrap">
-                        @include('layouts.component.error')
-                        @include('layouts.component.alert')
-                        <div class="signin-banner-title-box">
-                            <h4 class="signin-banner-from-title">HızlıAppy'de Oturum Açın</h4>
-                        </div>
+                                <span data-kt-element="current-lang-name" class="me-1">Dil</span>
 
-                        <div class="signin-banner-from-box">
-                            <h5 class="signin-banner-from-subtitle">Doğrulama kodu gönderilecektir.</h5>
-                            <form action="{{route('business.login')}}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="postbox__comment-input mb-30">
-                                            <input type="text" name="email" style="-webkit-appearance: none;-moz-appearance: none;appearance: none;" id="phone" value="{{old('email')}}"  class="inputText" required>
-                                            <span class="floating-label">Telefon Numarası</span>
-                                        </div>
+                                <i class="ki-duotone ki-down fs-5 text-muted rotate-180 m-0"></i>
+                            </button>
+                            <!--end::Toggle-->
+                            <!--begin::Menu-->
+                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-4 fs-7" data-kt-menu="true" id="kt_auth_lang_menu">
+                                <!--begin::Menu item-->
+                                @foreach(["tr" => "Turkey", 'en' => 'English', 'es' => 'Spanish', 'de' => 'German', 'it' => 'Italian', 'fr' => 'French'] as $locale => $langName)
+                                    <div class="menu-item px-3">
+                                        <a href="{{ route('language', ['locale' => $locale]) }}" class="menu-link d-flex px-5" data-kt-lang="{{ ucfirst($locale) }}">
+                                            <span class="symbol symbol-20px me-4">
+                                                <img data-kt-element="lang-flag" class="rounded-1" src="/business_admin/assets/media/flags/{{ $locale }}.svg" alt="">
+                                            </span>
+                                            <span data-kt-element="lang-name">{{ $langName }}</span>
+                                        </a>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="postbox__comment-input mb-30">
-                                            <input id="myInput" class="inputText password" type="password" style="-webkit-appearance: none;-moz-appearance: none;appearance: none;" name="password" required>
-                                            <span class="floating-label">Şifre</span>
-                                            <span id="click" class="eye-btn">
-                                       <span class="eye-on">
-                                          <svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path opacity="0.5" d="M2.1474 11.1661C1.38247 10.1723 1 9.67544 1 8.2C1 6.72456 1.38247 6.22767 2.1474 5.2339C3.67477 3.2496 6.2363 1 10 1C13.7637 1 16.3252 3.2496 17.8526 5.2339C18.6175 6.22767 19 6.72456 19 8.2C19 9.67544 18.6175 10.1723 17.8526 11.1661C16.3252 13.1504 13.7637 15.4 10 15.4C6.2363 15.4 3.67477 13.1504 2.1474 11.1661Z" stroke="#1C274C" stroke-width="1.5"/>
-                                          <path d="M12.6969 8.2C12.6969 9.69117 11.488 10.9 9.99687 10.9C8.50571 10.9 7.29688 9.69117 7.29688 8.2C7.29688 6.70883 8.50571 5.5 9.99687 5.5C11.488 5.5 12.6969 6.70883 12.6969 8.2Z" stroke="#1C274C" stroke-width="1.5"/>
-                                          </svg>
-                                       </span>
-                                       <span class="eye-off">
-                                          <svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                             <g clip-path="url(#clip0_2547_24206)">
-                                             <path d="M18.813 18.9113C17.1036 20.2143 15.0222 20.9362 12.873 20.9713C5.87305 20.9713 1.87305 12.9713 1.87305 12.9713C3.11694 10.6532 4.84218 8.62795 6.93305 7.03134M10.773 5.21134C11.4614 5.05022 12.1661 4.96968 12.873 4.97134C19.873 4.97134 23.873 12.9713 23.873 12.9713C23.266 14.1069 22.5421 15.1761 21.713 16.1613M14.993 15.0913C14.7184 15.3861 14.3872 15.6225 14.0192 15.7865C13.6512 15.9504 13.2539 16.0386 12.8511 16.0457C12.4483 16.0528 12.0482 15.9787 11.6747 15.8278C11.3011 15.6769 10.9618 15.4524 10.6769 15.1675C10.392 14.8826 10.1674 14.5433 10.0166 14.1697C9.86567 13.7962 9.79157 13.3961 9.79868 12.9932C9.80579 12.5904 9.89396 12.1932 10.0579 11.8252C10.2219 11.4572 10.4583 11.126 10.753 10.8513" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                             <path d="M1.87305 1.97131L23.873 23.9713" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                             </g>
-                                             <defs>
-                                             <clipPath id="clip0_2547_24206">
-                                             <rect width="24" height="24" fill="white" transform="translate(0.873047 0.971313)"/>
-                                             </clipPath>
-                                             </defs>
-                                          </svg>
-                                       </span>
-                                    </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="signin-banner-form-remember">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="postbox__comment-agree">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="rememberMe" value="" id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        Beni Hatırla
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="postbox__forget text-end">
-                                                <a href="{{route('business.showForgotView')}}">Şifremi Unuttum ?</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="signin-banner-from-btn mb-20 text-center">
-                                    <button class="signin-btn ">Giriş Yap</button>
-                                </div>
-                                <div class="signin-banner-from-register text-center">
-                                    <a href="{{route('business.register')}}">Hesabınız Yokmu ? <span>Kayıt Ol</span></a>
-                                </div>
-                            </form>
+                                @endforeach
+                                <!--end::Menu item-->
 
+                            </div>
+                            <!--end::Menu-->
                         </div>
+                        <!--end::Languages-->
+
+                        <!--begin::Links-->
+                        <div class="d-flex fw-semibold text-primary fs-base gap-5">
+                            <a href="../../../pages/team.html" target="_blank">@lang('profile.terms')</a>
+
+                            <a href="../../../pages/contact.html" target="_blank">@lang('profile.contact')</a>
+                        </div>
+                        <!--end::Links-->
                     </div>
+                    <!--end::Footer-->
                 </div>
+                <!--end::Content-->
             </div>
-            <!-- tp-banner-area-end -->
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Body-->
+        <!--begin::Aside-->
+        <div class="d-flex flex-column-fluid w-lg-50 bgi-size-cover bgi-position-center order-1" style="background-image: url(/business_admin/assets/media/misc/auth-bg.png)">
+            <!--begin::Content-->
+            <div class="d-flex flex-column flex-center py-7 py-lg-15 px-5 px-md-15 w-100">
+                <!--begin::Logo-->
+                <a href="../../../index.html" class="mb-0 mb-lg-12">
+                    <img alt="Logo" src="/business_admin/assets/media/logos/custom-1.png" class="h-60px h-lg-75px">
+                </a>
+                <!--end::Logo-->
 
-        </main>
+                <!--begin::Image-->
+                <img class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20" src="/business_admin/assets/media/misc/auth-screens.png" alt="">
+                <!--end::Image-->
 
+                <!--begin::Title-->
+                <h1 class="d-none d-lg-block text-white fs-2qx fw-bolder text-center mb-7">
+                    Fast, Efficient and Productive
+                </h1>
+                <!--end::Title-->
 
+                <!--begin::Text-->
+                <div class="d-none d-lg-block text-white fs-base text-center">
+                    In this kind of post, <a href="#" class="opacity-75-hover text-warning fw-bold me-1">the blogger</a>
 
+                    introduces a person they’ve interviewed <br> and provides some background information about
+
+                    <a href="#" class="opacity-75-hover text-warning fw-bold me-1">the interviewee</a>
+                    and their <br> work following this is a transcript of the interview.
+                </div>
+                <!--end::Text-->
+            </div>
+            <!--end::Content-->
+        </div>
+        <!--end::Aside-->
     </div>
+    <!--end::Authentication - Sign-in-->
 </div>
+@include('layouts.modals.packet')
+<!--end::Page-->
+<!--begin::Javascript-->
+<script>
+    var hostUrl = "/metronic8/demo46/assets/";
+</script>
 
-<!-- JS here -->
-@include('layouts.component.scripts')
+<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+<script src="/business_admin/assets/plugins/global/plugins.bundle.js"></script>
+<script src="/business_admin/assets/js/scripts.bundle.js"></script>
+<!--end::Global Javascript Bundle-->
 
+<script src="/business_admin/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+<!--end::Custom Javascript-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.60/inputmask/jquery.inputmask.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.14.1/dist/sweetalert2.min.js"></script>
 
-
+<script>
+    $(function () {
+        $("#phone").inputmask({"mask": "9(999)-999-9999"});
+    });
+</script>
+@include('business.layouts.component.alert')
+<!--end::Javascript-->
 </body>
-
+<!--end::Body-->
 </html>

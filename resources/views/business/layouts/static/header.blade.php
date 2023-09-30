@@ -1,77 +1,53 @@
 <!DOCTYPE html>
-<html lang="tr">
 
-
-<!-- Mirrored from finlab.dexignlab.com/codeigniter/demo/empty_page by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Dec 2022 10:01:58 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<html lang="en">
+<!--begin::Head-->
 <head>
+    <title>HizliAppy</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <meta name="robots" content="" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="" />
-    <meta name="format-detection" content="telephone=no">
-    <title>@yield('title') </title>
-
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="">
     @include('business.layouts.component.links')
+
 </head>
-<body>
 
-<!--*******************
-    Preloader start
-********************-->
+<body id="kt_app_body" data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+<!--begin::Theme mode-->
+<script>
+    var defaultThemeMode = "light";
+    var themeMode;
 
-<div id="preloader">
-    <div class="loader"></div>
-</div>
-<!--*******************
-    Preloader end
-********************-->
+    if ( document.documentElement ) {
+        if ( document.documentElement.hasAttribute("data-bs-theme-mode")) {
+            themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+        } else {
+            if ( localStorage.getItem("data-bs-theme") !== null ) {
+                themeMode = localStorage.getItem("data-bs-theme");
+            } else {
+                themeMode = defaultThemeMode;
+            }
+        }
 
-<!--**********************************Main wrapper start***********************************-->
-<div id="main-wrapper">
+        if (themeMode === "system") {
+            themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
 
-    <!--********************************** Nav header start ***********************************-->
-    <div class="nav-header">
-        <a href="{{route('business.home')}}" class="brand-logo">
-            <img src="{{asset(config('settings.bussiness_logo'))}}" style="width: 75px">
-            <div class="brand-title">
-                HızlıAppy
-            </div>
+        document.documentElement.setAttribute("data-bs-theme", themeMode);
+    }
+</script>
+<!--end::Theme mode -->
 
-        </a>
-        <div class="nav-control">
-            <div class="hamburger">
-                <span class="line"></span><span class="line"></span><span class="line"></span>
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="22" y="11" width="4" height="4" rx="2" fill="#2A353A"/>
-                    <rect x="11" width="4" height="4" rx="2" fill="#2A353A"/>
-                    <rect x="22" width="4" height="4" rx="2" fill="#2A353A"/>
-                    <rect x="11" y="11" width="4" height="4" rx="2" fill="#2A353A"/>
-                    <rect x="11" y="22" width="4" height="4" rx="2" fill="#2A353A"/>
-                    <rect width="4" height="4" rx="2" fill="#2A353A"/>
-                    <rect y="11" width="4" height="4" rx="2" fill="#2A353A"/>
-                    <rect x="22" y="22" width="4" height="4" rx="2" fill="#2A353A"/>
-                    <rect y="22" width="4" height="4" rx="2" fill="#2A353A"/>
-                </svg>
-            </div>
-        </div>
-    </div>
-    <!--**********************************Nav header end***********************************-->
-    @include('business.layouts.component.box.chat')
-    <!--**********************************Top Menu start ***********************************-->
-    @include('business.layouts.menu.top')
-    <!--**********************************Top Menu end***********************************-->
-    <!--**********************************Sidebar start***********************************-->
-    @include('business.layouts.menu.sidebar')
-    <!--**********************************Sidebar end***********************************-->
-    <div class="content-body">
-        <div class="container-fluid">
-
-
+<!--begin::App-->
+<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    <div class="app-page  flex-column flex-column-fluid " id="kt_app_page">
+        @include('business.layouts.menu.top')
+        <div class="app-wrapper  d-flex " id="kt_app_wrapper">
+            <div class="app-container  container-fluid ">
+                @include('business.layouts.menu.sidebar')
+                <div class="app-main flex-column flex-row-fluid " id="kt_app_main">

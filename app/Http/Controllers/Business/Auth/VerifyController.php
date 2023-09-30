@@ -17,38 +17,7 @@ class VerifyController extends Controller
     {
         return view('business.auth.verify');
     }
-    public function verify(Request $request)
-    {
-        $request->validate([
-            'verification_code' => ['required', 'numeric', 'digits:6'],
-        ]);
 
-        $user = Business::where('verification_code', $request->input('verification_code'))->first();
-        if ($user){
-            $generatePassword=rand(100000, 999999);
-            $user->password=Hash::make($generatePassword);
-            $user->verification_code=null;
-            $user->password_status=1;
-            $user->verify_phone=1;
-            $user->save();
-
-            $phone=str_replace(array('(', ')', '-', ' '), '', $user->email);
-            Sms::send($phone,config('settings.bussiness_site_title'). "Sistemine giriş için şifreniz ".$generatePassword);
-
-            return to_route('business.login')->with('response', [
-                'status'=>"success",
-                'message'=>"Telefon Numaranız doğrulandı. Sisteme giriş için şifreniz gönderildi."
-            ]);
-        }
-        else{
-            return to_route('business.verify')->with('response', [
-                'status'=>"danger",
-                'message'=>"Doğrulama Kodu Hatalı."
-            ]);
-        }
-
-
-    }
     public function showForgotView()
     {
         return view('business.auth.passwords.confirm');

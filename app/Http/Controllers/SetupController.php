@@ -20,20 +20,14 @@ class SetupController extends Controller
 
     public function step1Form(Request $request)
     {
-        /*$validator = Validator::make($request->all(),[
-            'category'=>'reqired',
-        ]);
-        if($validator->fails()){
-            return to_route('business.setup.step1')->with('response', [
-                'message'=>"İşletme Kategorisi Seçmeniz Gerekmektedir"
-            ]);
-        }*/
         $request->validate([
             'category'=>"required",
+            'name' => "required"
         ], [], [
-            'category'=>"İşletme Kategorisi"
+            'category'=>"İşletme Kategorisi",
+            'name' => "İşletme Adı"
         ]);
-        $business=auth('business')->user();
+        $business=auth('official')->user()->business;
         $business->category_id=$request->input('category');
         if ( $business->save()){
             return to_route('business.setup.step2');
@@ -44,7 +38,7 @@ class SetupController extends Controller
     {
         $business_types= BusinnessType::all();
         $dayList=DayList::orderBy('id', 'asc')->get();
-        $business=auth('business')->user();
+        $business=auth('official')->user()->business;
 
         return view('business.setup.step-2', compact('business_types', 'dayList', 'business'));
     }

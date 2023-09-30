@@ -19,7 +19,12 @@ class Authenticate extends Middleware
     {
 
         if (!$request->expectsJson()) {
-            return route($guards[0] . '.login');
+            if ($guards[0] == "official") {
+                return route('business.login');
+            } else {
+                return route($guards[0] . '.login');
+            }
+
         }
     }
 

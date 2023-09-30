@@ -23,6 +23,7 @@ class BusinessResource extends JsonResource
            'wallpaper' => image($this->wallpaper),
            'city' => new CityResource($this->cities),
            'district' => new DistrictResource($this->districts),
+           'category' => new BusinessCategoryResource($this->category),
            'start_time' => $this->start_time,
            'end_time' => $this->end_time,
            'is_main' => $this->is_main == 1 ? "Ana İşletme" : "Alt İşletme",

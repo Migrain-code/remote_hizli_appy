@@ -30,7 +30,7 @@
                         </nav>
                     </div>
                 </div>
-                @if(auth('business')->check())
+                @if(auth('official')->check())
                     <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-8 col-6">
                         <div class="header-bottom__right d-flex align-items-center justify-content-end">
                             <div class="header-bottom__btn d-flex align-items-center">

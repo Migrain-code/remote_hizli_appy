@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Business\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\BusinessOfficial;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -38,8 +40,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-
-        $this->middleware('guest:business')->except('logout');
+        $this->middleware('guest:official')->except('logout');
     }
 
     public function showLoginForm()
@@ -53,9 +54,29 @@ class LoginController extends Controller
             $this->username() => 'required|string',
             'password' => 'required|string',
         ], [], [
-            'email' => 'Telefon Numarası',
+            'phone' => 'Telefon Numarası',
             'password' => 'Parola'
         ]);
+    }
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+
+        $official = BusinessOfficial::where('phone', clearPhone($request->input('phone')))->first();
+        if ($official && Hash::check($request->input('password'), $official->password)) {
+            Auth::guard('official')->loginUsingId($official->id);
+            return to_route('business.home')->with('response', [
+                'status' => "success",
+                'message' => "Sisteme Hoşgeldiniz"
+            ]);
+        } else {
+            return to_route('business.login')->with('response', [
+                'status' => "error",
+                'message' => "Telefon Numarası veya Şifre Hatalı"
+            ]);
+        }
     }
 
     public function logout(Request $request)
@@ -77,8 +98,12 @@ class LoginController extends Controller
 
     protected function guard()
     {
-        return Auth::guard('business');
+        return Auth::guard('official');
     }
 
+    public function username()
+    {
+        return 'phone';
+    }
 
 }

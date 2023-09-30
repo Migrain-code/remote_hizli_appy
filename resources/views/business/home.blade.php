@@ -1,252 +1,2284 @@
 @extends('business.layouts.master')
 @section('title', 'İşletme | Anasayfa')
 @section('links')
-    <style>
-        .box-2 {
-            padding: 0px;
-        }
-    </style>
+
 @endsection
 @section('content')
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="page-titles style1">
-                        <div class="d-flex align-items-center">
-                            <h2 class="heading">
-                                Anasayfa
-                            </h2>
-                        </div>
-                        <div id="datepicker" class="input-group date dz-calender" data-date-format="mm-dd-yyyy">
-						<span class="input-group-addon d-flex align-items-center">
-							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M12 14.0001C12.1978 14.0001 12.3911 13.9415 12.5556 13.8316C12.72 13.7217 12.8482 13.5655 12.9239 13.3828C12.9996 13.2001 13.0194 12.999 12.9808 12.805C12.9422 12.611 12.847 12.4329 12.7071 12.293C12.5673 12.1531 12.3891 12.0579 12.1951 12.0193C12.0011 11.9807 11.8 12.0005 11.6173 12.0762C11.4346 12.1519 11.2784 12.2801 11.1685 12.4445C11.0586 12.609 11 12.8023 11 13.0001C11 13.2653 11.1054 13.5197 11.2929 13.7072C11.4804 13.8947 11.7348 14.0001 12 14.0001ZM17 14.0001C17.1978 14.0001 17.3911 13.9415 17.5556 13.8316C17.72 13.7217 17.8482 13.5655 17.9239 13.3828C17.9996 13.2001 18.0194 12.999 17.9808 12.805C17.9422 12.611 17.847 12.4329 17.7071 12.293C17.5673 12.1531 17.3891 12.0579 17.1951 12.0193C17.0011 11.9807 16.8 12.0005 16.6173 12.0762C16.4346 12.1519 16.2784 12.2801 16.1685 12.4445C16.0586 12.609 16 12.8023 16 13.0001C16 13.2653 16.1054 13.5197 16.2929 13.7072C16.4804 13.8947 16.7348 14.0001 17 14.0001ZM12 18.0001C12.1978 18.0001 12.3911 17.9415 12.5556 17.8316C12.72 17.7217 12.8482 17.5655 12.9239 17.3828C12.9996 17.2001 13.0194 16.999 12.9808 16.805C12.9422 16.611 12.847 16.4328 12.7071 16.293C12.5673 16.1531 12.3891 16.0579 12.1951 16.0193C12.0011 15.9807 11.8 16.0005 11.6173 16.0762C11.4346 16.1519 11.2784 16.2801 11.1685 16.4445C11.0586 16.609 11 16.8023 11 17.0001C11 17.2653 11.1054 17.5197 11.2929 17.7072C11.4804 17.8947 11.7348 18.0001 12 18.0001ZM17 18.0001C17.1978 18.0001 17.3911 17.9415 17.5556 17.8316C17.72 17.7217 17.8482 17.5655 17.9239 17.3828C17.9996 17.2001 18.0194 16.999 17.9808 16.805C17.9422 16.611 17.847 16.4328 17.7071 16.293C17.5673 16.1531 17.3891 16.0579 17.1951 16.0193C17.0011 15.9807 16.8 16.0005 16.6173 16.0762C16.4346 16.1519 16.2784 16.2801 16.1685 16.4445C16.0586 16.609 16 16.8023 16 17.0001C16 17.2653 16.1054 17.5197 16.2929 17.7072C16.4804 17.8947 16.7348 18.0001 17 18.0001ZM7 14.0001C7.19778 14.0001 7.39112 13.9415 7.55557 13.8316C7.72002 13.7217 7.84819 13.5655 7.92388 13.3828C7.99957 13.2001 8.01937 12.999 7.98078 12.805C7.9422 12.611 7.84696 12.4329 7.70711 12.293C7.56725 12.1531 7.38907 12.0579 7.19509 12.0193C7.00111 11.9807 6.80004 12.0005 6.61732 12.0762C6.43459 12.1519 6.27841 12.2801 6.16853 12.4445C6.05865 12.609 6 12.8023 6 13.0001C6 13.2653 6.10536 13.5197 6.29289 13.7072C6.48043 13.8947 6.73478 14.0001 7 14.0001ZM19 4.00011H18V3.00011C18 2.73489 17.8946 2.48054 17.7071 2.293C17.5196 2.10546 17.2652 2.00011 17 2.00011C16.7348 2.00011 16.4804 2.10546 16.2929 2.293C16.1054 2.48054 16 2.73489 16 3.00011V4.00011H8V3.00011C8 2.73489 7.89464 2.48054 7.70711 2.293C7.51957 2.10546 7.26522 2.00011 7 2.00011C6.73478 2.00011 6.48043 2.10546 6.29289 2.293C6.10536 2.48054 6 2.73489 6 3.00011V4.00011H5C4.20435 4.00011 3.44129 4.31618 2.87868 4.87879C2.31607 5.4414 2 6.20446 2 7.00011V19.0001C2 19.7958 2.31607 20.5588 2.87868 21.1214C3.44129 21.684 4.20435 22.0001 5 22.0001H19C19.7956 22.0001 20.5587 21.684 21.1213 21.1214C21.6839 20.5588 22 19.7958 22 19.0001V7.00011C22 6.20446 21.6839 5.4414 21.1213 4.87879C20.5587 4.31618 19.7956 4.00011 19 4.00011ZM20 19.0001C20 19.2653 19.8946 19.5197 19.7071 19.7072C19.5196 19.8947 19.2652 20.0001 19 20.0001H5C4.73478 20.0001 4.48043 19.8947 4.29289 19.7072C4.10536 19.5197 4 19.2653 4 19.0001V10.0001H20V19.0001ZM20 8.00011H4V7.00011C4 6.73489 4.10536 6.48054 4.29289 6.293C4.48043 6.10546 4.73478 6.00011 5 6.00011H19C19.2652 6.00011 19.5196 6.10546 19.7071 6.293C19.8946 6.48054 20 6.73489 20 7.00011V8.00011ZM7 18.0001C7.19778 18.0001 7.39112 17.9415 7.55557 17.8316C7.72002 17.7217 7.84819 17.5655 7.92388 17.3828C7.99957 17.2001 8.01937 16.999 7.98078 16.805C7.9422 16.611 7.84696 16.4328 7.70711 16.293C7.56725 16.1531 7.38907 16.0579 7.19509 16.0193C7.00111 15.9807 6.80004 16.0005 6.61732 16.0762C6.43459 16.1519 6.27841 16.2801 6.16853 16.4445C6.05865 16.609 6 16.8023 6 17.0001C6 17.2653 6.10536 17.5197 6.29289 17.7072C6.48043 17.8947 6.73478 18.0001 7 18.0001Z" fill="var(--primary)"/>
-							</svg>
-						</span>
-                            <div class="calender-picker">
-                                <h6 class="fs-14 mb-0 ms-2 font-w600">Bugün</h6>
-                                <input class="form-control" type="text" readonly="">
-                            </div>
-                        </div>
+    <div class="d-flex flex-column flex-column-fluid">
+
+        <!--begin::Toolbar-->
+        <div id="kt_app_toolbar" class="app-toolbar ">
+
+            <!--begin::Toolbar container-->
+            <div class="d-flex flex-stack flex-row-fluid">
+                <!--begin::Toolbar wrapper-->
+                <div class="d-flex flex-column flex-row-fluid">
+
+                    <!--begin::Breadcrumb-->
+                    <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-3">
+
+                        <!--begin::Item-->
+                        <li class="breadcrumb-item text-gray-600 fw-bold lh-1">
+                            <a href="index.html" class="text-white text-hover-primary">
+                                <i class="ki-duotone ki-home text-gray-500 fs-2"></i>                                                    </a>
+                        </li>
+                        <!--end::Item-->
+
+                        <!--begin::Item-->
+                        <li class="breadcrumb-item">
+                            <i class="ki-duotone ki-right fs-3 text-gray-500 mx-n1"></i>                </li>
+                        <!--end::Item-->
+
+
+                        <!--begin::Item-->
+                        <li class="breadcrumb-item text-gray-600 fw-bold lh-1">
+                            Dashboards                                    </li>
+                        <!--end::Item-->
+
+
+                    </ul>
+                    <!--end::Breadcrumb-->
+
+
+
+                    <!--begin::Page title-->
+                    <div class="page-title d-flex align-items-center me-3">
+                        <!--begin::Title-->
+                        <h1 class="page-heading d-flex text-dark fw-bolder fs-1 flex-column justify-content-center my-0">
+                            HizliAppy Anasayfa
+                        </h1>
+                        <!--end::Title-->
                     </div>
+                    <!--end::Page title-->
                 </div>
-            </div>
-            @include('business.layouts.component.alert')
-            <div class="row">
-                    <!-- ---swiper-slide--- -->
-                    <div class="col-lg-3">
-                        <div class="card counter">
-                            <div class="card-body d-flex align-items-center">
-                                <div class="card-box-icon">
-                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M22.8333 6.66667V7.16667H23.3333H28.3333C28.6428 7.16667 28.9395 7.28958 29.1583 7.50838C29.3771 7.72717 29.5 8.02391 29.5 8.33333V28.3333C29.5 28.6428 29.3771 28.9395 29.1583 29.1583C28.9395 29.3771 28.6428 29.5 28.3333 29.5H13.3333C13.0239 29.5 12.7272 29.3771 12.5084 29.1583C12.2896 28.9395 12.1667 28.6428 12.1667 28.3333C12.1667 28.0239 12.2896 27.7272 12.5084 27.5084C12.7272 27.2896 13.0239 27.1667 13.3333 27.1667H26.6667H27.1667V26.6667V18.3333V17.8333H26.6667H20H19.5V18.3333V20C19.5 20.3094 19.3771 20.6062 19.1583 20.825C18.9395 21.0438 18.6428 21.1667 18.3333 21.1667H11.6667C11.3572 21.1667 11.0605 21.0438 10.8417 20.825C10.6229 20.6062 10.5 20.3094 10.5 20V18.3333V17.8333H10H3.33333H2.83333V18.3333V26.6667V27.1667H3.33333H6.66667C6.97609 27.1667 7.27283 27.2896 7.49162 27.5084C7.71042 27.7272 7.83333 28.0239 7.83333 28.3333C7.83333 28.6428 7.71042 28.9395 7.49162 29.1583C7.27283 29.3771 6.97609 29.5 6.66667 29.5H1.66667C1.35725 29.5 1.0605 29.3771 0.841709 29.1583C0.622917 28.9395 0.5 28.6428 0.5 28.3333V8.33333C0.5 8.02391 0.622916 7.72717 0.841709 7.50838C1.0605 7.28958 1.35725 7.16667 1.66667 7.16667H6.66667H7.16667V6.66667V1.66667C7.16667 1.35725 7.28958 1.0605 7.50838 0.841709C7.72717 0.622916 8.02391 0.5 8.33333 0.5H21.6667C21.9761 0.5 22.2728 0.622916 22.4916 0.841709C22.7104 1.0605 22.8333 1.35725 22.8333 1.66667V6.66667ZM10 2.83333H9.5V3.33333V6.66667V7.16667H10H20H20.5V6.66667V3.33333V2.83333H20H10ZM16.6667 18.8333H17.1667V18.3333V15V14.5H16.6667H13.3333H12.8333V15V18.3333V18.8333H13.3333H16.6667ZM19.5 15V15.5H20H26.6667H27.1667V15V10V9.5H26.6667H3.33333H2.83333V10V15V15.5H3.33333H10H10.5V15V13.3333C10.5 13.0239 10.6229 12.7272 10.8417 12.5084C11.0605 12.2896 11.3572 12.1667 11.6667 12.1667H18.3333C18.6428 12.1667 18.9395 12.2896 19.1583 12.5084C19.3771 12.7272 19.5 13.0239 19.5 13.3333V15Z" fill="var(--primary)" stroke="var(--primary)"/>
-                                    </svg>
-                                </div>
-                                <div  class="chart-num">
-                                    <h2 class="font-w600 mb-0">{{$todayAppointments->count()}}</h2>
-                                    <p>
-                                        Bugünkü Randevular
-                                    </p>
-                                </div>
+                <!--end::Toolbar wrapper-->
+
+                <!--begin::Actions-->
+                <div class="d-flex align-items-center gap-3 gap-lg-5">
+                    <!--begin::Secondary button-->
+                    <div class="m-0">
+                        <!--begin::Menu-->
+                        <a href="#" class="btn btn-flex btn-sm h-35px h-md-40px btn-light fw-bold px-6" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                            History
+                        </a>
+
+
+
+                        <!--begin::Menu 1-->
+                        <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true" id="kt_menu_64f9fd0e45483">
+                            <!--begin::Header-->
+                            <div class="px-7 py-5">
+                                <div class="fs-5 text-dark fw-bold">Filter Options</div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card counter">
-                            <div class="card-body d-flex align-items-center">
-                                <div class="card-box-icon">
-                                    <i class="fa fa-users" style="font-size: 25px; color: red;"></i>
-                                </div>
-                                <div class="chart-num">
-                                    <h2 class="font-w600 mb-0">{{auth('business')->user()->customers->count()}}</h2>
-                                    <p>
-                                        Toplam Müşteri
-                                    </p>
-                                </div>
-                            </div>
+                            <!--end::Header-->
 
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card counter">
-                            <div class="card-body d-flex align-items-center">
-                                <div class="card-box-icon">
-                                    <i class="fa fa-user-circle" style="font-size: 25px; color: #0a58ca"></i>
-                                </div>
-                                <div class="chart-num">
-                                    <h2 class="font-w600 mb-0">{{auth('business')->user()->personel->count()}}</h2>
-                                    <p>
-                                        Toplam Çalışan
-                                    </p>
-                                </div>
-                            </div>
+                            <!--begin::Menu separator-->
+                            <div class="separator border-gray-200"></div>
+                            <!--end::Menu separator-->
 
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card counter">
-                            <div class="card-body d-flex align-items-center">
-                                <div class="card-box-icon">
-                                   <i class="fa fa-chart-pie" style="font-size: 25px; color: deeppink"></i>
-                                </div>
-                                <div class="chart-num">
-                                    <h2 class="font-w600 mb-0">{{$earning}} ₺</h2>
-                                    <p>
-                                        Toplam Kazanç
-                                    </p>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
+                            <!--begin::Form-->
+                            <div class="px-7 py-5">
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Label-->
+                                    <label class="form-label fw-semibold">Status:</label>
+                                    <!--end::Label-->
 
-            </div>
-            <div class="row">
-                <div class="col-xl-12 wow fadeInUp" data-wow-delay="1.5s">
-                   <div class="row">
-                       <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6">
-                           <a href="{{route('business.appointment.index')}}">
-                               <div class="widget-stat card">
-                                   <div class="card-body rounded bg-success p-4">
-                                       <h1 class="text-white"><i class="fa fa-calendar-check"></i> Randevular</h1>
-                                   </div>
-                               </div>
-                           </a>
-                       </div>
-                       <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6">
-                           <a href="{{route('business.customer.index')}}">
-                               <div class="widget-stat card">
-                                   <div class="card-body rounded bg-secondary p-4">
-                                       <h1 class="text-white"><i class="fa fa-user-circle"></i> Müşteriler</h1>
-                                   </div>
-                               </div>
-                           </a>
-                       </div>
-                       <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6">
-                          <a href="{{route('business.personel.index')}}">
-                              <div class="widget-stat card">
-                                  <div class="card-body rounded bg-warning p-4">
-                                      <h1 class="text-white"><i class="fa fa-person"></i> Personeller</h1>
-                                  </div>
-                              </div>
-                          </a>
-                       </div>
-                       <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6">
-                          <a href="{{route('business.businessService.index')}}">
-                              <div class="widget-stat card">
-                                  <div class="card-body rounded bg-primary p-4">
-                                      <h1 class="text-white"><i class="fa fa-gear"></i> Hizmetler</h1>
-                                  </div>
-                              </div>
-                          </a>
-                       </div>
-                       <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6">
-                          <a href="{{route('business.product.index')}}">
-                              <div class="widget-stat card">
-                                  <div class="card-body rounded bg-black p-4">
-                                      <h1 class="text-white"><i class="fa fa-table"></i> Ürünler</h1>
-                                  </div>
-                              </div>
-                          </a>
-                       </div>
-                       <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6">
-                           <a href="{{route('business.gallery.index')}}">
-                               <div class="widget-stat card">
-                                   <div class="card-body rounded bg-info p-4">
-                                       <h1 class="text-white"><i class="fa fa-table"></i> Galeri</h1>
-                                   </div>
-                               </div>
-                           </a>
-                       </div>
-                   </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 wow fadeInUp">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Bugünkü Randevular</h4>
-                    {{--   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">
-                            <i class="fa-solid fa-plus-circle me-2"></i>
-                            Personel Ekle
-                            </button>
-                            ---}}
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                    @forelse($todayAppointments as $appointment)
-                        <div class="col-md-6 col-xl-4" start-time="{{\Illuminate\Support\Carbon::parse($appointment->start_time)->format('H:i')}}" ap_id="{{$appointment->id}}">
-                            <div class="card box-2">
-                                <div class="flow mt-2"
-                                    @if(\Illuminate\Support\Carbon::parse($appointment->start_time)->diffInMinutes(\Illuminate\Support\Carbon::now()) < 30)
-                                       style="border: 1px solid rgba(179, 48, 61, 0.40)"
-                                    @elseif(\Illuminate\Support\Carbon::parse($appointment->start_time)->diffInMinutes(\Illuminate\Support\Carbon::now()) < 60)
-                                         style="border: 1px solid rgba(255, 239, 37, 0.40)"
-                                    @elseif(\Illuminate\Support\Carbon::parse($appointment->start_time)->diffInMinutes(\Illuminate\Support\Carbon::now()) < 120)
-                                         style="border: 1px solid rgba(1, 163, 255, 0.40)"
-                                    @else
-                                        style="border: 1px solid rgba(30, 186, 98, 0.40)"
-                                    @endif
-                                >
-                                    <h4>{{$appointment->customer->name}}</h4>
-                                    <p>{!! $appointment->status("html") !!}</p>
-                                    <div class="dz-info">
-                                        <ul>
-                                            <li class="mb-2"><svg class="me-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 14C12.1978 14 12.3911 13.9414 12.5556 13.8315C12.72 13.7216 12.8482 13.5654 12.9239 13.3827C12.9996 13.2 13.0194 12.9989 12.9808 12.8049C12.9422 12.6109 12.847 12.4327 12.7071 12.2929C12.5673 12.153 12.3891 12.0578 12.1951 12.0192C12.0011 11.9806 11.8 12.0004 11.6173 12.0761C11.4346 12.1518 11.2784 12.28 11.1685 12.4444C11.0587 12.6089 11 12.8022 11 13C11 13.2652 11.1054 13.5196 11.2929 13.7071C11.4804 13.8946 11.7348 14 12 14ZM17 14C17.1978 14 17.3911 13.9414 17.5556 13.8315C17.72 13.7216 17.8482 13.5654 17.9239 13.3827C17.9996 13.2 18.0194 12.9989 17.9808 12.8049C17.9422 12.6109 17.847 12.4327 17.7071 12.2929C17.5673 12.153 17.3891 12.0578 17.1951 12.0192C17.0011 11.9806 16.8 12.0004 16.6173 12.0761C16.4346 12.1518 16.2784 12.28 16.1685 12.4444C16.0587 12.6089 16 12.8022 16 13C16 13.2652 16.1054 13.5196 16.2929 13.7071C16.4804 13.8946 16.7348 14 17 14ZM12 18C12.1978 18 12.3911 17.9414 12.5556 17.8315C12.72 17.7216 12.8482 17.5654 12.9239 17.3827C12.9996 17.2 13.0194 16.9989 12.9808 16.8049C12.9422 16.6109 12.847 16.4327 12.7071 16.2929C12.5673 16.153 12.3891 16.0578 12.1951 16.0192C12.0011 15.9806 11.8 16.0004 11.6173 16.0761C11.4346 16.1518 11.2784 16.28 11.1685 16.4444C11.0587 16.6089 11 16.8022 11 17C11 17.2652 11.1054 17.5196 11.2929 17.7071C11.4804 17.8946 11.7348 18 12 18ZM17 18C17.1978 18 17.3911 17.9414 17.5556 17.8315C17.72 17.7216 17.8482 17.5654 17.9239 17.3827C17.9996 17.2 18.0194 16.9989 17.9808 16.8049C17.9422 16.6109 17.847 16.4327 17.7071 16.2929C17.5673 16.153 17.3891 16.0578 17.1951 16.0192C17.0011 15.9806 16.8 16.0004 16.6173 16.0761C16.4346 16.1518 16.2784 16.28 16.1685 16.4444C16.0587 16.6089 16 16.8022 16 17C16 17.2652 16.1054 17.5196 16.2929 17.7071C16.4804 17.8946 16.7348 18 17 18ZM7 14C7.19778 14 7.39112 13.9414 7.55557 13.8315C7.72002 13.7216 7.84819 13.5654 7.92388 13.3827C7.99957 13.2 8.01937 12.9989 7.98079 12.8049C7.9422 12.6109 7.84696 12.4327 7.70711 12.2929C7.56725 12.153 7.38907 12.0578 7.19509 12.0192C7.00111 11.9806 6.80004 12.0004 6.61732 12.0761C6.43459 12.1518 6.27841 12.28 6.16853 12.4444C6.05865 12.6089 6 12.8022 6 13C6 13.2652 6.10536 13.5196 6.29289 13.7071C6.48043 13.8946 6.73478 14 7 14ZM19 4H18V3C18 2.73478 17.8946 2.48043 17.7071 2.29289C17.5196 2.10536 17.2652 2 17 2C16.7348 2 16.4804 2.10536 16.2929 2.29289C16.1054 2.48043 16 2.73478 16 3V4H8V3C8 2.73478 7.89464 2.48043 7.70711 2.29289C7.51957 2.10536 7.26522 2 7 2C6.73478 2 6.48043 2.10536 6.29289 2.29289C6.10536 2.48043 6 2.73478 6 3V4H5C4.20435 4 3.44129 4.31607 2.87868 4.87868C2.31607 5.44129 2 6.20435 2 7V19C2 19.7957 2.31607 20.5587 2.87868 21.1213C3.44129 21.6839 4.20435 22 5 22H19C19.7957 22 20.5587 21.6839 21.1213 21.1213C21.6839 20.5587 22 19.7957 22 19V7C22 6.20435 21.6839 5.44129 21.1213 4.87868C20.5587 4.31607 19.7957 4 19 4ZM20 19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H5C4.73478 20 4.48043 19.8946 4.29289 19.7071C4.10536 19.5196 4 19.2652 4 19V10H20V19ZM20 8H4V7C4 6.73478 4.10536 6.48043 4.29289 6.29289C4.48043 6.10536 4.73478 6 5 6H19C19.2652 6 19.5196 6.10536 19.7071 6.29289C19.8946 6.48043 20 6.73478 20 7V8ZM7 18C7.19778 18 7.39112 17.9414 7.55557 17.8315C7.72002 17.7216 7.84819 17.5654 7.92388 17.3827C7.99957 17.2 8.01937 16.9989 7.98079 16.8049C7.9422 16.6109 7.84696 16.4327 7.70711 16.2929C7.56725 16.153 7.38907 16.0578 7.19509 16.0192C7.00111 15.9806 6.80004 16.0004 6.61732 16.0761C6.43459 16.1518 6.27841 16.28 6.16853 16.4444C6.05865 16.6089 6 16.8022 6 17C6 17.2652 6.10536 17.5196 6.29289 17.7071C6.48043 17.8946 6.73478 18 7 18Z" fill="#2A353A"></path>
-                                                </svg>
-                                                {{\Illuminate\Support\Carbon::parse($appointment->start_time)->translatedFormat('F d, Y')}}</li>
-                                            <li><svg class="me-2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 6C11.8687 5.99997 11.7386 6.02581 11.6173 6.07605C11.4959 6.12629 11.3857 6.19995 11.2928 6.29282C11.2 6.38568 11.1263 6.49594 11.0761 6.61728C11.0258 6.73862 11 6.86867 11 7V11.3838L8.56934 12.6069C8.45206 12.6659 8.34755 12.7474 8.26178 12.8468C8.176 12.9462 8.11064 13.0615 8.06942 13.1861C8.0282 13.3108 8.01194 13.4423 8.02156 13.5733C8.03118 13.7042 8.0665 13.8319 8.12549 13.9492C8.18448 14.0665 8.26599 14.171 8.36538 14.2568C8.46476 14.3426 8.58006 14.4079 8.70471 14.4491C8.82935 14.4904 8.96089 14.5066 9.09182 14.497C9.22274 14.4874 9.35049 14.4521 9.46777 14.3931L12.4492 12.8931C12.6148 12.81 12.7541 12.6824 12.8513 12.5247C12.9486 12.367 13.0001 12.1853 13 12V7C13 6.86867 12.9742 6.73862 12.924 6.61728C12.8737 6.49594 12.8001 6.38568 12.7072 6.29282C12.6143 6.19995 12.5041 6.12629 12.3827 6.07605C12.2614 6.02581 12.1313 5.99997 12 6ZM12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C21.997 9.34877 20.9424 6.80699 19.0677 4.93228C17.193 3.05758 14.6512 2.00303 12 2ZM12 20C10.4178 20 8.87104 19.5308 7.55544 18.6518C6.23985 17.7727 5.21447 16.5233 4.60897 15.0615C4.00347 13.5997 3.84504 11.9911 4.15372 10.4393C4.4624 8.88743 5.22433 7.46197 6.34315 6.34315C7.46197 5.22433 8.88743 4.4624 10.4393 4.15372C11.9911 3.84504 13.5997 4.00346 15.0615 4.60896C16.5233 5.21447 17.7727 6.23985 18.6518 7.55544C19.5308 8.87103 20 10.4178 20 12C19.9976 14.121 19.1539 16.1544 17.6542 17.6542C16.1544 19.1539 14.121 19.9976 12 20Z" fill="#2A353A"></path>
-                                                </svg>
-                                                {{\Illuminate\Support\Carbon::parse($appointment->start_time)->format('H:i'). " - ". \Illuminate\Support\Carbon::parse($appointment->end_time)->format('H:i')}}</li>
-                                        </ul>
-                                        <div class="dz-media"><img src="{{image($appointment->customer->image)}}" alt=""></div>
+                                    <!--begin::Input-->
+                                    <div>
+                                        <select class="form-select form-select-solid" multiple="" data-kt-select2="true" data-close-on-select="false" data-placeholder="Select option" data-dropdown-parent="#kt_menu_64f9fd0e45483" data-allow-clear="true">
+                                            <option></option>
+                                            <option value="1">Approved</option>
+                                            <option value="2">Pending</option>
+                                            <option value="2">In Process</option>
+                                            <option value="2">Rejected</option>
+                                        </select>
                                     </div>
-                                    @if(\Illuminate\Support\Carbon::parse($appointment->start_time)->diffInMinutes(\Illuminate\Support\Carbon::now()) < 30)
-                                        <div class="side" style="background-color: #b3303d;"></div>
-                                    @elseif(\Illuminate\Support\Carbon::parse($appointment->start_time)->diffInMinutes(\Illuminate\Support\Carbon::now()) < 60)
-                                        <div class="side" style="background-color: #FFD125;"></div>
-                                    @elseif(\Illuminate\Support\Carbon::parse($appointment->start_time)->diffInMinutes(\Illuminate\Support\Carbon::now()) < 120)
-                                        <div class="side" style="background-color: #01A3FF;"></div>
-                                    @else
-                                        <div class="side" style="background-color: #1EBA62;"></div>
-                                    @endif
+                                    <!--end::Input-->
                                 </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Label-->
+                                    <label class="form-label fw-semibold">Member Type:</label>
+                                    <!--end::Label-->
+
+                                    <!--begin::Options-->
+                                    <div class="d-flex">
+                                        <!--begin::Options-->
+                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
+                                            <input class="form-check-input" type="checkbox" value="1">
+                                            <span class="form-check-label">
+                                                            Author
+                                                        </span>
+                                        </label>
+                                        <!--end::Options-->
+
+                                        <!--begin::Options-->
+                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox" value="2" checked="checked">
+                                            <span class="form-check-label">
+                                                            Customer
+                                                        </span>
+                                        </label>
+                                        <!--end::Options-->
+                                    </div>
+                                    <!--end::Options-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Label-->
+                                    <label class="form-label fw-semibold">Notifications:</label>
+                                    <!--end::Label-->
+
+                                    <!--begin::Switch-->
+                                    <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="" name="notifications" checked="">
+                                        <label class="form-check-label">
+                                            Enabled
+                                        </label>
+                                    </div>
+                                    <!--end::Switch-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Actions-->
+                                <div class="d-flex justify-content-end">
+                                    <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2" data-kt-menu-dismiss="true">Reset</button>
+
+                                    <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
+                                </div>
+                                <!--end::Actions-->
+                            </div>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Menu 1-->		<!--end::Menu-->
+                    </div>
+                    <!--end::Secondary button-->
+
+                    <!--begin::Primary button-->
+                    <a href="#" class="btn btn-flex btn-center bg-gray-600 btn-color-white h-35px h-md-40px btn-active-dark btn-sm px-6" data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">
+                        <i class="ki-duotone ki-plus-square fs-2 p-0 m-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>		<span class="ms-2">Invite</span>
+                    </a>
+                    <!--end::Primary button-->
+                </div>
+                <!--end::Actions-->
+            </div>
+            <!--end::Toolbar container-->    </div>
+        <!--end::Toolbar-->
+
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content ">
+
+            <!--begin::Row-->
+            <div class="row g-5 g-xl-10">
+                <!--begin::Col-->
+                <div class="col-xxl-6 mb-md-5 mb-xl-10">
+                    <!--begin::Row-->
+                    <div class="row g-5 g-xl-10">
+                        <!--begin::Col-->
+                        <div class="col-md-6 col-xl-6 mb-xxl-10">
+                            <!--begin::Card widget 8-->
+                            <div class="card overflow-hidden h-md-50 mb-5 mb-xl-10">
+                                <!--begin::Card body-->
+                                <div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
+                                    <!--begin::Statistics-->
+                                    <div class="mb-4 px-9">
+                                        <!--begin::Info-->
+                                        <div class="d-flex align-items-center mb-2">
+                                            <!--begin::Currency-->
+                                            <span class="fs-4 fw-semibold text-gray-400 align-self-start me-1>">$</span>
+                                            <!--end::Currency-->
+
+
+                                            <!--begin::Value-->
+                                            <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1">69,700</span>
+                                            <!--end::Value-->
+
+                                            <!--begin::Label-->
+                                            <span class="badge badge-light-success fs-base">
+                                                                <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span class="path1"></span><span class="path2"></span></i>
+                                                                2.2%                    </span>
+
+                                            <!--end::Label-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Description-->
+                                        <span class="fs-6 fw-semibold text-gray-400">Total Online Sales</span>
+                                        <!--end::Description-->
+                                    </div>
+                                    <!--end::Statistics-->
+
+                                    <!--begin::Chart-->
+                                    <div id="kt_card_widget_8_chart" class="min-h-auto" style="height: 125px"></div>
+                                    <!--end::Chart-->
+                                </div>
+                                <!--end::Card body-->
+                            </div>
+                            <!--end::Card widget 8-->
+
+                            <!--begin::Card widget 5-->
+                            <div class="card card-flush h-md-50 mb-xl-10">
+                                <!--begin::Header-->
+                                <div class="card-header pt-5">
+                                    <!--begin::Title-->
+                                    <div class="card-title d-flex flex-column">
+                                        <!--begin::Info-->
+                                        <div class="d-flex align-items-center">
+                                            <!--begin::Amount-->
+                                            <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">1,836</span>
+                                            <!--end::Amount-->
+
+                                            <!--begin::Badge-->
+                                            <span class="badge badge-light-danger fs-base">
+                                                            <i class="ki-duotone ki-arrow-down fs-5 text-danger ms-n1"><span class="path1"></span><span class="path2"></span></i>
+                                                            2.2%
+                                                        </span>
+                                            <!--end::Badge-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Subtitle-->
+                                        <span class="text-gray-400 pt-1 fw-semibold fs-6">Total Sales</span>
+                                        <!--end::Subtitle-->
+                                    </div>
+                                    <!--end::Title-->
+                                </div>
+                                <!--end::Header-->
+
+                                <!--begin::Card body-->
+                                <div class="card-body d-flex align-items-end pt-0">
+                                    <!--begin::Progress-->
+                                    <div class="d-flex align-items-center flex-column mt-3 w-100">
+                                        <div class="d-flex justify-content-between w-100 mt-auto mb-2">
+                                            <span class="fw-bolder fs-6 text-dark">1,048 to Goal</span>
+                                            <span class="fw-bold fs-6 text-gray-400">62%</span>
+                                        </div>
+
+                                        <div class="h-8px mx-3 w-100 bg-light-success rounded">
+                                            <div class="bg-success rounded h-8px" role="progressbar" style="width: 62%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <!--end::Progress-->
+                                </div>
+                                <!--end::Card body-->
+                            </div>
+                            <!--end::Card widget 5-->
+                        </div>
+                        <!--end::Col-->
+
+                        <!--begin::Col-->
+                        <div class="col-md-6 col-xl-6 mb-xxl-10">
+
+                            <!--begin::Card widget 9-->
+                            <div class="card overflow-hidden h-md-50 mb-5 mb-xl-10">
+                                <!--begin::Card body-->
+                                <div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
+                                    <!--begin::Statistics-->
+                                    <div class="mb-4 px-9">
+                                        <!--begin::Statistics-->
+                                        <div class="d-flex align-items-center mb-2">
+                                            <!--begin::Value-->
+                                            <span class="fs-2hx fw-bold text-gray-800 me-2 lh-1">29,420</span>
+                                            <!--end::Value-->
+
+                                            <!--begin::Label-->
+                                            <span class="badge badge-light-success fs-base">
+                                                                <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span class="path1"></span><span class="path2"></span></i>
+                                                                2.6%                    </span>
+
+                                            <!--end::Label-->
+                                        </div>
+                                        <!--end::Statistics-->
+
+                                        <!--begin::Description-->
+                                        <span class="fs-6 fw-semibold text-gray-400">Total Online Visitors</span>
+                                        <!--end::Description-->
+                                    </div>
+                                    <!--end::Statistics-->
+
+                                    <!--begin::Chart-->
+                                    <div id="kt_card_widget_9_chart" class="min-h-auto" style="height: 125px"></div>
+                                    <!--end::Chart-->
+                                </div>
+                                <!--end::Card body-->
+                            </div>
+                            <!--end::Card widget 9-->
+
+
+
+
+                            <!--begin::Card widget 7-->
+                            <div class="card card-flush h-md-50 mb-xl-10">
+                                <!--begin::Header-->
+                                <div class="card-header pt-5">
+                                    <!--begin::Title-->
+                                    <div class="card-title d-flex flex-column">
+                                        <!--begin::Amount-->
+                                        <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">6.3k</span>
+                                        <!--end::Amount-->
+
+                                        <!--begin::Subtitle-->
+                                        <span class="text-gray-400 pt-1 fw-semibold fs-6">Total New Customers</span>
+                                        <!--end::Subtitle-->
+                                    </div>
+                                    <!--end::Title-->
+                                </div>
+                                <!--end::Header-->
+
+                                <!--begin::Card body-->
+                                <div class="card-body d-flex flex-column justify-content-end pe-0">
+                                    <!--begin::Title-->
+                                    <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">Today’s Heroes</span>
+                                    <!--end::Title-->
+
+                                    <!--begin::Users group-->
+                                    <div class="symbol-group symbol-hover flex-nowrap">
+                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Alan Warden">
+                                            <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
+                                        </div>
+                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Michael Eberon">
+                                            <img alt="Pic" src="assets/media/avatars/300-11.jpg">
+                                        </div>
+                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Susan Redwood">
+                                            <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>
+                                        </div>
+                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Melody Macy">
+                                            <img alt="Pic" src="assets/media/avatars/300-2.jpg">
+                                        </div>
+                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Perry Matthew">
+                                            <span class="symbol-label bg-danger text-inverse-danger fw-bold">P</span>
+                                        </div>
+                                        <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" title="Barry Walter">
+                                            <img alt="Pic" src="assets/media/avatars/300-12.jpg">
+                                        </div>
+                                        <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
+                                            <span class="symbol-label bg-light text-gray-400 fs-8 fw-bold">+42</span>
+                                        </a>
+                                    </div>
+                                    <!--end::Users group-->
+                                </div>
+                                <!--end::Card body-->
+                            </div>
+                            <!--end::Card widget 7-->            </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Row-->
+                </div>
+                <!--end::Col-->
+
+                <!--begin::Col-->
+                <div class="col-xxl-6 mb-5 mb-xl-10">
+                    <div class="card card-flush mb-6 mb-xl-9">
+                        <!--begin::Card header-->
+                        <div class="card-header mt-6">
+                            <!--begin::Card title-->
+                            <div class="card-title flex-column">
+                                <h2 class="mb-1">Randevu Takvimi</h2>
+
+                                <div class="fs-6 fw-semibold text-muted">2 yaklaşan randevu</div>
+                            </div>
+                            <!--end::Card title-->
+
+                        </div>
+                        <!--end::Card header-->
+
+                        <!--begin::Card body-->
+                        <div class="card-body p-9 pt-4">
+                            <!--begin::Dates-->
+                            <ul class="nav nav-pills d-flex flex-nowrap hover-scroll-x py-2">
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_0">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">Su</span>
+                                        <span class="fs-6 fw-bolder">21</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary active" data-bs-toggle="tab" href="#kt_schedule_day_1">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">Mo</span>
+                                        <span class="fs-6 fw-bolder">22</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_2">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">Tu</span>
+                                        <span class="fs-6 fw-bolder">23</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_3">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">We</span>
+                                        <span class="fs-6 fw-bolder">24</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_4">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">Th</span>
+                                        <span class="fs-6 fw-bolder">25</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_5">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">Fr</span>
+                                        <span class="fs-6 fw-bolder">26</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_6">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">Sa</span>
+                                        <span class="fs-6 fw-bolder">27</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_7">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">Su</span>
+                                        <span class="fs-6 fw-bolder">28</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_8">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">Mo</span>
+                                        <span class="fs-6 fw-bolder">29</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_9">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">Tu</span>
+                                        <span class="fs-6 fw-bolder">30</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+
+                                <!--begin::Date-->
+                                <li class="nav-item me-1">
+                                    <a class="nav-link btn d-flex flex-column flex-center rounded-pill min-w-40px me-2 py-4 btn-active-primary " data-bs-toggle="tab" href="#kt_schedule_day_10">
+
+                                        <span class="opacity-50 fs-7 fw-semibold">We</span>
+                                        <span class="fs-6 fw-bolder">31</span>
+                                    </a>
+                                </li>
+                                <!--end::Date-->
+                            </ul>
+                            <!--end::Dates-->
+
+                            <!--begin::Tab Content-->
+                            <div class="tab-content">
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_0" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                11:00 - 11:45
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Development Team Capacity Review                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Karina Clarke</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                9:00 - 10:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Project Review & Testing                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Yannis Gloverson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                13:00 - 14:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Committee Review Approvals                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Caleb Donaldson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                10:00 - 11:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Committee Review Approvals                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Sean Bean</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_1" class="tab-pane fade show active">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                16:30 - 17:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Dashboard UI/UX Design Review                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Mark Randall</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                12:00 - 13:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                9 Degree Project Estimation Meeting                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Kendell Trevor</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                14:30 - 15:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Marketing Campaign Discussion                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Sean Bean</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                14:30 - 15:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Project Review & Testing                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Peter Marcus</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                10:00 - 11:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                9 Degree Project Estimation Meeting                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Mark Randall</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_2" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                11:00 - 11:45
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Committee Review Approvals                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Yannis Gloverson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                14:30 - 15:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Lunch & Learn Catch Up                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">David Stevenson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                14:30 - 15:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Project Review & Testing                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Bob Harris</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_3" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                12:00 - 13:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Development Team Capacity Review                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Mark Randall</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                10:00 - 11:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                9 Degree Project Estimation Meeting                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Terry Robins</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                12:00 - 13:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Team Backlog Grooming Session                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Caleb Donaldson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_4" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                14:30 - 15:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Marketing Campaign Discussion                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Kendell Trevor</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                12:00 - 13:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Project Review & Testing                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Sean Bean</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                11:00 - 11:45
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Committee Review Approvals                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Naomi Hayabusa</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                9:00 - 10:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Development Team Capacity Review                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">David Stevenson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_5" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                13:00 - 14:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Sales Pitch Proposal                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Naomi Hayabusa</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                10:00 - 11:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Dashboard UI/UX Design Review                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">David Stevenson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                11:00 - 11:45
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Dashboard UI/UX Design Review                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Bob Harris</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                12:00 - 13:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Weekly Team Stand-Up                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Kendell Trevor</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_6" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                13:00 - 14:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Weekly Team Stand-Up                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Naomi Hayabusa</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                10:00 - 11:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Project Review & Testing                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">David Stevenson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                13:00 - 14:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Committee Review Approvals                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Karina Clarke</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                16:30 - 17:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Creative Content Initiative                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Terry Robins</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                14:30 - 15:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Project Review & Testing                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Naomi Hayabusa</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_7" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                16:30 - 17:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Lunch & Learn Catch Up                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Bob Harris</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                13:00 - 14:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Development Team Capacity Review                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Mark Randall</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                16:30 - 17:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Marketing Campaign Discussion                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Walter White</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_8" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                13:00 - 14:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Weekly Team Stand-Up                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Walter White</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                10:00 - 11:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Dashboard UI/UX Design Review                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Caleb Donaldson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                9:00 - 10:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                9 Degree Project Estimation Meeting                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Peter Marcus</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                12:00 - 13:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Creative Content Initiative                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Bob Harris</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_9" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                10:00 - 11:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Lunch & Learn Catch Up                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Bob Harris</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                11:00 - 11:45
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Marketing Campaign Discussion                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Kendell Trevor</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                11:00 - 11:45
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Lunch & Learn Catch Up                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Caleb Donaldson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                14:30 - 15:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Project Review & Testing                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Walter White</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                                <!--begin::Day-->
+                                <div id="kt_schedule_day_10" class="tab-pane fade show ">
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                14:30 - 15:30
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Development Team Capacity Review                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Karina Clarke</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                10:00 - 11:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Team Backlog Grooming Session                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Walter White</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                13:00 - 14:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        pm                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Team Backlog Grooming Session                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">David Stevenson</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                10:00 - 11:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Team Backlog Grooming Session                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Terry Robins</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                    <!--begin::Time-->
+                                    <div class="d-flex flex-stack position-relative mt-6">
+                                        <!--begin::Bar-->
+                                        <div class="position-absolute h-100 w-4px bg-secondary rounded top-0 start-0"></div>
+                                        <!--end::Bar-->
+
+                                        <!--begin::Info-->
+                                        <div class="fw-semibold ms-5">
+                                            <!--begin::Time-->
+                                            <div class="fs-7 mb-1">
+                                                9:00 - 10:00
+                                                <span class="fs-7 text-muted text-uppercase">
+                                        am                                    </span>
+                                            </div>
+                                            <!--end::Time-->
+
+                                            <!--begin::Title-->
+                                            <a href="#" class="fs-5 fw-bold text-dark text-hover-primary mb-2">
+                                                Lunch & Learn Catch Up                                </a>
+                                            <!--end::Title-->
+
+                                            <!--begin::User-->
+                                            <div class="fs-7 text-muted">
+                                                Lead by <a href="#">Peter Marcus</a>
+                                            </div>
+                                            <!--end::User-->
+                                        </div>
+                                        <!--end::Info-->
+
+                                        <!--begin::Action-->
+                                        <a href="#" class="btn btn-light bnt-active-light-primary btn-sm">View</a>
+                                        <!--end::Action-->
+                                    </div>
+                                    <!--end::Time-->
+                                </div>
+                                <!--end::Day-->
+                            </div>
+                            <!--end::Tab Content-->
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Row-->
+            <div class="row">
+                <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6 align-items-center">
+                    <a href="https://apptest.hizlirandevu.com.tr/business/appointment">
+                        <div class="widget-stat card ">
+                            <div class="card-body rounded p-15" style="background-color: #6a23ff">
+                                <h1 class="text-white"><i class="fa fa-calendar-check" style="color:white;font-size: 30px"></i> Randevular</h1>
                             </div>
                         </div>
-                    @empty
-                    @endforelse
-                    </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6 mb-2 align-items-center">
+                    <a href="https://apptest.hizlirandevu.com.tr/business/customer">
+                        <div class="widget-stat card">
+                            <div class="card-body rounded p-15" style="background-color: #9568ff">
+                                <h1 class="text-white"><i class="fa fa-user-circle" style="color:white;font-size: 30px"></i> Müşteriler</h1>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6 mb-2 align-items-center">
+                    <a href="https://apptest.hizlirandevu.com.tr/business/personel">
+                        <div class="widget-stat card">
+                            <div class="card-body rounded bg-warning p-15">
+                                <h1 class="text-white"><i class="fa fa-person" style="color:white;font-size: 30px"></i> Personeller</h1>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6 mb-2 align-items-center">
+                    <a href="https://apptest.hizlirandevu.com.tr/business/businessService">
+                        <div class="widget-stat card">
+                            <div class="card-body rounded bg-primary p-15">
+                                <h1 class="text-white"><i class="fa fa-gear" style="color:white;font-size: 30px"></i> Hizmetler</h1>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6 mb-2 align-items-center">
+                    <a href="https://apptest.hizlirandevu.com.tr/business/product">
+                        <div class="widget-stat card">
+                            <div class="card-body rounded bg-black p-15">
+                                <h1 class="text-white"><i class="fa fa-box-open" style="color:white;font-size: 30px"></i> Ürünler</h1>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-xxl-4 col-lg-4 col-sm-6 mb-2 align-items-center">
+                    <a href="https://apptest.hizlirandevu.com.tr/business/gallery">
+                        <div class="widget-stat card">
+                            <div class="card-body rounded bg-info p-15">
+                                <h1 class="text-white"><i class="fa fa-image" style="color:white;font-size: 30px"></i> Galeri</h1>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
+
+            <div class="card mt-3">
+                <!--begin::Card header-->
+                <div class="card-header border-0 pt-6">
+                    <!--begin::Card title-->
+                    <div class="card-title">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1">
+                            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5"><span class="path1"></span><span class="path2"></span></i>                <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search user">
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                    <!--begin::Card title-->
+                    <div class="card-toolbar">
+                                                   <span class="btn" style="background-color: #6a23ff">
+                                                        <h3 class="text-white pt-2">Yeni müşterileriniz</h3>
+                                                   </span>
+                    </div>
+                </div>
+                <!--end::Card header-->
+
+                <!--begin::Card body-->
+                <div class="card-body py-4">
+
+                    <!--begin::Table-->
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                        <thead>
+                        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                            <th class="w-10px pe-2">
+                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_table_users .form-check-input" value="1">
+                                </div>
+                            </th>
+                            <th class="min-w-125px">User</th>
+                            <th class="min-w-125px">Role</th>
+                            <th class="min-w-125px">Last login</th>
+                            <th class="min-w-125px">Joined Date</th>
+                            <th class="text-end min-w-100px">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-gray-600 fw-semibold">
+                        <tr>
+                            <td>
+                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="1">
+                                </div>
+                            </td>
+                            <td class="d-flex align-items-center">
+                                <!--begin:: Avatar -->
+                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                    <a href="view.html">
+                                        <div class="symbol-label">
+                                            <img src="../../../assets/media/avatars/300-6.jpg" alt="Emma Smith" class="w-100">
+                                        </div>
+                                    </a>
+                                </div>
+                                <!--end::Avatar-->
+                                <!--begin::User details-->
+                                <div class="d-flex flex-column">
+                                    <a href="view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
+                                    <span>smith@kpmg.com</span>
+                                </div>
+                                <!--begin::User details-->
+                            </td>
+                            <td>
+                                Administrator                </td>
+                            <td>
+                                <div class="badge badge-light fw-bold">Yesterday</div>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                05 May 2023, 10:30 am                </td>
+                            <td class="text-end">
+                                <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    Actions
+                                    <i class="ki-duotone ki-down fs-5 ms-1"></i>                    </a>
+                                <!--begin::Menu-->
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="view.html" class="menu-link px-3">
+                                            Edit
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+                                            Delete
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                </div>
+                                <!--end::Menu-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="1">
+                                </div>
+                            </td>
+                            <td class="d-flex align-items-center">
+                                <!--begin:: Avatar -->
+                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                    <a href="view.html">
+                                        <div class="symbol-label fs-3 bg-light-danger text-danger">
+                                            M                                </div>
+                                    </a>
+                                </div>
+                                <!--end::Avatar-->
+                                <!--begin::User details-->
+                                <div class="d-flex flex-column">
+                                    <a href="view.html" class="text-gray-800 text-hover-primary mb-1">Melody Macy</a>
+                                    <span>melody@altbox.com</span>
+                                </div>
+                                <!--begin::User details-->
+                            </td>
+                            <td>
+                                Analyst                </td>
+                            <td>
+                                <div class="badge badge-light fw-bold">20 mins ago</div>
+                            </td>
+                            <td>
+                                <div class="badge badge-light-success fw-bold">Enabled</div>
+                            </td>
+                            <td>
+                                22 Sep 2023, 10:30 am                </td>
+                            <td class="text-end">
+                                <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    Actions
+                                    <i class="ki-duotone ki-down fs-5 ms-1"></i>                    </a>
+                                <!--begin::Menu-->
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="view.html" class="menu-link px-3">
+                                            Edit
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+                                            Delete
+                                        </a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                </div>
+                                <!--end::Menu-->
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <!--end::Table-->    </div>
+                <!--end::Card body-->
+            </div>
         </div>
+        <!--end::Content-->
+
     </div>
 @endsection
 @section('scripts')
-    <script>
-        function clearPastAppointments() {
-            var now = new Date();
-            var currentHour = now.getHours();
-            var currentMinute = now.getMinutes();
 
-            var currentTime = currentHour.toString().padStart(2, '0') + ':' + currentMinute.toString().padStart(2, '0');
-
-            $('div[start-time]').each(function() {
-                var startTime = $(this).attr('start-time');
-                if (startTime < currentTime) {
-                    $(this).remove();
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            clearPastAppointments();
-            setInterval(clearPastAppointments, 60000);
-        });
-    </script>
 @endsection

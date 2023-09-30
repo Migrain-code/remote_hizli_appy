@@ -8,6 +8,7 @@ use App\Http\Middleware\Cookie;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\StupStatusMiddleware;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
@@ -27,7 +28,7 @@ use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-
+use App\Http\Middleware\Language;
 class Kernel extends HttpKernel
 {
     /**
@@ -60,6 +61,7 @@ class Kernel extends HttpKernel
             ShareErrorsFromSession::class,
             VerifyCsrfToken::class,
             SubstituteBindings::class,
+            Language::class,
         ],
 
         'api' => [
@@ -89,5 +91,6 @@ class Kernel extends HttpKernel
         'verified' => EnsureEmailIsVerified::class,
         'cookieAccess'=>Cookie::class,
         'active' => ActiveUser::class,
+        'setup_status' => StupStatusMiddleware::class,
     ];
 }

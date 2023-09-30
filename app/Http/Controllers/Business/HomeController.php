@@ -14,20 +14,20 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (auth('business')->user()->password_status == 1){
+        if (auth('official')->user()->password_status == 1){
             return view('business.update_password');
         }
         else{
 
             $earning=0;
 
-            $todayAppointments= Appointment::where('business_id',auth('business')->id())
+            $todayAppointments= Appointment::where('business_id',auth('official')->user()->business->id)
                 ->where('status', 1)
                 ->whereRaw("STR_TO_DATE(start_time, '%d.%m.%Y') = ?", [Carbon::now()->format('Y-m-d')])
                 ->orderByRaw("STR_TO_DATE(start_time, '%d.%m.%Y %H:%i')")
                 ->get();
 
-            $appointments = auth('business')->user()->appointments()->where('status', 7)->get();
+            $appointments = auth('official')->user()->business->appointments()->where('status', 7)->get();
             foreach ($appointments as $row){
                     $earning+=$row->calculateTotal($row->services);
             }

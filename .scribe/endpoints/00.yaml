@@ -33,7 +33,7 @@ endpoints:
         name: phone
         description: ''
         required: true
-        example: assumenda
+        example: in
         type: string
         enumValues: []
         custom: []
@@ -41,13 +41,13 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: ".bM8hQK)Ofm'"
+        example: P8GijPSjQ2_p
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      phone: assumenda
-      password: ".bM8hQK)Ofm'"
+      phone: in
+      password: P8GijPSjQ2_p
     fileParameters: []
     responses: []
     responseFields: []
@@ -130,41 +130,6 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - POST
-    uri: api/auth/logout
-    metadata:
-      groupName: Authentication
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'POST api/auth/logout'
-      description: |-
-        <ul>
-        <li>Token Göndermeniz Yeterli</li>
-        </ul>
-        Logout apisi
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Bearer: '{token}'
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
       - GET
     uri: api/auth/user
     metadata:
@@ -201,6 +166,41 @@ endpoints:
           access-control-allow-origin: '*'
         description: null
         custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/logout
+    metadata:
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST api/auth/logout'
+      description: |-
+        <ul>
+        <li>Token Göndermeniz Yeterli</li>
+        </ul>
+        Logout apisi
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Bearer: '{token}'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
     responseFields: []
     auth: []
     controller: null

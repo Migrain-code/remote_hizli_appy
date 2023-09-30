@@ -80,11 +80,37 @@
                                                                                 <li class="tocify-item level-2" data-unique="authentication-POSTapi-auth-verify">
                                 <a href="#authentication-POSTapi-auth-verify">POST api/auth/verify</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="authentication-GETapi-auth-user">
+                                <a href="#authentication-GETapi-auth-user">GET api/auth/user</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="authentication-POSTapi-auth-logout">
                                 <a href="#authentication-POSTapi-auth-logout">POST api/auth/logout</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="authentication-GETapi-auth-user">
-                                <a href="#authentication-GETapi-auth-user">GET api/auth/user</a>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-city" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="city">
+                    <a href="#city">City</a>
+                </li>
+                                    <ul id="tocify-subheader-city" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="city-GETapi-city-list">
+                                <a href="#city-GETapi-city-list">GET api/city/list</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="city-POSTapi-city-get">
+                                <a href="#city-POSTapi-city-get">POST api/city/get</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-setup" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="setup">
+                    <a href="#setup">Setup</a>
+                </li>
+                                    <ul id="tocify-subheader-setup" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="setup-GETapi-setup">
+                                <a href="#setup-GETapi-setup">GET api/setup</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="setup-POSTapi-setup-update">
+                                <a href="#setup-POSTapi-setup-update">POST api/setup/update</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -97,7 +123,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: September 17, 2023</li>
+        <li>Last updated: September 30, 2023</li>
     </ul>
 </div>
 
@@ -142,8 +168,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone\": \"assumenda\",
-    \"password\": \".bM8hQK)Ofm\'\"
+    \"phone\": \"in\",
+    \"password\": \"P8GijPSjQ2_p\"
 }"
 </code></pre></div>
 
@@ -159,8 +185,8 @@ const headers = {
 };
 
 let body = {
-    "phone": "assumenda",
-    "password": ".bM8hQK)Ofm'"
+    "phone": "in",
+    "password": "P8GijPSjQ2_p"
 };
 
 fetch(url, {
@@ -249,10 +275,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="phone"                data-endpoint="POSTapi-auth-login"
-               value="assumenda"
+               value="in"
                data-component="body">
     <br>
-<p>Example: <code>assumenda</code></p>
+<p>Example: <code>in</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -260,10 +286,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-auth-login"
-               value=".bM8hQK)Ofm'"
+               value="P8GijPSjQ2_p"
                data-component="body">
     <br>
-<p>Example: <code>.bM8hQK)Ofm'</code></p>
+<p>Example: <code>P8GijPSjQ2_p</code></p>
         </div>
         </form>
 
@@ -493,130 +519,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="authentication-POSTapi-auth-logout">POST api/auth/logout</h2>
-
-<p>
-</p>
-
-<ul>
-<li>Token Göndermeniz Yeterli</li>
-</ul>
-<p>Logout apisi</p>
-
-<span id="example-requests-POSTapi-auth-logout">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1:8001/api/auth/logout" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Bearer: {token}"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8001/api/auth/logout"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Bearer": "{token}",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-auth-logout">
-</span>
-<span id="execution-results-POSTapi-auth-logout" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-auth-logout"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-auth-logout"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-auth-logout" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-auth-logout">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-auth-logout" data-method="POST"
-      data-path="api/auth/logout"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-logout', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-auth-logout"
-                    onclick="tryItOut('POSTapi-auth-logout');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-auth-logout"
-                    onclick="cancelTryOut('POSTapi-auth-logout');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-auth-logout"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/auth/logout</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-auth-logout"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-auth-logout"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Bearer</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Bearer"                data-endpoint="POSTapi-auth-logout"
-               value="{token}"
-               data-component="header">
-    <br>
-<p>Example: <code>{token}</code></p>
-            </div>
-                        </form>
-
                     <h2 id="authentication-GETapi-auth-user">GET api/auth/user</h2>
 
 <p>
@@ -754,6 +656,1030 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="header">
     <br>
 <p>Example: <code>{token}</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="authentication-POSTapi-auth-logout">POST api/auth/logout</h2>
+
+<p>
+</p>
+
+<ul>
+<li>Token Göndermeniz Yeterli</li>
+</ul>
+<p>Logout apisi</p>
+
+<span id="example-requests-POSTapi-auth-logout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8001/api/auth/logout" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Bearer: {token}"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8001/api/auth/logout"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Bearer": "{token}",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-auth-logout">
+</span>
+<span id="execution-results-POSTapi-auth-logout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-auth-logout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-auth-logout"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-auth-logout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-auth-logout">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-auth-logout" data-method="POST"
+      data-path="api/auth/logout"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-auth-logout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-auth-logout"
+                    onclick="tryItOut('POSTapi-auth-logout');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-auth-logout"
+                    onclick="cancelTryOut('POSTapi-auth-logout');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-auth-logout"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/auth/logout</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-auth-logout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-auth-logout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Bearer</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Bearer"                data-endpoint="POSTapi-auth-logout"
+               value="{token}"
+               data-component="header">
+    <br>
+<p>Example: <code>{token}</code></p>
+            </div>
+                        </form>
+
+                <h1 id="city">City</h1>
+
+    
+
+                                <h2 id="city-GETapi-city-list">GET api/city/list</h2>
+
+<p>
+</p>
+
+<p>Şehir Listesi. Direk get isteği atılacak Header veya body gönderimine gerek yok</p>
+
+<span id="example-requests-GETapi-city-list">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8001/api/city/list" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8001/api/city/list"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-city-list">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;cities&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;slug&quot;: &quot;adana&quot;,
+            &quot;name&quot;: &quot;ADANA&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;slug&quot;: &quot;adiyaman&quot;,
+            &quot;name&quot;: &quot;ADIYAMAN&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;slug&quot;: &quot;afyon&quot;,
+            &quot;name&quot;: &quot;AFYON&quot;
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;slug&quot;: &quot;agri&quot;,
+            &quot;name&quot;: &quot;AĞRI&quot;
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;slug&quot;: &quot;amasya&quot;,
+            &quot;name&quot;: &quot;AMASYA&quot;
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;slug&quot;: &quot;ankara&quot;,
+            &quot;name&quot;: &quot;ANKARA&quot;
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;slug&quot;: &quot;antalya&quot;,
+            &quot;name&quot;: &quot;ANTALYA&quot;
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;slug&quot;: &quot;artvin&quot;,
+            &quot;name&quot;: &quot;ARTVİN&quot;
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;slug&quot;: &quot;aydin&quot;,
+            &quot;name&quot;: &quot;AYDIN&quot;
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;slug&quot;: &quot;balikesir&quot;,
+            &quot;name&quot;: &quot;BALIKESİR&quot;
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;slug&quot;: &quot;bilecik&quot;,
+            &quot;name&quot;: &quot;BİLECİK&quot;
+        },
+        {
+            &quot;id&quot;: 12,
+            &quot;slug&quot;: &quot;bingol&quot;,
+            &quot;name&quot;: &quot;BİNG&Ouml;L&quot;
+        },
+        {
+            &quot;id&quot;: 13,
+            &quot;slug&quot;: &quot;bitlis&quot;,
+            &quot;name&quot;: &quot;BİTLİS&quot;
+        },
+        {
+            &quot;id&quot;: 14,
+            &quot;slug&quot;: &quot;bolu&quot;,
+            &quot;name&quot;: &quot;BOLU&quot;
+        },
+        {
+            &quot;id&quot;: 15,
+            &quot;slug&quot;: &quot;burdur&quot;,
+            &quot;name&quot;: &quot;BURDUR&quot;
+        },
+        {
+            &quot;id&quot;: 16,
+            &quot;slug&quot;: &quot;bursa&quot;,
+            &quot;name&quot;: &quot;BURSA&quot;
+        },
+        {
+            &quot;id&quot;: 17,
+            &quot;slug&quot;: &quot;canakkale&quot;,
+            &quot;name&quot;: &quot;&Ccedil;ANAKKALE&quot;
+        },
+        {
+            &quot;id&quot;: 18,
+            &quot;slug&quot;: &quot;cankiri&quot;,
+            &quot;name&quot;: &quot;&Ccedil;ANKIRI&quot;
+        },
+        {
+            &quot;id&quot;: 19,
+            &quot;slug&quot;: &quot;corum&quot;,
+            &quot;name&quot;: &quot;&Ccedil;ORUM&quot;
+        },
+        {
+            &quot;id&quot;: 20,
+            &quot;slug&quot;: &quot;denizli&quot;,
+            &quot;name&quot;: &quot;DENİZLİ&quot;
+        },
+        {
+            &quot;id&quot;: 21,
+            &quot;slug&quot;: &quot;diyarbakir&quot;,
+            &quot;name&quot;: &quot;DİYARBAKIR&quot;
+        },
+        {
+            &quot;id&quot;: 22,
+            &quot;slug&quot;: &quot;edirne&quot;,
+            &quot;name&quot;: &quot;EDİRNE&quot;
+        },
+        {
+            &quot;id&quot;: 23,
+            &quot;slug&quot;: &quot;elazig&quot;,
+            &quot;name&quot;: &quot;ELAZIĞ&quot;
+        },
+        {
+            &quot;id&quot;: 24,
+            &quot;slug&quot;: &quot;erzincan&quot;,
+            &quot;name&quot;: &quot;ERZİNCAN&quot;
+        },
+        {
+            &quot;id&quot;: 25,
+            &quot;slug&quot;: &quot;erzurum&quot;,
+            &quot;name&quot;: &quot;ERZURUM&quot;
+        },
+        {
+            &quot;id&quot;: 26,
+            &quot;slug&quot;: &quot;eskisehir&quot;,
+            &quot;name&quot;: &quot;ESKİŞEHİR&quot;
+        },
+        {
+            &quot;id&quot;: 27,
+            &quot;slug&quot;: &quot;gaziantep&quot;,
+            &quot;name&quot;: &quot;GAZİANTEP&quot;
+        },
+        {
+            &quot;id&quot;: 28,
+            &quot;slug&quot;: &quot;giresun&quot;,
+            &quot;name&quot;: &quot;GİRESUN&quot;
+        },
+        {
+            &quot;id&quot;: 29,
+            &quot;slug&quot;: &quot;gumushane&quot;,
+            &quot;name&quot;: &quot;G&Uuml;M&Uuml;ŞHANE&quot;
+        },
+        {
+            &quot;id&quot;: 30,
+            &quot;slug&quot;: &quot;hakkari&quot;,
+            &quot;name&quot;: &quot;HAKKARİ&quot;
+        },
+        {
+            &quot;id&quot;: 31,
+            &quot;slug&quot;: &quot;hatay&quot;,
+            &quot;name&quot;: &quot;HATAY&quot;
+        },
+        {
+            &quot;id&quot;: 32,
+            &quot;slug&quot;: &quot;isparta&quot;,
+            &quot;name&quot;: &quot;ISPARTA&quot;
+        },
+        {
+            &quot;id&quot;: 33,
+            &quot;slug&quot;: &quot;icel&quot;,
+            &quot;name&quot;: &quot;İ&Ccedil;EL&quot;
+        },
+        {
+            &quot;id&quot;: 34,
+            &quot;slug&quot;: &quot;istanbul&quot;,
+            &quot;name&quot;: &quot;İSTANBUL&quot;
+        },
+        {
+            &quot;id&quot;: 35,
+            &quot;slug&quot;: &quot;izmir&quot;,
+            &quot;name&quot;: &quot;İZMİR&quot;
+        },
+        {
+            &quot;id&quot;: 36,
+            &quot;slug&quot;: &quot;kars&quot;,
+            &quot;name&quot;: &quot;KARS&quot;
+        },
+        {
+            &quot;id&quot;: 37,
+            &quot;slug&quot;: &quot;kastamonu&quot;,
+            &quot;name&quot;: &quot;KASTAMONU&quot;
+        },
+        {
+            &quot;id&quot;: 38,
+            &quot;slug&quot;: &quot;kayseri&quot;,
+            &quot;name&quot;: &quot;KAYSERİ&quot;
+        },
+        {
+            &quot;id&quot;: 39,
+            &quot;slug&quot;: &quot;kirklareli&quot;,
+            &quot;name&quot;: &quot;KIRKLARELİ&quot;
+        },
+        {
+            &quot;id&quot;: 40,
+            &quot;slug&quot;: &quot;kirsehir&quot;,
+            &quot;name&quot;: &quot;KIRŞEHİR&quot;
+        },
+        {
+            &quot;id&quot;: 41,
+            &quot;slug&quot;: &quot;kocaeli&quot;,
+            &quot;name&quot;: &quot;KOCAELİ&quot;
+        },
+        {
+            &quot;id&quot;: 42,
+            &quot;slug&quot;: &quot;konya&quot;,
+            &quot;name&quot;: &quot;KONYA&quot;
+        },
+        {
+            &quot;id&quot;: 43,
+            &quot;slug&quot;: &quot;kutahya&quot;,
+            &quot;name&quot;: &quot;K&Uuml;TAHYA&quot;
+        },
+        {
+            &quot;id&quot;: 44,
+            &quot;slug&quot;: &quot;malatya&quot;,
+            &quot;name&quot;: &quot;MALATYA&quot;
+        },
+        {
+            &quot;id&quot;: 45,
+            &quot;slug&quot;: &quot;manisa&quot;,
+            &quot;name&quot;: &quot;MANİSA&quot;
+        },
+        {
+            &quot;id&quot;: 46,
+            &quot;slug&quot;: &quot;kahramanmaras&quot;,
+            &quot;name&quot;: &quot;KAHRAMANMARAŞ&quot;
+        },
+        {
+            &quot;id&quot;: 47,
+            &quot;slug&quot;: &quot;mardin&quot;,
+            &quot;name&quot;: &quot;MARDİN&quot;
+        },
+        {
+            &quot;id&quot;: 48,
+            &quot;slug&quot;: &quot;mugla&quot;,
+            &quot;name&quot;: &quot;MUĞLA&quot;
+        },
+        {
+            &quot;id&quot;: 49,
+            &quot;slug&quot;: &quot;mus&quot;,
+            &quot;name&quot;: &quot;MUŞ&quot;
+        },
+        {
+            &quot;id&quot;: 50,
+            &quot;slug&quot;: &quot;nevsehir&quot;,
+            &quot;name&quot;: &quot;NEVŞEHİR&quot;
+        },
+        {
+            &quot;id&quot;: 51,
+            &quot;slug&quot;: &quot;nigde&quot;,
+            &quot;name&quot;: &quot;NİĞDE&quot;
+        },
+        {
+            &quot;id&quot;: 52,
+            &quot;slug&quot;: &quot;ordu&quot;,
+            &quot;name&quot;: &quot;ORDU&quot;
+        },
+        {
+            &quot;id&quot;: 53,
+            &quot;slug&quot;: &quot;rize&quot;,
+            &quot;name&quot;: &quot;RİZE&quot;
+        },
+        {
+            &quot;id&quot;: 54,
+            &quot;slug&quot;: &quot;sakarya&quot;,
+            &quot;name&quot;: &quot;SAKARYA&quot;
+        },
+        {
+            &quot;id&quot;: 55,
+            &quot;slug&quot;: &quot;samsun&quot;,
+            &quot;name&quot;: &quot;SAMSUN&quot;
+        },
+        {
+            &quot;id&quot;: 56,
+            &quot;slug&quot;: &quot;siirt&quot;,
+            &quot;name&quot;: &quot;SİİRT&quot;
+        },
+        {
+            &quot;id&quot;: 57,
+            &quot;slug&quot;: &quot;sinop&quot;,
+            &quot;name&quot;: &quot;SİNOP&quot;
+        },
+        {
+            &quot;id&quot;: 58,
+            &quot;slug&quot;: &quot;sivas&quot;,
+            &quot;name&quot;: &quot;SİVAS&quot;
+        },
+        {
+            &quot;id&quot;: 59,
+            &quot;slug&quot;: &quot;tekirdag&quot;,
+            &quot;name&quot;: &quot;TEKİRDAĞ&quot;
+        },
+        {
+            &quot;id&quot;: 60,
+            &quot;slug&quot;: &quot;tokat&quot;,
+            &quot;name&quot;: &quot;TOKAT&quot;
+        },
+        {
+            &quot;id&quot;: 61,
+            &quot;slug&quot;: &quot;trabzon&quot;,
+            &quot;name&quot;: &quot;TRABZON&quot;
+        },
+        {
+            &quot;id&quot;: 62,
+            &quot;slug&quot;: &quot;tunceli&quot;,
+            &quot;name&quot;: &quot;TUNCELİ&quot;
+        },
+        {
+            &quot;id&quot;: 63,
+            &quot;slug&quot;: &quot;sanliurfa&quot;,
+            &quot;name&quot;: &quot;ŞANLIURFA&quot;
+        },
+        {
+            &quot;id&quot;: 64,
+            &quot;slug&quot;: &quot;usak&quot;,
+            &quot;name&quot;: &quot;UŞAK&quot;
+        },
+        {
+            &quot;id&quot;: 65,
+            &quot;slug&quot;: &quot;van&quot;,
+            &quot;name&quot;: &quot;VAN&quot;
+        },
+        {
+            &quot;id&quot;: 66,
+            &quot;slug&quot;: &quot;yozgat&quot;,
+            &quot;name&quot;: &quot;YOZGAT&quot;
+        },
+        {
+            &quot;id&quot;: 67,
+            &quot;slug&quot;: &quot;zonguldak&quot;,
+            &quot;name&quot;: &quot;ZONGULDAK&quot;
+        },
+        {
+            &quot;id&quot;: 68,
+            &quot;slug&quot;: &quot;aksaray&quot;,
+            &quot;name&quot;: &quot;AKSARAY&quot;
+        },
+        {
+            &quot;id&quot;: 69,
+            &quot;slug&quot;: &quot;bayburt&quot;,
+            &quot;name&quot;: &quot;BAYBURT&quot;
+        },
+        {
+            &quot;id&quot;: 70,
+            &quot;slug&quot;: &quot;karaman&quot;,
+            &quot;name&quot;: &quot;KARAMAN&quot;
+        },
+        {
+            &quot;id&quot;: 71,
+            &quot;slug&quot;: &quot;kirikkale&quot;,
+            &quot;name&quot;: &quot;KIRIKKALE&quot;
+        },
+        {
+            &quot;id&quot;: 72,
+            &quot;slug&quot;: &quot;batman&quot;,
+            &quot;name&quot;: &quot;BATMAN&quot;
+        },
+        {
+            &quot;id&quot;: 73,
+            &quot;slug&quot;: &quot;sirnak&quot;,
+            &quot;name&quot;: &quot;ŞIRNAK&quot;
+        },
+        {
+            &quot;id&quot;: 74,
+            &quot;slug&quot;: &quot;bartin&quot;,
+            &quot;name&quot;: &quot;BARTIN&quot;
+        },
+        {
+            &quot;id&quot;: 75,
+            &quot;slug&quot;: &quot;ardahan&quot;,
+            &quot;name&quot;: &quot;ARDAHAN&quot;
+        },
+        {
+            &quot;id&quot;: 76,
+            &quot;slug&quot;: &quot;igdir&quot;,
+            &quot;name&quot;: &quot;IĞDIR&quot;
+        },
+        {
+            &quot;id&quot;: 77,
+            &quot;slug&quot;: &quot;yalova&quot;,
+            &quot;name&quot;: &quot;YALOVA&quot;
+        },
+        {
+            &quot;id&quot;: 78,
+            &quot;slug&quot;: &quot;karabuk&quot;,
+            &quot;name&quot;: &quot;KARAB&Uuml;K&quot;
+        },
+        {
+            &quot;id&quot;: 79,
+            &quot;slug&quot;: &quot;kilis&quot;,
+            &quot;name&quot;: &quot;KİLİS&quot;
+        },
+        {
+            &quot;id&quot;: 80,
+            &quot;slug&quot;: &quot;osmaniye&quot;,
+            &quot;name&quot;: &quot;OSMANİYE&quot;
+        },
+        {
+            &quot;id&quot;: 81,
+            &quot;slug&quot;: &quot;duzce&quot;,
+            &quot;name&quot;: &quot;D&Uuml;ZCE&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-city-list" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-city-list"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-city-list"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-city-list" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-city-list">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-city-list" data-method="GET"
+      data-path="api/city/list"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-city-list', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-city-list"
+                    onclick="tryItOut('GETapi-city-list');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-city-list"
+                    onclick="cancelTryOut('GETapi-city-list');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-city-list"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/city/list</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-city-list"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-city-list"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="city-POSTapi-city-get">POST api/city/get</h2>
+
+<p>
+</p>
+
+<p>City id gönderilen şehrin bilgilerini ve ilçe verisini döndürür.
+city_id |required| int or string</p>
+
+<span id="example-requests-POSTapi-city-get">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8001/api/city/get" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8001/api/city/get"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-city-get">
+</span>
+<span id="execution-results-POSTapi-city-get" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-city-get"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-city-get"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-city-get" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-city-get">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-city-get" data-method="POST"
+      data-path="api/city/get"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-city-get', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-city-get"
+                    onclick="tryItOut('POSTapi-city-get');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-city-get"
+                    onclick="cancelTryOut('POSTapi-city-get');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-city-get"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/city/get</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-city-get"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-city-get"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                <h1 id="setup">Setup</h1>
+
+    
+
+                                <h2 id="setup-GETapi-setup">GET api/setup</h2>
+
+<p>
+</p>
+
+<ul>
+<li>Bearer Token | string | required | Kullanıcı Token</li>
+</ul>
+<p>Kayıt Ekranı Tüm Bilgiler Apisi</p>
+
+<span id="example-requests-GETapi-setup">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8001/api/setup" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8001/api/setup"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-setup">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-setup" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-setup"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-setup"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-setup" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-setup">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-setup" data-method="GET"
+      data-path="api/setup"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-setup', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-setup"
+                    onclick="tryItOut('GETapi-setup');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-setup"
+                    onclick="cancelTryOut('GETapi-setup');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-setup"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/setup</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-setup"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-setup"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="setup-POSTapi-setup-update">POST api/setup/update</h2>
+
+<p>
+</p>
+
+<ul>
+<li>category_id | string | required | İşletme Kategorisi</li>
+<li>name | string | required | İşletme Adı</li>
+<li>type_id | string | required | Hizmet Türü businessTypes değişkeninden alabilirsiniz </li>
+<li>city_id  | string | required | Şehir</li>
+<li>district_id  | string | required | İlçe</li>
+<li>off_day_id  | string | required | Kapalı Olduğu Gün</li>
+<li>phone | string | required | Kullanıcı Telefon Numarası</li>
+<li>about_content | string | required| İşletme Hakkında Yazısı</li>
+<li>start_time | string | required| İşletme Açılış Saati Örneğin (12:08)</li>
+<li>end_time | string | required| İşletme Kapanış Saati Örneğin (18:08)</li>
+<li>latitude | string | required| Haritadan seçilen lat bilgisi</li>
+<li>longitude | string | required| Haritadan seçilen long bilgisi</li>
+<li>address | text | required| Address Metni</li>
+<li>package_id | integer or string | required| Seçili Paket idsi</li>
+</ul>
+<p>Kayıt Ekranı Tüm Bilgiler güncelleme Apisi</p>
+
+<span id="example-requests-POSTapi-setup-update">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8001/api/setup/update" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8001/api/setup/update"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-setup-update">
+</span>
+<span id="execution-results-POSTapi-setup-update" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-setup-update"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-setup-update"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-setup-update" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-setup-update">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-setup-update" data-method="POST"
+      data-path="api/setup/update"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-setup-update', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-setup-update"
+                    onclick="tryItOut('POSTapi-setup-update');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-setup-update"
+                    onclick="cancelTryOut('POSTapi-setup-update');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-setup-update"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/setup/update</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-setup-update"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-setup-update"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
             </div>
                         </form>
 

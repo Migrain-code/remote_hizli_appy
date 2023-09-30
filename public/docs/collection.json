@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "fb70b15e-8831-4f21-9491-965c7d8efa2f",
+        "_postman_id": "e7d54fce-21fd-4c3e-ad37-7172054540a1",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone\":\"assumenda\",\"password\":\".bM8hQK)Ofm'\"}"
+                            "raw": "{\"phone\":\"in\",\"password\":\"P8GijPSjQ2_p\"}"
                         },
                         "description": "Status Codes\n<ul>\n<li>phone<\/li>\n<li>password<\/li>\n<li> 401 Unauthorized Hatas\u0131 <\/li>\n<\/ul>\nLogin apisi",
                         "auth": {
@@ -107,38 +107,6 @@
                     "response": []
                 },
                 {
-                    "name": "POST api\/auth\/logout",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/auth\/logout",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/auth\/logout"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Bearer",
-                                "value": "{token}"
-                            }
-                        ],
-                        "body": null,
-                        "description": "<ul>\n<li>Token G\u00f6ndermeniz Yeterli<\/li>\n<\/ul>\nLogout apisi",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
                     "name": "GET api\/auth\/user",
                     "request": {
                         "url": {
@@ -189,6 +157,210 @@
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "POST api\/auth\/logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Bearer",
+                                "value": "{token}"
+                            }
+                        ],
+                        "body": null,
+                        "description": "<ul>\n<li>Token G\u00f6ndermeniz Yeterli<\/li>\n<\/ul>\nLogout apisi",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "City",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/city\/list",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/city\/list",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/city\/list"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "\u015eehir Listesi. Direk get iste\u011fi at\u0131lacak Header veya body g\u00f6nderimine gerek yok",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"cities\":[{\"id\":1,\"slug\":\"adana\",\"name\":\"ADANA\"},{\"id\":2,\"slug\":\"adiyaman\",\"name\":\"ADIYAMAN\"},{\"id\":3,\"slug\":\"afyon\",\"name\":\"AFYON\"},{\"id\":4,\"slug\":\"agri\",\"name\":\"A\\u011eRI\"},{\"id\":5,\"slug\":\"amasya\",\"name\":\"AMASYA\"},{\"id\":6,\"slug\":\"ankara\",\"name\":\"ANKARA\"},{\"id\":7,\"slug\":\"antalya\",\"name\":\"ANTALYA\"},{\"id\":8,\"slug\":\"artvin\",\"name\":\"ARTV\\u0130N\"},{\"id\":9,\"slug\":\"aydin\",\"name\":\"AYDIN\"},{\"id\":10,\"slug\":\"balikesir\",\"name\":\"BALIKES\\u0130R\"},{\"id\":11,\"slug\":\"bilecik\",\"name\":\"B\\u0130LEC\\u0130K\"},{\"id\":12,\"slug\":\"bingol\",\"name\":\"B\\u0130NG\\u00d6L\"},{\"id\":13,\"slug\":\"bitlis\",\"name\":\"B\\u0130TL\\u0130S\"},{\"id\":14,\"slug\":\"bolu\",\"name\":\"BOLU\"},{\"id\":15,\"slug\":\"burdur\",\"name\":\"BURDUR\"},{\"id\":16,\"slug\":\"bursa\",\"name\":\"BURSA\"},{\"id\":17,\"slug\":\"canakkale\",\"name\":\"\\u00c7ANAKKALE\"},{\"id\":18,\"slug\":\"cankiri\",\"name\":\"\\u00c7ANKIRI\"},{\"id\":19,\"slug\":\"corum\",\"name\":\"\\u00c7ORUM\"},{\"id\":20,\"slug\":\"denizli\",\"name\":\"DEN\\u0130ZL\\u0130\"},{\"id\":21,\"slug\":\"diyarbakir\",\"name\":\"D\\u0130YARBAKIR\"},{\"id\":22,\"slug\":\"edirne\",\"name\":\"ED\\u0130RNE\"},{\"id\":23,\"slug\":\"elazig\",\"name\":\"ELAZI\\u011e\"},{\"id\":24,\"slug\":\"erzincan\",\"name\":\"ERZ\\u0130NCAN\"},{\"id\":25,\"slug\":\"erzurum\",\"name\":\"ERZURUM\"},{\"id\":26,\"slug\":\"eskisehir\",\"name\":\"ESK\\u0130\\u015eEH\\u0130R\"},{\"id\":27,\"slug\":\"gaziantep\",\"name\":\"GAZ\\u0130ANTEP\"},{\"id\":28,\"slug\":\"giresun\",\"name\":\"G\\u0130RESUN\"},{\"id\":29,\"slug\":\"gumushane\",\"name\":\"G\\u00dcM\\u00dc\\u015eHANE\"},{\"id\":30,\"slug\":\"hakkari\",\"name\":\"HAKKAR\\u0130\"},{\"id\":31,\"slug\":\"hatay\",\"name\":\"HATAY\"},{\"id\":32,\"slug\":\"isparta\",\"name\":\"ISPARTA\"},{\"id\":33,\"slug\":\"icel\",\"name\":\"\\u0130\\u00c7EL\"},{\"id\":34,\"slug\":\"istanbul\",\"name\":\"\\u0130STANBUL\"},{\"id\":35,\"slug\":\"izmir\",\"name\":\"\\u0130ZM\\u0130R\"},{\"id\":36,\"slug\":\"kars\",\"name\":\"KARS\"},{\"id\":37,\"slug\":\"kastamonu\",\"name\":\"KASTAMONU\"},{\"id\":38,\"slug\":\"kayseri\",\"name\":\"KAYSER\\u0130\"},{\"id\":39,\"slug\":\"kirklareli\",\"name\":\"KIRKLAREL\\u0130\"},{\"id\":40,\"slug\":\"kirsehir\",\"name\":\"KIR\\u015eEH\\u0130R\"},{\"id\":41,\"slug\":\"kocaeli\",\"name\":\"KOCAEL\\u0130\"},{\"id\":42,\"slug\":\"konya\",\"name\":\"KONYA\"},{\"id\":43,\"slug\":\"kutahya\",\"name\":\"K\\u00dcTAHYA\"},{\"id\":44,\"slug\":\"malatya\",\"name\":\"MALATYA\"},{\"id\":45,\"slug\":\"manisa\",\"name\":\"MAN\\u0130SA\"},{\"id\":46,\"slug\":\"kahramanmaras\",\"name\":\"KAHRAMANMARA\\u015e\"},{\"id\":47,\"slug\":\"mardin\",\"name\":\"MARD\\u0130N\"},{\"id\":48,\"slug\":\"mugla\",\"name\":\"MU\\u011eLA\"},{\"id\":49,\"slug\":\"mus\",\"name\":\"MU\\u015e\"},{\"id\":50,\"slug\":\"nevsehir\",\"name\":\"NEV\\u015eEH\\u0130R\"},{\"id\":51,\"slug\":\"nigde\",\"name\":\"N\\u0130\\u011eDE\"},{\"id\":52,\"slug\":\"ordu\",\"name\":\"ORDU\"},{\"id\":53,\"slug\":\"rize\",\"name\":\"R\\u0130ZE\"},{\"id\":54,\"slug\":\"sakarya\",\"name\":\"SAKARYA\"},{\"id\":55,\"slug\":\"samsun\",\"name\":\"SAMSUN\"},{\"id\":56,\"slug\":\"siirt\",\"name\":\"S\\u0130\\u0130RT\"},{\"id\":57,\"slug\":\"sinop\",\"name\":\"S\\u0130NOP\"},{\"id\":58,\"slug\":\"sivas\",\"name\":\"S\\u0130VAS\"},{\"id\":59,\"slug\":\"tekirdag\",\"name\":\"TEK\\u0130RDA\\u011e\"},{\"id\":60,\"slug\":\"tokat\",\"name\":\"TOKAT\"},{\"id\":61,\"slug\":\"trabzon\",\"name\":\"TRABZON\"},{\"id\":62,\"slug\":\"tunceli\",\"name\":\"TUNCEL\\u0130\"},{\"id\":63,\"slug\":\"sanliurfa\",\"name\":\"\\u015eANLIURFA\"},{\"id\":64,\"slug\":\"usak\",\"name\":\"U\\u015eAK\"},{\"id\":65,\"slug\":\"van\",\"name\":\"VAN\"},{\"id\":66,\"slug\":\"yozgat\",\"name\":\"YOZGAT\"},{\"id\":67,\"slug\":\"zonguldak\",\"name\":\"ZONGULDAK\"},{\"id\":68,\"slug\":\"aksaray\",\"name\":\"AKSARAY\"},{\"id\":69,\"slug\":\"bayburt\",\"name\":\"BAYBURT\"},{\"id\":70,\"slug\":\"karaman\",\"name\":\"KARAMAN\"},{\"id\":71,\"slug\":\"kirikkale\",\"name\":\"KIRIKKALE\"},{\"id\":72,\"slug\":\"batman\",\"name\":\"BATMAN\"},{\"id\":73,\"slug\":\"sirnak\",\"name\":\"\\u015eIRNAK\"},{\"id\":74,\"slug\":\"bartin\",\"name\":\"BARTIN\"},{\"id\":75,\"slug\":\"ardahan\",\"name\":\"ARDAHAN\"},{\"id\":76,\"slug\":\"igdir\",\"name\":\"I\\u011eDIR\"},{\"id\":77,\"slug\":\"yalova\",\"name\":\"YALOVA\"},{\"id\":78,\"slug\":\"karabuk\",\"name\":\"KARAB\\u00dcK\"},{\"id\":79,\"slug\":\"kilis\",\"name\":\"K\\u0130L\\u0130S\"},{\"id\":80,\"slug\":\"osmaniye\",\"name\":\"OSMAN\\u0130YE\"},{\"id\":81,\"slug\":\"duzce\",\"name\":\"D\\u00dcZCE\"}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/city\/get",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/city\/get",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/city\/get"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "City id g\u00f6nderilen \u015fehrin bilgilerini ve il\u00e7e verisini d\u00f6nd\u00fcr\u00fcr.\ncity_id |required| int or string",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Setup",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/setup",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/setup",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/setup"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "<ul>\n<li>Bearer Token | string | required | Kullan\u0131c\u0131 Token<\/li>\n<\/ul>\nKay\u0131t Ekran\u0131 T\u00fcm Bilgiler Apisi",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/setup\/update",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/setup\/update",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/setup\/update"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "<ul>\n<li>category_id | string | required | \u0130\u015fletme Kategorisi<\/li>\n<li>name | string | required | \u0130\u015fletme Ad\u0131<\/li>\n<li>type_id | string | required | Hizmet T\u00fcr\u00fc businessTypes de\u011fi\u015fkeninden alabilirsiniz <\/li>\n<li>city_id  | string | required | \u015eehir<\/li>\n<li>district_id  | string | required | \u0130l\u00e7e<\/li>\n<li>off_day_id  | string | required | Kapal\u0131 Oldu\u011fu G\u00fcn<\/li>\n<li>phone | string | required | Kullan\u0131c\u0131 Telefon Numaras\u0131<\/li>\n<li>about_content | string | required| \u0130\u015fletme Hakk\u0131nda Yaz\u0131s\u0131<\/li>\n<li>start_time | string | required| \u0130\u015fletme A\u00e7\u0131l\u0131\u015f Saati \u00d6rne\u011fin (12:08)<\/li>\n<li>end_time | string | required| \u0130\u015fletme Kapan\u0131\u015f Saati \u00d6rne\u011fin (18:08)<\/li>\n<li>latitude | string | required| Haritadan se\u00e7ilen lat bilgisi<\/li>\n<li>longitude | string | required| Haritadan se\u00e7ilen long bilgisi<\/li>\n<li>address | text | required| Address Metni<\/li>\n<li>package_id | integer or string | required| Se\u00e7ili Paket idsi<\/li>\n<\/ul>\nKay\u0131t Ekran\u0131 T\u00fcm Bilgiler g\u00fcncelleme Apisi",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
                 }
             ]
         }

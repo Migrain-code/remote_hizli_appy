@@ -24,6 +24,7 @@ use App\Models\Swiper;
 use App\Services\NetgsmSMS;
 use App\Services\Sms;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client;
 class HomeController extends Controller
@@ -38,6 +39,21 @@ class HomeController extends Controller
         $yearlyPackages=BussinessPackage::where('type', 1)->get();
 
         return view('welcome', compact('business_categories', 'comments', 'proparties', 'monthlyPackages', 'yearlyPackages'));
+    }
+
+    public function language($lang)
+    {
+
+        if (! in_array($lang, ['tr','de','en', 'es', 'fr', 'it'])) {
+            abort(400);
+        }
+
+        App::setLocale($lang);
+        session()->put('locale', $lang);
+        $currentLocale = App::getLocale();
+
+        return back()->with('currentLocale', $currentLocale);
+
     }
     /*public function sendSms()
     {

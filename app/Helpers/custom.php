@@ -11,8 +11,8 @@ function setting($key){
     return config('settings.'.$key);
 }
 function authUser(){
-    if (auth('business')->check()){
-        return auth('business')->user();
+    if (auth('official')->check()){
+        return auth('official')->user();
     }
     elseif (auth('admin')->check()){
         return auth('admin')->user();

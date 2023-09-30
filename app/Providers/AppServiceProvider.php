@@ -13,6 +13,7 @@ use App\Models\ServiceCategory;
 use App\Models\Setting;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -40,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         Schema::defaultStringLength(191);
         $registrar = new CustomResourceRegistrar($this->app['router']);
 
@@ -74,6 +76,7 @@ class AppServiceProvider extends ServiceProvider
             $categorys = Category::all();
             View::share('categories', $categorys);
         }
+
         Paginator::useBootstrapFour();
     }
 }
