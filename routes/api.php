@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use \App\Http\Controllers\Api\SetupController;
@@ -20,6 +19,7 @@ use \App\Http\Controllers\Api\PersonalController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+require_once 'guards/personal.php';
 
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
@@ -34,7 +34,7 @@ Route::prefix('city')->group(function (){
     Route::get('list', [CityController::class, 'index']);
     Route::post('get', [CityController::class, 'get']);
 });
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:official')->group(function () {
     Route::controller(SetupController::class)->prefix('setup')->group(function (){
         Route::get('/get', 'get');
         Route::post('/update', 'update');

@@ -25,7 +25,7 @@ class PersonelResource extends JsonResource
           'end_time' => $this->end_time,
           'food_start' => $this->food_start,
           'food_end' => $this->food_end,
-          'gender' => $this->type->name,
+          'gender' => $this->type->name ?? "",
           'rate' => $this->rate,
           'appointment_range' => $this->range == $this->business->appoinment_range ? "Salon İle Aynı" : $this->range,
           'description' => $this->description,
