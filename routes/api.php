@@ -47,4 +47,15 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', 'index');
         Route::post('/pay', 'pay');
     });
+    Route::controller(\App\Http\Controllers\Api\DetailSetupController::class)->prefix('detail-setup')->group(function (){
+        Route::get('/step-1/get', 'index');
+        Route::post('/step-1/update', 'step1');
+
+        /*Route::get('/step-2/get', 'index');
+        Route::post('/step-2/update', 'step1');*/
+
+        Route::post('update/logo', 'updateLogo');
+
+    });
+
 });

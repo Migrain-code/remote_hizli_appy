@@ -19,8 +19,8 @@ class BusinessResource extends JsonResource
         return [
            'id' => $this->id,
            'name' => $this->name,
-           'logo' => image($this->logo),
-           'wallpaper' => image($this->wallpaper),
+           'logo' => asset($this->logo),
+           'wallpaper' => asset($this->wallpaper),
            'city' => new CityResource($this->cities),
            'district' => new DistrictResource($this->districts),
            'category' => new BusinessCategoryResource($this->category),
