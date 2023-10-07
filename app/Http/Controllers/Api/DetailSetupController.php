@@ -7,12 +7,16 @@ use App\Http\Requests\DetailSetupRequestStep1;
 use App\Http\Resources\BusinessOfficialResource;
 use App\Http\Resources\BusinessResource;
 use App\Http\Resources\BusinessServiceResource;
+use App\Http\Resources\PersonelResource;
 use App\Http\Resources\ServiceCategoryResource;
 use App\Models\BusinessService;
 use App\Models\BusinnessType;
 use App\Models\DayList;
+use App\Models\Personel;
+use App\Models\PersonelService;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -144,157 +148,4 @@ class DetailSetupController extends Controller
 
     }
 
-    /**
-     * GET api/detail-setup/step-2/get
-     *
-     * Hizmetlerin listesini döndürecek size buradaki hizmet listesinden seçilen hizmetlerden seçilen hizmet eklenecek
-     * <br> Gerekli alanlar
-     * <ul>
-     * <li> token </li>
-     *</ul>
-     * @header Bearer {token}
-     *
-     */
-    public function step2Get(Request $request)
-    {
-        $services = ServiceCategory::all();
-        return response()->json([
-            'services' => ServiceCategoryResource::collection($services),
-        ]);
-    }
-    /**
-     * POST api/detail-setup/step-2/add/service
-     *
-     * Hizmetlerin listesini döndürecek size buradaki hizmet listesinden seçilen hizmetlerden seçilen hizmet eklenecek
-     * <br> Gerekli alanlar
-     * <ul>
-     * <li> token </li>
-     * <li> typeId |required | cinsiyet id si gelecek buradan  </li>
-     * <li> categoryId |required | hizmetin category id si gelecek buradan  </li>
-     * <li> subCategoryId |required | hizmetin sub_category id si gelecek buradan  </li>
-     * <li> time |required | hizmetin süresi gelecek buradan  </li>
-     * <li> price |required | hizmetin fiyatı gelecek buradan  </li>
-     *</ul>
-     * @header Bearer {token}
-     *
-     */
-    public function step2AddService(Request $request)
-    {
-        $user = $request->user();
-        $business = $user->business;
-
-        $newBusinessService = new BusinessService();
-        $newBusinessService->business_id = $business->id;
-        $newBusinessService->type = $request->typeId;
-        $newBusinessService->category = $request->input('categoryId');
-        $newBusinessService->sub_category = $request->input('subCategoryId');
-        $newBusinessService->time = $request->input('time');
-        $newBusinessService->price = $request->input('price');
-        $newBusinessService->save();
-
-        return response()->json([
-            'status' => "success",
-            'message' => "Yeni Hizmet Eklendi",
-            'businessServices' => BusinessServiceResource::collection($business->services),
-        ]);
-    }
-    /**
-     * POST api/detail-setup/step-2/update/service
-     *
-     * id si gönderilen işletme hizmetinin bilgilerini güncelleyek
-     * <br> Gerekli alanlar
-     * <ul>
-     * <li> token </li>
-     * <li>businessServiceId | required | güncellenecek hizmetin idsi</li>
-     * <li> typeId |required | cinsiyet id si gelecek buradan  </li>
-     * <li> categoryId |required | hizmetin category id si gelecek buradan  </li>
-     * <li> subCategoryId |required | hizmetin sub_category id si gelecek buradan  </li>
-     * <li> time |required | hizmetin süresi gelecek buradan  </li>
-     * <li> price |required | hizmetin fiyatı gelecek buradan  </li>
-     *</ul>
-     * @header Bearer {token}
-     *
-     */
-    public function step2UpdateService(Request $request)
-    {
-        $user = $request->user();
-        $business = $user->business;
-
-        $businessService = BusinessService::find($request->input('businessServiceId'));
-        if ($businessService) {
-            $businessService->business_id = $business->id;
-            $businessService->type = $request->typeId;
-            $businessService->category = $request->input('categoryId');
-            $businessService->sub_category = $request->input('subCategoryId');
-            $businessService->time = $request->input('time');
-            $businessService->price = $request->input('price');
-            $businessService->save();
-
-            return response()->json([
-                'status' => "success",
-                'message' => "Hizmet Bilgisi Güncellendi",
-                'businessServices' => BusinessServiceResource::collection($business->services),
-            ]);
-        } else {
-            return response()->json([
-                'status' => "error",
-                'message' => "Hizmet Bulunamadı",
-            ]);
-        }
-
-    }
-    /**
-     * POST api/detail-setup/step-2/get/service
-     *
-     * id si gönderilen işletme hizmetinin bilgilerini getirecek
-     * <br> Gerekli alanlar
-     * <ul>
-     * <li> token </li>
-     * <li>businessServiceId | required | güncellenecek hizmetin idsi</li>
-     *</ul>
-     * @header Bearer {token}
-     *
-     */
-    public function step2GetService(Request $request)
-    {
-        $businessService = BusinessService::find($request->input('businessServiceId'));
-        if ($businessService) {
-            return response()->json([
-                'status' => "success",
-                'businessService' => BusinessServiceResource::make($businessService),
-            ]);
-        } else {
-            return response()->json([
-                'status' => "error",
-                'message' => "Hizmet Bulunamadı",
-            ]);
-        }
-    }
-    /**
-     * POST api/detail-setup/step-2/get/service
-     *
-     * id si gönderilen işletme hizmetinin bilgilerini getirecek
-     * <br> Gerekli alanlar
-     * <ul>
-     * <li> token </li>
-     * <li>businessServiceId | required | güncellenecek hizmetin idsi</li>
-     *</ul>
-     * @header Bearer {token}
-     *
-     */
-    public function step2DeleteService(Request $request)
-    {
-        $businessService = BusinessService::find($request->input('businessServiceId'));
-        if ($businessService) {
-            return response()->json([
-                'status' => "success",
-                'businessService' => BusinessServiceResource::make($businessService),
-            ]);
-        } else {
-            return response()->json([
-                'status' => "error",
-                'message' => "Hizmet Bulunamadı",
-            ]);
-        }
-    }
 }

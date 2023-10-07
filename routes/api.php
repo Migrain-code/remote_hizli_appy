@@ -7,6 +7,9 @@ use \App\Http\Controllers\Api\SetupController;
 use \App\Http\Controllers\Api\City\CityController;
 use \App\Http\Controllers\Api\OfficialCreditCardController;
 use App\Http\Controllers\Api\PaymentController;
+use \App\Http\Controllers\Api\DetailSetupController;
+use \App\Http\Controllers\Api\BusinessServiceController;
+use \App\Http\Controllers\Api\PersonalController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -47,17 +50,29 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', 'index');
         Route::post('/pay', 'pay');
     });
-    Route::controller(\App\Http\Controllers\Api\DetailSetupController::class)->prefix('detail-setup')->group(function (){
+
+    Route::controller(DetailSetupController::class)->prefix('detail-setup')->group(function (){
         Route::get('/step-1/get', 'index');
         Route::post('/step-1/update', 'step1');
-
-        Route::get('/step-2/get', 'step2Get');
-        Route::post('/step-2/add/service', 'step2AddService');
-        Route::post('/step-2/update/service', 'step2UpdateService');
-        Route::post('/step-2/get/service', 'step2GetService');
-        Route::post('/step-2/delete/service', 'step2DeleteService');
-        Route::post('update/logo', 'updateLogo');
-
     });
+
+    Route::controller(BusinessServiceController::class)->prefix('business-service')->group(function (){
+        Route::get('/', 'step2Get');
+        Route::post('/get', 'step2GetService');
+        Route::post('/add', 'step2AddService');
+        Route::post('/update', 'step2UpdateService');
+        Route::post('/delete', 'step2DeleteService');
+        /*Route::post('/update/logo', 'updateLogo');*/
+    });
+
+    Route::controller(PersonalController::class)->prefix('personal')->group(function (){
+        Route::get('/', 'step3Get');
+        Route::post('/get', 'step3GetPersonal');
+        Route::post('/add', 'step3AddPersonal');
+        Route::post('/update', 'step3UpdatePersonal');
+        Route::post('/delete', 'step3DeletePersonal');
+    });
+
+
 
 });

@@ -26,11 +26,11 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: eius
+                  example: cupiditate
                 password:
                   type: string
                   description: ''
-                  example: 'i/#};-!;e*BkKm#Cxa'
+                  example: lt|SWyVFFU@EUs84
               required:
                 - phone
                 - password
@@ -100,6 +100,103 @@ paths:
       responses: {  }
       tags:
         - Authentication
+      security: []
+  /api/business-service:
+    get:
+      summary: 'GET api/business-service'
+      operationId: gETApibusinessService
+      description: "Hizmetlerin listesini döndürecek size buradaki hizmet listesinden seçilen hizmetlerden seçilen hizmet eklenecek\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - BusinessService
+      security: []
+  /api/business-service/get:
+    post:
+      summary: 'POST api/business-service/get'
+      operationId: pOSTApibusinessServiceget
+      description: "id si gönderilen işletme hizmetinin bilgilerini getirecek\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n<li>businessServiceId | required | güncellenecek hizmetin idsi</li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - BusinessService
+      security: []
+  /api/business-service/add:
+    post:
+      summary: 'POST api/business-service/add'
+      operationId: pOSTApibusinessServiceadd
+      description: "Hizmetlerin listesini döndürecek size buradaki hizmet listesinden seçilen hizmetlerden seçilen hizmet eklenecek\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n<li> typeId |required | cinsiyet id si gelecek buradan  </li>\n<li> categoryId |required | hizmetin category id si gelecek buradan  </li>\n<li> subCategoryId |required | hizmetin sub_category id si gelecek buradan  </li>\n<li> time |required | hizmetin süresi gelecek buradan  </li>\n<li> price |required | hizmetin fiyatı gelecek buradan  </li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - BusinessService
+      security: []
+  /api/business-service/update:
+    post:
+      summary: 'POST api/business-service/update'
+      operationId: pOSTApibusinessServiceupdate
+      description: "id si gönderilen işletme hizmetinin bilgilerini güncelleyek\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n<li>businessServiceId | required | güncellenecek hizmetin idsi</li>\n<li> typeId |required | cinsiyet id si gelecek buradan  </li>\n<li> categoryId |required | hizmetin category id si gelecek buradan  </li>\n<li> subCategoryId |required | hizmetin sub_category id si gelecek buradan  </li>\n<li> time |required | hizmetin süresi gelecek buradan  </li>\n<li> price |required | hizmetin fiyatı gelecek buradan  </li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - BusinessService
+      security: []
+  /api/business-service/delete:
+    post:
+      summary: 'POST api/business-service/delete'
+      operationId: pOSTApibusinessServicedelete
+      description: "id si gönderilen işletme hizmetinin bilgilerini getirecek\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n<li>businessServiceId | required | güncellenecek hizmetin idsi</li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - BusinessService
       security: []
   /api/city/list:
     get:
@@ -829,7 +926,7 @@ paths:
     post:
       summary: 'POST api/cart/delete'
       operationId: pOSTApicartdelete
-      description: "<ul>\n<li>Bearer Token | string | required | Kullanıcı Token</li>\n<li>cart_id | numeric | required | Kredi kartı id si </li>\n</ul>\nKullanıcının Tüm Kartları Apisi"
+      description: ''
       parameters: []
       responses: {  }
       tags:
@@ -854,11 +951,11 @@ paths:
                 name:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: gcwblerwedaayjtklxywytyls
+                  example: kzubkwlrbdqy
                 number:
                   type: number
                   description: 'value değeri 16 değerinden büyük olmalıdır.'
-                  example: 65
+                  example: 61
                 month:
                   type: number
                   description: 'value 1 - 12 arasında olmalıdır.'
@@ -866,15 +963,15 @@ paths:
                 year:
                   type: number
                   description: ''
-                  example: 2874672.07575
+                  example: 1196605.81
                 cvc:
                   type: string
                   description: 'Must match the regex /^\d{3,4}$/.'
-                  example: '9597'
+                  example: '923'
                 name_on_the_card:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: qzmk
+                  example: gucbsrdyobepboohwqfnupybi
                 is_default:
                   type: number
                   description: ''
@@ -910,15 +1007,15 @@ paths:
                 cart_id:
                   type: string
                   description: 'value değeri 1 karakter değerinden büyük olmalıdır.'
-                  example: lyqlgyaixijqfhpmk
+                  example: gswacffpwllwevvodqhfyomoicrwkstpobhuslabbumgjsnetyajzeqomptmzszrvwfd
                 name:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: j
+                  example: wahryfcmeqgamyarnyxilsddm
                 number:
                   type: number
                   description: 'value değeri 16 değerinden büyük olmalıdır.'
-                  example: 51
+                  example: 28
                 month:
                   type: number
                   description: 'value 1 - 12 arasında olmalıdır.'
@@ -926,15 +1023,15 @@ paths:
                 year:
                   type: number
                   description: ''
-                  example: 6563.81527965
+                  example: 52873351.272862
                 cvc:
                   type: string
                   description: 'Must match the regex /^\d{3,4}$/.'
-                  example: '7489'
+                  example: '353'
                 name_on_the_card:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: yznxlcksrdmrlbggdw
+                  example: jveefbtmoicqtfgkumlzrwnqa
                 is_default:
                   type: number
                   description: ''
@@ -951,6 +1048,268 @@ paths:
                 - cvc
                 - name_on_the_card
                 - is_default
+      security: []
+  /api/detail-setup/step-1/get:
+    get:
+      summary: ''
+      operationId: getApiDetailSetupStep1Get
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - DetailSetup
+      security: []
+  /api/detail-setup/step-1/update:
+    post:
+      summary: 'POST api/detail-setup/step-1/update'
+      operationId: pOSTApidetailSetupstep1update
+      description: "<ul>\n<li>Bearer Token</li>\n<li>officialName | string | required | Salon Sahibinin adı</li>\n<li>businessName | string | required | Salon Adı</li>\n<li>offDay | numeric | required | kapalı olduğu günün id si </li>\n<li>businessType | numeric | required | işletme türü id'si </li>\n<li>cityId  | string | required | Şehir</li>\n<li>districtId  | string | required | İlçe</li>\n<li>phone | string | required | İşletme Telefon Numarası</li>\n<li>email | string | required | İşletme E-posta Adresi</li>\n<li>commission | string | required | P. Kredi kartı kesintisi | örneğin (10, 20, 30,40)</li>\n<li>appointmentRange | string | required | Randevu aralığı | örneğin (10, 20, 30,40)</li>\n<li>personalCount | string | required | Personel Sayısı | örneğin (1, 3, 5,10)</li>\n<li>aboutText | string | required| İşletme Hakkında Yazısı</li>\n<li>startTime | string | required| İşletme Açılış Saati Örneğin (12:08)</li>\n<li>endTime | string | required| İşletme Kapanış Saati Örneğin (18:08)</li>\n<li>year | date | required| Kuruluş Tarihi örneğin (2023-04-01)</li>\n<li>address | text | required| Address Metni</li>\n</ul>\nDetaylı Kurulum Ekranı İşletme Bilgileri güncelleme Apisi"
+      parameters: []
+      responses: {  }
+      tags:
+        - DetailSetup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                officialName:
+                  type: string
+                  description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
+                  example: skxqvvcojjgd
+                businessName:
+                  type: string
+                  description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
+                  example: tfdfdxuojnolqz
+                appointmentRange:
+                  type: number
+                  description: ''
+                  example: 53.8703592
+                businessType:
+                  type: number
+                  description: ''
+                  example: 3.678521
+                phone:
+                  type: string
+                  description: 'value değeri 11 karakter değerinden büyük olmalıdır.'
+                  example: bjxgbtzmcgpsjjgqltvlpo
+                startTime:
+                  type: string
+                  description: ''
+                  example: et
+                endTime:
+                  type: string
+                  description: ''
+                  example: ullam
+                email:
+                  type: string
+                  description: ''
+                  example: wkessler@example.com
+                year:
+                  type: string
+                  description: 'value geçerli bir tarih olmalıdır.'
+                  example: '2023-10-07T20:00:57'
+                address:
+                  type: string
+                  description: ''
+                  example: quia
+                cityId:
+                  type: number
+                  description: ''
+                  example: 23694619.632765
+                districtId:
+                  type: number
+                  description: ''
+                  example: 2603435.381
+                commission:
+                  type: number
+                  description: ''
+                  example: 20344255.800362
+                personalCount:
+                  type: number
+                  description: ''
+                  example: 67331.1
+                offDay:
+                  type: number
+                  description: ''
+                  example: 7788.6768613
+                aboutText:
+                  type: string
+                  description: ''
+                  example: voluptatem
+              required:
+                - officialName
+                - businessName
+                - appointmentRange
+                - businessType
+                - phone
+                - startTime
+                - endTime
+                - email
+                - year
+                - address
+                - cityId
+                - districtId
+                - commission
+                - personalCount
+                - offDay
+                - aboutText
+      security: []
+  /api/payment:
+    get:
+      summary: 'GET api/payment'
+      operationId: gETApipayment
+      description: "<ul>\n<li>Bearer Token | string | required | Kullanıcı Token</li>\n</ul>\nKullanıcını işletmesinin packet bilgisi ve kullanıcının cartları"
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Payment
+      security: []
+  /api/payment/pay:
+    post:
+      summary: 'POST api/payment/pay'
+      operationId: pOSTApipaymentpay
+      description: "<ul>\n<li>Bearer Token | string | required | Kullanıcı Token</li>\n<li>cart_id | numeric | required | Seçilen Kart Bilgisi</li>\n</ul>\nKullanıcını işletmesinin packet bilgisi ve kullanıcının cartları"
+      parameters: []
+      responses: {  }
+      tags:
+        - Payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_id:
+                  type: string
+                  description: 'value değeri 1 karakter değerinden büyük olmalıdır.'
+                  example: vkdkxhxxzamdnzxdwjxyvywxzoeigapkbvmgfwakhtxforrbqychnlslrjassxpixhryxvegatasbzhbhfg
+              required:
+                - cart_id
+      security: []
+  /api/personal:
+    get:
+      summary: 'GET api/personal'
+      operationId: gETApipersonal
+      description: "Personel listesini döndürecek size\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Personal
+      security: []
+  /api/personal/get:
+    post:
+      summary: 'POST api/personal/get'
+      operationId: pOSTApipersonalget
+      description: "id si gönderilen personelin getirecek\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n<li>personalId | required | güncellenecek personel id si</li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Personal
+      security: []
+  /api/personal/add:
+    post:
+      summary: 'POST api/personal/add'
+      operationId: pOSTApipersonaladd
+      description: "Personel Ekleme pointi\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n<li> name |required | string | </li>\n<li> image |required | string | </li>\n<li> email |required | string | </li>\n<li> phone |required | string | </li>\n<li> password |required | string | </li>\n<li> approveType |required | numeric | örneğin 1 veya 0</li>\n<li> restDay |required | numeric | haftanın günlerinden herhangi bir günün id si</li>\n<li> startTime |required | string | örneğin 10:43 </li>\n<li> endTime |required | string | örneğin 10:43</li>\n<li> foodStart |required | string | örneğin 10:43</li>\n<li> foodEnd |required | string | örneğin 10:43</li>\n<li> gender |required | numeric | 1 => kadın,2 => erkek,3 => Unisex herhangi biri</li>\n<li> rate |required | numeric | 10 personel yüzdesi 10 = %10</li>\n<li> appointmentRange |required | numeric | randevu aralığı örneğin \"15\" dk bazında</li>\n<li> description |required | string</li>\n<li> services | required | array | eğer tümü seçeneği seçilirse \"all\" olarak gönderebilirsiniz dizi içerisinde</li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Personal
+      security: []
+  /api/personal/update:
+    post:
+      summary: 'POST api/personal/update'
+      operationId: pOSTApipersonalupdate
+      description: "Personel Güncelleme pointi\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n<li> personal_id | required | numeric</li>\n<li> name |required | string | personal adı</li>\n<li> image |required | string | personel görseli</li>\n<li> email |required | string | mail adresi</li>\n<li> phone |required | string | telefon numarası</li>\n<li> password |required | string | şifre</li>\n<li> approveType |required | numeric | örneğin 1 veya 0</li>\n<li> restDay |required | numeric | haftanın günlerinden herhangi bir günün id si</li>\n<li> startTime |required | string | örneğin 10:43 </li>\n<li> endTime |required | string | örneğin 10:43</li>\n<li> foodStart |required | string | örneğin 10:43</li>\n<li> foodEnd |required | string | örneğin 10:43</li>\n<li> gender |required | numeric | 1 => kadın,2 => erkek,3 => Unisex herhangi biri</li>\n<li> rate |required | numeric | 10 personel yüzdesi 10 = %10</li>\n<li> appointmentRange |required | numeric | randevu aralığı örneğin \"15\" dk bazında</li>\n<li> description |required | string</li>\n<li> services | required | array | eğer tümü seçeneği seçilirse \"all\" olarak gönderebilirsiniz dizi içerisinde</li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Personal
+      security: []
+  /api/personal/delete:
+    post:
+      summary: 'POST api/personal/get'
+      operationId: pOSTApipersonalget
+      description: "id si gönderilen personeli silecek\n<br> Gerekli alanlar\n<ul>\n<li> token </li>\n<li>personalId | required | silinecek personel id si</li>\n</ul>"
+      parameters:
+        -
+          in: header
+          name: Bearer
+          description: ''
+          example: '{token}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Personal
       security: []
   /api/setup/get:
     get:
@@ -989,10 +1348,22 @@ tags:
     name: Authentication
     description: ''
   -
+    name: BusinessService
+    description: ''
+  -
     name: City
     description: ''
   -
     name: 'Credit Cart'
+    description: ''
+  -
+    name: DetailSetup
+    description: ''
+  -
+    name: Payment
+    description: ''
+  -
+    name: Personal
     description: ''
   -
     name: Setup

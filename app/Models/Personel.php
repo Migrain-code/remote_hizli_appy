@@ -9,6 +9,10 @@ class Personel extends Model
 {
     use HasFactory;
 
+    public function business()
+    {
+        return $this->hasOne(Business::class, 'id', 'business_id');
+    }
     public function type()
     {
         return $this->hasOne(BusinnessType::class, 'id', 'gender');

@@ -97,7 +97,6 @@ class PersonelController extends Controller
      */
     public function store(Request $request)
     {
-        //$request->dd();
         $personel= new Personel();
         $personel->business_id=auth('business')->id();
         $personel->name= $request->input('name');
