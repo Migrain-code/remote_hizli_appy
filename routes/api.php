@@ -51,9 +51,11 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/step-1/get', 'index');
         Route::post('/step-1/update', 'step1');
 
-        /*Route::get('/step-2/get', 'index');
-        Route::post('/step-2/update', 'step1');*/
-
+        Route::get('/step-2/get', 'step2Get');
+        Route::post('/step-2/add/service', 'step2AddService');
+        Route::post('/step-2/update/service', 'step2UpdateService');
+        Route::post('/step-2/get/service', 'step2GetService');
+        Route::post('/step-2/delete/service', 'step2DeleteService');
         Route::post('update/logo', 'updateLogo');
 
     });

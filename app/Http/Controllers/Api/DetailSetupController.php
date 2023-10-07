@@ -270,5 +270,31 @@ class DetailSetupController extends Controller
             ]);
         }
     }
-
+    /**
+     * POST api/detail-setup/step-2/get/service
+     *
+     * id si gönderilen işletme hizmetinin bilgilerini getirecek
+     * <br> Gerekli alanlar
+     * <ul>
+     * <li> token </li>
+     * <li>businessServiceId | required | güncellenecek hizmetin idsi</li>
+     *</ul>
+     * @header Bearer {token}
+     *
+     */
+    public function step2DeleteService(Request $request)
+    {
+        $businessService = BusinessService::find($request->input('businessServiceId'));
+        if ($businessService) {
+            return response()->json([
+                'status' => "success",
+                'businessService' => BusinessServiceResource::make($businessService),
+            ]);
+        } else {
+            return response()->json([
+                'status' => "error",
+                'message' => "Hizmet Bulunamadı",
+            ]);
+        }
+    }
 }
