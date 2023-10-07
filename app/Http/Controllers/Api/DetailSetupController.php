@@ -232,7 +232,7 @@ class DetailSetupController extends Controller
 
             return response()->json([
                 'status' => "success",
-                'message' => "Yeni Hizmet Eklendi",
+                'message' => "Hizmet Bilgisi Güncellendi",
                 'businessServices' => BusinessServiceResource::collection($business->services),
             ]);
         } else {
@@ -270,4 +270,5 @@ class DetailSetupController extends Controller
             ]);
         }
     }
+
 }
