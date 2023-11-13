@@ -258,10 +258,10 @@ class AuthController extends Controller
                     $official = BusinessOfficial::where('phone', $code->phone)->first();
                     $official->password = Hash::make($generatePassword);
                     if($official->save()){
-                        Sms::send(clearPhone($request->input('phone')), config('settings.appy_site_title') . "Sistemine giriş için yeni şifreniz " . $generatePassword);
+                        Sms::send($code->phone, config('settings.appy_site_title') . "Sistemine giriş için yeni şifreniz " . $generatePassword);
                         return response()->json([
                             'status' => "success",
-                            'message' => "Telefon Numaranız doğrulandı. Sisteme giriş için şifreniz gönderildi."
+                            'message' => "Telefon Numaranız doğrulandı. Sisteme giriş için yeni şifreniz gönderildi."
                         ]);
                     }
             }
