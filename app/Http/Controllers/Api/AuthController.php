@@ -213,11 +213,20 @@ class AuthController extends Controller
      */
     public function passwordReset(Request $request)
     {
-        $this->resetVerifyCode($request->input('phone'));
-        return response()->json([
-            'status' => "success",
-            'message' => "Telefon Numaranıza Gönderilen Doğrulama Kodunu Giriniz"
-        ]);
+        $user = BusinessOfficial::where('phone', clearPhone($request->input('phone')))->first();
+        if ($user){
+            $this->resetVerifyCode($request->input('phone'));
+            return response()->json([
+                'status' => "success",
+                'message' => "Telefon Numaranıza Gönderilen Doğrulama Kodunu Giriniz"
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => "warning",
+                'message' => "Bu telefon numarası ile kayıtlı kullanıcı bulunamadı"
+            ]);
+        }
     }
     /**
      * POST api/business/auth/verify-reset-password
