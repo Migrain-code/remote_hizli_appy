@@ -254,8 +254,6 @@ class AuthController extends Controller
 
             }
             else {
-
-                if ($code->phone == $request->phone) {
                     $generatePassword = rand(100000, 999999);
                     $official = BusinessOfficial::where('phone', $code->phone)->first();
                     $official->password = Hash::make($generatePassword);
@@ -266,8 +264,6 @@ class AuthController extends Controller
                             'message' => "Telefon Numaranız doğrulandı. Sisteme giriş için şifreniz gönderildi."
                         ]);
                     }
-
-                }
             }
         }
     }
