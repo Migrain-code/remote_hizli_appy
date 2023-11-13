@@ -108,7 +108,13 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        if ($this->existPhone(clearPhone($request->phone))) {
+        $this->createVerifyCode($request->phone);
+
+        return response()->json([
+            'status' => "success",
+            'message' => "Lütfen Telefon Numaranızı Doğrulayınız"
+        ]);
+        /*if ($this->existPhone(clearPhone($request->phone))) {
             return response()->json([
                 'status' => "warning",
                 'message' => "Bu telefon numarası ile kayıtlı kullanıcı bulunmakta."
@@ -121,7 +127,7 @@ class AuthController extends Controller
                 'status' => "success",
                 'message' => "Lütfen Telefon Numaranızı Doğrulayınız"
             ]);
-        }
+        }*/
     }
     /**
      * POST api/auth/verify
