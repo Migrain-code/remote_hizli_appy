@@ -200,6 +200,68 @@ class AuthController extends Controller
         }
 
     }
+    /**
+     * POST api/business/auth/reset-password
+     *
+     *
+     * <ul>
+     * <li>phone | string | required</li>
+     * </ul>
+     * Doğrulama yapılacak telefon numarasının gönderilmesi yeterli
+     *
+     *
+     */
+    public function passwordReset(Request $request)
+    {
+        $this->resetVerifyCode($request->input('phone'));
+        return response()->json([
+            'status' => "success",
+            'message' => "Telefon Numaranıza Gönderilen Doğrulama Kodunu Giriniz"
+        ]);
+    }
+    /**
+     * POST api/business/auth/verify-reset-password
+     *
+     *
+     * <ul>
+     * <li>code | string | required</li>
+     * </ul>
+     * Doğrulama yapılacak doğurlama kodunun gönderilmesi yeterli
+     *
+     *
+     */
+    public function verifyResetPassword(Request $request)
+    {
+        $code = SmsConfirmation::where("code", $request->code)->where('action','OFFICIAL-PASSWORD-RESET')->first();
+        if ($code) {
+            if ($code->expire_at < now()) {
+
+                $this->resetVerifyCode($code->phone);
+
+                return response()->json([
+                    'status' => "warning",
+                    'message' => "Doğrulama Kodunun Süresi Dolmuş. Doğrulama Kodu Tekrar Gönderildi"
+                ]);
+
+            }
+            else {
+
+                if ($code->phone == $request->phone) {
+                    $generatePassword = rand(100000, 999999);
+                    $official = BusinessOfficial::where('phone', $code->phone)->first();
+                    $official->password = Hash::make($generatePassword);
+                    if($official->save()){
+                        Sms::send(clearPhone($request->input('phone')), config('settings.appy_site_title') . "Sistemine giriş için yeni şifreniz " . $generatePassword);
+                        return response()->json([
+                            'status' => "success",
+                            'message' => "Telefon Numaranız doğrulandı. Sisteme giriş için şifreniz gönderildi."
+                        ]);
+                    }
+
+                }
+            }
+        }
+    }
 
     public function existPhone($phone)
     {
@@ -237,13 +299,28 @@ class AuthController extends Controller
     function createVerifyCode($phone){
         $generateCode = rand(100000, 999999);
         $smsConfirmation = new SmsConfirmation();
-        $smsConfirmation->phone = $phone;
+        $smsConfirmation->phone = clearPhone($phone);
         $smsConfirmation->action = "OFFICIAL-REGISTER";
         $smsConfirmation->code = $generateCode;
         $smsConfirmation->expire_at = now()->addMinute(3);
         $smsConfirmation->save();
 
         Sms::send(clearPhone($phone), setting('appy_site_title') . "Sistemine kayıt için, telefon numarası doğrulama kodunuz " . $generateCode);
+
+        return $generateCode;
+    }
+
+    function resetVerifyCode($phone)
+    {
+        $generateCode = rand(100000, 999999);
+        $smsConfirmation = new SmsConfirmation();
+        $smsConfirmation->phone = clearPhone($phone);
+        $smsConfirmation->action = "OFFICIAL-PASSWORD-RESET";
+        $smsConfirmation->code = $generateCode;
+        $smsConfirmation->expire_at = now()->addMinute(3);
+        $smsConfirmation->save();
+
+        Sms::send($smsConfirmation->phone, setting('appy_site_title') . "Şifre yenileme için, telefon numarası doğrulama kodunuz " . $generateCode);
 
         return $generateCode;
     }

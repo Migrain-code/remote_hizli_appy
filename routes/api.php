@@ -30,6 +30,9 @@ Route::prefix('business')->group(function (){
         Route::post('login', [AuthController::class, 'login']);
         Route::post('check-phone', [AuthController::class, 'register']);
         Route::post('verify', [AuthController::class, 'verify']);
+        Route::post('reset-password', [AuthController::class, 'passwordReset']);
+        Route::post('verify-reset-password', [AuthController::class, 'verifyResetPassword']);
+
         Route::middleware('auth:official')->group(function () {
             Route::get('user', [AuthController::class, 'user']);
             Route::post('logout', [AuthController::class, 'logout']);
