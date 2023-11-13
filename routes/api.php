@@ -30,12 +30,11 @@ Route::prefix('business')->group(function (){
         Route::post('login', [AuthController::class, 'login']);
         Route::post('check-phone', [AuthController::class, 'register']);
         Route::post('verify', [AuthController::class, 'verify']);
-        Route::middleware('auth:api')->group(function () {
-            Route::get('user', [AuthController::class, 'user']);
-            Route::post('logout', [AuthController::class, 'logout']);
-        });
     });
     Route::middleware('auth:official')->group(function () {
+
+        Route::get('user', [AuthController::class, 'user']);
+        Route::post('logout', [AuthController::class, 'logout']);
         Route::controller(SetupController::class)->prefix('setup')->group(function (){
             Route::get('/get', 'get');
             Route::post('/update', 'update');
