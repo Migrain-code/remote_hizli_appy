@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AppointmentRangeResource;
 use App\Http\Resources\BusinessServiceResource;
 use App\Http\Resources\PersonelResource;
+use App\Models\AppointmentRange;
 use App\Models\BusinessService;
+use App\Models\BusinnessType;
+use App\Models\DayList;
 use App\Models\Personel;
 use App\Models\PersonelService;
+use App\Models\ServiceCut;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 /**
@@ -112,7 +117,29 @@ class PersonalController extends Controller
             'message' => "Personel Eklenirken Bir Hata Oluştu Lütfen Tekrar Deneyin",
         ]);
     }
+    /**
+     * POST api/business/personal/add/get
+     *
+     * <br> Gerekli alanlar
+     * <ul>
+     * <li> token </li>
+     *</ul>
+     * @header Bearer {token}
+     *
+     */
+    public function step3AddPersonalGet(Request $request)
+    {
+        $user = $request->user();
+        $business = $user->business;
 
+        return response()->json([
+            'typeList' => BusinnessType::all(),
+            'serviceCut' => ServiceCut::all(),
+            'dayList' => DayList::all(),
+            'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
+            'businessService' => BusinessServiceResource::collection($business->services),
+        ]);
+    }
     /**
      * POST api/personal/update
      *
