@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DetailSetupRequestStep1;
+use App\Http\Resources\AppointmentRangeResource;
 use App\Http\Resources\BusinessOfficialResource;
 use App\Http\Resources\BusinessResource;
 use App\Http\Resources\BusinessServiceResource;
 use App\Http\Resources\PersonelResource;
 use App\Http\Resources\ServiceCategoryResource;
+use App\Models\AppointmentRange;
 use App\Models\BusinessService;
 use App\Models\BusinnessType;
 use App\Models\DayList;
@@ -33,7 +35,8 @@ class DetailSetupController extends Controller
         return response()->json([
             'official' => BusinessOfficialResource::make($user),
             'dayList' => DayList::all(),
-            'businessTypeList' => BusinnessType::all()
+            'businessTypeList' => BusinnessType::all(),
+            'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
         ]);
     }
 
