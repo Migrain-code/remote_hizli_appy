@@ -20,6 +20,7 @@ class BusinessResource extends JsonResource
            'id' => $this->id,
            'name' => $this->name,
            'logo' => asset($this->logo),
+           'phone' => $this->phone,
            'wallpaper' => asset($this->wallpaper),
            'city' => new CityResource($this->cities),
            'district' => new DistrictResource($this->districts),

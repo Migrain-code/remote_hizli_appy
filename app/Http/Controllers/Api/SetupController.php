@@ -94,6 +94,7 @@ class SetupController extends Controller
         $business->lat = $request->input('latitude');
         $business->longitude = $request->input('longitude');
         $business->package_id=$request->input('package_id');
+        $business->setup_status = 1;
         $business->save();
 
         return response()->json([
