@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BusinessServiceResource;
 use App\Http\Resources\ServiceCategoryResource;
 use App\Models\BusinessService;
+use App\Models\BusinnessType;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,7 @@ class BusinessServiceController extends Controller
 
         return response()->json([
             'services' => ServiceCategoryResource::collection($services),
+            'typeList' => BusinnessType::all(),
             'businessServices' => BusinessServiceResource::collection($user->business->service),
         ]);
     }
