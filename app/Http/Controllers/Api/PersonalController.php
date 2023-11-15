@@ -118,7 +118,7 @@ class PersonalController extends Controller
         ]);
     }
     /**
-     * POST api/business/personal/add/get
+     * GET api/business/personal/add/get
      *
      * <br> Gerekli alanlar
      * <ul>
