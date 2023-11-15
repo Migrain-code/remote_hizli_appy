@@ -32,11 +32,12 @@ class BusinessResource extends JsonResource
            'packet_end_date' => $this->packet_end_date,
            'packet_start_date' => $this->packet_start_date,
            'appointment_range' => $this->appoinment_range,
-           'type' => $this->type,
+           'type' => $this->type_id,
            'about' => $this->about,
            'embed' => $this->embed,
            'address' => $this->address,
            'setup' => $this->setup_status,
+           'off_day' => $this->off_day,
            'setup2' => $this->services->count() > 1 && $this->personel->count() > 1 ? 1 : 0,
         ];
     }
