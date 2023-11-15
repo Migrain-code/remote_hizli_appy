@@ -38,6 +38,8 @@ class BusinessResource extends JsonResource
            'address' => $this->address,
            'setup' => $this->setup_status,
            'off_day' => $this->off_day,
+           'latitude' => $this->lat,
+           'longitude' => $this->longitude,
            'setup2' => $this->services->count() > 1 && $this->personel->count() > 1 ? 1 : 0,
         ];
     }
