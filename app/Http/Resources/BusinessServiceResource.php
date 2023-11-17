@@ -17,8 +17,11 @@ class BusinessServiceResource extends JsonResource
         return [
             "id"=> $this->id,
             "type"=> $this->gender->name,
+            "type_id"=> $this->gender->id,
             "category"=> $this->categorys->name,
+            "category_id" => $this->categorys->id,
             "sub_category"=> $this->subCategory->name,
+            "sub_category_id"=> $this->subCategory->id,
             "price"=> $this->price,
         ];
     }
