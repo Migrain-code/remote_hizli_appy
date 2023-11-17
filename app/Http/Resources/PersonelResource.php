@@ -15,6 +15,7 @@ class PersonelResource extends JsonResource
     public function toArray($request)
     {
         return [
+          'id' => $this->id,
           'name' => $this->name,
           'image' => storage($this->image),
           'email' => $this->email,
