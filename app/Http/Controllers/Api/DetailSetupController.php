@@ -77,7 +77,7 @@ class DetailSetupController extends Controller
 
         $business->name = $request->input('businessName');// Salon Adı
         $business->off_day = $request->input('offDay');
-        $business->appointment_range = $request->input('appointmentRange');
+        $business->appoinment_range = $request->input('appointmentRange');
         $business->type_id = $request->input('businessType');
         $business->phone = $request->input('phone');
         $business->start_time = $request->input('startTime');
