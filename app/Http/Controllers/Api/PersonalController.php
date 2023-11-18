@@ -98,7 +98,7 @@ class PersonalController extends Controller
             $personel->image = $response["image"]["way"];
         }
         if ($personel->save()) {
-            if (in_array('all', $request->services)) {
+            if (in_array('all', json_decode($request->services))) {
                 foreach ($business->services as $service) {
                     $personelService = new PersonelService();
                     $personelService->service_id = $service->id;
