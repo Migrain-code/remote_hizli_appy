@@ -11,12 +11,14 @@ use App\Http\Resources\BusinessServiceResource;
 use App\Http\Resources\PersonelResource;
 use App\Http\Resources\ServiceCategoryResource;
 use App\Models\AppointmentRange;
+use App\Models\BusinessGallery;
 use App\Models\BusinessService;
 use App\Models\BusinnessType;
 use App\Models\DayList;
 use App\Models\Personel;
 use App\Models\PersonelService;
 use App\Models\ServiceCategory;
+use App\Services\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -62,6 +64,8 @@ class DetailSetupController extends Controller
      * <li>endTime | string | required| İşletme Kapanış Saati Örneğin (18:08)</li>
      * <li>year | date | required| Kuruluş Tarihi örneğin (2023-04-01)</li>
      * <li>address | text | required| Address Metni</li>
+     * <li>logo | file | required| işletme logo</li>
+     * <li>images | file | required| işletme görselleri</li>
      * </ul>
      * Detaylı Kurulum Ekranı İşletme Bilgileri güncelleme Apisi
      *
@@ -91,7 +95,15 @@ class DetailSetupController extends Controller
         $business->district = $request->input('districtId');
         $business->commission = $request->input('commission');
         $business->save();
-
+        if ($request->hasFile('image')){
+            foreach ($request->image as $image){
+                $businessSlider = new BusinessGallery();
+                $businessSlider->business_id = $business->id;
+                $response = UploadFile::uploadFile($image, 'business_slider');
+                $businessSlider->image = $response["image"]["way"];
+                $businessSlider->save();
+            }
+        }
         return response()->json([
             'status' => "success",
             'message' => "İşletme Bilgileri Kayıt Edildi"
