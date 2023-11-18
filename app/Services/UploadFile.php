@@ -15,7 +15,7 @@ class UploadFile
         )->attach(
             'folderName', // Ekstra form alanı adı
             $folderName    // folderName değeri
-        )->post('http://127.0.0.1:8001/api/upload/file');
+        )->post(env('IMAGE_URL').'api/upload/file');
 
         $apiResponse = $response->json();
         return $apiResponse;
