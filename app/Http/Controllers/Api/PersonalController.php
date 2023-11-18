@@ -185,7 +185,10 @@ class PersonalController extends Controller
         $personel = Personel::find($request->personel_id);
         $personel->business_id = $business->id;
         $personel->name = $request->input('name');
-        $personel->image = "business/team.png";
+        if ($request->hasFile('img')){
+            $response = UploadFile::uploadFile($request->file('img'), 'personel_images');
+            $personel->image = $response["image"]["way"];
+        }
         $personel->email = $request->email;
         $personel->password = Hash::make($request->password);
         $personel->phone = $request->approveType;
@@ -200,7 +203,7 @@ class PersonalController extends Controller
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
         if ($personel->save()) {
-            if (in_array('all', $request->services)) {
+            if (in_array('all', json_decode($request->services))) {
                 foreach ($business->services as $service) {
                     $personelService = new PersonelService();
                     $personelService->service_id = $service->id;
@@ -208,7 +211,7 @@ class PersonalController extends Controller
                     $personelService->save();
                 }
             } else {
-                foreach ($request->services as $service) {
+                foreach (json_decode($request->services) as $service) {
                     $personelService = new PersonelService();
                     $personelService->service_id = $service;
                     $personelService->personel_id = $personel->id;
