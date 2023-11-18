@@ -4,8 +4,9 @@ function storage($path): string
 {
     return asset('storage/' . $path);
 }
-function image($path){
-    return env('REMOTE_URL').'/storage/'.$path;
+function image($path)
+{
+    return env('IMAGE_URL').$path;
 }
 function setting($key){
     return config('settings.'.$key);
