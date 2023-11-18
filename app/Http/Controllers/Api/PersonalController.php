@@ -13,6 +13,7 @@ use App\Models\DayList;
 use App\Models\Personel;
 use App\Models\PersonelService;
 use App\Models\ServiceCut;
+use App\Services\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -81,7 +82,7 @@ class PersonalController extends Controller
         $personel->email = $request->email;
         $personel->password = Hash::make($request->password);
         $personel->phone = $request->phone;
-        $personel->approve_type = $request->approveType;
+        $personel->accepted_type = $request->approveType;
         $personel->accept = $request->accept;
         $personel->rest_day = $request->restDay;
         $personel->start_time = $request->startTime;
@@ -92,6 +93,10 @@ class PersonalController extends Controller
         $personel->rate = $request->rate;
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
+        if ($request->hasFile('img')){
+            $response = UploadFile::uploadFile($request->file('img'), 'personl_images');
+            $personel->image = $response["image"]["way"];
+        }
         if ($personel->save()) {
             if (in_array('all', $request->services)) {
                 foreach ($business->services as $service) {
