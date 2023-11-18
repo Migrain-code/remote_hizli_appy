@@ -106,7 +106,7 @@ class PersonalController extends Controller
                     $personelService->save();
                 }
             } else {
-                foreach ($request->services as $service) {
+                foreach (json_decode($request->services) as $service) {
                     $personelService = new PersonelService();
                     $personelService->service_id = $service;
                     $personelService->personel_id = $personel->id;
