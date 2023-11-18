@@ -101,6 +101,9 @@ class DetailSetupController extends Controller
         $business->commission = $request->input('commission');
         $business->save();
         if ($request->hasFile('image')){
+            $response = UploadFile::uploadFile($request->file('image')[0], 'business_wallpaper');
+            $business->wallpaper = $response["image"]["way"];
+            $business->save();
             foreach ($request->image as $image){
                 $businessSlider = new BusinessSlider();
                 $businessSlider->business_id = $business->id;
