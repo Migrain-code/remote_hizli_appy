@@ -94,8 +94,8 @@ class PersonalController extends Controller
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
         if ($request->hasFile('img')){
-            //$response = UploadFile::uploadFile($request->file('img'), 'personl_images');
-            $personel->image = "dosya yüklendi";//$response["image"]["way"];
+            $response = UploadFile::uploadFile($request->file('img'), 'personel_images');
+            $personel->image = $response["image"]["way"];
         }
         if ($personel->save()) {
             if (in_array('all', $request->services)) {
