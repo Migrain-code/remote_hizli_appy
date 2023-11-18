@@ -40,7 +40,7 @@ class Business extends Model
 
     public function personel()
     {
-        return $this->hasMany(Personel::class, 'business_id', 'id');
+        return $this->hasMany(Personel::class, 'business_id', 'id')->latest();
     }
 
     public function service()
