@@ -13,6 +13,7 @@ use App\Http\Resources\ServiceCategoryResource;
 use App\Models\AppointmentRange;
 use App\Models\BusinessGallery;
 use App\Models\BusinessService;
+use App\Models\BusinessSlider;
 use App\Models\BusinnessType;
 use App\Models\DayList;
 use App\Models\Personel;
@@ -80,6 +81,10 @@ class DetailSetupController extends Controller
         $user->save();
 
         $business->name = $request->input('businessName');// Salon Adı
+        if ($request->hasFile('img')){
+                $response = UploadFile::uploadFile($request->file('img'), 'business_slider');
+                $business->logo = $response["image"]["way"];
+        }
         $business->off_day = $request->input('offDay');
         $business->appoinment_range = $request->input('appointmentRange');
         $business->type_id = $request->input('businessType');
@@ -97,7 +102,7 @@ class DetailSetupController extends Controller
         $business->save();
         if ($request->hasFile('image')){
             foreach ($request->image as $image){
-                $businessSlider = new BusinessGallery();
+                $businessSlider = new BusinessSlider();
                 $businessSlider->business_id = $business->id;
                 $response = UploadFile::uploadFile($image, 'business_slider');
                 $businessSlider->image = $response["image"]["way"];
