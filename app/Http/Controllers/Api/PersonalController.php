@@ -181,17 +181,16 @@ class PersonalController extends Controller
     {
         $user = $request->user();
         $business = $user->business;
-        return $business;
+
         $personel = Personel::find($request->personel_id);
+
         $personel->business_id = $business->id;
         $personel->name = $request->input('name');
-        if ($request->hasFile('img')){
-            $response = UploadFile::uploadFile($request->file('img'), 'personel_images');
-            $personel->image = $response["image"]["way"];
-        }
+        $personel->image = "business/team.png";
         $personel->email = $request->email;
         $personel->password = Hash::make($request->password);
-        $personel->phone = $request->approveType;
+        $personel->phone = $request->phone;
+        $personel->accepted_type = $request->approveType;
         $personel->accept = $request->accept;
         $personel->rest_day = $request->restDay;
         $personel->start_time = $request->startTime;
@@ -202,6 +201,10 @@ class PersonalController extends Controller
         $personel->rate = $request->rate;
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
+        if ($request->hasFile('img')){
+            $response = UploadFile::uploadFile($request->file('img'), 'personel_images');
+            $personel->image = $response["image"]["way"];
+        }
         if ($personel->save()) {
             if (in_array('all', json_decode($request->services))) {
                 foreach ($business->services as $service) {
@@ -226,7 +229,7 @@ class PersonalController extends Controller
 
         return response()->json([
             'status' => "error",
-            'message' => "Personel Eklenirken Bir Hata Oluştu Lütfen Tekrar Deneyin",
+            'message' => "Personel Güncellenirken Bir Hata Oluştu Lütfen Tekrar Deneyin",
         ]);
 
     }
