@@ -7,6 +7,7 @@ use App\Http\Resources\AppointmentRangeResource;
 use App\Http\Resources\BusinessServiceResource;
 use App\Http\Resources\PersonelResource;
 use App\Models\AppointmentRange;
+use App\Models\Business;
 use App\Models\BusinessService;
 use App\Models\BusinnessType;
 use App\Models\DayList;
@@ -180,8 +181,8 @@ class PersonalController extends Controller
     public function step3UpdatePersonal(Request $request)
     {
         $user = $request->user();
-        $business = $user->business;
-
+        $business = Business::find($user->business_id);
+        return $business;
         $personel = Personel::find($request->personel_id);
 
         $personel->business_id = $business->id;
