@@ -182,7 +182,7 @@ class PersonalController extends Controller
     {
         $user = $request->user();
         $business = Business::find($user->business_id);
-        return $business;
+
         $personel = Personel::find($request->personel_id);
 
         $personel->business_id = $business->id;
