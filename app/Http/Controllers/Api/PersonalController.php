@@ -293,4 +293,5 @@ class PersonalController extends Controller
             ]);
         }
     }
+
 }
