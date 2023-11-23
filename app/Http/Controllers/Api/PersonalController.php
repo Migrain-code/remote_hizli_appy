@@ -182,7 +182,7 @@ class PersonalController extends Controller
     {
         $user = $request->user();
         $business = Business::find($user->business_id);
-        dd($business->type);
+
         $personel = Personel::find($request->personel_id);
         $personel->name = $request->name;
         $personel->image = "business/team.png";
@@ -196,7 +196,7 @@ class PersonalController extends Controller
         $personel->end_time = $request->endTime;
         $personel->food_start = $request->foodStart;
         $personel->food_end = $request->foodEnd;
-        $personel->gender = $business->type->id == 3 ? $request->gender : $business->type->id;
+        $personel->gender = $business->type?->id == 3 ? $request->gender : $business->type->id;
         $personel->rate = $request->rate;
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
