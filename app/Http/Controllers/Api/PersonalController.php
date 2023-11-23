@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AppointmentRangeResource;
 use App\Http\Resources\BusinessServiceResource;
 use App\Http\Resources\PersonelResource;
+use App\Http\Resources\PersonelServiceResource;
 use App\Models\AppointmentRange;
 use App\Models\Business;
 use App\Models\BusinessService;
@@ -254,7 +255,7 @@ class PersonalController extends Controller
             return response()->json([
                 'status' => "success",
                 'personal' => PersonelResource::make($personel),
-                'services' => BusinessServiceResource::collection($personel->services),
+                'services' => PersonelServiceResource::collection($personel->services),
             ]);
         } else {
             return response()->json([
