@@ -182,7 +182,7 @@ class PersonalController extends Controller
     {
         $user = $request->user();
         $business = Business::find($user->business_id);
-
+        dd($business->type);
         $personel = Personel::find($request->personel_id);
         $personel->name = $request->name;
         $personel->image = "business/team.png";
