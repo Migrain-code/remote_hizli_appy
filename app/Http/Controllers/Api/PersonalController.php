@@ -248,7 +248,7 @@ class PersonalController extends Controller
     public function step3GetPersonal(Request $request)
     {
         $business = $request->user()->business;
-        $personel = Personel::where('business_id', $business->id)->where('id', $request->personalId);
+        $personel = Personel::where('business_id', $business->id)->where('id', $request->personalId)->first();
         if ($personel) {
             return response()->json([
                 'status' => "success",
