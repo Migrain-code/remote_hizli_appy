@@ -183,6 +183,12 @@ class PersonalController extends Controller
      */
     public function step3UpdatePersonal(PersonalUpdateRequest $request)
     {
+        if (count(json_decode($request->services)) == 0){
+            return response()->json([
+                'status' => "error",
+                'message' => "Hizmet Seçimi Yapmanız Gerekmektedir",
+            ]);
+        }
         $user = $request->user();
         $business = Business::find($user->business_id);
 
@@ -209,6 +215,7 @@ class PersonalController extends Controller
                 $personel->image = $response["image"]["way"];
             }
             if ($personel->save()) {
+                PersonelService::where('personel_id', $personel->id)->delete();
                 if (in_array('all', json_decode($request->services))) {
                     foreach ($business->services as $service) {
                         $personelService = new PersonelService();
