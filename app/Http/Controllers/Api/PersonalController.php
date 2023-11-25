@@ -186,7 +186,10 @@ class PersonalController extends Controller
         if (count(json_decode($request->services)) == 0){
             return response()->json([
                 'status' => "error",
-                'message' => "Hizmet Seçimi Yapmanız Gerekmektedir",
+                'message' => "Eksik Alanlar Var",
+                "errors" => [
+                    "Hizmet Seçimi Yapmanız Gerekmektedir.",
+                ]
             ]);
         }
         $user = $request->user();
