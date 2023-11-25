@@ -30,7 +30,7 @@ class DetailSetupRequestStep1 extends FormRequest
             'businessName' => 'required|string|max:255',
             'appointmentRange' => 'required|numeric',
             'businessType' => 'required|numeric',
-            'phone' => 'required|string|min:10',
+            'phone' => 'required|string|min:10|max:10',
             'startTime' => 'required|string',
             'endTime' => 'required|string',
             'email' => 'required|string',
