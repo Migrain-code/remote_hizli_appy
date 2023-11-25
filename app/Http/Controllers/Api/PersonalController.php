@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PersonalAddRequest;
+use App\Http\Requests\PersonalUpdateRequest;
 use App\Http\Resources\AppointmentRangeResource;
 use App\Http\Resources\BusinessServiceResource;
 use App\Http\Resources\PersonelResource;
@@ -72,7 +74,7 @@ class PersonalController extends Controller
      * @header Bearer {token}
      *
      */
-    public function step3AddPersonal(Request $request)
+    public function step3AddPersonal(PersonalAddRequest $request)
     {
         $user = $request->user();
         $business = $user->business;
@@ -179,7 +181,7 @@ class PersonalController extends Controller
      * @header Bearer {token}
      *
      */
-    public function step3UpdatePersonal(Request $request)
+    public function step3UpdatePersonal(PersonalUpdateRequest $request)
     {
         $user = $request->user();
         $business = Business::find($user->business_id);
