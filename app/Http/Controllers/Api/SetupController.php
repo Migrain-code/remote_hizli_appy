@@ -95,7 +95,7 @@ class SetupController extends Controller
         $business->longitude = $request->input('longitude');
         $business->package_id=$request->input('package_id');
         $business->setup_status = 1;
-        $business->save();
+        //$business->save();
 
         return response()->json([
             'status' => "success",
