@@ -179,4 +179,40 @@ class DetailSetupController extends Controller
 
     }
 
+    public function uploadLogo(Request $request)
+    {
+        $user = $request->user()->business;
+        $response = UploadFile::uploadFile($request->file('logo'), 'business_logo');
+        $user->logo = $response["image"];
+        $user->save();
+
+        return response()->json([
+            'status' => "success",
+            'message' => "Logo Yüklendi",
+            'link' => image($user->logo),
+        ]);
+    }
+
+    public function uploadGallery(Request $request)
+    {
+        $user = $request->user()->business;
+
+        BusinessGallery::where('business_id', $user->id)->delete();
+
+        foreach ($request->file('images') as $file) {
+            $gallery = new BusinessGallery();
+            $gallery->business_id = $user->id;
+            $response = UploadFile::uploadFile($file, 'businessGallery');
+            $gallery->way = $response["image"];
+            $gallery->byte = 45;
+            $gallery->name = "businessGallery";
+            $gallery->save();
+        }
+
+        return response()->json([
+            'status' => "success",
+            'message' => "İşletme Galerisi Yüklendi.",
+        ]);
+    }
+
 }
