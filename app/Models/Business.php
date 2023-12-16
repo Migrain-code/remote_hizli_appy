@@ -27,6 +27,11 @@ class Business extends Model
         return $this->hasOne(BusinnessType::class, 'id', 'type_id');
     }
 
+    public function offDay()
+    {
+        return $this->hasOne(DayList::class, 'id', 'off_day');
+    }
+
     public function workTimes()
     {
         return $this->hasMany(BusinessWorkTime::class, 'business_id', 'id')->orderBy('que');
