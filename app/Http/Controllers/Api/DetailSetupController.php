@@ -185,6 +185,7 @@ class DetailSetupController extends Controller
         $user = $request->user()->business;
         if ($request->hasFile('logo')){
             $response = UploadFile::uploadFile($request->file('logo'), 'business_logo');
+            return $response;
             $user->logo = $response["image"];
             $user->save();
             return response()->json([
