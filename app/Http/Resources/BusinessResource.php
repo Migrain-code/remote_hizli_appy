@@ -36,7 +36,7 @@ class BusinessResource extends JsonResource
            'packet_end_date' => $this->packet_end_date,
            'packet_start_date' => $this->packet_start_date,
            'appointment_range' => $this->appoinment_range,
-           'type' => $this->type_id,
+           'type' => $this->type,
            'about' => $this->about,
            'embed' => $this->embed,
            'address' => $this->address,
