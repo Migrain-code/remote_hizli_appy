@@ -35,7 +35,7 @@ class BusinessResource extends JsonResource
            'packet' => new BusinessPackageResource($this->package),
            'packet_end_date' => $this->packet_end_date,
            'packet_start_date' => $this->packet_start_date,
-           'appointment_range' => $this->appoinment_range,
+           'appointment_range' => $this->range,
            'type' => $this->type,
            'about' => $this->about,
            'embed' => $this->embed,

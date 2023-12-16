@@ -26,7 +26,10 @@ class Business extends Model
     {
         return $this->hasOne(BusinnessType::class, 'id', 'type_id');
     }
-
+    public function range()
+    {
+        return $this->hasOne(AppointmentRange::class, 'id', 'appointment_range');
+    }
     public function offDay()
     {
         return $this->hasOne(DayList::class, 'id', 'off_day');
