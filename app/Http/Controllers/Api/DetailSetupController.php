@@ -182,15 +182,24 @@ class DetailSetupController extends Controller
     public function uploadLogo(Request $request)
     {
         $user = $request->user()->business;
-        $response = UploadFile::uploadFile($request->file('logo'), 'business_logo');
-        $user->logo = $response["image"];
-        $user->save();
+        if ($request->hasFile($request->file('logo'))){
+            $response = UploadFile::uploadFile($request->file('logo'), 'business_logo');
+            $user->logo = $response["image"];
+            $user->save();
+            return response()->json([
+                'status' => "success",
+                'message' => "Logo Yüklendi",
+                'link' => image($user->logo),
+            ]);
+        } else{
+            return response()->json([
+                'status' => "error",
+                'message' => "Lütfen Bir Dosya Seçiniz",
+            ]);
+        }
 
-        return response()->json([
-            'status' => "success",
-            'message' => "Logo Yüklendi",
-            'link' => image($user->logo),
-        ]);
+
+
     }
 
     public function uploadGallery(Request $request)
