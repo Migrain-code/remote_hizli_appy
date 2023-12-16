@@ -181,6 +181,7 @@ class DetailSetupController extends Controller
 
     public function uploadLogo(Request $request)
     {
+        return $request->all();
         $user = $request->user()->business;
         if ($request->hasFile($request->file('logo'))){
             $response = UploadFile::uploadFile($request->file('logo'), 'business_logo');
