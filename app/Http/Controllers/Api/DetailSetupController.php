@@ -35,7 +35,7 @@ class DetailSetupController extends Controller
     {
         $user = $request->user();
         $commissions=[];
-        for ($i = 0; $i < 100; $i++){
+        for ($i = 0; $i <= 100; $i++){
              $commissions[]= [
                 'id' => $i,
                 'name' => "%". $i
