@@ -34,12 +34,20 @@ class DetailSetupController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-
+        $commissions=[];
+        for ($i = 0; $i < 100; $i++){
+             $commissions[]= [
+                'id' => $i,
+                'name' => "%". $i
+             ];
+        }
         return response()->json([
             'official' => BusinessOfficialResource::make($user),
             'dayList' => DayList::all(),
             'businessTypeList' => BusinnessType::all(),
             'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
+            'commissions' => $commissions,
+            'aboutText' => "Test Mesaj",
         ]);
     }
 
