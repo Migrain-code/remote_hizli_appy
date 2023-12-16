@@ -192,7 +192,7 @@ class DetailSetupController extends Controller
     public function uploadGallery(Request $request)
     {
         $user = $request->user()->business;
-        BusinessGallery::where('business_id', $user->id)->delete();
+
         if ($request->hasFile('images')){
             if ($user->gallery->count() == 1){
                 $response = UploadFile::uploadFile($request->file('images'), 'business_wallpaper');
