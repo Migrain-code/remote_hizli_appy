@@ -35,7 +35,7 @@ class DetailSetupRequestStep1 extends FormRequest
             'endTime' => 'required|string',
             'email' => 'required|string',
             'year' => 'required|date',
-            'address' => 'required|string',
+            //'address' => 'required|string',
             //'cityId' => 'required|numeric',
             //'districtId' => 'required|numeric',
             'commission' => 'required|numeric',

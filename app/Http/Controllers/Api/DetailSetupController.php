@@ -194,7 +194,6 @@ class DetailSetupController extends Controller
         $user = $request->user()->business;
 
         if ($request->hasFile('images')){
-            dd($user->gallery->count());
             if ($user->gallery->count() == 1){
 
                 $response = UploadFile::uploadFile($request->file('images'), 'business_wallpaper');
