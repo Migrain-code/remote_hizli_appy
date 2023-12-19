@@ -273,7 +273,6 @@ class PersonalController extends Controller
             return response()->json([
                 'status' => "success",
                 'personal' => PersonelResource::make($personel),
-                'services' => PersonelServiceResource::collection($personel->services),
             ]);
         } else {
             return response()->json([
