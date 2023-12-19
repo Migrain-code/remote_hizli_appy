@@ -11,7 +11,10 @@ class BusinessService extends Model
 
     public function gender()
     {
-        return $this->hasOne(BusinnessType::class, 'id', 'type');
+        return $this->hasOne(BusinnessType::class, 'id', 'type')->withDefault([
+            'id' => 1,
+            'name' => "Cinsiyet Bulunamadı"
+        ]);
     }
 
     public function categorys()
