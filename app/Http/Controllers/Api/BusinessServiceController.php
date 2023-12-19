@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceAddRequest;
 use App\Http\Resources\BusinessServiceResource;
 use App\Http\Resources\ServiceCategoryResource;
 use App\Models\BusinessService;
@@ -55,7 +56,7 @@ class BusinessServiceController extends Controller
      * @header Bearer {token}
      *
      */
-    public function step2AddService(Request $request)
+    public function step2AddService(ServiceAddRequest $request)
     {
         $user = $request->user();
         $business = $user->business;
