@@ -97,8 +97,8 @@ class PersonalController extends Controller
         $personel->rate = $request->rate;
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
-        if ($request->hasFile('img')){
-            $response = UploadFile::uploadFile($request->file('img'), 'personel_images');
+        if ($request->hasFile('logo')){
+            $response = UploadFile::uploadFile($request->file('logo'), 'personel_images');
             $personel->image = $response["image"]["way"];
         }
         if ($personel->save()) {
