@@ -183,7 +183,7 @@ class PersonalController extends Controller
      */
     public function step3UpdatePersonal(PersonalUpdateRequest $request)
     {
-        if (count(json_decode($request->services)) == 0){
+        if (count(explode(',',$request->services)) == 0){
             return response()->json([
                 'status' => "error",
                 'message' => "Eksik Alanlar Var",
