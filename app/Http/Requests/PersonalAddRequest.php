@@ -27,8 +27,8 @@ class PersonalAddRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
+            'email' => 'required|unique:personels',
+            'phone' => 'required|unique:personels',
             'password' => 'required',
             'approveType' => 'required',
             'restDay' => 'required',
