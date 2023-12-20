@@ -219,7 +219,7 @@ class PersonalController extends Controller
             }
             if ($personel->save()) {
                 PersonelService::where('personel_id', $personel->id)->delete();
-                if (in_array('all', json_decode($request->services))) {
+                if (in_array('all', explode(',', $request->services))) {
                     foreach ($business->services as $service) {
                         $personelService = new PersonelService();
                         $personelService->service_id = $service->id;
@@ -227,7 +227,7 @@ class PersonalController extends Controller
                         $personelService->save();
                     }
                 } else {
-                    foreach (json_decode($request->services) as $service) {
+                    foreach (explode(',', $request->services) as $service) {
                         $personelService = new PersonelService();
                         $personelService->service_id = $service;
                         $personelService->personel_id = $personel->id;
