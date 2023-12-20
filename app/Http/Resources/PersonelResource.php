@@ -28,7 +28,7 @@ class PersonelResource extends JsonResource
           'food_end' => $this->food_end,
           'gender' => $this->type->name ?? "",
           'rate' => $this->rate,
-          'appointment_range' => $this->range == $this->business->appoinment_range ? "Salon İle Aynı" : $this->range,
+          'appointment_range' => $this->range,
           'description' => $this->description,
           'services' => PersonelServiceResource::collection($this->services),
         ];
