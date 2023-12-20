@@ -272,11 +272,7 @@ class PersonalController extends Controller
         if ($personel) {
             return response()->json([
                 'status' => "success",
-                'typeList' => BusinnessType::all(),
-                'serviceCut' => ServiceCut::all(),
-                'dayList' => DayList::all(),
-                'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
-                'businessService' => BusinessServiceResource::collection($business->services),
+                'message'=> "Personel Güncellendi",
                 'personal' => PersonelResource::make($personel),
             ]);
         } else {
