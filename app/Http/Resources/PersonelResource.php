@@ -20,7 +20,7 @@ class PersonelResource extends JsonResource
           'image' => image($this->image),
           'email' => $this->email,
           'phone' => $this->phone,
-          'approve_type' => $this->approve_type == 0 ? "Manuel Onay" : "Otomatik Onay",
+          'approve_type' => $this->approve_type == 0 ? "Evet" : "Hayır",
           'rest_day' => $this->rest_day,
           'start_time' => $this->start_time,
           'end_time' => $this->end_time,
