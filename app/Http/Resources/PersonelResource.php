@@ -21,7 +21,6 @@ class PersonelResource extends JsonResource
           'email' => $this->email,
           'phone' => $this->phone,
           'approve_type' => $this->accepted_type,
-          'rest_day' => $this->rest_day,
           'start_time' => $this->start_time,
           'end_time' => $this->end_time,
           'food_start' => $this->food_start,
@@ -31,6 +30,7 @@ class PersonelResource extends JsonResource
           'appointment_range' => $this->range,
           'description' => $this->description,
           'services' => PersonelServiceResource::collection($this->services),
+          'rest_day' => PersonelRestDayResource::collection($this->restDays),
         ];
     }
 }

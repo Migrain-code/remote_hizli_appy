@@ -30,8 +30,8 @@ class Personel extends Authenticatable
     {
         return $this->hasMany(PersonelNotification::class, 'personel_id', 'id')->orderBy('created_at')->take(5);
     }
-    public function restDay()
+    public function restDays()
     {
-        return $this->hasOne(DayList::class, 'id', 'rest_day');
+        return $this->hasMany(PersonelRestDay::class, 'personel_id', 'id')->where('status', 1);
     }
 }
