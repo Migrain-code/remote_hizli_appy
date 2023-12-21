@@ -22,7 +22,7 @@ class Personel extends Authenticatable
     }
     public function appointmentRange()
     {
-        return $this->hasOne(AppointmentRange::class, 'id', 'appointment_range');
+        return $this->hasOne(AppointmentRange::class, 'id', 'range');
     }
     public function services()
     {
