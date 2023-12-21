@@ -20,7 +20,10 @@ class Personel extends Authenticatable
     {
         return $this->hasOne(BusinnessType::class, 'id', 'gender');
     }
-
+    public function appointmentRange()
+    {
+        return $this->hasOne(AppointmentRange::class, 'id', 'appointment_range');
+    }
     public function services()
     {
         return $this->hasMany(PersonelService::class, 'personel_id', 'id');
