@@ -21,6 +21,7 @@ use App\Models\PersonelService;
 use App\Models\ServiceCategory;
 use App\Services\UploadFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -96,7 +97,7 @@ class DetailSetupController extends Controller
         $business->start_time = $request->input('startTime');
         $business->end_time = $request->input('endTime');
         $business->business_email = $request->input('email');
-        $business->year = $request->input('year'); //2023-04-01
+        $business->year = Carbon::parse($request->input('year'))->format('Y-m-d'); //2023-04-01
         $business->personal_count = $request->input('personalCount');
         $business->address = $request->input('address');
         $business->about = $request->input('aboutText');
