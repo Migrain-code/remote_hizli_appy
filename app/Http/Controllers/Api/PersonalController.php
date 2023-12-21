@@ -214,7 +214,7 @@ class PersonalController extends Controller
             $personel->phone = $request->phone;
             $personel->accepted_type = $request->approveType;
             $personel->accept = $request->accept;
-            $personel->rest_day = $request->restDay;
+           // $personel->rest_day = $request->restDay;
             $personel->start_time = $request->startTime;
             $personel->end_time = $request->endTime;
             $personel->food_start = $request->foodStart;
@@ -227,7 +227,16 @@ class PersonalController extends Controller
                 $response = UploadFile::uploadFile($request->file('img'), 'personel_images');
                 $personel->image = $response["image"]["way"];
             }
+            $dayList = DayList::all();
             if ($personel->save()) {
+                $personel->restDays()->delete();
+                foreach ($dayList as $day){
+                    $restDay = new PersonelRestDay();
+                    $restDay->personel_id = $personel->id;
+                    $restDay->day_id = $day->id;
+                    $restDay->status = in_array($day->id, explode(',',$request->restDay)) ? 1 : 0;
+                    $restDay->save();
+                }
                 PersonelService::where('personel_id', $personel->id)->delete();
                 if (in_array('all', explode(',', $request->services))) {
                     foreach ($business->services as $service) {
