@@ -208,7 +208,6 @@ class PersonalController extends Controller
         $personel = Personel::find($request->personal_id);
         if ($personel){
             $personel->name = $request->name;
-            $personel->image = "business/team.png";
             $personel->email = $request->email;
             $personel->password = Hash::make($request->password);
             $personel->phone = $request->phone;
@@ -223,8 +222,8 @@ class PersonalController extends Controller
             $personel->rate = $request->rate;
             $personel->range = $request->appointmentRange;
             $personel->description = $request->description;
-            if ($request->hasFile('img')){
-                $response = UploadFile::uploadFile($request->file('img'), 'personel_images');
+            if ($request->hasFile('logo')){
+                $response = UploadFile::uploadFile($request->file('logo'), 'personel_images');
                 $personel->image = $response["image"]["way"];
             }
             $dayList = DayList::all();
