@@ -15,6 +15,7 @@ use App\Models\BusinessService;
 use App\Models\BusinnessType;
 use App\Models\DayList;
 use App\Models\Personel;
+use App\Models\PersonelRestDay;
 use App\Models\PersonelService;
 use App\Models\ServiceCut;
 use App\Services\UploadFile;
@@ -88,7 +89,6 @@ class PersonalController extends Controller
         $personel->phone = $request->phone;
         $personel->accepted_type = $request->approveType;
         $personel->accept = $request->accept;
-        $personel->rest_day = $request->restDay;
         $personel->start_time = $request->startTime;
         $personel->end_time = $request->endTime;
         $personel->food_start = $request->foodStart;
@@ -97,11 +97,21 @@ class PersonalController extends Controller
         $personel->rate = $request->rate;
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
+
+        $dayList = DayList::all();
+
         if ($request->hasFile('logo')){
             $response = UploadFile::uploadFile($request->file('logo'), 'personel_images');
             $personel->image = $response["image"]["way"];
         }
         if ($personel->save()) {
+            foreach ($dayList as $day){
+                $restDay = new PersonelRestDay();
+                $restDay->personel_id = $personel->id;
+                $restDay->day_id = $day->id;
+                $restDay->status = in_array($day->id, explode($request->restDay)) ? 1 : 0;
+                $restDay->save();
+            }
             if (in_array('all', explode(',', $request->services))) {
                 foreach ($business->services as $service) {
                     $personelService = new PersonelService();
