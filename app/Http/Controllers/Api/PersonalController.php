@@ -109,7 +109,7 @@ class PersonalController extends Controller
                 $restDay = new PersonelRestDay();
                 $restDay->personel_id = $personel->id;
                 $restDay->day_id = $day->id;
-                $restDay->status = in_array($day->id, explode($request->restDay)) ? 1 : 0;
+                $restDay->status = in_array($day->id, explode(',',$request->restDay)) ? 1 : 0;
                 $restDay->save();
             }
             if (in_array('all', explode(',', $request->services))) {
