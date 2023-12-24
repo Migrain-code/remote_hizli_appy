@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PaymentController;
 use \App\Http\Controllers\Api\DetailSetupController;
 use \App\Http\Controllers\Api\BusinessServiceController;
 use \App\Http\Controllers\Api\PersonalController;
+use \App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -79,6 +80,8 @@ Route::prefix('business')->group(function (){
             Route::post('/update', 'step3UpdatePersonal');
             Route::post('/delete', 'step3DeletePersonal');
         });
+
+        Route::apiResource('product', ProductController::class);
 
 
 

@@ -1,17 +1,21 @@
-name: DetailSetup
+name: Payment
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/detail-setup/step-1/get
+    uri: api/business/payment
     metadata:
-      groupName: DetailSetup
+      groupName: Payment
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'GET api/payment'
+      description: |-
+        <ul>
+        <li>Bearer Token | string | required | Kullanıcı Token</li>
+        </ul>
+        Kullanıcını işletmesinin packet bilgisi ve kullanıcının cartları
       authenticated: false
       custom: []
     headers:
@@ -43,34 +47,19 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/detail-setup/step-1/update
+    uri: api/business/payment/pay
     metadata:
-      groupName: DetailSetup
+      groupName: Payment
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'POST api/detail-setup/step-1/update'
+      title: 'POST api/payment/pay'
       description: |-
         <ul>
-        <li>Bearer Token</li>
-        <li>officialName | string | required | Salon Sahibinin adı</li>
-        <li>businessName | string | required | Salon Adı</li>
-        <li>offDay | numeric | required | kapalı olduğu günün id si </li>
-        <li>businessType | numeric | required | işletme türü id'si </li>
-        <li>cityId  | string | required | Şehir</li>
-        <li>districtId  | string | required | İlçe</li>
-        <li>phone | string | required | İşletme Telefon Numarası</li>
-        <li>email | string | required | İşletme E-posta Adresi</li>
-        <li>commission | string | required | P. Kredi kartı kesintisi | örneğin (10, 20, 30,40)</li>
-        <li>appointmentRange | string | required | Randevu aralığı | örneğin (10, 20, 30,40)</li>
-        <li>personalCount | string | required | Personel Sayısı | örneğin (1, 3, 5,10)</li>
-        <li>aboutText | string | required| İşletme Hakkında Yazısı</li>
-        <li>startTime | string | required| İşletme Açılış Saati Örneğin (12:08)</li>
-        <li>endTime | string | required| İşletme Kapanış Saati Örneğin (18:08)</li>
-        <li>year | date | required| Kuruluş Tarihi örneğin (2023-04-01)</li>
-        <li>address | text | required| Address Metni</li>
+        <li>Bearer Token | string | required | Kullanıcı Token</li>
+        <li>cart_id | numeric | required | Seçilen Kart Bilgisi</li>
         </ul>
-        Detaylı Kurulum Ekranı İşletme Bilgileri güncelleme Apisi
+        Kullanıcını işletmesinin packet bilgisi ve kullanıcının cartları
       authenticated: false
       custom: []
     headers:
@@ -81,151 +70,16 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      officialName:
-        name: officialName
-        description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
+      cart_id:
+        name: cart_id
+        description: 'value değeri 1 karakter değerinden büyük olmalıdır.'
         required: true
-        example: skxqvvcojjgd
-        type: string
-        enumValues: []
-        custom: []
-      businessName:
-        name: businessName
-        description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-        required: true
-        example: tfdfdxuojnolqz
-        type: string
-        enumValues: []
-        custom: []
-      appointmentRange:
-        name: appointmentRange
-        description: ''
-        required: true
-        example: 53.8703592
-        type: number
-        enumValues: []
-        custom: []
-      businessType:
-        name: businessType
-        description: ''
-        required: true
-        example: 3.678521
-        type: number
-        enumValues: []
-        custom: []
-      phone:
-        name: phone
-        description: 'value değeri 11 karakter değerinden büyük olmalıdır.'
-        required: true
-        example: bjxgbtzmcgpsjjgqltvlpo
-        type: string
-        enumValues: []
-        custom: []
-      startTime:
-        name: startTime
-        description: ''
-        required: true
-        example: et
-        type: string
-        enumValues: []
-        custom: []
-      endTime:
-        name: endTime
-        description: ''
-        required: true
-        example: ullam
-        type: string
-        enumValues: []
-        custom: []
-      email:
-        name: email
-        description: ''
-        required: true
-        example: wkessler@example.com
-        type: string
-        enumValues: []
-        custom: []
-      year:
-        name: year
-        description: 'value geçerli bir tarih olmalıdır.'
-        required: true
-        example: '2023-10-07T20:00:57'
-        type: string
-        enumValues: []
-        custom: []
-      address:
-        name: address
-        description: ''
-        required: true
-        example: quia
-        type: string
-        enumValues: []
-        custom: []
-      cityId:
-        name: cityId
-        description: ''
-        required: true
-        example: 23694619.632765
-        type: number
-        enumValues: []
-        custom: []
-      districtId:
-        name: districtId
-        description: ''
-        required: true
-        example: 2603435.381
-        type: number
-        enumValues: []
-        custom: []
-      commission:
-        name: commission
-        description: ''
-        required: true
-        example: 20344255.800362
-        type: number
-        enumValues: []
-        custom: []
-      personalCount:
-        name: personalCount
-        description: ''
-        required: true
-        example: 67331.1
-        type: number
-        enumValues: []
-        custom: []
-      offDay:
-        name: offDay
-        description: ''
-        required: true
-        example: 7788.6768613
-        type: number
-        enumValues: []
-        custom: []
-      aboutText:
-        name: aboutText
-        description: ''
-        required: true
-        example: voluptatem
+        example: uhiryabtchorjanydxcgqylmrqm
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      officialName: skxqvvcojjgd
-      businessName: tfdfdxuojnolqz
-      appointmentRange: 53.8703592
-      businessType: 3.678521
-      phone: bjxgbtzmcgpsjjgqltvlpo
-      startTime: et
-      endTime: ullam
-      email: wkessler@example.com
-      year: '2023-10-07T20:00:57'
-      address: quia
-      cityId: 23694619.632765
-      districtId: 2603435.381
-      commission: 20344255.800362
-      personalCount: 67331.1
-      offDay: 7788.6768613
-      aboutText: voluptatem
+      cart_id: uhiryabtchorjanydxcgqylmrqm
     fileParameters: []
     responses: []
     responseFields: []

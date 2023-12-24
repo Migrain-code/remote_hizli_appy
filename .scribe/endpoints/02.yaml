@@ -1,26 +1,222 @@
-name: Setup
+name: Authentication
 description: ''
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/setup/get
+      - POST
+    uri: api/business/auth/login
     metadata:
-      groupName: Setup
+      groupName: Authentication
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'GET api/setup'
+      title: 'POST api/auth/login'
       description: |-
+        Status Codes
         <ul>
-        <li>Bearer Token | string | required | Kullanıcı Token</li>
+        <li>phone</li>
+        <li>password</li>
+        <li> 401 Unauthorized Hatası </li>
         </ul>
-        Kayıt Ekranı Tüm Bilgiler Apisi
+        Login apisi
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      phone:
+        name: phone
+        description: ''
+        required: true
+        example: nulla
+        type: string
+        enumValues: []
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: "jD$hhXF'TJx8;6nOt6TK"
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      phone: nulla
+      password: "jD$hhXF'TJx8;6nOt6TK"
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/business/auth/check-phone
+    metadata:
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST api/auth/check-phone'
+      description: |-
+        <ul>
+        <li>phone | string | required</li>
+        </ul>
+        telefon numarası kontrol apisi
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/business/auth/verify
+    metadata:
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST api/auth/verify'
+      description: |-
+        <ul>
+        <li>code | string | required | Doğrulama Kodu</li>
+        <li>phone | string | required | Kullanıcı Telefon Numarası</li>
+        <li>name | string | required | Kullanıcı Adı</li>
+        <li>business_name | string | required | İşletme Adı</li>
+        <li>phone | string | required</li>
+        </ul>
+        Kod doğrulama ve kullanıcı kayıt apisi
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/business/auth/reset-password
+    metadata:
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST api/business/auth/reset-password'
+      description: |-
+        <ul>
+        <li>phone | string | required</li>
+        </ul>
+        Doğrulama yapılacak telefon numarasının gönderilmesi yeterli
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/business/auth/verify-reset-password
+    metadata:
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST api/business/auth/verify-reset-password'
+      description: |-
+        <ul>
+        <li>code | string | required</li>
+        </ul>
+        Doğrulama yapılacak doğurlama kodunun gönderilmesi yeterli
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/business/auth/user
+    metadata:
+      groupName: Authentication
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET api/auth/user'
+      description: |-
+        <ul>
+        <li>Token Göndermeniz Yeterli</li>
+        </ul>
+        Logout apisi
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Bearer: '{token}'
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -47,37 +243,24 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/setup/update
+    uri: api/business/auth/logout
     metadata:
-      groupName: Setup
+      groupName: Authentication
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'POST api/setup/update'
+      title: 'POST api/auth/logout'
       description: |-
         <ul>
-        <li>Bearer Token | required | İşletme Kategorisi</li>
-        <li>category_id | string | required | İşletme Kategorisi</li>
-        <li>name | string | required | İşletme Adı</li>
-        <li>type_id | string | required | Hizmet Türü businessTypes değişkeninden alabilirsiniz </li>
-        <li>city_id  | string | required | Şehir</li>
-        <li>district_id  | string | required | İlçe</li>
-        <li>off_day_id  | string | required | Kapalı Olduğu Gün</li>
-        <li>phone | string | required | Kullanıcı Telefon Numarası</li>
-        <li>about_content | string | required| İşletme Hakkında Yazısı</li>
-        <li>start_time | string | required| İşletme Açılış Saati Örneğin (12:08)</li>
-        <li>end_time | string | required| İşletme Kapanış Saati Örneğin (18:08)</li>
-        <li>latitude | string | required| Haritadan seçilen lat bilgisi</li>
-        <li>longitude | string | required| Haritadan seçilen long bilgisi</li>
-        <li>address | text | required| Address Metni</li>
-        <li>package_id | integer or string | required| Seçili Paket idsi</li>
+        <li>Token Göndermeniz Yeterli</li>
         </ul>
-        Kayıt Ekranı Tüm Bilgiler güncelleme Apisi
+        Logout apisi
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
+      Bearer: '{token}'
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
