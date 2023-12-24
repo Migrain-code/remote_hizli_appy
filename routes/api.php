@@ -10,6 +10,7 @@ use \App\Http\Controllers\Api\DetailSetupController;
 use \App\Http\Controllers\Api\BusinessServiceController;
 use \App\Http\Controllers\Api\PersonalController;
 use \App\Http\Controllers\ProductController;
+use App\Http\Controllers\Api\HomeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,10 +41,15 @@ Route::prefix('business')->group(function (){
         });
     });
     Route::middleware('auth:official')->group(function () {
+        Route::controller(HomeController::class)->prefix('home')->group(function (){
+            Route::get('/', 'index');
+        });
+
         Route::controller(SetupController::class)->prefix('setup')->group(function (){
             Route::get('/get', 'get');
             Route::post('/update', 'update');
         });
+
         Route::controller(OfficialCreditCardController::class)->prefix('cart')->group(function (){
             Route::get('/', 'index');
             Route::post('/get', 'get');
