@@ -14,4 +14,10 @@ class BusinessCustomer extends Model
         return $this->hasOne(Customer::class,'id', 'customer_id');
     }
 
+    public function notes()
+    {
+        return $this->hasMany(BusinessCustomerNote::class,'business_customer_id', 'id');
+
+    }
+
 }

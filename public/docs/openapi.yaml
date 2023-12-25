@@ -26,11 +26,11 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: nulla
+                  example: vitae
                 password:
                   type: string
                   description: ''
-                  example: "jD$hhXF'TJx8;6nOt6TK"
+                  example: '?6Pyp{H'
               required:
                 - phone
                 - password
@@ -121,6 +121,28 @@ paths:
       tags:
         - Authentication
       security: []
+  /api/business/home:
+    get:
+      summary: 'İşletme anasayfa apisi'
+      operationId: letmeAnasayfaApisi
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - BusinessHome
+      security: []
   /api/business/business-service:
     get:
       summary: 'GET api/business-service'
@@ -193,23 +215,23 @@ paths:
                 typeId:
                   type: string
                   description: ''
-                  example: id
+                  example: veritatis
                 categoryId:
                   type: string
                   description: ''
-                  example: quam
+                  example: illo
                 subCategoryId:
                   type: string
                   description: ''
-                  example: optio
+                  example: non
                 time:
                   type: string
                   description: ''
-                  example: nam
+                  example: ad
                 price:
                   type: string
                   description: ''
-                  example: et
+                  example: facilis
               required:
                 - typeId
                 - categoryId
@@ -1004,27 +1026,27 @@ paths:
                 name:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: vonzeayt
+                  example: gvjrdzyfdgxrmqvwpgzs
                 number:
                   type: number
                   description: 'value değeri 16 değerinden büyük olmalıdır.'
-                  example: 37
+                  example: 43
                 month:
                   type: number
                   description: 'value 1 - 12 arasında olmalıdır.'
-                  example: 2
+                  example: 1
                 year:
                   type: number
                   description: ''
-                  example: 0.0
+                  example: 36704.8183093
                 cvc:
                   type: string
                   description: 'Must match the regex /^\d{3,4}$/.'
-                  example: '0412'
+                  example: '561'
                 name_on_the_card:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: klaabqrcgsckeyzvbmjwven
+                  example: qbsmvxcapq
                 is_default:
                   type: number
                   description: ''
@@ -1060,15 +1082,15 @@ paths:
                 cart_id:
                   type: string
                   description: 'value değeri 1 karakter değerinden büyük olmalıdır.'
-                  example: nqzohkltjodgmiknbbaenpmpufs
+                  example: gpkjnxhsxuohkaaretjfucvqxcrrwbqrgtgmbbofmgipgbh
                 name:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: sypsxdhie
+                  example: xniforfzxlb
                 number:
                   type: number
                   description: 'value değeri 16 değerinden büyük olmalıdır.'
-                  example: 24
+                  example: 40
                 month:
                   type: number
                   description: 'value 1 - 12 arasında olmalıdır.'
@@ -1076,19 +1098,19 @@ paths:
                 year:
                   type: number
                   description: ''
-                  example: 2248790.8
+                  example: 689.0
                 cvc:
                   type: string
                   description: 'Must match the regex /^\d{3,4}$/.'
-                  example: '319'
+                  example: '381'
                 name_on_the_card:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: vm
+                  example: zbhu
                 is_default:
                   type: number
                   description: ''
-                  example: '1'
+                  example: '0'
                   enum:
                     - '0'
                     - '1'
@@ -1102,6 +1124,254 @@ paths:
                 - name_on_the_card
                 - is_default
       security: []
+  /api/business/customer:
+    get:
+      summary: 'Müşteri Listesi'
+      operationId: mteriListesi
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Customer
+      security: []
+    post:
+      summary: 'Müşteri Ekleme'
+      operationId: mteriEkleme
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Customer
+      security: []
+  '/api/business/customer/{id}':
+    get:
+      summary: 'Müşteri Detayı'
+      operationId: mteriDetay
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Customer
+      security: []
+    put:
+      summary: 'Müşteri Güncelle'
+      operationId: mteriGncelle
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Customer
+      security: []
+    delete:
+      summary: 'Müşteri Sil'
+      operationId: mteriSil
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Customer
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the customer.'
+        example: 41
+        required: true
+        schema:
+          type: integer
+  /api/business/customerGallery:
+    get:
+      summary: 'Müşteri Galerisi'
+      operationId: mteriGalerisi
+      description: 'customer_id gönderilmesi yeterli'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - CustomerGallery
+      security: []
+    post:
+      summary: 'Galeriye Görsel Ekleme'
+      operationId: galeriyeGrselEkleme
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - CustomerGallery
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: ''
+                  example: dicta
+                image:
+                  type: string
+                  description: ''
+                  example: nam
+              required:
+                - customer_id
+                - image
+      security: []
+  '/api/business/customerGallery/{id}':
+    delete:
+      summary: 'Galeriden Görsel Silme'
+      operationId: galeridenGrselSilme
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - CustomerGallery
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the customerGallery.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/business/customerNote:
+    post:
+      summary: 'Müşteriye Not Ekleme'
+      operationId: mteriyeNotEkleme
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - CustomerNote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: string
+                  description: ''
+                  example: omnis
+                title:
+                  type: string
+                  description: ''
+                  example: a
+                note:
+                  type: string
+                  description: ''
+                  example: recusandae
+              required:
+                - customer_id
+                - title
+                - note
+      security: []
+  '/api/business/customerNote/{id}':
+    get:
+      summary: 'Müşteri Not Detayı'
+      operationId: mteriNotDetay
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - CustomerNote
+      security: []
+    put:
+      summary: 'Müşteri Not Güncelle'
+      operationId: mteriNotGncelle
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - CustomerNote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: ''
+                  example: animi
+                note:
+                  type: string
+                  description: ''
+                  example: accusamus
+              required:
+                - title
+                - note
+      security: []
+    delete:
+      summary: 'Müşteri Not Sil'
+      operationId: mteriNotSil
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - CustomerNote
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the customerNote.'
+        example: 1
+        required: true
+        schema:
+          type: integer
   /api/business/detail-setup/step-1/get:
     get:
       summary: ''
@@ -1143,55 +1413,55 @@ paths:
                 officialName:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: sknmmrwzlnmhirohqrfh
+                  example: dlmxfhuofu
                 businessName:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: yvwqeiibbmnvejbmplvc
+                  example: ycskioqijjkweuhuzev
                 appointmentRange:
                   type: number
                   description: ''
-                  example: 8.757788
+                  example: 8380.40272
                 businessType:
                   type: number
                   description: ''
-                  example: 0.67616
+                  example: 698.45630264
                 phone:
                   type: string
                   description: 'value değeri 10 karakter değerinden büyük olmalıdır. value değeri 10 karakter değerinden küçük olmalıdır.'
-                  example: eormos
+                  example: ie
                 startTime:
                   type: string
                   description: ''
-                  example: magni
+                  example: qui
                 endTime:
                   type: string
                   description: ''
-                  example: sapiente
+                  example: quia
                 email:
                   type: string
                   description: ''
-                  example: vandervort.brown@example.com
+                  example: alec67@example.org
                 year:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2023-12-24T19:51:43'
+                  example: '2023-12-25T15:16:54'
                 commission:
                   type: number
                   description: ''
-                  example: 188959.1942493
+                  example: 60859.6812
                 personalCount:
                   type: number
                   description: ''
-                  example: 333.38258244
+                  example: 5605.721026063
                 offDay:
                   type: number
                   description: ''
-                  example: 411316.5
+                  example: 155358.222
                 aboutText:
                   type: string
                   description: ''
-                  example: perspiciatis
+                  example: asperiores
               required:
                 - officialName
                 - businessName
@@ -1268,7 +1538,7 @@ paths:
                 cart_id:
                   type: string
                   description: 'value değeri 1 karakter değerinden büyük olmalıdır.'
-                  example: uhiryabtchorjanydxcgqylmrqm
+                  example: lzldnnqgfaae
               required:
                 - cart_id
       security: []
@@ -1373,63 +1643,63 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: est
+                  example: voluptates
                 email:
                   type: string
                   description: ''
-                  example: aut
+                  example: similique
                 phone:
                   type: string
                   description: ''
-                  example: laboriosam
+                  example: illum
                 password:
                   type: string
                   description: ''
-                  example: odit
+                  example: culpa
                 approveType:
                   type: string
                   description: ''
-                  example: nesciunt
+                  example: nam
                 restDay:
                   type: string
                   description: ''
-                  example: quas
+                  example: repellendus
                 startTime:
                   type: string
                   description: ''
-                  example: provident
+                  example: accusantium
                 endTime:
                   type: string
                   description: ''
-                  example: quo
+                  example: modi
                 foodStart:
                   type: string
                   description: ''
-                  example: aliquid
+                  example: minima
                 foodEnd:
                   type: string
                   description: ''
-                  example: dolor
+                  example: neque
                 gender:
                   type: string
                   description: ''
-                  example: molestias
+                  example: eligendi
                 rate:
                   type: string
                   description: ''
-                  example: exercitationem
+                  example: pariatur
                 appointmentRange:
                   type: string
                   description: ''
-                  example: et
+                  example: blanditiis
                 description:
                   type: string
                   description: ''
-                  example: et
+                  example: fugiat
                 services:
                   type: string
                   description: ''
-                  example: quia
+                  example: et
               required:
                 - name
                 - email
@@ -1473,63 +1743,63 @@ paths:
                 personal_id:
                   type: string
                   description: ''
-                  example: ratione
+                  example: temporibus
                 name:
                   type: string
                   description: ''
-                  example: quis
+                  example: sunt
                 email:
                   type: string
                   description: ''
-                  example: vel
+                  example: vero
                 phone:
                   type: string
                   description: ''
-                  example: tempora
+                  example: enim
                 approveType:
                   type: string
                   description: ''
-                  example: nisi
+                  example: harum
                 restDay:
                   type: string
                   description: ''
-                  example: eveniet
+                  example: temporibus
                 startTime:
                   type: string
                   description: ''
-                  example: voluptatibus
+                  example: excepturi
                 endTime:
                   type: string
                   description: ''
-                  example: ex
+                  example: quaerat
                 foodStart:
                   type: string
                   description: ''
-                  example: eum
+                  example: explicabo
                 foodEnd:
                   type: string
                   description: ''
-                  example: et
+                  example: deleniti
                 gender:
                   type: string
                   description: ''
-                  example: harum
+                  example: velit
                 rate:
                   type: string
                   description: ''
-                  example: natus
+                  example: et
                 appointmentRange:
                   type: string
                   description: ''
-                  example: nobis
+                  example: expedita
                 description:
                   type: string
                   description: ''
-                  example: facere
+                  example: quisquam
                 services:
                   type: string
                   description: ''
-                  example: est
+                  example: veniam
               required:
                 - personal_id
                 - name
@@ -1583,11 +1853,11 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: laboriosam
+                  example: assumenda
                 password:
                   type: string
                   description: ''
-                  example: "?'3e|#&!T3m^6^"
+                  example: ',P~i[L)KK`)]Uw$2'
               required:
                 - phone
                 - password
@@ -1678,19 +1948,19 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: perspiciatis
+                  example: deleniti
                 price:
                   type: string
                   description: ''
-                  example: officia
+                  example: ad
                 amount:
                   type: string
                   description: ''
-                  example: quo
+                  example: non
                 barcode:
                   type: string
                   description: ''
-                  example: quia
+                  example: dolor
               required:
                 - name
                 - price
@@ -1783,6 +2053,9 @@ tags:
     name: Authentication
     description: ''
   -
+    name: BusinessHome
+    description: ''
+  -
     name: BusinessService
     description: ''
   -
@@ -1790,6 +2063,15 @@ tags:
     description: ''
   -
     name: 'Credit Cart'
+    description: ''
+  -
+    name: Customer
+    description: ''
+  -
+    name: CustomerGallery
+    description: ''
+  -
+    name: CustomerNote
     description: ''
   -
     name: DetailSetup

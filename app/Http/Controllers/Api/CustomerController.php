@@ -3,18 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AppointmentResource;
+use App\Http\Resources\BusinessCustomerNoteResource;
 use App\Http\Resources\CustomerDetailResource;
 use App\Http\Resources\CustomerListResource;
 use App\Models\BusinessCustomer;
+use App\Models\BusinessCustomerNote;
 use App\Models\Customer;
 use Cassandra\Custom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * @group Customer
+ * */
 class CustomerController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Müşteri Listesi
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,7 +32,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Müşteri Ekleme
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -57,18 +63,26 @@ class CustomerController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Müşteri Detayı
      *
      * @param  Customer $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(Customer $customer, Request $request)
     {
-        return response()->json(CustomerDetailResource::make($customer));
+        $user = $request->user();
+        $business = $user->business;
+        $bCustomer = $business->customers()->where('customer_id', $customer->id)->first();
+
+        return response()->json([
+            'customer' => CustomerDetailResource::make($customer),
+            'notes' => BusinessCustomerNoteResource::collection($bCustomer->notes),
+            'appointments' => AppointmentResource::collection($customer->appointments),
+        ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Müşteri Düzenle
      *
      * @param  Customer $customer
      * @return \Illuminate\Http\Response
@@ -77,15 +91,14 @@ class CustomerController extends Controller
     {
         return response()->json([
             'customer' => CustomerDetailResource::make($customer),
-
         ]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Müşteri Güncelle
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Customer $customer)
@@ -108,7 +121,7 @@ class CustomerController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Müşteri Sil
      *
      * @param  Customer $customer
      * @return \Illuminate\Http\Response

@@ -12,6 +12,8 @@ use \App\Http\Controllers\Api\PersonalController;
 use \App\Http\Controllers\ProductController;
 use App\Http\Controllers\Api\HomeController;
 use \App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\BusinessCustomerNoteController;
+use App\Http\Controllers\CustomerGalleryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -90,8 +92,8 @@ Route::prefix('business')->group(function (){
 
         Route::apiResource('product', ProductController::class);
         Route::apiResource('customer', CustomerController::class);
-
-
+        Route::apiResource('customerNote', BusinessCustomerNoteController::class);
+        Route::apiResource('customerGallery', CustomerGalleryController::class);
 
     });
 });

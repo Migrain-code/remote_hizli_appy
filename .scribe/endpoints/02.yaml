@@ -33,7 +33,7 @@ endpoints:
         name: phone
         description: ''
         required: true
-        example: nulla
+        example: vitae
         type: string
         enumValues: []
         custom: []
@@ -41,13 +41,13 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: "jD$hhXF'TJx8;6nOt6TK"
+        example: '?6Pyp{H'
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      phone: nulla
-      password: "jD$hhXF'TJx8;6nOt6TK"
+      phone: vitae
+      password: '?6Pyp{H'
     fileParameters: []
     responses: []
     responseFields: []
