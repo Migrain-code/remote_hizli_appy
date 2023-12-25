@@ -1,0 +1,129 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CustomerDetailResource;
+use App\Http\Resources\CustomerListResource;
+use App\Models\BusinessCustomer;
+use App\Models\Customer;
+use Cassandra\Custom;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+class CustomerController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $user = $request->user();
+        $business = $user->business;
+        return response()->json(CustomerListResource::collection($business->customers));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $user = $request->user();
+        $business = $user->business;
+
+        $customer = new Customer();
+        $customer->name = $request->input('name');
+        $customer->phone = clearPhone($request->input('phone'));
+        $customer->email = $request->input('email');
+        $customer->password = Hash::make($request->input('password'));
+        $customer->gender = $request->input('gender');
+        $customer->status = 1;
+        if ($customer->save()) {
+            $businessCustomer = new BusinessCustomer();
+            $businessCustomer->business_id = $business->id;
+            $businessCustomer->customer_id = $customer->id;
+            $businessCustomer->type = 1;
+            $businessCustomer->save();
+            return response()->json([
+                'status' => "success",
+                'message' => "Müşteri Eklendi. Artık bu müşteriler için işlem yapabilirsiniz."
+            ]);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Customer $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Customer $customer)
+    {
+        return response()->json(CustomerDetailResource::make($customer));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  Customer $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Customer $customer)
+    {
+        return response()->json([
+            'customer' => CustomerDetailResource::make($customer),
+
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Customer $customer)
+    {
+        $user = $request->user();
+        $business = $user->business;
+
+        $customer->name = $request->input('name');
+        $customer->phone = clearPhone($request->input('phone'));
+        $customer->email = $request->input('email');
+        $customer->password = Hash::make($request->input('password'));
+        $customer->gender = $request->input('gender');
+        $customer->status = 1;
+        if ($customer->save()) {
+            return response()->json([
+                'status' => "success",
+                'message' => "Müşteri bilgileri güncellendi."
+            ]);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Customer $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Customer $customer, Request $request)
+    {
+        $user = $request->user();
+        $business = $user->business;
+
+        if ($customer) {
+            $business->customers()->where('customer_id', $customer->id)->delete();
+            return response()->json([
+                'status' => "success",
+                'message' => "Müşteri, Müşteri Listenizden Silindi."
+            ]);
+        }
+    }
+}
