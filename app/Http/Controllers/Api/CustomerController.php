@@ -86,7 +86,9 @@ class CustomerController extends Controller
     }
 
     /**
-     * Müşteri Düzenle
+     * Müşteri Düzenleme apisi
+     *
+     * Düzenlenecek müşterinin idsini göndermeniz yeterlidir
      *
      * @param  Customer $customer
      * @return \Illuminate\Http\Response
