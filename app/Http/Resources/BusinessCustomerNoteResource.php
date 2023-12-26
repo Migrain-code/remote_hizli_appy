@@ -18,6 +18,7 @@ class BusinessCustomerNoteResource extends JsonResource
            'id' => $this->id,
            'title' => $this->title,
            'note' => $this->note,
+           'created_at' => $this->created_at->format('d.m.Y H:i:s')
         ];
     }
 }
