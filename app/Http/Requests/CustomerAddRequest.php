@@ -31,6 +31,7 @@ class CustomerAddRequest extends FormRequest
             'email' => 'required',
             'password' => 'required',
             'gender' => 'required',
+            'birthday'=> 'required',
         ];
     }
 
@@ -42,6 +43,7 @@ class CustomerAddRequest extends FormRequest
             'email' => 'E-posta',
             'password' => 'Şifre',
             'gender' => 'Cinsiyet',
+            'birthday' => 'Doğum Günü',
         ];
     }
 

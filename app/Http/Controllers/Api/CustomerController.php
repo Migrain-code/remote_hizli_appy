@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerAddRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Http\Resources\BusinessCustomerNoteResource;
 use App\Http\Resources\CustomerDetailResource;
@@ -10,6 +11,7 @@ use App\Http\Resources\CustomerListResource;
 use App\Models\BusinessCustomer;
 use App\Models\BusinessCustomerNote;
 use App\Models\Customer;
+use Carbon\Carbon;
 use Cassandra\Custom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,7 +39,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerAddRequest $request)
     {
         $user = $request->user();
         $business = $user->business;
@@ -48,6 +50,8 @@ class CustomerController extends Controller
         $customer->email = $request->input('email');
         $customer->password = Hash::make($request->input('password'));
         $customer->gender = $request->input('gender');
+        $customer->birthday = Carbon::parse($request->input('birthday'))->format('Y-m-d');
+
         $customer->status = 1;
         if ($customer->save()) {
             $businessCustomer = new BusinessCustomer();
