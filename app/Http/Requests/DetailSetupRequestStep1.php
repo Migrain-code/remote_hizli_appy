@@ -27,12 +27,12 @@ class DetailSetupRequestStep1 extends FormRequest
     {
         return [
             'officialName' => 'required|string|max:255',
-            'businessName' => 'required|string|max:255',
+            //'businessName' => 'required|string|max:255',
             'appointmentRange' => 'required|numeric',
-            'businessType' => 'required|numeric',
-            'phone' => 'required|string|min:10|max:10',
-            'startTime' => 'required|string',
-            'endTime' => 'required|string',
+            //'businessType' => 'required|numeric',
+            //'phone' => 'required|string|min:10|max:10',
+            //'startTime' => 'required|string',
+            //'endTime' => 'required|string',
             'email' => 'required|string',
             'year' => 'required|date',
             //'address' => 'required|string',
@@ -40,7 +40,7 @@ class DetailSetupRequestStep1 extends FormRequest
             //'districtId' => 'required|numeric',
             'commission' => 'required|numeric',
             'personalCount' => 'required|numeric',
-            'offDay' => 'required|numeric',
+            //'offDay' => 'required|numeric',
             'aboutText' => 'required|string',
         ];
     }
@@ -49,20 +49,20 @@ class DetailSetupRequestStep1 extends FormRequest
     {
         return [
             'officialName' => "Salon Sahibinin adı",
-            'businessName' => "Salon Adı",
+            //'businessName' => "Salon Adı",
             'appointmentRange' => "Randevu aralığı",
-            'businessType' => "İşletme türü",
-            'phone' => "İşletme Telefon Numarası",
-            'startTime' => "İşletme Açılış Saati",
-            'endTime' => "İşletme Kapanış Saati",
+            //'businessType' => "İşletme türü",
+            //'phone' => "İşletme Telefon Numarası",
+            //'startTime' => "İşletme Açılış Saati",
+            //'endTime' => "İşletme Kapanış Saati",
             'email' => "İşletme E-posta Adresi",
-            'year' => "İşletme Kuruluş Tarihi",
-            'address' => "İşletme Address Metni",
-            'cityId' => "Şehir",
-            'districtId' => "İlçe",
+            //'year' => "İşletme Kuruluş Tarihi",
+            //'address' => "İşletme Address Metni",
+            //'cityId' => "Şehir",
+            //'districtId' => "İlçe",
             'commission' => "Personel Komisyonu",
             'personalCount' => "Personel Sayısı",
-            'offDay' => "Kapalı Olduğu Gün",
+            //'offDay' => "Kapalı Olduğu Gün",
             'aboutText' => "İşletme Hakkında Yazısı",
         ];
     }

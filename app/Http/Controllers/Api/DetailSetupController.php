@@ -89,20 +89,20 @@ class DetailSetupController extends Controller
         $user->name = $request->input('officialName'); //Yetkili Ad Soyad
         $user->save();
 
-        $business->name = $request->input('businessName');// Salon Adı
-        $business->off_day = $request->input('offDay');
+        //$business->name = $request->input('businessName');// Salon Adı
+        //$business->off_day = $request->input('offDay');
         $business->appoinment_range = $request->input('appointmentRange');
-        $business->type_id = $request->input('businessType');
-        $business->phone = $request->input('phone');
-        $business->start_time = $request->input('startTime');
-        $business->end_time = $request->input('endTime');
+        //$business->type_id = $request->input('businessType');
+        //$business->phone = $request->input('phone');
+        //$business->start_time = $request->input('startTime');
+        //$business->end_time = $request->input('endTime');
         $business->business_email = $request->input('email');
         $business->year = Carbon::parse($request->input('year'))->format('Y-m-d'); //2023-04-01
         $business->personal_count = $request->input('personalCount');
         $business->address = $request->input('address');
         $business->about = $request->input('aboutText');
-        $business->city = $request->input('cityId');
-        $business->district = $request->input('districtId');
+        //$business->city = $request->input('cityId');
+        //$business->district = $request->input('districtId');
         $business->commission = $request->input('commission');
         $business->save();
 
