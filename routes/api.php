@@ -91,7 +91,8 @@ Route::prefix('business')->group(function (){
         });
 
         Route::apiResource('product', ProductController::class);
-        Route::apiResource('customer', CustomerController::class)->parameters(['customer' => 'id']);
+        Route::apiResource('customer', CustomerController::class);
+        Route::get('customer/{customer}/edit', [CustomerController::class, 'edit']);
         Route::apiResource('customerNote', BusinessCustomerNoteController::class);
         Route::apiResource('customerGallery', CustomerGalleryController::class);
 
