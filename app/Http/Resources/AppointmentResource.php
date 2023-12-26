@@ -18,7 +18,7 @@ class AppointmentResource extends JsonResource
           'id' => $this->id,
           //'business' => new BusinessResource($this->business),
           'date' => $this->services->first()->start_time,
-          'personelName' => $this->services->first()->personel->name,
+          'personelName' => $this->services->first()->personel?->name,
           'status' => $this->status("text"),
           'total' => $this->total. " ₺",
         ];
