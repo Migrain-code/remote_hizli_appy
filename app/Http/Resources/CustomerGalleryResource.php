@@ -16,7 +16,7 @@ class CustomerGalleryResource extends JsonResource
     {
         return [
            'id' => $this->id,
-           'image' => $this->image,
+           c
         ];
     }
 }
