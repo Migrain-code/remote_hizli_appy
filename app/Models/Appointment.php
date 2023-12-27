@@ -50,7 +50,9 @@ class Appointment extends Model
     ];
     public function customer()
     {
-        return $this->hasOne(Customer::class, 'id', 'customer_id');
+        return $this->hasOne(Customer::class, 'id', 'customer_id')->withDefault([
+            'name' => "Silinmiş Müşteri"
+        ]);
     }
     public function services()
     {

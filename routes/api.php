@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\HomeController;
 use \App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\BusinessCustomerNoteController;
 use App\Http\Controllers\CustomerGalleryController;
+use App\Http\Controllers\Api\PersonelController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -91,14 +92,17 @@ Route::prefix('business')->group(function (){
         });
 
         Route::apiResource('product', ProductController::class);
-        Route::apiResource('customer', CustomerController::class);
+        Route::apiResource('customer', CustomerController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
 
         Route::apiResource('customerNote', BusinessCustomerNoteController::class);
         Route::apiResource('customerGallery', CustomerGalleryController::class);
-
-
-        /* ------- ---------Edit URls----------*/
-
-        Route::get('customer/{customer}/edit', [CustomerController::class, 'edit']);
+        Route::apiResource('personel', PersonelController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+        Route::prefix('personel')->group(function (){
+            Route::post('send/notification', [PersonelController::class, 'sendNotify']);
+        });
     });
 });

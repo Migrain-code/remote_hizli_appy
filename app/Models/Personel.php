@@ -37,4 +37,9 @@ class Personel extends Authenticatable
     {
         return $this->hasMany(PersonelRestDay::class, 'personel_id', 'id')->where('status', 1);
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(AppointmentServices::class, 'personel_id', 'id');
+    }
 }

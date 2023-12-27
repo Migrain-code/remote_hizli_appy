@@ -46,7 +46,7 @@ class Business extends Model
 
     }
 
-    public function personel()
+    public function personels()
     {
         return $this->hasMany(Personel::class, 'business_id', 'id')->latest();
     }
@@ -100,5 +100,10 @@ class Business extends Model
     public function notes()
     {
         return $this->hasMany(BusinessNote::class, 'business_id', 'id');
+    }
+
+    public function personelNotifications()
+    {
+        return $this->hasMany(PersonelNotification::class, 'business_id', 'id');
     }
 }
