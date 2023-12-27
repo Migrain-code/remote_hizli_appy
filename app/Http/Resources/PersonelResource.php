@@ -32,6 +32,7 @@ class PersonelResource extends JsonResource
           'services' => PersonelServiceResource::collection($this->services),
           'rest_day' => PersonelRestDayResource::collection($this->restDays),
           'appointmentRange' => $this->appointmentRange,
+          'safe' => $this->safe,
         ];
     }
 }
