@@ -13,6 +13,7 @@ use App\Http\Resources\PersonelAppointmentResource;
 use App\Http\Resources\PersonelListResource;
 use App\Http\Resources\PersonelResource;
 use App\Models\AppointmentRange;
+use App\Models\BusinnessType;
 use App\Models\DayList;
 use App\Models\Personel;
 use App\Models\PersonelNotification;
@@ -65,6 +66,7 @@ class PersonelController extends Controller
            'services' => BusinessServiceResource::collection($business->services),
            'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
            'rates' => $rates,
+           'genders' => BusinnessType::all(),
         ]);
     }
 
