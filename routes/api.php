@@ -103,6 +103,8 @@ Route::prefix('business')->group(function (){
         ]);
         Route::prefix('personel')->group(function (){
             Route::post('send/notification', [PersonelController::class, 'sendNotify']);
+            Route::post('set/safe/{personel}', [PersonelController::class, 'setCase']);
+
         });
     });
 });
