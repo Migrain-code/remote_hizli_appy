@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductSaleListResource extends JsonResource
+class ProductSaleDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,7 +21,8 @@ class ProductSaleListResource extends JsonResource
            'productName' => $this->product->name,
            'piece' => $this->piece,
            'total' => $this->total,
-           'seller_date' => $this->created_at->format('d.m.Y H:i')
+           'seller_date' => $this->created_at->format('d.m.Y H:i:s'),
+           'note' => $this->note,
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\ProductSaleAddRequest;
 use App\Http\Resources\CustomerListResource;
 use App\Http\Resources\PersonelListResource;
 use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductSaleDetailResource;
 use App\Http\Resources\ProductSaleListResource;
 use App\Models\PackageSale;
 use App\Models\Product;
@@ -72,6 +73,8 @@ class ProductSaleController extends Controller
     /**
      * Ürün Satış Oluşturma
      *
+     * note | isteğe göre gönderilebilir
+     *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
@@ -97,7 +100,7 @@ class ProductSaleController extends Controller
         $productSale->payment_type = $request->input('payment_type_id');
         $productSale->piece = $request->input('amount');
         $productSale->total = $this->sayiDuzenle($request->input('price')) * $request->input('amount');
-
+        $productSale->note = $request->input('note');
         if ($productSale->save()) {
 
             $productFind->piece = $productFind->piece - $productSale->piece;
@@ -117,7 +120,7 @@ class ProductSaleController extends Controller
      */
     public function edit(ProductSales $productSale)
     {
-        return response()->json(ProductSaleListResource::make($productSale));
+        return response()->json(ProductSaleDetailResource::make($productSale));
     }
 
     /**
@@ -150,6 +153,7 @@ class ProductSaleController extends Controller
         $productSale->payment_type = $request->input('payment_type_id');
         $productSale->piece = $request->input('amount');
         $productSale->total = $this->sayiDuzenle($request->input('price')) * $request->input('amount');
+        $productSale->note = $request->input('note');
 
         if ($productSale->save()) {
 
