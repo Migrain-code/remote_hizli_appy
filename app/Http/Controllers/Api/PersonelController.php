@@ -315,10 +315,13 @@ class PersonelController extends Controller
     public function setCase(Personel $personel)
     {
         if ($personel->safe == 1){
-            return response()->json([
-                'status' => "error",
-                'message' => "Bu personele zaten kasa yetkisi atandı",
-            ]);
+            $personel->safe = 0;
+            if ($personel->save()){
+                return response()->json([
+                    'status' => "success",
+                    'message' => "Personelden Kasa Yetkisi Alındı",
+                ]);
+            }
         } else{
             $personel->safe = 1;
             if ($personel->save()){
