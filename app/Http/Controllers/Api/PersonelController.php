@@ -22,7 +22,10 @@ use App\Services\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
+/**
+ * @group PersonelInfo
+ *
+ * */
 class PersonelController extends Controller
 {
     /**
