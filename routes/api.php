@@ -15,6 +15,7 @@ use \App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\BusinessCustomerNoteController;
 use App\Http\Controllers\CustomerGalleryController;
 use App\Http\Controllers\Api\PersonelController;
+use App\Http\Controllers\Api\ProductSaleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -98,13 +99,18 @@ Route::prefix('business')->group(function (){
 
         Route::apiResource('customerNote', BusinessCustomerNoteController::class);
         Route::apiResource('customerGallery', CustomerGalleryController::class);
+
         Route::apiResource('personel', PersonelController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
         Route::prefix('personel')->group(function (){
             Route::post('send/notification', [PersonelController::class, 'sendNotify']);
             Route::get('set-safe/{personel}', [PersonelController::class, 'setCase']);
-
         });
+
+        Route::apiResource('product-sale', ProductSaleController::class)->only([
+            'index', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+
     });
 });
