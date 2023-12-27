@@ -19,7 +19,7 @@ class PersonelAppointmentResource extends JsonResource
           'id' => $this->id,
           'date' => Carbon::parse($this->start_time)->translatedFormat('d F Y H:i'),
           'customer'=>$this->appointment->customer->name,
-          'service'=>$this->service->subCategory->getName() ?? $this->service->subCategory->name,
+          'service'=>$this->service->subCategory->getName() == "" ? $this->service->subCategory->name : $this->service->subCategory->getName(),
           'status' => $this->status("text"),
           'total' => $this->service->price. " ₺",
         ];
