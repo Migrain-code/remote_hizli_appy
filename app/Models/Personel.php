@@ -42,4 +42,13 @@ class Personel extends Authenticatable
     {
         return $this->hasMany(AppointmentServices::class, 'personel_id', 'id');
     }
+
+    protected static function booted()
+    {
+        static::deleted(function ($personel) {
+            $personel->notifications()->delete();
+            $personel->restDays()->delete();
+            $personel->services()->delete();
+        });
+    }
 }
