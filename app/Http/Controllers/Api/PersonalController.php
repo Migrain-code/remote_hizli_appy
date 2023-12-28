@@ -43,8 +43,9 @@ class PersonalController extends Controller
     {
         $user = $request->user();
         $business = $user->business;
+
         return response()->json([
-            'personals' => PersonelResource::collection($business->personel),
+            'personals' => PersonelResource::collection($business->personels),
         ]);
     }
 
