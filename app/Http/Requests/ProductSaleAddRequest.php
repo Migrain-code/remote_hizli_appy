@@ -32,7 +32,7 @@ class ProductSaleAddRequest extends FormRequest
             "payment_type_id" => "required",
             "amount" => "required",
             "price" => "required",
-            "date" => "required",
+            "date" => "required|date",
         ];
     }
 
