@@ -13,6 +13,7 @@ use App\Models\PackageSale;
 use App\Models\Product;
 use App\Models\ProductSales;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 /**
  * @group ProductSale
@@ -101,6 +102,7 @@ class ProductSaleController extends Controller
         $productSale->piece = $request->input('amount');
         $productSale->total = $this->sayiDuzenle($request->input('price')) * $request->input('amount');
         $productSale->note = $request->input('note');
+        $productSale->created_at = Carbon::parse($request->input('date'));
         if ($productSale->save()) {
 
             $productFind->piece = $productFind->piece - $productSale->piece;

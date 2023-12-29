@@ -31,7 +31,8 @@ class ProductSaleAddRequest extends FormRequest
             "personel_id" => "required",
             "payment_type_id" => "required",
             "amount" => "required",
-            "price" => "required"
+            "price" => "required",
+            "date" => "required",
         ];
     }
 
@@ -43,7 +44,8 @@ class ProductSaleAddRequest extends FormRequest
             'personel_id' => 'Satıcı',
             'payment_type_id' => 'Ödeme Türü',
             'amount' => 'Satış Adedi',
-            'price' => 'Satış Fiyatı'
+            'price' => 'Satış Fiyatı',
+            'date' => 'Satış Tarihi'
         ];
     }
 
