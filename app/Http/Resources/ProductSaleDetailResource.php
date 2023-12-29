@@ -22,7 +22,7 @@ class ProductSaleDetailResource extends JsonResource
            'piece' => $this->piece,
            'total' => $this->total,
            'seller_date' => $this->created_at->format('d.m.Y H:i:s'),
-           'payment_type' => $this->type("id"),
+           'payment_type' => $this->payment_type,
            'note' => $this->note,
         ];
     }
