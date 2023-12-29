@@ -16,13 +16,13 @@ class ProductSaleDetailResource extends JsonResource
     {
         return [
            'id' => $this->id,
-           'customerName' => CustomerDetailResource::make($this->customer),
-           'personelName' => PersonelListResource::collection($this->personel),
-           'productName' => ProductResource::make($this->product),
+           'customerName' => $this->customer->id,
+           'personelName' => $this->personel->id,
+           'productName' => $this->product->id,
            'piece' => $this->piece,
            'total' => $this->total,
            'seller_date' => $this->created_at->format('d.m.Y H:i:s'),
-
+           'payment_type' => $this->payment_type,
            'note' => $this->note,
         ];
     }
