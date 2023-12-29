@@ -19,7 +19,6 @@ use Laravel\Passport\Passport;
 /**
  * @group Authentication
  */
-
 class AuthController extends Controller
 {
 
@@ -79,6 +78,7 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Sistemden Çıkış Yapıldı']);
     }
+
     /**
      * GET api/auth/user
      *
@@ -95,6 +95,7 @@ class AuthController extends Controller
     {
         return response()->json(BusinessOfficialResource::make($request->user()));
     }
+
     /**
      * POST api/auth/check-phone
      *
@@ -129,6 +130,7 @@ class AuthController extends Controller
             ]);
         }*/
     }
+
     /**
      * POST api/auth/verify
      *
@@ -146,8 +148,7 @@ class AuthController extends Controller
      */
     public function verify(Request $request)
     {
-
-        $code = SmsConfirmation::where("code", $request->code)->where('action','OFFICIAL-REGISTER')->first();
+        $code = SmsConfirmation::where("code", $request->code)->where('action', 'OFFICIAL-REGISTER')->first();
         if ($code) {
             if ($code->expire_at < now()) {
 
@@ -158,10 +159,9 @@ class AuthController extends Controller
                     'message' => "Doğrulama Kodunun Süresi Dolmuş. Doğrulama Kodu Tekrar Gönderildi"
                 ]);
 
-            }
-            else{
+            } else {
 
-                if ($code->phone == $request->phone){
+                if ($code->phone == $request->phone) {
                     $generatePassword = rand(100000, 999999);
 
                     $business = $this->createBusiness($request->business_name);
@@ -182,15 +182,13 @@ class AuthController extends Controller
                         'status' => "success",
                         'message' => "Telefon Numaranız doğrulandı. Sisteme giriş için şifreniz gönderildi."
                     ]);
-                }
-                else{
+                } else {
                     return response()->json([
                         'status' => "success",
                         'message' => "Doğrulama Kodu Hatalı veya Yanlış Tuşladınız."
                     ]);
                 }
             }
-
 
         } else {
             return response()->json([
@@ -200,6 +198,7 @@ class AuthController extends Controller
         }
 
     }
+
     /**
      * POST api/business/auth/reset-password
      *
@@ -214,20 +213,20 @@ class AuthController extends Controller
     public function passwordReset(Request $request)
     {
         $user = BusinessOfficial::where('phone', clearPhone($request->input('phone')))->first();
-        if ($user){
+        if ($user) {
             $this->resetVerifyCode($request->input('phone'));
             return response()->json([
                 'status' => "success",
                 'message' => "Telefon Numaranıza Gönderilen Doğrulama Kodunu Giriniz"
             ]);
-        }
-        else{
+        } else {
             return response()->json([
                 'status' => "warning",
                 'message' => "Bu telefon numarası ile kayıtlı kullanıcı bulunamadı"
             ]);
         }
     }
+
     /**
      * POST api/business/auth/verify-reset-password
      *
@@ -241,7 +240,7 @@ class AuthController extends Controller
      */
     public function verifyResetPassword(Request $request)
     {
-        $code = SmsConfirmation::where("code", $request->code)->where('action','OFFICIAL-PASSWORD-RESET')->first();
+        $code = SmsConfirmation::where("code", $request->code)->where('action', 'OFFICIAL-PASSWORD-RESET')->first();
         if ($code) {
             if ($code->expire_at < now()) {
 
@@ -252,18 +251,17 @@ class AuthController extends Controller
                     'message' => "Doğrulama Kodunun Süresi Dolmuş. Doğrulama Kodu Tekrar Gönderildi"
                 ]);
 
-            }
-            else {
-                    $generatePassword = rand(100000, 999999);
-                    $official = BusinessOfficial::where('phone', $code->phone)->first();
-                    $official->password = Hash::make($generatePassword);
-                    if($official->save()){
-                        Sms::send($code->phone, config('settings.appy_site_title') . "Sistemine giriş için yeni şifreniz " . $generatePassword);
-                        return response()->json([
-                            'status' => "success",
-                            'message' => "Telefon Numaranız doğrulandı. Sisteme giriş için yeni şifreniz gönderildi."
-                        ]);
-                    }
+            } else {
+                $generatePassword = rand(100000, 999999);
+                $official = BusinessOfficial::where('phone', $code->phone)->first();
+                $official->password = Hash::make($generatePassword);
+                if ($official->save()) {
+                    Sms::send($code->phone, config('settings.appy_site_title') . "Sistemine giriş için yeni şifreniz " . $generatePassword);
+                    return response()->json([
+                        'status' => "success",
+                        'message' => "Telefon Numaranız doğrulandı. Sisteme giriş için yeni şifreniz gönderildi."
+                    ]);
+                }
             }
         }
     }
@@ -279,19 +277,22 @@ class AuthController extends Controller
         return $result;
     }
 
-    function addPermission($id){
+    function addPermission($id)
+    {
         $businessPermission = new BusinessNotificationPermission();
         $businessPermission->business_id = $id;
         $businessPermission->save();
         return true;
     }
 
-    function setAdmin($business,$user){
+    function setAdmin($business, $user)
+    {
         $business->admin_id = $user->id;
         $business->save();
     }
 
-    function createBusiness($business_name){
+    function createBusiness($business_name)
+    {
         $business = new Business();
         $business->name = $business_name;
         $business->company_id = rand(1000000, 9999999);
@@ -301,7 +302,8 @@ class AuthController extends Controller
         return $business;
     }
 
-    function createVerifyCode($phone){
+    function createVerifyCode($phone)
+    {
         $generateCode = rand(100000, 999999);
         $smsConfirmation = new SmsConfirmation();
         $smsConfirmation->phone = clearPhone($phone);
