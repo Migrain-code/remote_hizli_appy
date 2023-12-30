@@ -112,7 +112,7 @@ class PackageSaleOperationController extends Controller
         if ($packagePayment->delete()) {
             return response()->json([
                 'status' => "success",
-                'data' => "Ödeme Silindi"
+                'message' => "Ödeme Silindi"
             ]);
         }
     }
@@ -129,7 +129,7 @@ class PackageSaleOperationController extends Controller
         if ($packageUsage->delete()) {
             return response()->json([
                 'status' => "success",
-                'data' => "Kullanım Silindi"
+                'message' => "Kullanım Silindi"
             ]);
         }
     }
