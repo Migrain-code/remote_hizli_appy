@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\PersonelController;
 use App\Http\Controllers\Api\ProductSaleController;
 use App\Http\Controllers\Api\PackageSaleController;
 use App\Http\Controllers\Api\PackageSaleOperationController;
+use App\Http\Controllers\Api\PersonelStayOffDayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,6 +137,10 @@ Route::prefix('business')->group(function (){
             Route::post('/{packageUsage}/delete-usage', [PackageSaleOperationController::class, 'deleteUsage']);
         });
         /** -------------------------------- İzinler --------------------------------------- */
+
+        Route::apiResource('personel-off-day', PersonelStayOffDayController::class)->only([
+            'index', 'create', 'store', 'destroy'
+        ]);
 
     });
 });

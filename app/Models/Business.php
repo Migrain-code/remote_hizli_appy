@@ -106,4 +106,9 @@ class Business extends Model
     {
         return $this->hasMany(PersonelNotification::class, 'business_id', 'id');
     }
+
+    public function personelStayOffDays()
+    {
+        return $this->hasMany(PersonelStayOffDay::class, 'business_id', 'id');
+    }
 }
