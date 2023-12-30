@@ -10,6 +10,10 @@ use App\Models\PersonelStayOffDay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
+/**
+ * @group Personel İzin
+ *
+ */
 class PersonelStayOffDayController extends Controller
 {
     /**
