@@ -16,6 +16,9 @@ use App\Http\Controllers\BusinessCustomerNoteController;
 use App\Http\Controllers\CustomerGalleryController;
 use App\Http\Controllers\Api\PersonelController;
 use App\Http\Controllers\Api\ProductSaleController;
+use App\Http\Controllers\Api\PackageSaleController;
+use App\Http\Controllers\Api\PackageSaleOperationController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -49,6 +52,7 @@ Route::prefix('business')->group(function (){
         Route::controller(HomeController::class)->prefix('home')->group(function (){
             Route::get('/', 'index');
         });
+        /** -------------------------------- Kurulum Rotaları --------------------------------------- */
 
         Route::controller(SetupController::class)->prefix('setup')->group(function (){
             Route::get('/get', 'get');
@@ -91,14 +95,18 @@ Route::prefix('business')->group(function (){
             Route::post('/update', 'step3UpdatePersonal');
             Route::post('/delete', 'step3DeletePersonal');
         });
-
+        /** -------------------------------- Ürünler --------------------------------------- */
         Route::apiResource('product', ProductController::class);
+
+        /** -------------------------------- Müşteriler --------------------------------------- */
         Route::apiResource('customer', CustomerController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
 
         Route::apiResource('customerNote', BusinessCustomerNoteController::class);
         Route::apiResource('customerGallery', CustomerGalleryController::class);
+
+        /** -------------------------------- Personeller --------------------------------------- */
 
         Route::apiResource('personel', PersonelController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
@@ -108,9 +116,26 @@ Route::prefix('business')->group(function (){
             Route::get('set-safe/{personel}', [PersonelController::class, 'setCase']);
         });
 
+        /** -------------------------------- Ürün Satışı --------------------------------------- */
         Route::apiResource('product-sale', ProductSaleController::class)->only([
             'index', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
+
+        /** -------------------------------- Paket Satışı --------------------------------------- */
+        Route::apiResource('package-sale', PackageSaleController::class)->only([
+            'index', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+        Route::prefix('package-sale')->group(function (){
+           Route::get('/{packageSale}/payments', [PackageSaleOperationController::class, 'payments']);
+           Route::get('/{packageSale}/usages', [PackageSaleOperationController::class, 'usages']);
+
+           Route::post('/{packageSale}/add-payment', [PackageSaleOperationController::class, 'paymentsAdd']);
+           Route::post('/{packageSale}/add-usage', [PackageSaleOperationController::class, 'usagesAdd']);
+
+            Route::post('/{packagePayment}/delete-payment', [PackageSaleOperationController::class, 'deletePayment']);
+            Route::post('/{packageUsage}/delete-usage', [PackageSaleOperationController::class, 'deleteUsage']);
+        });
+        /** -------------------------------- İzinler --------------------------------------- */
 
     });
 });
