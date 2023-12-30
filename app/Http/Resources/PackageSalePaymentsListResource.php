@@ -18,6 +18,7 @@ class PackageSalePaymentsListResource extends JsonResource
            'id' => $this->id,
            'price' => $this->price,
            'amount' => $this->amount,
+           'created_at' => $this->created_at->format('d.m.Y H:i:s')
         ];
     }
 }
