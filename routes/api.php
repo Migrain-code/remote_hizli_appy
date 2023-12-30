@@ -138,7 +138,7 @@ Route::prefix('business')->group(function (){
         });
         /** -------------------------------- İzinler --------------------------------------- */
 
-        Route::apiResource('personel-off-day', PersonelStayOffDayController::class)->only([
+        Route::apiResource('personel-stay-off-day', PersonelStayOffDayController::class)->only([
             'index', 'create', 'store', 'destroy'
         ]);
 
