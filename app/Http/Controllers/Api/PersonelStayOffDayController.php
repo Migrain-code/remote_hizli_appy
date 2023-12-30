@@ -26,7 +26,10 @@ class PersonelStayOffDayController extends Controller
         $user = $request->user();
         $business = $user->business;
 
-        $stayOffDays = $business->personelStayOffDays()->whereDate('end_time' ,'>', now())->get();
+        $stayOffDays = $business->personelStayOffDays()
+            ->whereDate('end_time' ,'>', now())
+            ->whereDate('start_time', Carbon::parse($request->input('date'))->toDateString())
+            ->get();
         return response()->json(PersonelStayOffDayListResource::collection($stayOffDays));
     }
 
