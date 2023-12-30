@@ -67,7 +67,7 @@ class PackageSaleOperationController extends Controller
             if ($usage->save()) {
                 return response()->json([
                     'status' => "success",
-                    'data' => "Kullanım Eklendi"
+                    'message' => "Kullanım Eklendi"
                 ]);
             }
         } else {
@@ -95,7 +95,7 @@ class PackageSaleOperationController extends Controller
         if ($payment->save()) {
             return response()->json([
                 'status' => "success",
-                'data' => "Ödeme Eklendi"
+                'message' => "Ödeme Eklendi"
             ]);
         }
     }
