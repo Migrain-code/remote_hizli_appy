@@ -27,7 +27,6 @@ class PersonelStayOffDayController extends Controller
         $business = $user->business;
 
         $stayOffDays = $business->personelStayOffDays()
-            ->whereDate('end_time' ,'>', now())
             ->whereDate('start_time', '<=', $request->input('date'))
             ->whereDate('end_time', '>=', $request->input('date'))
             ->get();
