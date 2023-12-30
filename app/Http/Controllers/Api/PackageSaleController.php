@@ -37,7 +37,24 @@ class PackageSaleController extends Controller
         $user = $request->user();
         $business = $user->business;
 
-        return response()->json(PackageSaleListResource::collection($business->packages));
+        $packages = $business->packages()->when($request->filled('listType'), function ($q) use ($request) {
+            if ($request->listType == "thisWeek") {
+                $startOfWeek = now()->startOfWeek();
+                $endOfWeek = now()->endOfWeek();
+                $q->whereBetween('seller_date', [$startOfWeek, $endOfWeek]);
+            } elseif ($request->listType == "thisMonth") {
+                $startOfMonth = now()->startOfMonth();
+                $endOfMonth = now()->endOfMonth();
+                $q->whereBetween('seller_date', [$startOfMonth, $endOfMonth]);
+            } elseif ($request->listType == "thisYear") {
+                $startOfYear = now()->startOfYear();
+                $endOfYear = now()->endOfYear();
+                $q->whereBetween('seller_date', [$startOfYear, $endOfYear]);
+            } else {
+                $q->whereDate('seller_date', now()->toDateString());
+            }
+        })->get();
+        return response()->json(PackageSaleListResource::collection($packages));
     }
 
     /**
