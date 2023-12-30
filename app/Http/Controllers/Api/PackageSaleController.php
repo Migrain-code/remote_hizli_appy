@@ -87,7 +87,7 @@ class PackageSaleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Paket Satışı Düzenleme
      *
      * @param PackageSale $packageSale
      * @return Response
@@ -98,7 +98,7 @@ class PackageSaleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Packet Satışı Güncelleme
      *
      * @param Request $request
      * @param PackageSale $packageSale
@@ -127,7 +127,7 @@ class PackageSaleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Paket Satışı Silme
      *
      * @param PackageSale $packageSale
      * @return Response
