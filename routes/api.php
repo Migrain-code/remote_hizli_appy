@@ -133,8 +133,8 @@ Route::prefix('business')->group(function (){
            Route::post('/{packageSale}/add-payment', [PackageSaleOperationController::class, 'paymentsAdd']);
            Route::post('/{packageSale}/add-usage', [PackageSaleOperationController::class, 'usagesAdd']);
 
-            Route::post('/{packagePayment}/delete-payment', [PackageSaleOperationController::class, 'deletePayment']);
-            Route::post('/{packageUsage}/delete-usage', [PackageSaleOperationController::class, 'deleteUsage']);
+            Route::delete('/{packagePayment}/delete-payment', [PackageSaleOperationController::class, 'deletePayment']);
+            Route::delete('/{packageUsage}/delete-usage', [PackageSaleOperationController::class, 'deleteUsage']);
         });
         /** -------------------------------- İzinler --------------------------------------- */
 
