@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\ProductSaleController;
 use App\Http\Controllers\Api\PackageSaleController;
 use App\Http\Controllers\Api\PackageSaleOperationController;
 use App\Http\Controllers\Api\PersonelStayOffDayController;
+use App\Http\Controllers\AppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,6 +141,12 @@ Route::prefix('business')->group(function (){
 
         Route::apiResource('personel-stay-off-day', PersonelStayOffDayController::class)->only([
             'index', 'create', 'store', 'destroy'
+        ]);
+
+        /** -------------------------------- Randevular --------------------------------------- */
+
+        Route::apiResource('appointment', AppointmentController::class)->only([
+            'index', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
 
     });
