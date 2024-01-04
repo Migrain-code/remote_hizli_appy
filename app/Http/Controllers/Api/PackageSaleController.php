@@ -126,7 +126,6 @@ class PackageSaleController extends Controller
         $user = $request->user();
         $business = $user->business;
 
-        $packageSale = new PackageSale();
         $packageSale->business_id = $business->id;
         $packageSale->seller_date = $request->seller_date;
         $packageSale->customer_id = $request->input('customer_id');
