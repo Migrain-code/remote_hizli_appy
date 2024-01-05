@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Resources\AppointmentResource;
 use Illuminate\Http\Request;
 
+/**
+ * @group Randevular
+ *
+ */
 class AppointmentController extends Controller
 {
     /**
-     * Randevular
+     * Tüm Randevular
      *
      * @return \Illuminate\Http\Response
      */

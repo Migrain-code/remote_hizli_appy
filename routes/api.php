@@ -146,9 +146,9 @@ Route::prefix('business')->group(function (){
 
         /** -------------------------------- Randevular --------------------------------------- */
 
-        /*Route::apiResource('appointment', AppointmentController::class)->only([
+        Route::apiResource('appointment', AppointmentController::class)->only([
             'index', 'create', 'store', 'edit', 'update', 'destroy'
-        ]);*/
+        ]);
 
         /** -------------------------------- Randevu Oluşturma --------------------------------------- */
 

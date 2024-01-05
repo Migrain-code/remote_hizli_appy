@@ -16,7 +16,7 @@ class AppointmentResource extends JsonResource
     {
         return [
           'id' => $this->id,
-          //'business' => new BusinessResource($this->business),
+          'customer' => CustomerDetailResource::make($this->customer),
           'date' => $this->services->first()->start_time,
           'personelName' => $this->services->first()->personel?->name,
           'status' => $this->status("text"),
