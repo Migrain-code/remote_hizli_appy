@@ -33,4 +33,9 @@ class BusinessService extends Model
     {
         return $this->hasOne(Business::class, 'id','business_id');
     }
+
+    public function personels()
+    {
+        return $this->hasMany(PersonelService::class, 'service_id', 'id');
+    }
 }

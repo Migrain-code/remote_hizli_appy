@@ -68,10 +68,10 @@ class Appointment extends Model
     {
         return self::STATUS_LIST[$this->status][$type] ?? null;
     }
-    public function calculateTotal($services)
+    public function calculateTotal()
     {
         $total=0;
-        foreach ($services as $service){
+        foreach ($this->services as $service){
             $total+=$service->service->price;
         }
         return $total;

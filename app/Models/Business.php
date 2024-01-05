@@ -28,7 +28,7 @@ class Business extends Model
     }
     public function range()
     {
-        return $this->hasOne(AppointmentRange::class, 'id', 'appointment_range');
+        return $this->hasOne(AppointmentRange::class, 'id', 'appoinment_range');
     }
     public function offDay()
     {

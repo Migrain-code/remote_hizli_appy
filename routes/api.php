@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\PackageSaleController;
 use App\Http\Controllers\Api\PackageSaleOperationController;
 use App\Http\Controllers\Api\PersonelStayOffDayController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AppointmentCreateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,9 +146,21 @@ Route::prefix('business')->group(function (){
 
         /** -------------------------------- Randevular --------------------------------------- */
 
-        Route::apiResource('appointment', AppointmentController::class)->only([
+        /*Route::apiResource('appointment', AppointmentController::class)->only([
             'index', 'create', 'store', 'edit', 'update', 'destroy'
-        ]);
+        ]);*/
+
+        /** -------------------------------- Randevu Oluşturma --------------------------------------- */
+
+        Route::prefix('appointment-create')->controller(AppointmentCreateController::class)->group(function (){
+            Route::get('get/services', 'getService');
+            Route::get('get/customers', 'getCustomer');
+            Route::post('get/personel', 'getPersonel');
+            Route::post('get/date', 'getDate');
+            Route::post('get/clock', 'getClock');
+            Route::post('/', 'appointmentCreate');
+            Route::post('/summary', 'summary');
+        });
 
     });
 });
