@@ -10,19 +10,17 @@ use App\Http\Resources\AppointmentPersonelResource;
 use App\Http\Resources\BusinessServiceResource;
 use App\Http\Resources\CustomerListResource;
 use App\Http\Resources\PersonelListResource;
-use App\Http\Resources\PersonelResource;
 use App\Models\Appointment;
 use App\Models\AppointmentServices;
-use App\Models\Business;
-use App\Models\BusinessCustomer;
-use App\Models\BusinessNotification;
 use App\Models\BusinessService;
-use App\Models\Customer;
-use App\Models\CustomerNotificationMobile;
 use App\Models\Personel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
+/**
+ * @group AppointmentCreate
+ *
+ */
 class AppointmentCreateController extends Controller
 {
     /**
