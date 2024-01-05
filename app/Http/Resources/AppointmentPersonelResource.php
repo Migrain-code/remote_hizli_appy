@@ -15,9 +15,9 @@ class AppointmentPersonelResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->personel->id,
-            'name' => $this->personel->name,
-            'image' => image($this->personel->image)
+            'id' => $this->personel?->id,
+            'name' => $this->personel?->name,
+            'image' => image($this->personel?->image)
         ];
     }
 }
