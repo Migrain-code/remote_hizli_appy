@@ -6,7 +6,7 @@ use App\Http\Resources\AppointmentResource;
 use Illuminate\Http\Request;
 
 /**
- * @group Randevular
+ * @group Appointment
  *
  */
 class AppointmentController extends Controller
