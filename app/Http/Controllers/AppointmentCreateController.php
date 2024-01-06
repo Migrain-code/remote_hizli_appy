@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Appointment\AppointmentCreateRequest;
+use App\Http\Requests\Appointment\AppointmentSummaryRequest;
 use App\Http\Requests\Appointment\ClockGetRequest;
 use App\Http\Requests\Appointment\PersonelDateGetRequest;
 use App\Http\Requests\Appointment\ServicePersonelGetRequest;
@@ -245,7 +246,7 @@ class AppointmentCreateController extends Controller
      * @param Request $request
      * @return void
      */
-    public function summary(AppointmentCreateRequest $request)
+    public function summary(AppointmentSummaryRequest $request)
     {
         $user = $request->user();
         $business = $user->business;
