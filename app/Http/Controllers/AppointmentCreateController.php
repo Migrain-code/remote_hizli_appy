@@ -179,7 +179,7 @@ class AppointmentCreateController extends Controller
         $personels = [];
         foreach ($uniqueArray as $id){
 
-            $personels[]= Personel::find();
+            $personels[]= Personel::find($id);
         }
 
         $newClocks=[];
