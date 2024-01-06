@@ -171,11 +171,15 @@ class AppointmentCreateController extends Controller
         $getDate = Carbon::parse($request->date);
         $user = $request->user();
         $business = $user->business;
+        $personelIds = [];
+        foreach ($personelIds as $personelId){
+            $personelIds[] = explode('_', $personelId)[0];
+        }
         $uniqueArray = array_unique($request->personelIds);
         $personels = [];
         foreach ($uniqueArray as $id){
-            $personelId = explode('_', $id);
-            $personels[]= Personel::find($personelId[0]);
+
+            $personels[]= Personel::find();
         }
 
         $newClocks=[];
