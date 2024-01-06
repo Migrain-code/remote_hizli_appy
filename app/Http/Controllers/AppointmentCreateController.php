@@ -174,7 +174,8 @@ class AppointmentCreateController extends Controller
         $uniqueArray = array_unique($request->personelIds);
         $personels = [];
         foreach ($uniqueArray as $id){
-            $personels[]= Personel::find($id);
+            $personelId = explode('_', $id);
+            $personels[]= Personel::find($personelId[0]);
         }
 
         $newClocks=[];
