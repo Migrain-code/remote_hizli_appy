@@ -306,7 +306,7 @@ class AppointmentCreateController extends Controller
 
         $loop = 0;
         $personels = $request->get('personels');
-        $times = $request->get('times');
+        $times = $request->get('times')[0];
 
         $newTimes = [];
         $arrayGroupedPersonel = array_count_values($personels);
