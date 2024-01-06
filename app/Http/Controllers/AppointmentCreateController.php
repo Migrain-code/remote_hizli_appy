@@ -81,7 +81,7 @@ class AppointmentCreateController extends Controller
             $ap_services[] = [
                 'id' => $id,
                 'title' => $service->subCategory->getName() . " için personel seçiniz",
-                'personels' => $servicePersonels,
+                'personels' => AppointmentPersonelResource::collection($servicePersonels),
             ];
         }
         return response()->json($ap_services);
