@@ -72,7 +72,6 @@ class AppointmentCreateController extends Controller
                     $servicePersonels[] = [
                         'id' => $item->personel?->id . "_" . $service->id,
                         'name' => $item->personel?->name,
-                        'image' => $item->personel?->image,
                     ];
                 }
 
