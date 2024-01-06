@@ -28,7 +28,6 @@ class AppointmentSummaryRequest extends FormRequest
         return [
             'customer_id' => "required",
             'appointment_date' => 'required|date',
-            'personels' => "required",
             'times' => "required",
             'services' => "required",
             'discountTotal' => "required",
@@ -41,7 +40,6 @@ class AppointmentSummaryRequest extends FormRequest
         return [
             'customer_id' => "Müşteri",
             'appointment_date' => 'Randevu Tarihi',
-            'personels' => "Personeller",
             'times' => "Saatler",
             'services' => "Hizmetler",
             'total' => "Toplam Ücret",
