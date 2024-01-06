@@ -69,9 +69,9 @@ class AppointmentCreateController extends Controller
             $servicePersonels = [];
             foreach ($service->personels as $item){
                 $servicePersonels[] = [
-                    'id' => $service->personel?->id . "_" . $service->id,
-                    'name' => $service->personel?->name,
-                    'image' => $service->personel?->image,
+                    'id' => $item->personel?->id . "_" . $service->id,
+                    'name' => $item->personel?->name,
+                    'image' => $item->personel?->image,
                 ];
             }
 
