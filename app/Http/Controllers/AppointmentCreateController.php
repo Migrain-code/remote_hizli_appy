@@ -68,11 +68,14 @@ class AppointmentCreateController extends Controller
             $service = BusinessService::find($id);
             $servicePersonels = [];
             foreach ($service->personels as $item){
-                $servicePersonels[] = [
-                    'id' => $item->personel?->id . "_" . $service->id,
-                    'name' => $item->personel?->name,
-                    'image' => $item->personel?->image,
-                ];
+                if ($item->personel){
+                    $servicePersonels[] = [
+                        'id' => $item->personel?->id . "_" . $service->id,
+                        'name' => $item->personel?->name,
+                        'image' => $item->personel?->image,
+                    ];
+                }
+
             }
 
 
