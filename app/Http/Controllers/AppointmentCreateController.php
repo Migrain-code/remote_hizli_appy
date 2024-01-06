@@ -176,7 +176,7 @@ class AppointmentCreateController extends Controller
             $personelIds[] = explode('_', $personelId)[0];
         }
         $uniqueArray = array_unique($personelIds);
-        dd($uniqueArray);
+
         $personels = [];
 
         foreach ($uniqueArray as $id){
