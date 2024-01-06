@@ -172,10 +172,10 @@ class AppointmentCreateController extends Controller
         $user = $request->user();
         $business = $user->business;
         $personelIds = [];
-        foreach ($personelIds as $personelId){
+        foreach ($request->personelIds as $personelId){
             $personelIds[] = explode('_', $personelId)[0];
         }
-        $uniqueArray = array_unique($request->personelIds);
+        $uniqueArray = array_unique($personelIds);
         dd($uniqueArray);
         $personels = [];
 
