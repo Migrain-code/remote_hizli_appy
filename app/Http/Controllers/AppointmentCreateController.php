@@ -66,10 +66,20 @@ class AppointmentCreateController extends Controller
         $ap_services = [];
         foreach ($getData as $id) {
             $service = BusinessService::find($id);
+            $servicePersonels = [];
+            foreach ($service->personels as $item){
+                $servicePersonels[] = [
+                    'id' => $service->personel?->id+"_"+ $service->id,
+                    'name' => $service->personel?->name,
+                    'image' => $service->personel?->image,
+                ];
+            }
+
+
             $ap_services[] = [
                 'id' => $id,
                 'title' => $service->subCategory->getName() . " için personel seçiniz",
-                'personels' => AppointmentPersonelResource::collection($service->personels),
+                'personels' => AppointmentPersonelResource::collection($servicePersonels),
             ];
         }
         return response()->json($ap_services);
