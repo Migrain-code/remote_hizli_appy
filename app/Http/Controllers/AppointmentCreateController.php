@@ -297,17 +297,17 @@ class AppointmentCreateController extends Controller
         $appointment = new Appointment();
         $appointment->customer_id = $request->customer_id;
         $appointment->business_id = $business->id;
-        if ($business->approve_type == 0) {
-            $appointment->status = 1;
+        if ($business->approve_type == 0) { // approve_type => 0 otomatik onay
+            $appointment->status = 1; // onaylandı
         } else {
-            $appointment->status = 0;
+            $appointment->status = 0; // onay bekliyor
         }
         $appointment->save();
 
         $loop = 0;
         $personels = $request->get('personels');
         $times = $request->get('times')[0];
-
+        dd($times);
         $newTimes = [];
         $arrayGroupedPersonel = array_count_values($personels);
         $looper = 0;
