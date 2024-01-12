@@ -33,7 +33,7 @@ return array(
     "digits" => ":attribute :digits rakam olmalıdır.",
     "digits_between" => ":attribute :min ile :max arasında rakam olmalıdır.",
     "email" => ":attribute biçimi geçersiz.",
-    "exists" => "Seçili :attribute geçersiz.",
+    "exists" => "Seçili :attribute sistemde kayıtlı.",
     "image" => ":attribute alanı resim dosyası olmalıdır.",
     "in" => ":attribute değeri geçersiz.",
     "integer" => ":attribute rakam olmalıdır.",

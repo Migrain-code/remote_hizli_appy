@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Service;
 
+use App\Http\Resources\PersonelRestDayResource;
+use App\Http\Resources\PersonelServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BusinessOfficialResource extends JsonResource
+class PersonelListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +19,7 @@ class BusinessOfficialResource extends JsonResource
         return [
           'id' => $this->id,
           'name' => $this->name,
-          'phone' => $this->phone,
-          'email' => $this->email,
-          'verify_phone' => $this->verify_phone == "1" ? true : false,
-          'is_admin' => $this->is_admin == 1,
-          'business' => new BusinessResource($this->business),
+          'image' => image($this->image),
         ];
     }
 }

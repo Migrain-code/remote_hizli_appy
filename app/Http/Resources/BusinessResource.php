@@ -19,6 +19,7 @@ class BusinessResource extends JsonResource
         return [
            'id' => $this->id,
            'name' => $this->name,
+           'branchName' => $this->branch_name,
            'email' => $this->business_email,
            'year' => $this->year,
            'personalCount' => $this->personal_count,

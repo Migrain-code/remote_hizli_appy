@@ -21,7 +21,12 @@ use App\Http\Controllers\Api\PackageSaleOperationController;
 use App\Http\Controllers\Api\PersonelStayOffDayController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AppointmentCreateController;
-
+use \App\Http\Controllers\Api\ServiceController;
+use App\Http\Controllers\Api\GalleryController;
+use App\Http\Controllers\Api\BusinessOfficialController;
+use \App\Http\Controllers\Api\BusinessBrancheController;
+use App\Http\Controllers\Api\BusinessNotificationPermissionController;
+use App\Http\Controllers\Api\NotificationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -159,6 +164,29 @@ Route::prefix('business')->group(function (){
             Route::post('/', 'appointmentCreate');
             Route::post('/summary', 'summary');
         });
-
+        /** -------------------------------- Hizmetler --------------------------------------- */
+        Route::apiResource('service', ServiceController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+        /** -------------------------------- Galeri --------------------------------------- */
+        Route::apiResource('gallery', GalleryController::class)->only([
+            'index', 'store', 'destroy'
+        ]);
+        /** -------------------------------- Yetkililer --------------------------------------- */
+        Route::apiResource('official', BusinessOfficialController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+        /** -------------------------------- Şubeler --------------------------------------- */
+        Route::apiResource('branche', BusinessBrancheController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+        /** -------------------------------- Bildirim İzinleri --------------------------------------- */
+        Route::apiResource('notification-permission', BusinessNotificationPermissionController::class)->only([
+            'index', 'update'
+        ]);
+        /** -------------------------------- Bildirimler --------------------------------------- */
+        Route::apiResource('notification', NotificationController::class)->only([
+            'index', 'show', 'destroy'
+        ]);
     });
 });

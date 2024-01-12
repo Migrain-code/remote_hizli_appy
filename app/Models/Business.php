@@ -111,4 +111,9 @@ class Business extends Model
     {
         return $this->hasMany(PersonelStayOffDay::class, 'business_id', 'id');
     }
+
+    public function officials()
+    {
+        return $this->hasMany(BusinessOfficial::class, 'business_id', 'id');
+    }
 }

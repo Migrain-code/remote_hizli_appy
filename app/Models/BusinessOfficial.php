@@ -28,5 +28,13 @@ class BusinessOfficial extends Authenticatable
     {
         return $this->hasOne(OfficialCreatidCard::class, 'official_id', 'id');
     }
+    public function permission()
+    {
+        return $this->hasOne(BusinessNotificationPermission::class, 'business_id', 'id');
+    }
 
+    public function notifications()
+    {
+        return $this->hasMany(BusinessNotification::class, 'business_id', 'id');
+    }
 }

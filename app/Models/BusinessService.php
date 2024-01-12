@@ -38,4 +38,12 @@ class BusinessService extends Model
     {
         return $this->hasMany(PersonelService::class, 'service_id', 'id');
     }
+
+    protected static function booted()
+    {
+        static::deleted(function ($businessService) {
+            $businessService->personels()->delete();
+        });
+    }
+
 }

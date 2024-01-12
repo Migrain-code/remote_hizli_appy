@@ -171,6 +171,7 @@ class AuthController extends Controller
                     $user->phone = $code->phone;
                     $user->password = Hash::make($generatePassword);
                     $user->business_id = $business->id;
+                    $user->is_admin = 1;
                     $user->save();
 
                     $this->setAdmin($business, $user);

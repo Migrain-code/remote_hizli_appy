@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\NotificationPermission;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BusinessOfficialResource extends JsonResource
+class NotificationPermissionListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +17,10 @@ class BusinessOfficialResource extends JsonResource
     {
         return [
           'id' => $this->id,
-          'name' => $this->name,
-          'phone' => $this->phone,
-          'email' => $this->email,
-          'verify_phone' => $this->verify_phone == "1" ? true : false,
-          'is_admin' => $this->is_admin == 1,
-          'business' => new BusinessResource($this->business),
+          'is_email' => $this->is_email,
+          'is_sms' => $this->is_sms,
+          'is_phone' => $this->is_phone,
+          'is_notification' => $this->is_notification,
         ];
     }
 }
