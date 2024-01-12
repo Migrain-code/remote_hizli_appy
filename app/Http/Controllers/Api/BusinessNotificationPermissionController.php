@@ -46,6 +46,7 @@ class BusinessNotificationPermissionController extends Controller
      */
     public function update(PermissionUpdateRequest $request, BusinessNotificationPermission $notificationPermission)
     {
+        dd($notificationPermission->{$request->column});
         $notificationPermission->{$request->column} = !$notificationPermission->{$request->column};
         if ($notificationPermission->save()){
             return response()->json([
