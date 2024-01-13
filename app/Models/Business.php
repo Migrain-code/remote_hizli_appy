@@ -114,6 +114,6 @@ class Business extends Model
 
     public function officials()
     {
-        return $this->hasMany(BusinessOfficial::class, 'business_id', 'id');
+        return $this->hasMany(BusinessOfficial::class, 'company_id', 'company_id');
     }
 }
