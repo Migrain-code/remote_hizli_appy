@@ -6,7 +6,9 @@ use App\Services\Sms;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class Customer extends Authenticatable
 {
@@ -37,5 +39,18 @@ class Customer extends Authenticatable
         $clean_phone_number = preg_replace('/[^0-9]/', '', $this->email);
         Sms::send($clean_phone_number, $message);
         return true;
+    }
+
+    public function sendNotification($title, $content)
+    {
+        $customerNotification = new CustomerNotificationMobile();
+        $customerNotification->customer_id = $this->id;
+        $customerNotification->title = $title;
+        $customerNotification->slug = Str::slug(uniqid());
+        $customerNotification->content = $content;
+        $customerNotification->notification_id = 1;
+        $customerNotification->save();
+
+        return $customerNotification;
     }
 }

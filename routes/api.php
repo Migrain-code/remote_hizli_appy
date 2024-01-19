@@ -27,6 +27,7 @@ use App\Http\Controllers\Api\BusinessOfficialController;
 use \App\Http\Controllers\Api\BusinessBrancheController;
 use App\Http\Controllers\Api\BusinessNotificationPermissionController;
 use App\Http\Controllers\Api\NotificationController;
+use \App\Http\Controllers\BirthdayController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -187,6 +188,10 @@ Route::prefix('business')->group(function (){
         /** -------------------------------- Bildirimler --------------------------------------- */
         Route::apiResource('notification', NotificationController::class)->only([
             'index', 'show', 'destroy'
+        ]);
+        /** -------------------------------- Doğum Günleri --------------------------------------- */
+        Route::apiResource('birthday', BirthdayController::class)->only([
+            'index','create','store', 'show', 'destroy'
         ]);
     });
 });
