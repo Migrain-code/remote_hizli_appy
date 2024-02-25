@@ -23,7 +23,7 @@ class AppointmentController extends Controller
         $user = $request->user();
         $business = $user->business;
         $reqDate = Carbon::parse($request->appointment_date);
-        dd($business->appointments()->where(DB::raw('DATE_FORMAT(start_time, "%Y-%m-%d")'), '=', $reqDate->toDateString())->get());
+        dd($business->appointments()->where('start_time', $reqDate->toDateString())->get());
 
         return response()->json(AppointmentResource::collection($business->appointments()->whereDate('start_time', $request->appoinment_date)->get()));
     }
