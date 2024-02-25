@@ -179,7 +179,7 @@ class AppointmentCreateController extends Controller
             $personelIds[] = explode('_', $personelId)[0];
             $serviceIds[] = explode('_', $personelId)[1];
         }
-        $uniquePersonals = array_unique($request->$personelIds);
+        $uniquePersonals = array_unique($personelIds);
 
         // personelleri gelen id lere göre db den collection olarak al
         $personels = [];
