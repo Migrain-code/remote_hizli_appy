@@ -360,7 +360,7 @@ class AppointmentCreateController extends Controller
 
         return response()->json([
             'customer' => CustomerListResource::make($customer),
-            'appointmentDate' => $request->times[0][0],
+            'appointmentDate' => $request->times[0],
             'services' => BusinessServiceResource::collection($businessServices),
             'total' => $businessServices->sum('price'),
         ]);
