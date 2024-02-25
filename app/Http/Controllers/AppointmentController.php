@@ -20,6 +20,7 @@ class AppointmentController extends Controller
     {
         $user = $request->user();
         $business = $user->business;
+        dd($business->appointments()->whereDate('start_time', $request->appoinment_date));
         return response()->json(AppointmentResource::collection($business->appointments()->whereDate('start_time', $request->appoinment_date)->get()));
     }
 
