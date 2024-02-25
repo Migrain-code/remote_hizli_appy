@@ -229,8 +229,7 @@ class AppointmentCreateController extends Controller
                             return response()->json([
                                 "status" => "error",
                                 "message" => 'Personel ' . Carbon::parse($personel->stayOffDays->start_time)->format('d.m.Y H:i') . " tarihinden " . Carbon::parse($personel->stayOffDays->end_time)->format('d.m.Y H:i') . " Tarihine Kadar İzinlidir",
-
-                            ]);
+                            ], 422);
                         } else {
                             for ($i = \Illuminate\Support\Carbon::parse($personel->start_time); $i < \Illuminate\Support\Carbon::parse($personel->end_time); $i->addMinute($personel->range)) {
                                 $clocks[] = [
@@ -264,7 +263,7 @@ class AppointmentCreateController extends Controller
                 return response()->json([
                     "status" => "error",
                     "message" => "İşletme bu tarihte hizmet vermemektedir"
-                ]);
+                ], 422);
             } else {
                 // işletme çalışma saatlerine randevu aralığına göre diziye ekle
                 $businessClocks = [];
@@ -336,7 +335,7 @@ class AppointmentCreateController extends Controller
                     return response()->json([
                         "status" => "error",
                         "message" => "Seçtiğiniz Hizmetler için uygun randevu aralığı bulunmamaktadır. Personeli veya Hizmeti Değiştirerek Yeniden Saat Arayabilirsiniz."
-                    ]);
+                    ],422);
                 }
             }
         }
@@ -432,6 +431,7 @@ class AppointmentCreateController extends Controller
 
         $appointment->start_time = $appointment->services()->first()->start_time;
         $appointment->end_time = $appointment->services()->skip($appointment->services()->count() - 1)->first()->end_time;
+        $appointment->total = $request->total;
         if ($appointment->save()) {
             return response()->json([
                 'status' => "success",
