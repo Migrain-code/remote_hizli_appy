@@ -412,57 +412,33 @@ class AppointmentCreateController extends Controller
         $appointment->save();
 
         $personels = $request->get('personels');
-        $times = $request->get('times')[0];
         $services = $request->services;
 
-        $loop = 0;
-        $newTimes = [];
-
-        foreach ($times as $time) {
-            $personelId = $personels[$loop];
-            $serviceId = $services[$loop];
+        $appointmentStartTime = Carbon::parse($request->appointment_time);
+        foreach ($services as $index => $serviceId) {
             $findService = BusinessService::find($serviceId);
-
-            $newTime = Carbon::parse($time)->format('d.m.Y H:i');
-            $newTimes[] = $newTime;
-
-            // Her bir hizmet için bir personel seçiliyor varsayalım
             $appointmentService = new AppointmentServices();
-            $appointmentService->appointment_id = $appointment->id;
-            $appointmentService->personel_id = $personelId;
+            $appointmentService->personel_id = $personels[$index];
             $appointmentService->service_id = $serviceId;
-            $appointmentService->start_time = $newTime;
-            $appointmentService->end_time = Carbon::parse($newTime)->addMinute($findService->time)->format('d.m.Y H:i');
-            $appointmentService->save();
-
-            $loop++;
-        }
-
-        // Diğer hizmetleri eklemek için ikinci bir döngü ekleyelim
-        for ($i = $loop; $i < count($services); $i++) {
-            $serviceId = $services[$i];
-            $findService = BusinessService::find($serviceId);
-
-            $newTime = Carbon::parse($times[$loop-1])->format('d.m.Y H:i');
-            $newTimes[] = $newTime;
-
-
-            // Her bir hizmet için bir personel seçiliyor varsayalım
-            $appointmentService = new AppointmentServices();
+            $appointmentService->start_time = $appointmentStartTime->format('d.m.Y H:i');
+            $appointmentService->end_time = $appointmentStartTime->addMinutes($findService->time)->format('d.m.Y H:i');
             $appointmentService->appointment_id = $appointment->id;
-            $appointmentService->personel_id = $personels[$loop]; // İlk personeli seçiyoruz, isteğe bağlı olarak farklı bir mantık uygulayabilirsiniz
-            $appointmentService->service_id = $serviceId;
-            $appointmentService->start_time = $newTime;
-            $appointmentService->end_time = Carbon::parse($newTime)->addMinute($findService->time)->format('d.m.Y H:i');
             $appointmentService->save();
         }
 
-        $appointment->start_time = $newTimes[0];
-        $appointment->end_time = end($newTimes);
-        $appointment->total = $request->total;
-        $appointment->discount = $request->discountTotal;
-        $appointment->note = $request->input('note');
-        $appointment->save();
+        $appointment->start_time = $appointment->services()->first()->start_time;
+        $appointment->end_time = $appointment->services()->skip($appointment->services()->count() - 1)->first()->end_time;
+        if ($appointment->save()) {
+            return response()->json([
+                'status' => "success",
+                'message' => "Randevunuz " . $appointment->start_time . " - " . $appointment->end_time . " arasına randevunuz oluşturuldu",
+            ]);
+        }
+
+        return back()->with('response', [
+            'status' => "error",
+            'message' => "Bir hata sebebiyle randevunuz oluşturulamadı lütfen tekrar deneyiniz"
+        ]);
 
         // Push bildirimi eklenecek
 
