@@ -413,7 +413,7 @@ class AppointmentCreateController extends Controller
 
         $personelIds = [];
         $serviceIds = [];
-        foreach ($request->personelIds as $personelId){
+        foreach ($request->personels as $personelId){
             $personelIds[] = explode('_', $personelId)[0];
             $serviceIds[] = explode('_', $personelId)[1];
         }
