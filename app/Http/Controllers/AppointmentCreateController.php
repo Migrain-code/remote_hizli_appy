@@ -438,14 +438,8 @@ class AppointmentCreateController extends Controller
         return back()->with('response', [
             'status' => "error",
             'message' => "Bir hata sebebiyle randevunuz oluşturulamadı lütfen tekrar deneyiniz"
-        ]);
+        ], 422);
 
-        // Push bildirimi eklenecek
-
-        return response()->json([
-            'status' => "success",
-            'message' => "Randevu Başarılı Bir Şekilde Oluşturuldu"
-        ]);
     }
 
 
