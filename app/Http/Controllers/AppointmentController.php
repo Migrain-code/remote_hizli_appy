@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\AppointmentResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -21,7 +22,7 @@ class AppointmentController extends Controller
     {
         $user = $request->user();
         $business = $user->business;
-        dd($business->appointments()->whereDate(DB::raw('DATE_FORMAT(start_time, "%Y-%m-%d")'), '=', $request->appointment_date)->get());
+        dd($business->appointments()->whereDate(DB::raw('DATE_FORMAT(start_time, "%Y-%m-%d")'), '=', Carbon::parse($request->appointment_date)->format('Y-m-d'))->get());
 
         return response()->json(AppointmentResource::collection($business->appointments()->whereDate('start_time', $request->appoinment_date)->get()));
     }
