@@ -414,7 +414,7 @@ class AppointmentCreateController extends Controller
         $personels = $request->get('personels');
         $services = $request->services;
 
-        $appointmentStartTime = Carbon::parse($request->appointment_time);
+        $appointmentStartTime = Carbon::parse($request->times[0]);
         foreach ($services as $index => $serviceId) {
             $findService = BusinessService::find($serviceId);
             $appointmentService = new AppointmentServices();
