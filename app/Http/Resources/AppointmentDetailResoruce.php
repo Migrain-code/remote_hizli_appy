@@ -16,6 +16,7 @@ class AppointmentDetailResoruce extends JsonResource
     {
         return [
             'id' => $this->id,
+            'name' => $this->customer->name,
             'date' => $this->start_time->format('d.m.Y H:i'),
             'status' => $this->status("text"),
             'statusCode' => $this->status,
