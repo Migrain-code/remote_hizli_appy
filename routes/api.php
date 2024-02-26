@@ -158,19 +158,19 @@ Route::prefix('business')->group(function (){
         Route::apiResource('appointment', AppointmentController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
-                /** -----------------------------Randevuya Hizmet Ekleme ---------------------- */
-                Route::prefix('appointment')->group(function (){
-                    Route::get('/{appointment}/service-list', [AppointmentServicesController::class, 'index']);
-                    Route::post('/{appointment}/service-add', [AppointmentServicesController::class, 'store']);
-                    Route::delete('/{appointmentServices}/service-delete', [AppointmentServicesController::class, 'destroy']);
-                });
+        /** -----------------------------Randevuya Hizmet Ekleme ---------------------- */
+        Route::prefix('appointment')->group(function (){
+            Route::get('/{appointment}/service-list', [AppointmentServicesController::class, 'index']);
+            Route::post('/{appointment}/service-add', [AppointmentServicesController::class, 'store']);
+            Route::delete('/{appointmentServices}/service-delete', [AppointmentServicesController::class, 'destroy']);
+        });
 
-                /** -----------------------------Randevuya Fotoğraf Ekleme ---------------------- */
-                Route::prefix('appointment')->group(function (){
-                    Route::get('/{appointment}/photo-list', [AppointmentPhotoController::class, 'index']);
-                    Route::post('/{appointment}/photo-add', [AppointmentPhotoController::class, 'store']);
-                    Route::delete('/{appointmentPhoto}/photo-delete', [AppointmentPhotoController::class, 'destroy']);
-                });
+        /** -----------------------------Randevuya Fotoğraf Ekleme ---------------------- */
+        Route::prefix('appointment')->group(function (){
+            Route::get('/{appointment}/photo-list', [AppointmentPhotoController::class, 'index']);
+            Route::post('/{appointment}/photo-add', [AppointmentPhotoController::class, 'store']);
+            Route::delete('/{appointmentPhoto}/photo-delete', [AppointmentPhotoController::class, 'destroy']);
+        });
         /** -------------------------------- Randevu Oluşturma --------------------------------------- */
 
         Route::prefix('appointment-create')->controller(AppointmentCreateController::class)->group(function (){
