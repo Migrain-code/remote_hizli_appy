@@ -27,7 +27,7 @@ class MessageSendRequest extends FormRequest
     {
         return [
             'messageId' => 'required',
-            'customers' => 'required',
+            //'customers' => 'required',
         ];
     }
 
@@ -35,7 +35,7 @@ class MessageSendRequest extends FormRequest
     {
         return [
             'messageId' => 'Doğum Günü Mesajı',
-            'customers' => 'Müşteri/Müşteriler',
+            //'customers' => 'Müşteri/Müşteriler',
         ];
     }
 
