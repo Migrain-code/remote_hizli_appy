@@ -15,6 +15,7 @@ class AppointmentServiceResource extends JsonResource
     public function toArray($request)
     {
         return [
+          'id' => $this->id,
           'personel' => PersonelListResource::make($this->personel),
           'serviceName' => $this->service->subCategory->name,
           'price' => $this->service->price,
