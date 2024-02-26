@@ -83,7 +83,7 @@ class Business extends Model
 
     public function appointments()
     {
-        return $this->hasMany(Appointment::class, 'business_id', 'id')->orderBy('start_time', 'desc');
+        return $this->hasMany(Appointment::class, 'business_id', 'id');
     }
 
     public function cities()

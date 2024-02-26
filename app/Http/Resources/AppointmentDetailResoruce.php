@@ -16,10 +16,16 @@ class AppointmentDetailResoruce extends JsonResource
     {
         return [
             'id' => $this->id,
-            'business' => BusinessResource::make($this->business),
-            'date' => $this->start_time,
+            'date' => $this->start_time->format('d.m.Y H:i'),
             'status' => $this->status("text"),
+            'statusCode' => $this->status,
             'comment_status' => $this->comment_status,
+            'note' => $this->note,
+            'isCampaign' => isset($this->campaign_id),
+            'total' => $this->total,
+            'campaignDiscount' => ($this->total * $this->discount) / 100,
+            'cashPoint' =>  $this->point,
+            'collectedTotal' => ceil($this->total - ((($this->total * $this->discount) / 100) + $this->point)),
             'services' => AppointmentServiceResource::collection($this->services),
         ];
     }

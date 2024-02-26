@@ -13,38 +13,37 @@ class Appointment extends Model
         0 => [
             'html' => '<span class="badge light badge-warning fw-bolder px-2 py-2">Onay Bekliyor</span>',
             'text' => 'Onay Bekliyor',
+            "color" => "#fff04f"
         ],
         1 => [
             'html' => '<span class="badge light badge-success fw-bolder px-2 py-2">Onaylandı</span>',
-            'text' => 'Onaylandı'
+            'text' => 'Onaylandı',
+            "color" => "#6aab73"
         ],
         2 => [
-            'html' => '<span class="badge light badge-info fw-bolder px-2 py-2">Randevu Zamanı</span>',
-            'text' => 'Randevu Zamanı'
+            'html' => '<span class="badge badge-outline-success fw-bolder px-2 py-2">Tamamlandı</span>',
+            'text' => 'Tamamlandı',
+            "color" => "#4a7750"
         ],
         3 => [
-            'html' => '<span class="badge light badge-default fw-bolder px-2 py-2">Başladı</span>',
-            'text' => 'Başladı'
+            'html' => '<span class="badge light badge-danger fw-bolder px-2 py-2">İptal Edildi</span>',
+            'text' => 'İptal Edildi',
+            "color" => "#bf0d36"
         ],
         4 => [
-            'html' => '<span class="badge badge-outline-success fw-bolder px-2 py-2">Tamamlandı</span>',
-            'text' => 'Tamamlandı'
+            'html' => '<span class="badge badge-outline-info fw-bolder px-2 py-2">Gelmedi</span>',
+            'text' => 'Gelmedi',
+            "color" => "#bf0d36"
         ],
         5 => [
-            'html' => '<span class="badge badge-outline-info fw-bolder px-2 py-2">Ödeme Bekleniyor</span>',
-            'text' => 'Ödeme Bekleniyor'
+            'html' => '<span class="badge badge-outline-info fw-bolder px-2 py-2">Geldi</span>',
+            'text' => 'Geldi',
+            "color" => "#4a7750"
         ],
         6 => [
-            'html' => '<span class="badge badge-outline-info fw-bolder px-2 py-2">Ödeme Alındı</span>',
-            'text' => 'Ödeme Alındı'
-        ],
-        7 => [
-            'html' => '<span class="badge badge-outline-success fw-bolder px-2 py-2">Ödeme Onaylandı</span>',
-            'text' => 'Ödeme Onaylandı'
-        ],
-        8 => [
-            'html' => '<span class="badge light badge-danger fw-bolder px-2 py-2">İptal Edildi</span>',
-            'text' => 'İptal Edildi'
+            'html' => '<span class="badge badge-outline-info fw-bolder px-2 py-2">Tahsilatsız Kapatıldı</span>',
+            'text' => 'Tahsilatsız Kapatıldı',
+            "color" => "#2f4aaf"
         ],
 
     ];
@@ -59,6 +58,10 @@ class Appointment extends Model
         return $this->hasMany(AppointmentServices::class, 'appointment_id', 'id');
     }
 
+    public function photos()
+    {
+        return $this->hasMany(AppointmentPhoto::class, 'appointment_id', 'id');
+    }
     public function business()
     {
         return $this->hasOne(Business::class, 'id', 'business_id');

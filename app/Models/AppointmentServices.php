@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AppointmentServices extends Model
 {
     use HasFactory;
+    protected $dates=['start_time', 'end_time'];
+
     const STATUS_LIST=[
         0 => [
             'html' => '<span class="badge light badge-warning fw-bolder px-2 py-2">Onay Bekliyor</span>',

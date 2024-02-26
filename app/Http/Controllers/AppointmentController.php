@@ -2,7 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Appointment\ServiceAddRequest;
+use App\Http\Resources\AppointmentDetailResoruce;
 use App\Http\Resources\AppointmentResource;
+use App\Http\Resources\BusinessServiceResource;
+use App\Http\Resources\PersonelListResource;
+use App\Models\Appointment;
+use App\Models\AppointmentServices;
+use App\Models\BusinessService;
+use App\Models\Personel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -13,84 +21,114 @@ use Illuminate\Support\Facades\DB;
  */
 class AppointmentController extends Controller
 {
+    private $business;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->business = auth()->user()->business;
+            return $next($request);
+        });
+    }
+
     /**
      * Tüm Randevular
      *
-     * @return \Illuminate\Http\Response
+     *
+     * listType = thisDay
+     * listType = thisWeek
+     * listType = thisMonth
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
         $user = $request->user();
         $business = $user->business;
-        $reqDate = Carbon::parse($request->appointment_date);
-        dd($business->appointments()->whereDate('start_time', $reqDate->toDateString())->get());
-
-        return response()->json(AppointmentResource::collection($business->appointments()->whereDate('start_time', $request->appoinment_date)->get()));
+        //$reqDate = Carbon::parse($request->date)->format('Y-m-d');
+        //$appoinments = $business->appointments()->whereDate('start_time', $reqDate)->orderBy('start_time', 'asc')->get();
+        $appoinments = $business->appointments()->when($request->filled('listType'), function ($q) use ($request) {
+            if ($request->listType == "thisWeek") {
+                $startOfWeek = now()->startOfWeek();
+                $endOfWeek = now()->endOfWeek();
+                $q->whereBetween('start_time', [$startOfWeek, $endOfWeek]);
+            } elseif ($request->listType == "thisMonth") {
+                $startOfMonth = now()->startOfMonth();
+                $endOfMonth = now()->endOfMonth();
+                $q->whereBetween('start_time', [$startOfMonth, $endOfMonth]);
+            } elseif ($request->listType == "thisYear") {
+                $startOfYear = now()->startOfYear();
+                $endOfYear = now()->endOfYear();
+                $q->whereBetween('start_time', [$startOfYear, $endOfYear]);
+            } else {
+                $q->whereDate('start_time', now()->toDateString());
+            }
+        })->get();
+        return response()->json(AppointmentResource::collection($appoinments));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Randevu Detayı
      *
+     * @param Appointment $appointment
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(Appointment $appointment)
+    {
+        return response()->json(AppointmentDetailResoruce::make($appointment));
+    }
+
+    /**
+     * Randevu Tamamla
+     *
+     * @param Appointment $appointment
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function edit(Appointment $appointment)
     {
-        //
+        $appointment->status = 2;
+        $appointment->save();
+
+        return response()->json([
+            'status' => "success",
+            'message' => "Randevuya Durumu Başarılı Bir Şekilde Güncellendi"
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Randevu Notu Kaydet
      *
+     * Body içerisinde
+     * note olarak göndermeniz yeterlidir.
      * @param \Illuminate\Http\Request $request
+     * @param Appointment $appointment
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function update(Request $request, Appointment $appointment)
     {
-        //
+        $appointment->note = $request->note;
+        $appointment->save();
+
+        return response()->json([
+            'status' => "success",
+            'message' => "Randevuya Not Edildi"
+        ]);
     }
 
     /**
-     * Display the specified resource.
+     * Randevu İptal Et
      *
-     * @param int $id
+     * @param Appointment $appointment
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function destroy(Appointment $appointment)
     {
-        //
-    }
+        $appointment->status = 3;
+        $appointment->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json([
+            'status' => "success",
+            'message' => "Randevu İptal Edildi"
+        ]);
     }
 }
