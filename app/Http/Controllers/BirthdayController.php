@@ -82,7 +82,7 @@ class BirthdayController extends Controller
             $newContent = str_replace('[]', $findCustomer->name, $content);
 
             Sms::send($findCustomer->phone, $newContent);
-            $findCustomer->sendNotification($title, $content);
+            //$findCustomer->sendNotification($title, $content);
             //Push Bildirim Eklenecek
         }
         return response()->json([
