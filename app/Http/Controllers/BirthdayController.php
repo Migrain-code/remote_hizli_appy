@@ -71,8 +71,14 @@ class BirthdayController extends Controller
         $message = MessageList::find($request->input('messageId'));
         $title = $message->title;
         $content = $message->content;
-        foreach ($request->customers as $customer){
-            $findCustomer = Customer::find($customer);
+
+        $reqDate = now();
+        $customers = $this->user->business->customers()->whereHas('customer', function ($q) use ($reqDate){
+            $q->whereDate('birthday', $reqDate->toDateString());
+        })->get();
+
+        foreach ($customers as $findCustomer){
+
             $newContent = str_replace('[]', $findCustomer->name, $content);
 
             Sms::send($findCustomer->phone, $newContent);
