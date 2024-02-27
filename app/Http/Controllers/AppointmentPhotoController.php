@@ -58,7 +58,7 @@ class AppointmentPhotoController extends Controller
         $path = 'temp/' . Str::random(64). ".jpeg";
         Storage::put($path, $image);
 
-        $newUrl = $path;
+        $newUrl = 'storage/'.$path;
 
         return $newUrl;
     }
