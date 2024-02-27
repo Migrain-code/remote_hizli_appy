@@ -30,6 +30,9 @@ use App\Http\Controllers\Api\NotificationController;
 use \App\Http\Controllers\BirthdayController;
 use \App\Http\Controllers\AppointmentServicesController;
 use \App\Http\Controllers\AppointmentPhotoController;
+use App\Http\Controllers\AdissionController;
+use App\Http\Controllers\Adission\AdissionProductSaleController;
+use \App\Http\Controllers\Adission\AdissionPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -168,8 +171,21 @@ Route::prefix('business')->group(function (){
         /** -----------------------------Randevuya Fotoğraf Ekleme ---------------------- */
         Route::prefix('appointment')->group(function (){
             Route::get('/{appointment}/photo/list', [AppointmentPhotoController::class, 'index']);
-            Route::post('/{appointment}/photo/add', [AppointmentPhotoController::class, 'store']);
+            Route::post('/photo/add', [AppointmentPhotoController::class, 'store']);
             Route::delete('/{appointmentPhoto}/photo/delete', [AppointmentPhotoController::class, 'destroy']);
+        });
+
+        /** -------------------------------------- Adisyonlar ----------------------------------------- */
+        Route::apiResource('adission', AdissionController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+        Route::prefix('adission')->group(function (){
+            Route::get('/{adission}/sale/list', [AdissionProductSaleController::class, 'index']);
+            Route::post('/{adission}/sale/add', [AdissionProductSaleController::class, 'store']);
+            Route::get('/{adission}/payment', [AdissionPaymentController::class, 'index']);
+            Route::get('/{adission}/payment/create', [AdissionPaymentController::class, 'create']);
+            Route::get('/{adission}/payment/add', [AdissionPaymentController::class, 'store']);
+            Route::get('/{adission}/cash-point/add', [AdissionPaymentController::class, 'addCashPoint']);
         });
         /** -------------------------------- Randevu Oluşturma --------------------------------------- */
 

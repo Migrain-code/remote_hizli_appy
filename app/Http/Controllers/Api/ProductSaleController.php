@@ -176,10 +176,14 @@ class ProductSaleController extends Controller
      */
     public function destroy(ProductSales $productSale)
     {
+        $productFind = Product::find($productSale->product_id);
+        $productFind = $productFind->piece + $productSale->piece;
+        $productFind->save();
+
         if ($productSale->delete()){
             return response()->json([
                 'status' => "success",
-                'message' => "Ürün Satışı Silindi"
+                'message' => "Ürün Satışı Silindi. Satılan Ürün Adedi Ürün Stoğuna Geri Eklendi"
             ]);
         }
     }

@@ -9,6 +9,7 @@ class Appointment extends Model
 {
     use HasFactory;
     protected $dates=['start_time', 'end_time'];
+
     const STATUS_LIST=[
         0 => [
             'html' => '<span class="badge light badge-warning fw-bolder px-2 py-2">Onay Bekliyor</span>',
@@ -47,6 +48,12 @@ class Appointment extends Model
         ],
 
     ];
+
+    public function status($type)
+    {
+        return self::STATUS_LIST[$this->status][$type] ?? null;
+    }
+
     public function customer()
     {
         return $this->hasOne(Customer::class, 'id', 'customer_id')->withDefault([
@@ -58,6 +65,11 @@ class Appointment extends Model
         return $this->hasMany(AppointmentServices::class, 'appointment_id', 'id');
     }
 
+    public function payments()
+    {
+        return $this->hasMany(AppointmentCollectionEntry::class, 'appointment_id', 'id');
+    }
+
     public function photos()
     {
         return $this->hasMany(AppointmentPhoto::class, 'appointment_id', 'id');
@@ -66,10 +78,13 @@ class Appointment extends Model
     {
         return $this->hasOne(Business::class, 'id', 'business_id');
     }
-
-    public function status($type)
+    public function cashPoint()
     {
-        return self::STATUS_LIST[$this->status][$type] ?? null;
+        return $this->hasOne(CustomerCashPoint::class, 'appointment_id', 'id');
+    }
+    public function sales()
+    {
+        return $this->hasMany(ProductSales::class, 'appointment_id', 'id');
     }
     public function calculateTotal()
     {

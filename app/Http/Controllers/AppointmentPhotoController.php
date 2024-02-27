@@ -31,11 +31,12 @@ class AppointmentPhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Appointment $appointment)
+    public function store(Request $request)
     {
+        $appointment = Appointment::find($request->appointmentId);
         $response = UploadFile::uploadFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
         $appointmentPhoto = new AppointmentPhoto();
-        $appointmentPhoto->appointment_id = $this->business->id;
+        $appointmentPhoto->appointment_id = $appointment->id;
         $appointmentPhoto->image = $response["image"]["way"];
         $appointmentPhoto->save();
 
