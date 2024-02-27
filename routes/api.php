@@ -171,7 +171,7 @@ Route::prefix('business')->group(function (){
         /** -----------------------------Randevuya Fotoğraf Ekleme ---------------------- */
         Route::prefix('appointment')->group(function (){
             Route::get('/{appointment}/photo/list', [AppointmentPhotoController::class, 'index']);
-            Route::post('/photo/add', [AppointmentPhotoController::class, 'store']);
+            Route::post('/{appointment}/photo/add', [AppointmentPhotoController::class, 'store']);
             Route::delete('/{appointmentPhoto}/photo/delete', [AppointmentPhotoController::class, 'destroy']);
         });
 
