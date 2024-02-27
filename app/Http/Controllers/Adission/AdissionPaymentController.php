@@ -11,6 +11,7 @@ use App\Http\Resources\ProductResource;
 use App\Http\Resources\ProductSaleListResource;
 use App\Models\Appointment;
 use App\Models\AppointmentCollectionEntry;
+use App\Models\CustomerCashPoint;
 use App\Models\Product;
 use App\Models\ProductSales;
 use Illuminate\Http\Request;
@@ -103,13 +104,29 @@ class AdissionPaymentController extends Controller
         return response()->json([
             'status' => "success",
             'message' => "Tahsilat Başarılı Bir Şekilde Eklendi"
-        ], 200);
+        ]);
     }
 
-    public function addCashPoint(Appointment $adission)
+    public function addCashPoint(Appointment $adission, Request $request)
     {
         if(isset($adission->cashPoint)){
+            return response()->json([
+                'status' => "success",
+                'message' => "Bu Adisyonda Parapuan Tanımlaması Yaptınız Başka Parapuan Ekleyemezsiniz"
+            ], 422);
+        }
 
+        $customerCashPoint = new CustomerCashPoint();
+        $customerCashPoint->appointment_id = $adission->id;
+        $customerCashPoint->customer_id = $adission->customer_id;
+        $customerCashPoint->business_id = $adission->business_id;
+        $customerCashPoint->price = $request->price;
+        $customerCashPoint->addition_date = now();
+        if ($customerCashPoint->save()){
+            return response()->json([
+                'status' => "success",
+                'message' => "Para Puan Başarılı Bir Şekilde Eklendi"
+            ]);
         }
     }
     public function calculateCampaignDiscount($adission){ //indirim tl dönüşümü
