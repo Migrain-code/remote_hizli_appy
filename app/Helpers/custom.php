@@ -11,13 +11,14 @@ function image($path)
 function setting($key){
     return config('settings.'.$key);
 }
-function base64Convertor($base64){
+function base64Convertor($base64, $outputPath){
 
     $newProfile = "data:image/jpeg;base64,".$base64;
     $data = explode(',', $newProfile);
     $image = base64_decode($data[1]);
 
-    return $image;
+    file_put_contents($outputPath, $image);
+    return $outputPath;
 }
 function authUser(){
     if (auth('official')->check()){
