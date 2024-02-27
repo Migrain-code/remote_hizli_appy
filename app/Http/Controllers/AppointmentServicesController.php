@@ -93,5 +93,9 @@ class AppointmentServicesController extends Controller
                 'message' => "Hizmet Bu Randevudan Kaldırıldı"
             ]);
         }
+        return response()->json([
+            'status' => "error",
+            'message' => "Randevudaki Son Hizmet Kaldıramazsınız"
+        ], 422);
     }
 }
