@@ -8,7 +8,6 @@ class UploadFile
 {
     public static function uploadFile($file, $folderName = "uploads")
     {
-
         $response = Http::attach(
             'file',          // API tarafında beklendiği dosya alanı adı
             file_get_contents($file->path()), // Dosyanın içeriği

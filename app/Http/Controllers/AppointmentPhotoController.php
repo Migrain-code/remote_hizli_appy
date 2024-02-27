@@ -35,9 +35,7 @@ class AppointmentPhotoController extends Controller
      */
     public function store(Request $request, Appointment $appointment)
     {
-        $imagePath = $this->base64Convertor($request->base64);
-        $fullPath = asset($imagePath);
-        $response = UploadFile::uploadFile($fullPath, 'appointmentPhotos/appointment'. $appointment->id);
+        $response = UploadFile::uploadFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
         $appointmentPhoto = new AppointmentPhoto();
         $appointmentPhoto->appointment_id = $appointment->id;
         $appointmentPhoto->image = $response["image"]["way"];
@@ -47,20 +45,6 @@ class AppointmentPhotoController extends Controller
            'status' => "success",
            'message' => "Fotoğraf Kayıt Edildi"
         ]);
-    }
-    function base64Convertor($base64){
-        $path = storage_path('app/public/temp');
-        \File::makeDirectory($path, 0711, true, true);
-        $newProfile = "data:image/jpeg;base64,".$base64;
-        $data = explode(',', $newProfile);
-        $image = base64_decode($data[1]);
-
-        $path = 'temp/' . Str::random(64). ".jpeg";
-        Storage::put($path, $image);
-
-        $newUrl = 'storage/'.$path;
-
-        return $newUrl;
     }
     /**
      * Randevu Fotoğrafı silme
