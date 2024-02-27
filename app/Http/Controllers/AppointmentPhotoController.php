@@ -33,6 +33,11 @@ class AppointmentPhotoController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->hasAny('image')){
+            return response()->json([
+                'message' => "Görsel Gönderildi"
+            ]);
+        }
         $appointment = Appointment::find($request->appointmentId);
         $response = UploadFile::uploadFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
         $appointmentPhoto = new AppointmentPhoto();
