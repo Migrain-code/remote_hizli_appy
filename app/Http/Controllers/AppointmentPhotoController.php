@@ -33,13 +33,15 @@ class AppointmentPhotoController extends Controller
      */
     public function store(Request $request)
     {
-        if (!$request->hasFile('image')){
+        $image = base64Convertor($request->base64);
+
+        /*if (!$request->hasFile('image')){
             return response()->json([
                 'message' => "Görsel Seçimi Yapılmadı"
             ], 422);
-        }
+        }*/
         $appointment = Appointment::find($request->appointmentId);
-        $response = UploadFile::uploadFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
+        $response = UploadFile::uploadFile($image, 'appointmentPhotos/appointment'. $appointment->id);
         $appointmentPhoto = new AppointmentPhoto();
         $appointmentPhoto->appointment_id = $appointment->id;
         $appointmentPhoto->image = $response["image"]["way"];
