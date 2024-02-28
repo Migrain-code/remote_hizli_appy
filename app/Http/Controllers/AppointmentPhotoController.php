@@ -7,6 +7,7 @@ use App\Models\Appointment;
 use App\Models\AppointmentPhoto;
 use App\Services\UploadFile;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -35,7 +36,45 @@ class AppointmentPhotoController extends Controller
      */
     public function store(Request $request, Appointment $appointment)
     {
-        $request->dd();
+        $data = [
+            "appointmentId" => 23,
+            "image" => [
+                "_parts" => [
+                    "uri" => "file:///Users/mertkutukcu/Library/Developer/CoreSimulator/Devices/6F4B1515-3F5A-43F1-AD41-8624938FB5B9/data/Containers/Data/Application/FA783FE3-0ABE-42AE-B7C3-0F5F9336443E/tmp/038E6BCC-AFA2-469D-8075-4F88E8975550.jpg",
+                    "type" => "image/jpeg",
+                    "name" => "038E6BCC-AFA2-469D-8075-4F88E8975550.jpg"
+                ]
+            ]
+        ];
+
+        // Dosya yolunu al
+        $filePath = $data['image']['_parts']['uri'];
+
+        // Dosya tipini al
+        $fileType = $data['image']['_parts']['type'];
+
+        // Dosya adını al
+        $fileName = $data['image']['_parts']['name'];
+
+        // Dosya boyutunu al (örnek olarak 1024 byte kullanılıyor)
+        $fileSize = 1024; // Gerçek dosya boyutunu burada belirtmelisiniz
+
+        // Dosya örneğini oluştur
+        $file = new UploadedFile($filePath, $fileName, $fileType, $fileSize);
+
+        // Dosya örneğini request'e ekleyin
+        $request->files->set('image', $file);
+        if ($request->hasFile('image')) {
+            return response()->json([
+               'status' => "success",
+               'message' => "Fotoğraf Yüklendi"
+            ]);
+        } else{
+            return response()->json([
+                'status' => "error",
+                'message' => "Fotoğraf Seçilmesi Zorunludur",
+            ], 422);
+        }
         $response = UploadFile::uploadFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
         $appointmentPhoto = new AppointmentPhoto();
         $appointmentPhoto->appointment_id = $appointment->id;
