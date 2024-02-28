@@ -65,8 +65,8 @@ class AppointmentPhotoController extends Controller
         // Dosya örneğini request'e ekleyin
         $request->files->set('image', $file);
         if ($request->hasFile('image')) {
-            dd($request->file('image'));
-            $response = UploadFile::uploadTempFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
+
+            $response = UploadFile::uploadTempFile($file, 'appointmentPhotos/appointment'. $appointment->id);
             $appointmentPhoto = new AppointmentPhoto();
             $appointmentPhoto->appointment_id = $appointment->id;
             $appointmentPhoto->image = $response["image"]["way"];
