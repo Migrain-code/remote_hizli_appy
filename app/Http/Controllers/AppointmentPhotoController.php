@@ -32,7 +32,7 @@ class AppointmentPhotoController extends Controller
      * Fotoğraf Ekleme
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request, Appointment $appointment)
     {
@@ -65,9 +65,15 @@ class AppointmentPhotoController extends Controller
         // Dosya örneğini request'e ekleyin
         $request->files->set('image', $file);
         if ($request->hasFile('image')) {
+            $response = UploadFile::uploadFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
+            $appointmentPhoto = new AppointmentPhoto();
+            $appointmentPhoto->appointment_id = $appointment->id;
+            $appointmentPhoto->image = $response["image"]["way"];
+            $appointmentPhoto->save();
+
             return response()->json([
-               'status' => "success",
-               'message' => "Fotoğraf Yüklendi"
+                'status' => "success",
+                'message' => "Fotoğraf Kayıt Edildi"
             ]);
         } else{
             return response()->json([
@@ -75,16 +81,7 @@ class AppointmentPhotoController extends Controller
                 'message' => "Fotoğraf Seçilmesi Zorunludur",
             ], 422);
         }
-        $response = UploadFile::uploadFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
-        $appointmentPhoto = new AppointmentPhoto();
-        $appointmentPhoto->appointment_id = $appointment->id;
-        $appointmentPhoto->image = $response["image"]["way"];
-        $appointmentPhoto->save();
 
-        return response()->json([
-           'status' => "success",
-           'message' => "Fotoğraf Kayıt Edildi"
-        ]);
     }
     /**
      * Randevu Fotoğrafı silme
