@@ -110,6 +110,8 @@ class AdissionPaymentController extends Controller
     public function addCashPoint(Appointment $adission, Request $request)
     {
         if(isset($adission->cashPoint)){
+            $adissionPoint = $adission->cashPoint;
+
             return response()->json([
                 'status' => "success",
                 'message' => "Bu Adisyonda Parapuan Tanımlaması Yaptınız Başka Parapuan Ekleyemezsiniz"

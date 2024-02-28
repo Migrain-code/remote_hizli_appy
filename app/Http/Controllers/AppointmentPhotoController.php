@@ -35,6 +35,7 @@ class AppointmentPhotoController extends Controller
      */
     public function store(Request $request, Appointment $appointment)
     {
+        $request->dd();
         $response = UploadFile::uploadFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
         $appointmentPhoto = new AppointmentPhoto();
         $appointmentPhoto->appointment_id = $appointment->id;
