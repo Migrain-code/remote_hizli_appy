@@ -36,7 +36,7 @@ class AppointmentPhotoController extends Controller
      */
     public function store(Request $request, Appointment $appointment)
     {
-        $data = [
+        /*$data = [
             "appointmentId" => 23,
             "image" => [
                 "_parts" => [
@@ -63,10 +63,10 @@ class AppointmentPhotoController extends Controller
         $file = new UploadedFile($filePath, $fileName, $fileType, $fileSize);
 
         // Dosya örneğini request'e ekleyin
-        $request->files->set('image', $file);
+        $request->files->set('image', $file);*/
         if ($request->hasFile('image')) {
 
-            $response = UploadFile::uploadTempFile($file, 'appointmentPhotos/appointment'. $appointment->id);
+            $response = UploadFile::uploadFile($request->file('image'), 'appointmentPhotos/appointment'. $appointment->id);
             $appointmentPhoto = new AppointmentPhoto();
             $appointmentPhoto->appointment_id = $appointment->id;
             $appointmentPhoto->image = $response["image"]["way"];
