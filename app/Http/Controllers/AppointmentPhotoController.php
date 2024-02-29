@@ -25,7 +25,10 @@ class AppointmentPhotoController extends Controller
      */
     public function index(Appointment $appointment)
     {
-        return response()->json(AppointmentPhotoResource::collection($appointment->photos));
+        return response()->json([
+            'photos' => AppointmentPhotoResource::collection($appointment->photos),
+            'total' => $appointment->photos->count(),
+        ]);
     }
 
     /**
