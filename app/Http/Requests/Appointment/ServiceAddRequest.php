@@ -27,6 +27,7 @@ class ServiceAddRequest extends FormRequest
     {
         return [
             'serviceId' => 'required',
+            'personelId' => 'required',
         ];
     }
 
@@ -34,6 +35,7 @@ class ServiceAddRequest extends FormRequest
     {
         return [
             'serviceId' => 'Hizmet Seçimi',
+            'personelId' => 'Personel Seçimi'
         ];
     }
 
