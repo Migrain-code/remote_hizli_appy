@@ -5,6 +5,7 @@ namespace App\Http\Requests\Promossion;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class PromosionUpdateRequest extends FormRequest
 {
@@ -26,11 +27,11 @@ class PromosionUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'cash' => 'required|between:0,100',
-            'creditCard' => 'required|between:0,100',
-            'eft' => 'required|between:0,100',
-            'limit' => 'required|between:0,100',
-            'birthday'=> 'required|between:0,100',
+            'cash' => ['required', Rule::in([0, 100])],
+            'creditCard' => ['required', Rule::in([0, 100])],
+            'eft' => ['required', Rule::in([0, 100])],
+            'limit' => ['required', Rule::in([0, 100])],
+            'birthday'=> ['required', Rule::in([0, 100])],
         ];
     }
 
@@ -38,10 +39,10 @@ class PromosionUpdateRequest extends FormRequest
     {
         return [
             'cash' => 'Nakit Ödeme Promosyonu',
-            'credit_cart' => 'Kredi Kartı Ödeme Promosyonu',
+            'creditCard' => 'Kredi Kartı Ödeme Promosyonu',
             'eft' => 'EFT/Havale Promosyonu',
-            'use_limit' => 'Parapuan Kullanım Limiti',
-            'birthday_discount' => 'Doğum Günü İndirimi Promosyonu',
+            'limit' => 'Parapuan Kullanım Limiti',
+            'birthday' => 'Doğum Günü İndirimi Promosyonu',
         ];
     }
 

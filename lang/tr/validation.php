@@ -35,7 +35,7 @@ return array(
     "email" => ":attribute biçimi geçersiz.",
     "exists" => "Seçili :attribute sistemde kayıtlı.",
     "image" => ":attribute alanı resim dosyası olmalıdır.",
-    "in" => ":attribute değeri geçersiz.",
+    "in" => ":attribute değeri 0 ile 100 arasında olmalıdır.",
     "integer" => ":attribute rakam olmalıdır.",
     "ip" => ":attribute geçerli bir IP adresi olmalıdır.",
     "max" => array(
