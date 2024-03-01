@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Promossion\PromosionUpdateRequest;
 use App\Http\Resources\Promosion\PromossionListResource;
 use App\Models\BusinessPromossion;
 use Illuminate\Http\Request;
@@ -42,20 +43,9 @@ class BusinessPromossionController extends Controller
      * değer üretilip apiden gelen rate verisine göre selected attribute aktif edilecek
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PromosionUpdateRequest $request)
     {
         $request->dd();
-        return response()->json(PromossionListResource::make($promossions));
-    }
-    /**
-     * Promosyon Listesi Güncelleme
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BusinessPromossion  $businessPromossion
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function update(Request $request, BusinessPromossion $businessPromossion)
-    {
         $promossions = $this->business->promossions;
 
         $promossions->cash = $request->cash;
@@ -73,16 +63,5 @@ class BusinessPromossionController extends Controller
             'status' => "error",
             'message' => "Sistemsel Bir Hata Oluştur Lütfen Daha Sonra Tekrar Deneyiniz"
         ], 422);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\BusinessPromossion  $businessPromossion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(BusinessPromossion $businessPromossion)
-    {
-        //
     }
 }

@@ -26,11 +26,11 @@ class PromosionUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'cash' => 'required',
-            'credit_cart' => 'required',
-            'eft' => 'required',
-            'use_limit' => 'required',
-            'birthday_discount'=> 'required',
+            'cash' => 'required|between:0,100',
+            'credit_cart' => 'required|between:0,100',
+            'eft' => 'required|between:0,100',
+            'use_limit' => 'required|between:0,100',
+            'birthday_discount'=> 'required|between:0,100',
         ];
     }
 
@@ -38,10 +38,10 @@ class PromosionUpdateRequest extends FormRequest
     {
         return [
             'cash' => 'Nakit Ödeme Promosyonu',
-            'credit_cart' => 'E-posta',
-            'eft' => 'Şifre',
-            'use_limit' => 'Cinsiyet',
-            'birthday_discount' => 'Doğum Günü',
+            'credit_cart' => 'Kredi Kartı Ödeme Promosyonu',
+            'eft' => 'EFT/Havale Promosyonu',
+            'use_limit' => 'Parapuan Kullanım Limiti',
+            'birthday_discount' => 'Doğum Günü İndirimi Promosyonu',
         ];
     }
 
