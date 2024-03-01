@@ -33,6 +33,7 @@ use \App\Http\Controllers\AppointmentPhotoController;
 use App\Http\Controllers\AdissionController;
 use App\Http\Controllers\Adission\AdissionProductSaleController;
 use \App\Http\Controllers\Adission\AdissionPaymentController;
+use \App\Http\Controllers\BusinessPromossionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -187,6 +188,11 @@ Route::prefix('business')->group(function (){
             Route::get('/{adission}/payment/add', [AdissionPaymentController::class, 'store']);
             Route::get('/{adission}/cash-point/add', [AdissionPaymentController::class, 'addCashPoint']);
         });
+
+        /** -------------------------------------- Promosyonlar ----------------------------------------- */
+        Route::apiResource('promossion', BusinessPromossionController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
         /** -------------------------------- Randevu Oluşturma --------------------------------------- */
 
         Route::prefix('appointment-create')->controller(AppointmentCreateController::class)->group(function (){

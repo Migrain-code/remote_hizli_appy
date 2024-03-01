@@ -85,7 +85,10 @@ class Business extends Model
     {
         return $this->hasMany(Appointment::class, 'business_id', 'id');
     }
-
+    public function promossions()
+    {
+        return $this->hasMany(BusinessPromossion::class, 'business_id', 'id');
+    }
     public function cities()
     {
         return $this->hasOne(City::class, 'id', 'city');
