@@ -27,10 +27,10 @@ class PromosionUpdateRequest extends FormRequest
     {
         return [
             'cash' => 'required|between:0,100',
-            'credit_cart' => 'required|between:0,100',
+            'creditCard' => 'required|between:0,100',
             'eft' => 'required|between:0,100',
-            'use_limit' => 'required|between:0,100',
-            'birthday_discount'=> 'required|between:0,100',
+            'limit' => 'required|between:0,100',
+            'birthday'=> 'required|between:0,100',
         ];
     }
 

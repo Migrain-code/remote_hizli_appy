@@ -45,14 +45,13 @@ class BusinessPromossionController extends Controller
      */
     public function store(PromosionUpdateRequest $request)
     {
-        $request->dd();
         $promossions = $this->business->promossions;
 
         $promossions->cash = $request->cash;
-        $promossions->credit_cart = $request->credit_cart;
+        $promossions->credit_cart = $request->creditCard;
         $promossions->eft = $request->eft;
-        $promossions->use_limit = $request->use_limit;
-        $promossions->birthday_discount = $request->birthday_discount;
+        $promossions->use_limit = $request->limit;
+        $promossions->birthday_discount = $request->birthday;
         if($promossions->save()){
             return response()->json([
                 'status' => "success",
