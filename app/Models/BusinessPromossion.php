@@ -35,11 +35,6 @@ class BusinessPromossion extends Model
             "name" => "Doğum Günü İndirimi",
             "form_name" => "promossion_". 4,
         ],
-        5 => [
-            "id" => 5,
-            "name" => "Online Randevu İndirimi",
-            "form_name" => "promossion_". 5,
-        ]
     ];
 
     public function type($type)
