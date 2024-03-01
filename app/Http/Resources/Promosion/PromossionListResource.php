@@ -16,10 +16,11 @@ class PromossionListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'payment_type_id' => $this->payment_type,
-            'payment_type' => $this->type("name"),
-            'form_name' => $this->type("form_name"),
-            'rate' => $this->rate,
+            'cash' => $this->cash,
+            'credit_cart' => $this->credit_cart,
+            'eft' => $this->eft,
+            'use_limit' => $this->use_limit,
+            'birthday_discount' => $this->birthday_discount,
         ];
     }
 }
