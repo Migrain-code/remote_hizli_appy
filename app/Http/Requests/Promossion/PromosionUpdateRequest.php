@@ -50,7 +50,7 @@ class PromosionUpdateRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => 'error',
-            'message' => 'Eksik Alanlar Var',
+            'message' =>  $validator->errors()->first(),
             'errors' => $validator->errors()->all(),
         ], 422));
     }

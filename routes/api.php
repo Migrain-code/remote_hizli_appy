@@ -191,7 +191,7 @@ Route::prefix('business')->group(function (){
 
         /** -------------------------------------- Promosyonlar ----------------------------------------- */
         Route::apiResource('promossion', BusinessPromossionController::class)->only([
-            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+            'index', 'store',
         ]);
         /** -------------------------------- Randevu Oluşturma --------------------------------------- */
 
