@@ -26,9 +26,11 @@ class AdissionDetailResoruce extends JsonResource
             'isCampaign' => isset($this->campaign_id),
             'total' => $this->total,
             'campaignDiscount' => $this->calculateCampaignDiscount(),
-            'cashPoint' =>  $this->point,
+            'cashPoint' =>  $this->point,//kullanılan cash point
             'collectedTotal' => $this->calculateCollectedTotal(),
             'remaining_amount' => $this->calculateCollectedTotal() - $this->payments->sum("price"),
+            'earningPoint' => $this->earned_point,
+            'isPermission' => $this->earned_point > 0,
             'payments' => AdissionPaymentListResoruce::collection($this->payments)
         ];
     }

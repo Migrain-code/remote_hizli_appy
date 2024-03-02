@@ -86,6 +86,24 @@ class Appointment extends Model
     {
         return $this->hasMany(ProductSales::class, 'appointment_id', 'id');
     }
+
+    public function addCashPoint()
+    {
+        if(isset($this->cashPoint)){
+            return false;
+        }
+
+        $customerCashPoint = new CustomerCashPoint();
+        $customerCashPoint->appointment_id = $this->id;
+        $customerCashPoint->customer_id = $this->customer_id;
+        $customerCashPoint->business_id = $this->business_id;
+        $customerCashPoint->price = $this->earned_point;
+        $customerCashPoint->addition_date = now();
+        if ($customerCashPoint->save()){
+            return true;
+
+        }
+    }
     public function calculateTotal()
     {
         $total=0;

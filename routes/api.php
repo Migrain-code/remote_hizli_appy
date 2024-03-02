@@ -186,7 +186,8 @@ Route::prefix('business')->group(function (){
             Route::get('/{adission}/payment', [AdissionPaymentController::class, 'index']);
             Route::get('/{adission}/payment/create', [AdissionPaymentController::class, 'create']);
             Route::get('/{adission}/payment/add', [AdissionPaymentController::class, 'store']);
-            Route::get('/{adission}/cash-point/add', [AdissionPaymentController::class, 'addCashPoint']);
+            Route::get('/{adission}/payment/save', [AdissionPaymentController::class, 'paymentSave']);
+
         });
 
         /** -------------------------------------- Promosyonlar ----------------------------------------- */

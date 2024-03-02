@@ -13,27 +13,27 @@ class BusinessPromossion extends Model
         0 => [
             "id" => 0,
             "name" => "Parapuan Kullanımı (Nakit)",
-            "form_name" => "promossion_". 0,
+            "form_name" => "cash",
         ],
         1 => [
             "id" => 1,
             "name" => "Parapuan Kullanımı (Kredi Kartı)",
-            "form_name" => "promossion_". 1,
+            "form_name" => "creditCard",
         ],
         2 => [
             "id" => 2,
             "name" => "Parapuan Kullanımı (EFT / Havale)",
-            "form_name" => "promossion_". 2,
+            "form_name" => "eft",
         ],
         3 => [
             "id" => 3,
             "name" => "Parapuan Kullanımı Limiti",
-            "form_name" => "promossion_". 3,
+            "form_name" => "limit",
         ],
         4 => [
             "id" => 4,
             "name" => "Doğum Günü İndirimi",
-            "form_name" => "promossion_". 4,
+            "form_name" => "birthday",
         ],
     ];
 

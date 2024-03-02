@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adission;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Adission\AdissionSaveRequest;
 use App\Http\Requests\Adission\PaymentAddRequest;
 use App\Http\Requests\Adission\ProductSaleAddRequest;
 use App\Http\Resources\Adission\AdissionDetailResoruce;
@@ -35,6 +36,8 @@ class AdissionPaymentController extends Controller
     /**
      * Adisyon Ödeme Detayı
      *
+     * Bu apide dönen response isPermission true olarak gelmiş ise parapuan yükleme alanı görünecek.
+     * Oradan da kayıt apisine isPoint true veya false zorunlu olarak gönderilecek. default olarak false alınacak
      * @param Appointment $adission
      * @return \Illuminate\Http\JsonResponse
      */
@@ -95,41 +98,92 @@ class AdissionPaymentController extends Controller
                'price' => $this->remainingTotal($adission)
             ], 422);
         }
-        $appointmentCollection = new AppointmentCollectionEntry();
-        $appointmentCollection->appointment_id = $adission->id;
-        $appointmentCollection->payment_type_id = $request->payment_type_id;
-        $appointmentCollection->price = $request->price;
-        $appointmentCollection->save();
 
-        return response()->json([
-            'status' => "success",
-            'message' => "Tahsilat Başarılı Bir Şekilde Eklendi"
-        ]);
-    }
 
-    public function addCashPoint(Appointment $adission, Request $request)
-    {
-        if(isset($adission->cashPoint)){
-            $adissionPoint = $adission->cashPoint;
-
+        $adissionEarnedPoint = $this->calculateAppointmentEarnedPoint($request, $adission);
+        if ($adissionEarnedPoint){
+            $appointmentCollection = new AppointmentCollectionEntry();
+            $appointmentCollection->appointment_id = $adission->id;
+            $appointmentCollection->payment_type_id = $request->payment_type_id;
+            $appointmentCollection->price = $request->price;
+            $appointmentCollection->save();
             return response()->json([
                 'status' => "success",
-                'message' => "Bu Adisyonda Parapuan Tanımlaması Yaptınız Başka Parapuan Ekleyemezsiniz"
-            ], 422);
-        }
-
-        $customerCashPoint = new CustomerCashPoint();
-        $customerCashPoint->appointment_id = $adission->id;
-        $customerCashPoint->customer_id = $adission->customer_id;
-        $customerCashPoint->business_id = $adission->business_id;
-        $customerCashPoint->price = $request->price;
-        $customerCashPoint->addition_date = now();
-        if ($customerCashPoint->save()){
-            return response()->json([
-                'status' => "success",
-                'message' => "Para Puan Başarılı Bir Şekilde Eklendi"
+                'message' => "Tahsilat Başarılı Bir Şekilde Eklendi"
             ]);
         }
+
+        return response()->json([
+            'status' => "error",
+            'message' => "Hata! Ödeme Yöntemi Bulunamadı"
+        ], 422);
+    }
+    /**
+     * Adisyon Kayıt Apisi
+     *
+     * @param Appointment $adission
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function paymentSave(AdissionSaveRequest $request, Appointment $adission)
+    {
+        if ($this->remainingTotal($adission) == 0){
+            if ($request->filled('note')){
+                $adission->note = $request->note;
+            }
+            $adission->status = 5;
+            $adission->save();
+            if ($request->isPoint){ //parapuan yükleme aktif ise
+                if ($adission->addCashPoint()){
+                    return response()->json([
+                        'status' => "success",
+                        'message' => "Adisyon Başarılı Bir Şekilde Kayıt Edildi"
+                    ]);
+                } else{
+                    return response()->json([
+                        'status' => "error",
+                        'message' => "Bu Adisyonda Parapuan Tanımlaması Yaptınız Başka Parapuan Ekleyemezsiniz"
+                    ], 422);
+                }
+            }
+
+            return response()->json([
+                'status' => "success",
+                'message' => "Adisyon Başarılı Bir Şekilde Kayıt Edildi"
+            ]);
+        }
+
+        return response()->json([
+            'status' => "error",
+            'message' => "Bu Adisyonda Tahsil Edilmemiş ".$this->remainingTotal($adission)." TL Ödeme Bulunmaktadır. Adisyonu hala kapatmak istiyorsanız tahsilatsız kapat seçeneğini kullanabilirsiniz."
+        ], 422);
+
+    }
+    public function calculateAppointmentEarnedPoint($request, $adission)
+    {
+        $promossion = $this->business->promossions;
+        $discountRate = 0;
+        if (in_array($request->payment_type_id,[0,1,2])){
+            switch ($request->payment_type_id){
+                case 0:
+                    $discountRate = $promossion->cash;
+                    break;
+                case 1:
+                    $discountRate = $promossion->credit_cart;
+                    break;
+                case 2:
+                    $discountRate = $promossion->eft;
+                    break;
+                default:
+                    $discountRate = 0;
+            }
+            //dd($discountRate);
+            $discountRate = ($request->price * $discountRate) / 100;
+            $adission->earned_point += $discountRate;
+            $adission->save();
+
+            return true;
+        }
+        return false;
     }
     public function calculateCampaignDiscount($adission){ //indirim tl dönüşümü
         $total = number_format(($adission->total * $adission->discount) / 100, 2);
