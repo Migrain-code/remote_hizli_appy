@@ -167,6 +167,7 @@ class AdissionProductSaleController extends Controller
     public function destroy(ProductSales $productSale)
     {
         $saleProduct = $productSale->product; //satışı yapılan ürünü bul
+        dd($saleProduct);
         $saleProduct->piece += $productSale->piece; //satışı yapılan ürünü silmeden önce eski stok adedine çevir
         $saleProduct->save();
 

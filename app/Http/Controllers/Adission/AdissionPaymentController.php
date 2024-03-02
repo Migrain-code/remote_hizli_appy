@@ -158,6 +158,18 @@ class AdissionPaymentController extends Controller
         ], 422);
 
     }
+
+    public function closePayment(Appointment $appointment)
+    {
+        $appointment->status = 6;
+        $appointment->save();
+
+        return response()->json([
+            'status' => "success",
+            'message' => "Adisyon Başarılı Bir Şekilde Kayıt Edildi"
+        ]);
+    }
+
     public function calculateAppointmentEarnedPoint($request, $adission)
     {
         $promossion = $this->business->promossions;

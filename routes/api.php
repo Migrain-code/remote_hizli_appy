@@ -193,6 +193,7 @@ Route::prefix('business')->group(function (){
             Route::get('/{adission}/payment/create', [AdissionPaymentController::class, 'create']);
             Route::get('/{adission}/payment/add', [AdissionPaymentController::class, 'store']);
             Route::get('/{adission}/payment/save', [AdissionPaymentController::class, 'paymentSave']);
+            Route::get('/{adission}/payment/close', [AdissionPaymentController::class, 'closePayment']);
 
         });
 
