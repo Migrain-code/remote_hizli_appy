@@ -48,7 +48,7 @@ class AdissionController extends Controller
             } elseif ($request->listType == "closed") {
                 $q->whereIn('status', [5, 6]);
             } elseif ($request->listType == "canceled") {
-                $q->where('status', [3, 4]);
+                $q->whereIn('status', [3, 4]);
             } else {
                 $q->where('status', 2);
             }
