@@ -185,6 +185,7 @@ Route::prefix('business')->group(function (){
             Route::get('/{adission}/sale/list', [AdissionProductSaleController::class, 'index']);
             Route::get('/{adission}/sale/create', [AdissionProductSaleController::class, 'create']);
             Route::post('/{adission}/sale/add', [AdissionProductSaleController::class, 'store']);
+            Route::get('/{productSale}/sale/edit', [AdissionProductSaleController::class, 'edit']);
             Route::put('/{adission}/sale/{productSale}/update', [AdissionProductSaleController::class, 'update']);
             Route::delete('/{adission}/sale/delete', [AdissionProductSaleController::class, 'destroy']);
 
