@@ -30,3 +30,10 @@ function clearPhone($phoneNumber){
     return $newPhoneNumber;
 
 }
+
+function sendNotification($title, $message, $link = null){
+    $oneSignalService = new \App\Services\OneSignalNotification();
+    $result = $oneSignalService->sendUserNotification($message);
+
+    return $result;
+}

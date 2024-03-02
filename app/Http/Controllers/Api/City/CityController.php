@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\City;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CityResource;
 use App\Http\Resources\DistrictResource;
+use App\Services\OneSignalNotification;
 use Illuminate\Http\Request;
 
 /**
@@ -56,5 +57,10 @@ class CityController extends Controller
             'status' => "error",
             'message' => "Şehir Bulunamadı"
         ]);
+    }
+
+    public function testNotif(Request $request)
+    {
+        sendNotification('test', 'test mesaj');
     }
 }
