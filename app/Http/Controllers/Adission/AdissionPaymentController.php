@@ -219,7 +219,7 @@ class AdissionPaymentController extends Controller
     }
 
     /**
-     * Adisyon Güncelle
+     * Adisyon Tahsilat Güncelle
      *
      * @param AppointmentCollectionEntry $payment
      * @return \Illuminate\Http\JsonResponse
