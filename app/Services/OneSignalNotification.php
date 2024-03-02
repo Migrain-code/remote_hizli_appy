@@ -8,49 +8,49 @@ use onesignal\client\model\StringMap;
 use GuzzleHttp\Client;
 class OneSignalNotification
 {
-    protected $appId;
-    protected $appKeyToken;
-    protected $userKeyToken;
-    protected $apiInstance;
-
-    public function __construct()
-    {
-        $this->appId = env('ONESIGNAL_APP_ID');
-        $this->appKeyToken = env('ONESIGNAL_API_KEY');
-        //$this->userKeyToken = env('ONESIGNAL_USER_KEY_TOKEN');
-
-        $config = Configuration::getDefaultConfiguration()
-            ->setAppKeyToken($this->appKeyToken)
-            ->setUserKeyToken($this->userKeyToken);
-
-        $this->apiInstance = new DefaultApi(new Client(), $config);
+    private $app_id;
+    private $api_key;
+    private $apiUrl = "https://onesignal.com/api/v1/notifications";
+    public function __construct() {
+        $this->app_id = env('ONESIGNAL_APP_ID');
+        $this->api_key = env('ONESIGNAL_API_KEY');
     }
 
-    public function createNotification($enContent): Notification
-    {
-        $content = new StringMap();
-        $content->setEn($enContent);
+    public function sendNotification($title, $message) {
+        $data = array(
+            "app_id" => $this->app_id,
+            "contents" => array("en" => $message),
+            "headings" => array("en" => $title),
+            "included_segments" => array("All")
+        );
 
-        $notification = new Notification();
-        $notification->setAppId($this->appId);
-        $notification->setContents($content);
-        $notification->setIncludedSegments(['Subscribed Users']);
+        $ch = curl_init();
 
-        return $notification;
-    }
+        curl_setopt($ch, CURLOPT_URL, $this->apiUrl);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json; charset=utf-8',
+            'Authorization: Basic ' . $this->api_key
+        ));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-    public function sendNotification($notification)
-    {
-        $result = $this->apiInstance->createNotification($notification);
-        return $result;
-    }
+        $response = curl_exec($ch);
+        curl_close($ch);
 
-    public function sendUserNotification($enContent)
-    {
-        $notification = $this->createNotification($enContent);
-        $result = $this->sendNotification($notification);
+        if ($response === FALSE) {
+            throw new \Exception('Curl failed: ' . curl_error($ch));
+        }
 
-        return $result;
+        $responseData = json_decode($response, true);
+
+        if (isset($responseData['errors'])) {
+            throw new \Exception("Bir hata oluştu: " . implode(", ", $responseData['errors']));
+        } else {
+            return "Bildirim başarıyla gönderildi.";
+        }
     }
 
 }

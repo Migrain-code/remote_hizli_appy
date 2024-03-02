@@ -33,7 +33,7 @@ function clearPhone($phoneNumber){
 
 function sendNotification($title, $message, $link = null){
     $oneSignalService = new \App\Services\OneSignalNotification();
-    $result = $oneSignalService->sendUserNotification($message);
+    $result = $oneSignalService->sendNotification('Test Başlık', 'Test Mesaj');
 
     return $result;
 }
