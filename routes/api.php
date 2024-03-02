@@ -187,7 +187,7 @@ Route::prefix('business')->group(function (){
             Route::post('/{adission}/sale/add', [AdissionProductSaleController::class, 'store']);
             Route::get('/{productSale}/sale/edit', [AdissionProductSaleController::class, 'edit']);
             Route::put('/{adission}/sale/{productSale}/update', [AdissionProductSaleController::class, 'update']);
-            Route::delete('/{adission}/sale/delete', [AdissionProductSaleController::class, 'destroy']);
+            Route::delete('/{productSale}/sale/delete', [AdissionProductSaleController::class, 'destroy']);
 
             Route::get('/{adission}/payment', [AdissionPaymentController::class, 'index']);
             Route::get('/{adission}/payment/create', [AdissionPaymentController::class, 'create']);
