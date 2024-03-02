@@ -33,7 +33,7 @@ class BirthdayController extends Controller
      * Doğum Günü Listesi.
      *
      * Doğum günü olan işletme müşterileri gelecek bu endpointte takvime tıklanınca bu apiye " date " değişkeninde tarihi gönderebilirsiniz
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -53,7 +53,7 @@ class BirthdayController extends Controller
     /**
      * Mesaj Listesi
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function create()
     {
@@ -63,8 +63,8 @@ class BirthdayController extends Controller
     /**
      * Mesajları Gönder
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  MessageSendRequest  $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(MessageSendRequest $request)
     {

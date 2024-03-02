@@ -54,7 +54,7 @@ class BusinessOfficialController extends Controller
      * Yetkili Ekleme
      *
      * branch_id şube seçiniz alnından seçilen şubenin idsi olacak
-     * @param \Illuminate\Http\Request $request
+     * @param BusinessOfficialAddRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(BusinessOfficialAddRequest $request)

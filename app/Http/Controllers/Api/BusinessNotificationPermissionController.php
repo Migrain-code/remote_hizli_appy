@@ -40,9 +40,9 @@ class BusinessNotificationPermissionController extends Controller
      *
      * Bildirim izinleri listesindeki response dönen verilerden is_email,is_sms,is_phone,is_notification örnek gönderim ({"column": "is_email"})
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  PermissionUpdateRequest  $request
      * @param  BusinessNotificationPermission $notificationPermission
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(PermissionUpdateRequest $request, BusinessNotificationPermission $notificationPermission)
     {

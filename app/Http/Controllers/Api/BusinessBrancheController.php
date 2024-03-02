@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Branches\BranchAddRequest;
 use App\Http\Resources\Branches\BusinessBrancesResource;
 use App\Http\Resources\BusinessOfficial\BusinessOfficialListResource;
-use App\Http\Resources\BusinessOfficialResource;
-use App\Http\Resources\BusinessResource;
 use App\Models\Business;
 use App\Models\BusinessOfficial;
 use Illuminate\Http\Request;
@@ -55,7 +53,7 @@ class BusinessBrancheController extends Controller
     /**
      * Şube Ekle
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  BranchAddRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(BranchAddRequest $request)

@@ -37,7 +37,7 @@ class GalleryController extends Controller
     /**
      * Görsel Ekle
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  GalleryAddRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(GalleryAddRequest $request)

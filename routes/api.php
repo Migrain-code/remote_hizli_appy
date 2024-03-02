@@ -230,11 +230,11 @@ Route::prefix('business')->group(function (){
         ]);
         /** -------------------------------- Yetkililer --------------------------------------- */
         Route::apiResource('official', BusinessOfficialController::class)->only([
-            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+            'index', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
         /** -------------------------------- Şubeler --------------------------------------- */
         Route::apiResource('branche', BusinessBrancheController::class)->only([
-            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+            'index', 'create', 'store', 'update', 'destroy'
         ]);
         /** -------------------------------- Bildirim İzinleri --------------------------------------- */
         Route::apiResource('notification-permission', BusinessNotificationPermissionController::class)->only([
@@ -246,7 +246,7 @@ Route::prefix('business')->group(function (){
         ]);
         /** -------------------------------- Doğum Günleri --------------------------------------- */
         Route::apiResource('birthday', BirthdayController::class)->only([
-            'index','create','store', 'show', 'destroy'
+            'index','create','store'
         ]);
     });
 });
