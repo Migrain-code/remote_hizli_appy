@@ -201,7 +201,7 @@ Route::prefix('business')->group(function (){
             Route::get('/{adission}/payment/close', [AdissionPaymentController::class, 'closePayment']);
 
             Route::get('/{adission}/cash-point/add', [AdissionAddCashPointController::class, 'index']);
-            Route::get('/{adission}/cash-point/{cashPoint}/use', [AdissionAddCashPointController::class, 'store']);
+            Route::post('/{adission}/cash-point/{cashPoint}/use', [AdissionAddCashPointController::class, 'store']);
 
         });
 
