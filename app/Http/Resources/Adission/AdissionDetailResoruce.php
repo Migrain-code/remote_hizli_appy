@@ -25,13 +25,13 @@ class AdissionDetailResoruce extends JsonResource
             'note' => $this->note,
             'isCampaign' => isset($this->campaign_id),
             'total' => $this->total,
-            'campaignDiscount' => $this->calculateCampaignDiscount(),
+            'campaignDiscount' => $this->calculateCampaignDiscount(),//kampanya indirimi
             'cashPoint' =>  $this->point,//kullanılan cash point
-            'collectedTotal' => $this->calculateCollectedTotal(),
-            'remaining_amount' => $this->calculateCollectedTotal() - $this->payments->sum("price"),
-            'earningPoint' => $this->earned_point,
-            'isPermission' => $this->earned_point > 0,
-            'payments' => AdissionPaymentListResoruce::collection($this->payments)
+            'collectedTotal' => $this->calculateCollectedTotal(),//tahsil edilecek tutar
+            'remaining_amount' => $this->calculateCollectedTotal() - $this->payments->sum("price"),//kalan tutar
+            'earningPoint' => $this->earned_point, //kazanılan parapuan
+            'isPermission' => $this->earned_point > 0, //parapuan görünürlük durumu
+            'payments' => AdissionPaymentListResoruce::collection($this->payments) //tahsilatlar
         ];
     }
     public function calculateCampaignDiscount(){ //indirim tl dönüşümü

@@ -19,7 +19,8 @@ class AdissionPaymentListResoruce extends JsonResource
             'id' => $this->id,
             'price' => $this->price,
             'paymentTypeId' => $this->payment_type_id,
-            'paymentName' => $this->type("name")
+            'paymentName' => $this->type("name"),
+            'created_at' => $this->created_at->format('d.m.Y H:i:s')
         ];
     }
 }

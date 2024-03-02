@@ -15,6 +15,7 @@ use App\Models\AppointmentCollectionEntry;
 use App\Models\CustomerCashPoint;
 use App\Models\Product;
 use App\Models\ProductSales;
+use App\Models\RemainingPayment;
 use Illuminate\Http\Request;
 
 /**
@@ -158,16 +159,34 @@ class AdissionPaymentController extends Controller
         ], 422);
 
     }
-
-    public function closePayment(Appointment $appointment)
+    /**
+     * Adisyon Tahsilatsız Kapat
+     *
+     * @param Appointment $adission
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function closePayment(Appointment $adission)
     {
-        $appointment->status = 6;
-        $appointment->save();
+        if ($this->remainingTotal($adission) > 0){
+            $adission->status = 6;
+            $adission->save();
 
+            $remainingPayment = new RemainingPayment();
+            $remainingPayment->business_id = $adission->business_id;
+            $remainingPayment->appointment_id = $adission->id;
+            $remainingPayment->price = $this->remainingTotal($adission);
+            if ($remainingPayment->save()){
+                return response()->json([
+                    'status' => "success",
+                    'message' => "Adisyon Başarılı Bir Şekilde Tahsilatsız Olarak Kapatıldı."
+                ]);
+            }
+        }
         return response()->json([
-            'status' => "success",
-            'message' => "Adisyon Başarılı Bir Şekilde Kayıt Edildi"
-        ]);
+            'status' => "error",
+            'message' => "Adisyon ücretinin tamamı ödendi. Tahsilatsız Olarak Kapatamazsınız"
+        ], 422);
+
     }
 
     public function calculateAppointmentEarnedPoint($request, $adission)
