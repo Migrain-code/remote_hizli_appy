@@ -110,7 +110,7 @@ class AdissionController extends Controller
      */
     public function destroy(Appointment $adission)
     {
-        $adission->status = 1;
+        $adission->status = 3;
         $adission->save();
         return response()->json([
             'status' => "success",
