@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Adission\ProductSaleAddRequest;
 use App\Http\Resources\PersonelListResource;
 use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductSaleDetailResource;
 use App\Http\Resources\ProductSaleListResource;
 use App\Models\Appointment;
 use App\Models\Product;
@@ -111,7 +112,7 @@ class AdissionProductSaleController extends Controller
             'products' => ProductResource::collection($this->business->products),
             'personels' => PersonelListResource::collection($this->business->personels),
             'paymentTypes' => $paymentTypes,
-            'sale_detail' =>ProductSaleListResource::make($productSale)
+            'sale_detail' =>ProductSaleDetailResource::make($productSale)
         ]);
     }
 
