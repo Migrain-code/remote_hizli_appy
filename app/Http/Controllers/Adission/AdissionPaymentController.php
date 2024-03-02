@@ -119,7 +119,7 @@ class AdissionPaymentController extends Controller
         ], 422);
     }
     /**
-     * Adisyon Kayıt Apisi
+     * Adisyon Ödeme Kayıt Apisi
      *
      * @param Appointment $adission
      * @return \Illuminate\Http\JsonResponse
