@@ -75,12 +75,12 @@ class AdissionController extends Controller
      */
     public function edit(Appointment $adission)
     {
-        $adission->status = 1;
+        $adission->status = 4;
         $adission->save();
 
         return response()->json([
             'status' => "success",
-            'message' => "Ürün Satışı Yapıldı"
+            'message' => "Adission durumu güncellendi"
         ]);
     }
 
