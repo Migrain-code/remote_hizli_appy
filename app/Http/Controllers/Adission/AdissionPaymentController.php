@@ -36,8 +36,8 @@ class AdissionPaymentController extends Controller
     /**
      * Adisyon Ödeme Detayı
      *
-     * Bu apide dönen response isPermission true olarak gelmiş ise parapuan yükleme alanı görünecek.
-     * Oradan da kayıt apisine isPoint true veya false zorunlu olarak gönderilecek. default olarak false alınacak
+     * Bu apide dönen response <b>isPermission</b> true olarak gelmiş ise parapuan yükleme alanı görünecek.
+     * Oradan da kayıt apisine <b>isPoint</b> true veya false zorunlu olarak gönderilecek. default olarak false alınacak
      * @param Appointment $adission
      * @return \Illuminate\Http\JsonResponse
      */
