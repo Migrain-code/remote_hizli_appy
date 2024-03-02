@@ -109,9 +109,6 @@ class AdissionProductSaleController extends Controller
         $paymentTypes = ProductSales::PAYMENT_TYPES;
 
         return response()->json([
-            'products' => ProductResource::collection($this->business->products),
-            'personels' => PersonelListResource::collection($this->business->personels),
-            'paymentTypes' => $paymentTypes,
             'sale_detail' =>ProductSaleDetailResource::make($productSale)
         ]);
     }
