@@ -197,7 +197,7 @@ Route::prefix('business')->group(function (){
             Route::put('/{adission}/payment/{payment}', [AdissionPaymentController::class, 'update']);//tahsilat güncelle
             Route::delete('/{adission}/payment/{payment}', [AdissionPaymentController::class, 'destroy']);//tahsilat sil
 
-            Route::get('/{adission}/payment/save', [AdissionPaymentController::class, 'paymentSave']);
+            Route::post('/{adission}/payment/save', [AdissionPaymentController::class, 'paymentSave']);
             Route::get('/{adission}/payment/close', [AdissionPaymentController::class, 'closePayment']);
 
             Route::get('/{adission}/cash-point/add', [AdissionAddCashPointController::class, 'index']);
