@@ -7,6 +7,7 @@ use App\Http\Requests\Adission\AdissionSaveRequest;
 use App\Http\Requests\Adission\PaymentAddRequest;
 use App\Http\Requests\Adission\ProductSaleAddRequest;
 use App\Http\Resources\Adission\AdissionDetailResoruce;
+use App\Http\Resources\Adission\AdissionPaymentListResoruce;
 use App\Http\Resources\PersonelListResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\ProductSaleListResource;
@@ -212,16 +213,53 @@ class AdissionPaymentController extends Controller
      * @param AppointmentCollectionEntry $payment
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit(Request $request, Appointment $adission, AppointmentCollectionEntry $payment)
+    public function edit(Appointment $adission, AppointmentCollectionEntry $payment)
     {
-        $adission->earned_point -= $this->calculateAppointmentEarnedPoint($payment, $adission);
-        $adission->save();
-        if($payment->delete()){
+        return response()->json(AdissionPaymentListResoruce::make($payment));
+    }
+
+    /**
+     * Adisyon Güncelle
+     *
+     * @param AppointmentCollectionEntry $payment
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(PaymentAddRequest $request,Appointment $adission, AppointmentCollectionEntry $payment)
+    {
+        if ($this->remainingTotal($adission) == 0){
+            return response()->json([
+                'status' => "error",
+                'message' => "Bu Adisyonda tüm ücretler tahsil edildi. Başka Tahsilat Ekleyemezsiniz."
+            ], 422);
+        }
+        if($request->price > $this->remainingTotal($adission)){
+            return response()->json([
+                'status' => "error",
+                'message' => "Adisyonda tahsil edilecek tutar ". $this->remainingTotal($adission). " TL'dir. Bu ücretten daha yüksek bir ücret giremezsiniz",
+                'price' => $this->remainingTotal($adission)
+            ], 422);
+        }
+
+
+        $adissionEarnedPoint = $this->saveAppointmentEarnedPoint($request, $adission);
+        if ($adissionEarnedPoint){
+            $adission->earned_point -= $this->calculateAppointmentEarnedPoint($payment, $adission); //tahsilatta kazanılan puanı adisyondan düşür
+            $adission->save();
+            $payment->appointment_id = $adission->id;
+            $payment->payment_type_id = $request->payment_type_id;
+            $payment->price = $request->price;
+            $payment->save();
             return response()->json([
                 'status' => "success",
-                'message' => "Tahsilat Başarılı Bir Şekilde Silindi"
+                'message' => "Tahsilat Başarılı Bir Şekilde Güncellendi"
             ]);
         }
+
+        return response()->json([
+            'status' => "error",
+            'message' => "Hata! Ödeme Yöntemi Bulunamadı"
+        ], 422);
+
     }
     public function saveAppointmentEarnedPoint($request, $adission)
     {

@@ -190,11 +190,13 @@ Route::prefix('business')->group(function (){
             Route::put('/{adission}/sale/{productSale}/update', [AdissionProductSaleController::class, 'update']);
             Route::delete('/{productSale}/sale/delete', [AdissionProductSaleController::class, 'destroy']);
 
-            Route::get('/{adission}/payment', [AdissionPaymentController::class, 'index']);
-            Route::get('/{adission}/payment/create', [AdissionPaymentController::class, 'create']);
-            Route::post('/{adission}/payment/add', [AdissionPaymentController::class, 'store']);
-            Route::get('/{adission}/payment/{payment}/edit', [AdissionPaymentController::class, 'edit']);
-            Route::delete('/{adission}/payment/{payment}/delete', [AdissionPaymentController::class, 'destroy']);
+            Route::get('/{adission}/payment', [AdissionPaymentController::class, 'index']);//tahsilat listesis
+            Route::get('/{adission}/payment/create', [AdissionPaymentController::class, 'create']);//tahsilat oluştur
+            Route::post('/{adission}/payment/add', [AdissionPaymentController::class, 'store']);//tahsilat ekle
+            Route::get('/{adission}/payment/{payment}/edit', [AdissionPaymentController::class, 'edit']);// tahsilat düzenle
+            Route::put('/{adission}/payment/{payment}', [AdissionPaymentController::class, 'update']);//tahsilat güncelle
+            Route::delete('/{adission}/payment/{payment}', [AdissionPaymentController::class, 'destroy']);//tahsilat sil
+
             Route::get('/{adission}/payment/save', [AdissionPaymentController::class, 'paymentSave']);
             Route::get('/{adission}/payment/close', [AdissionPaymentController::class, 'closePayment']);
 
