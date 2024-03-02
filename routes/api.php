@@ -200,7 +200,12 @@ Route::prefix('business')->group(function (){
             Route::post('/{adission}/payment/save', [AdissionPaymentController::class, 'paymentSave']);
             Route::get('/{adission}/payment/close', [AdissionPaymentController::class, 'closePayment']);
 
+            //Parapuan Kullan
             Route::get('/{adission}/cash-point/add', [AdissionAddCashPointController::class, 'index']);
+            Route::get('/{adission}/cash-point/{cashPoint}/use', [AdissionAddCashPointController::class, 'store']);
+
+            //Alacak Ekle
+            Route::get('/{adission}/receivable/list', [AdissionAddCashPointController::class, 'index']);
             Route::post('/{adission}/cash-point/{cashPoint}/use', [AdissionAddCashPointController::class, 'store']);
 
         });
