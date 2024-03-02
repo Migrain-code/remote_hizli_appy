@@ -101,7 +101,7 @@ class AdissionPaymentController extends Controller
         }
 
 
-        $adissionEarnedPoint = $this->calculateAppointmentEarnedPoint($request, $adission);
+        $adissionEarnedPoint = $this->saveAppointmentEarnedPoint($request, $adission);
         if ($adissionEarnedPoint){
             $appointmentCollection = new AppointmentCollectionEntry();
             $appointmentCollection->appointment_id = $adission->id;
@@ -188,8 +188,42 @@ class AdissionPaymentController extends Controller
         ], 422);
 
     }
+    /**
+     * Adisyon Tahsilat Silme
+     *
+     * @param AppointmentCollectionEntry $payment
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(Appointment $adission, AppointmentCollectionEntry $payment)
+    {
+        $adission->earned_point -= $this->calculateAppointmentEarnedPoint($payment, $adission);
+        $adission->save();
+        if($payment->delete()){
+            return response()->json([
+                'status' => "success",
+                'message' => "Tahsilat Başarılı Bir Şekilde Silindi"
+            ]);
+        }
+    }
 
-    public function calculateAppointmentEarnedPoint($request, $adission)
+    /**
+     * Adisyon Tahsilat Düzenle
+     *
+     * @param AppointmentCollectionEntry $payment
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function edit(Request $request, Appointment $adission, AppointmentCollectionEntry $payment)
+    {
+        $adission->earned_point -= $this->calculateAppointmentEarnedPoint($payment, $adission);
+        $adission->save();
+        if($payment->delete()){
+            return response()->json([
+                'status' => "success",
+                'message' => "Tahsilat Başarılı Bir Şekilde Silindi"
+            ]);
+        }
+    }
+    public function saveAppointmentEarnedPoint($request, $adission)
     {
         $promossion = $this->business->promossions;
         $discountRate = 0;
@@ -208,13 +242,37 @@ class AdissionPaymentController extends Controller
                     $discountRate = 0;
             }
             //dd($discountRate);
-            $discountRate = ($request->price * $discountRate) / 100;
-            $adission->earned_point += $discountRate;
+            $discountTotal= ($request->price * $discountRate) / 100;
+
+            $adission->earned_point += $discountTotal;
             $adission->save();
 
             return true;
         }
         return false;
+    }
+    public function calculateAppointmentEarnedPoint($request, $adission)
+    {
+        $promossion = $this->business->promossions;
+        $discountRate = 0;
+
+        switch ($request->payment_type_id){
+            case 0:
+                $discountRate = $promossion->cash;
+                break;
+            case 1:
+                $discountRate = $promossion->credit_cart;
+                break;
+            case 2:
+                $discountRate = $promossion->eft;
+                break;
+            default:
+                $discountRate = 0;
+        }
+        //dd($discountRate);
+        $discountTotal= ($request->price * $discountRate) / 100;
+        return $discountTotal;
+
     }
     public function calculateCampaignDiscount($adission){ //indirim tl dönüşümü
         $total = number_format(($adission->total * $adission->discount) / 100, 2);
@@ -226,7 +284,7 @@ class AdissionPaymentController extends Controller
         return $total;
     }
 
-    public function remainingTotal($adission) //tahsil edilecek tutar
+    public function remainingTotal($adission) //kalan  tutar
     {
         return $this->calculateCollectedTotal($adission) - $adission->payments->sum("price");
     }

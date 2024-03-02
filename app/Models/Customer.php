@@ -53,4 +53,9 @@ class Customer extends Authenticatable
 
         return $customerNotification;
     }
+
+    public function cashPoints()
+    {
+        return $this->hasMany(CustomerCashPoint::class, 'customer_id', 'id')->where('price', '>', 0);
+    }
 }

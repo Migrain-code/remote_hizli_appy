@@ -34,6 +34,7 @@ use App\Http\Controllers\AdissionController;
 use App\Http\Controllers\Adission\AdissionProductSaleController;
 use \App\Http\Controllers\Adission\AdissionPaymentController;
 use \App\Http\Controllers\BusinessPromossionController;
+use \App\Http\Controllers\AdissionAddCashPointController;
 
 /*
 |--------------------------------------------------------------------------
@@ -191,9 +192,14 @@ Route::prefix('business')->group(function (){
 
             Route::get('/{adission}/payment', [AdissionPaymentController::class, 'index']);
             Route::get('/{adission}/payment/create', [AdissionPaymentController::class, 'create']);
-            Route::get('/{adission}/payment/add', [AdissionPaymentController::class, 'store']);
+            Route::post('/{adission}/payment/add', [AdissionPaymentController::class, 'store']);
+            Route::get('/{adission}/payment/{payment}/edit', [AdissionPaymentController::class, 'edit']);
+            Route::delete('/{adission}/payment/{payment}/delete', [AdissionPaymentController::class, 'destroy']);
             Route::get('/{adission}/payment/save', [AdissionPaymentController::class, 'paymentSave']);
             Route::get('/{adission}/payment/close', [AdissionPaymentController::class, 'closePayment']);
+
+            Route::get('/{adission}/cash-point/add', [AdissionAddCashPointController::class, 'index']);
+            Route::get('/{adission}/cash-point/{cashPoint}/use', [AdissionAddCashPointController::class, 'store']);
 
         });
 

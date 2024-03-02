@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerCashPoint extends Model
 {
     use HasFactory;
+    protected $dates = ["addition_date"];
 }
