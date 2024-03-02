@@ -80,7 +80,7 @@ class AdissionController extends Controller
 
         return response()->json([
             'status' => "success",
-            'message' => "Adission durumu güncellendi"
+            'message' => "Adisyon durumu güncellendi"
         ]);
     }
 
@@ -93,12 +93,12 @@ class AdissionController extends Controller
      */
     public function update(Request $request, Appointment $adission)
     {
-        $adission->status = 1;
+        $adission->status = 5;
         $adission->save();
 
         return response()->json([
             'status' => "success",
-            'message' => "Ürün Satışı Yapıldı"
+            'message' => "Adisyon durumu güncellendi"
         ]);
     }
 
