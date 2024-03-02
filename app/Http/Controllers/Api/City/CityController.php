@@ -61,6 +61,8 @@ class CityController extends Controller
 
     public function testNotif(Request $request)
     {
-        sendNotification('test', 'test mesaj');
+        $result = sendNotification('test', 'test mesaj');
+
+        return $result;
     }
 }
