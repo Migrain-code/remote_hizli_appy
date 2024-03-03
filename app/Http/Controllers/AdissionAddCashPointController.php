@@ -87,7 +87,7 @@ class AdissionAddCashPointController extends Controller
                 'message' => "Bu adisyonun tüm ücreti tahsil edildi.Yeni Alacak ekleyemezsiniz."
             ], 422);
         }
-        $totalReceivable = $adission->receivables->sum('price');
+        $totalReceivable = $adission->receivables()->whereStatus(0)->sum('price');
         dd( $request->price ." == ". $this->remainingTotal($adission) - $totalReceivable);
         if ($totalReceivable + $request->price > $this->remainingTotal($adission)){
 
