@@ -97,6 +97,7 @@ class AdissionAddCashPointController extends Controller
                     'message' => "Bu adisyonun tutarına denk gelecek kadar alacak eklediniz. Daha Fazla Alacak Ekleyemezsiniz."
                 ], 422);
             }
+            dd($this->remainingTotal($adission));
             return response()->json([
                 'status' => "error",
                 'message' => "Adisyona Eklediğiniz Alacakların Toplamı ve Gönderdiğini Tutar Adisyonun Kalan Ücretini Geçemez. ". $sum . " TL'den fazla fiyat giremezsiniz."
