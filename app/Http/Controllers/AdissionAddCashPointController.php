@@ -90,7 +90,7 @@ class AdissionAddCashPointController extends Controller
         $totalReceivable = $adission->receivables->sum('price');
 
         if ($totalReceivable + $request->price > $this->remainingTotal($adission)){
-            $sum = $this->remainingTotal($adission) - $totalReceivable;
+            $sum = $this->remainingTotal($adission);
             if ($sum == 0){
                 return response()->json([
                     'status' => "error",
