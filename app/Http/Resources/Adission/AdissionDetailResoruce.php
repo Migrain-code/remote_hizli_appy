@@ -28,7 +28,7 @@ class AdissionDetailResoruce extends JsonResource
             'campaignDiscount' => $this->calculateCampaignDiscount(),//kampanya indirimi
             'cashPoint' =>  $this->point,//kullanılan cash point
             'collectedTotal' => $this->calculateCollectedTotal(),//tahsil edilecek tutar
-            'remaining_amount' => $this->calculateCollectedTotal() - $this->payments->sum("price"),//kalan tutar
+            'remaining_amount' => $this->remainingTotal(),//kalan tutar
             'earningPoint' => $this->earned_point, //kazanılan parapuan
             'isPermission' => $this->earned_point > 0, //parapuan görünürlük durumu
             'payments' => AdissionPaymentListResoruce::collection($this->payments) //tahsilatlar
@@ -42,5 +42,10 @@ class AdissionDetailResoruce extends JsonResource
     {
         $total = ceil($this->total - ((($this->total * $this->discount) / 100) + $this->point));
         return $total;
+    }
+
+    public function remainingTotal() //kalan  tutar
+    {
+        return ($this->calculateCollectedTotal() - $this->payments->sum("price")) - $this->receivables()->whereStatus(1)->sum('price');
     }
 }
