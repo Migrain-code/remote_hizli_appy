@@ -35,6 +35,7 @@ use App\Http\Controllers\Adission\AdissionProductSaleController;
 use \App\Http\Controllers\Adission\AdissionPaymentController;
 use \App\Http\Controllers\BusinessPromossionController;
 use \App\Http\Controllers\AdissionAddCashPointController;
+use \App\Http\Controllers\AppointmentReceivableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -205,9 +206,10 @@ Route::prefix('business')->group(function (){
             Route::get('/{adission}/cash-point/{cashPoint}/use', [AdissionAddCashPointController::class, 'store']);
 
             //Alacak Ekle
-            Route::get('/{adission}/receivable/list', [AdissionAddCashPointController::class, 'index']);
-            Route::post('/{adission}/cash-point/{cashPoint}/use', [AdissionAddCashPointController::class, 'store']);
-
+            Route::get('/{adission}/receivable', [AdissionAddCashPointController::class, 'receivableList']);
+            Route::post('/{adission}/receivable', [AdissionAddCashPointController::class, 'receivableAdd']);
+            Route::delete('/{adission}/receivable/{receivable}', [AdissionAddCashPointController::class, 'receivableDelete']);
+            Route::put('/{adission}/receivable/{receivable}', [AdissionAddCashPointController::class, 'receivableUpdate']);
         });
 
         /** -------------------------------------- Promosyonlar ----------------------------------------- */

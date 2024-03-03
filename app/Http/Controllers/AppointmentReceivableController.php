@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\AppointmentReceivable;
 use Illuminate\Http\Request;
 
+/**
+ * @group Alacaklar
+ *
+ */
 class AppointmentReceivableController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Alacaklar Listesi
      *
      * @return \Illuminate\Http\Response
      */

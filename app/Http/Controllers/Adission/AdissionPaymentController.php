@@ -324,6 +324,6 @@ class AdissionPaymentController extends Controller
 
     public function remainingTotal($adission) //kalan  tutar
     {
-        return $this->calculateCollectedTotal($adission) - $adission->payments->sum("price");
+        return ($this->calculateCollectedTotal($adission) - $adission->payments->sum("price")) - $adission->receivables()->whereStatus(1)->sum('price');
     }
 }

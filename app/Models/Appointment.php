@@ -87,6 +87,10 @@ class Appointment extends Model
         return $this->hasMany(ProductSales::class, 'appointment_id', 'id');
     }
 
+    public function receivables()
+    {
+        return $this->hasMany(AppointmentReceivable::class, 'appointment_id', 'id');
+    }
     public function addCashPoint()
     {
         if(isset($this->cashPoint)){
