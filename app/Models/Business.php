@@ -51,6 +51,10 @@ class Business extends Model
         return $this->hasMany(Personel::class, 'business_id', 'id')->latest();
     }
 
+    public function costs()
+    {
+        return $this->hasMany(BusinessCost::class, 'business_id', 'id');
+    }
     public function service()
     {
         return $this->hasMany(BusinessService::class, 'business_id', 'id');

@@ -36,7 +36,8 @@ use \App\Http\Controllers\Adission\AdissionPaymentController;
 use \App\Http\Controllers\BusinessPromossionController;
 use \App\Http\Controllers\AdissionAddCashPointController;
 use \App\Http\Controllers\AppointmentReceivableController;
-
+use App\Http\Controllers\AbsentCustomerController;
+use App\Http\Controllers\SubscribtionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -255,5 +256,27 @@ Route::prefix('business')->group(function (){
         Route::apiResource('birthday', BirthdayController::class)->only([
             'index','create','store'
         ]);
+
+        /** -------------------------------- Gelmeyenler --------------------------------------- */
+        Route::apiResource('customer-absent', AbsentCustomerController::class)->only([
+            'index',
+        ]);
+
+        /** -------------------------------- Gelmeyenler --------------------------------------- */
+        Route::apiResource('customer-absent', AbsentCustomerController::class)->only([
+            'index',
+        ]);
+
+        /** ------------------------------- Abonelik ------------------------------------ */
+
+        Route::apiResource('subscribtion', SubscribtionController::class)->only([
+            'index',
+        ]);
+
+        /** ------------------------------- Masraflar ------------------------------------ */
+        Route::apiResource('cost', \App\Http\Controllers\BusinessCostController::class)->only([
+            'index', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+
     });
 });
