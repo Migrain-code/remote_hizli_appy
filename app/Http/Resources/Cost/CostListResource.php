@@ -27,7 +27,7 @@ class CostListResource extends JsonResource
            'personel' => new PersonelListResource($this->personel),
            'paymentType' => $this->type(),
            'price' => $this->price,
-           'operation_date' => $this->operation_date->format('d.m.Y')
+           'operation_date' => $this->operation_date
         ];
     }
 }
