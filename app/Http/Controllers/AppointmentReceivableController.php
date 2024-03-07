@@ -101,12 +101,12 @@ class AppointmentReceivableController extends Controller
     /**
      *  Alacak Silme
      *
-     * @param  \App\Models\AppointmentReceivable  $appointmentReceivable
+     * @param  \App\Models\AppointmentReceivable  $receivable
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(AppointmentReceivable $appointmentReceivable)
+    public function destroy(AppointmentReceivable $receivable)
     {
-        if ($appointmentReceivable->delete()) return response()->json([
+        if ($receivable->delete()) return response()->json([
             'status' => "success",
             'message' => "Alacak Başarılı Bir Şekilde Silindi"
         ]);
