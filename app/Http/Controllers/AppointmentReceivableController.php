@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Receivable\ReceivableListAddRequest;
+use App\Http\Resources\CustomerListResource;
+use App\Http\Resources\Receivable\ReceivableDetailResource;
+use App\Http\Resources\Receivable\ReceivableListResource;
 use App\Models\AppointmentReceivable;
 use Illuminate\Http\Request;
 
@@ -11,6 +15,15 @@ use Illuminate\Http\Request;
  */
 class AppointmentReceivableController extends Controller
 {
+    private $business;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->business = auth()->user()->business;
+            return $next($request);
+        });
+    }
     /**
      * Alacaklar Listesi
      *
@@ -18,72 +31,94 @@ class AppointmentReceivableController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(ReceivableListResource::collection($this->business->receivables));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Alacak Oluştur
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return response()->json(CustomerListResource::collection($this->business->customers));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Alacak Ekle
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  ReceivableListAddRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(ReceivableListAddRequest $request)
     {
-        //
+        $appointmentReceivable = new AppointmentReceivable();
+        $this->extracted($appointmentReceivable, $request);
+        return response()->json([
+            'status' => "success",
+            'message' => "Alacak Başarılı Bir Şekilde Eklendi"
+        ]);
     }
 
     /**
-     * Display the specified resource.
+     * Alacak Detayı
+     *
+     * @param  \App\Models\AppointmentReceivable  $receivable
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(AppointmentReceivable $receivable)
+    {
+        return response()->json(ReceivableDetailResource::make($receivable));
+    }
+
+    /**
+     * Alacak Düzenleme
+     *
+     * @param  \App\Models\AppointmentReceivable  $receivable
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function edit(AppointmentReceivable $receivable)
+    {
+        return response()->json(ReceivableDetailResource::make($receivable));
+    }
+
+    /**
+     * Alacak Güncelleme
+     *
+     * @param  ReceivableListAddRequest $request
+     * @param  \App\Models\AppointmentReceivable  $receivable
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, AppointmentReceivable $receivable)
+    {
+        $this->extracted($receivable, $request);
+        return response()->json([
+            'status' => "success",
+            'message' => "Alacak Başarılı Bir Şekilde Güncellendi"
+        ]);
+    }
+
+    /**
+     *  Alacak Silme
      *
      * @param  \App\Models\AppointmentReceivable  $appointmentReceivable
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AppointmentReceivable $appointmentReceivable)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AppointmentReceivable  $appointmentReceivable
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AppointmentReceivable $appointmentReceivable)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AppointmentReceivable  $appointmentReceivable
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AppointmentReceivable $appointmentReceivable)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\AppointmentReceivable  $appointmentReceivable
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(AppointmentReceivable $appointmentReceivable)
     {
-        //
+        if ($appointmentReceivable->delete()) return response()->json([
+            'status' => "success",
+            'message' => "Alacak Başarılı Bir Şekilde Silindi"
+        ]);
+    }
+
+    public function extracted($appointmentReceivable, $request):void
+    {
+        $appointmentReceivable->business_id = $this->business->id;
+        $appointmentReceivable->customer_id = $request->customerId;
+        $appointmentReceivable->payment_date = $request->paymentDate;
+        $appointmentReceivable->price = $request->price;
+        $appointmentReceivable->note = $request->note;
+        $appointmentReceivable->save();
     }
 }

@@ -38,6 +38,8 @@ use \App\Http\Controllers\AdissionAddCashPointController;
 use \App\Http\Controllers\AppointmentReceivableController;
 use App\Http\Controllers\AbsentCustomerController;
 use App\Http\Controllers\SubscribtionController;
+use App\Http\Controllers\BusinessDepController;
+use App\Http\Controllers\BusinessCostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -274,8 +276,18 @@ Route::prefix('business')->group(function (){
         ]);
 
         /** ------------------------------- Masraflar ------------------------------------ */
-        Route::apiResource('cost', \App\Http\Controllers\BusinessCostController::class)->only([
+        Route::apiResource('cost', BusinessCostController::class)->only([
             'index', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+
+        /** ------------------------------- Alacaklar ------------------------------------ */
+        Route::apiResource('receivable', AppointmentReceivableController::class)->only([
+            'index', 'create', 'store','show', 'edit', 'update', 'destroy'
+        ]);
+
+        /** ------------------------------- Borçlar ------------------------------------ */
+        Route::apiResource('dep', BusinessDepController::class)->only([
+            'index', 'create', 'store','show', 'edit', 'update', 'destroy'
         ]);
 
     });

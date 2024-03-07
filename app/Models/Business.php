@@ -65,6 +65,16 @@ class Business extends Model
         return $this->hasMany(BusinessGallery::class, 'business_id', 'id');
     }
 
+    public function receivables()
+    {
+        return $this->hasMany(AppointmentReceivable::class, 'business_id', 'id');
+    }
+
+    public function depts()
+    {
+        return $this->hasMany(BusinessDep::class, 'business_id', 'id');
+    }
+
     public function sales()
     {
         return $this->hasMany(ProductSales::class, 'business_id', 'id');
