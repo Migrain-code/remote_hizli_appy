@@ -10,6 +10,7 @@ use App\Http\Resources\Receivable\ReceivableListResource;
 use App\Models\AppointmentCollectionEntry;
 use App\Models\Customer;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 /**
  * @group Customer Info
@@ -43,9 +44,26 @@ class CustomerInfoController extends Controller
      *
      * @return JsonResponse
      */
-    public function productSaleList(Customer $customer)
+    public function productSaleList(Customer $customer, Request $request)
     {
-        $productSales = $customer->productSales()->where('business_id', $this->business->id)->get();
+        $productSales = $customer->productSales()->where('business_id', $this->business->id)
+            ->when($request->filled('listType'), function ($q) use ($request) {
+                if ($request->listType == "thisWeek") {
+                    $startOfWeek = now()->startOfWeek();
+                    $endOfWeek = now()->endOfWeek();
+                    $q->whereBetween('created_at', [$startOfWeek, $endOfWeek]);
+                } elseif ($request->listType == "thisMonth") {
+                    $startOfMonth = now()->startOfMonth();
+                    $endOfMonth = now()->endOfMonth();
+                    $q->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+                } elseif ($request->listType == "thisYear") {
+                    $startOfYear = now()->startOfYear();
+                    $endOfYear = now()->endOfYear();
+                    $q->whereBetween('created_at', [$startOfYear, $endOfYear]);
+                } else {
+                    $q->whereDate('created_at', now()->toDateString());
+                }
+            })->get();
         return response()->json(CustomerProductSaleListResource::collection($productSales));
     }
 
@@ -54,9 +72,26 @@ class CustomerInfoController extends Controller
      *
      * @return JsonResponse
      */
-    public function packageSaleList(Customer $customer)
+    public function packageSaleList(Customer $customer, Request $request)
     {
-        $packageSales = $customer->packageSales()->where('business_id', $this->business->id)->get();
+        $packageSales = $customer->packageSales()->where('business_id', $this->business->id)
+            ->when($request->filled('listType'), function ($q) use ($request) {
+                if ($request->listType == "thisWeek") {
+                    $startOfWeek = now()->startOfWeek();
+                    $endOfWeek = now()->endOfWeek();
+                    $q->whereBetween('seller_date', [$startOfWeek, $endOfWeek]);
+                } elseif ($request->listType == "thisMonth") {
+                    $startOfMonth = now()->startOfMonth();
+                    $endOfMonth = now()->endOfMonth();
+                    $q->whereBetween('seller_date', [$startOfMonth, $endOfMonth]);
+                } elseif ($request->listType == "thisYear") {
+                    $startOfYear = now()->startOfYear();
+                    $endOfYear = now()->endOfYear();
+                    $q->whereBetween('seller_date', [$startOfYear, $endOfYear]);
+                } else {
+                    $q->whereDate('seller_date', now()->toDateString());
+                }
+            })->get();
         return response()->json(CustomerPackageSaleListResource::collection($packageSales));
     }
 
