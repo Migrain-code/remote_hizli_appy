@@ -58,4 +58,24 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(CustomerCashPoint::class, 'customer_id', 'id')->where('price', '>', 0);
     }
+
+    public function productSales()
+    {
+        return $this->hasMany(ProductSales::class, 'customer_id', 'id');
+    }
+
+    public function packageSales()
+    {
+        return $this->hasMany(PackageSale::class, 'customer_id', 'id');
+    }
+
+    public function receivables()
+    {
+        return $this->hasMany(AppointmentReceivable::class, 'customer_id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(BusinessComment::class, 'customer_id', 'id');
+    }
 }

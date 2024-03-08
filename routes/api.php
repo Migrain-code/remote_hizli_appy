@@ -40,6 +40,8 @@ use App\Http\Controllers\AbsentCustomerController;
 use App\Http\Controllers\SubscribtionController;
 use App\Http\Controllers\BusinessDepController;
 use App\Http\Controllers\BusinessCostController;
+use \App\Http\Controllers\CustomerInfoController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -52,12 +54,12 @@ use App\Http\Controllers\BusinessCostController;
 */
 require_once 'guards/personal.php';
 
-Route::prefix('city')->group(function (){
+Route::prefix('city')->group(function () {
     Route::get('list', [CityController::class, 'index']);
     Route::post('get', [CityController::class, 'get']);
 });
 Route::post('test/notify', [CityController::class, 'testNotif']);
-Route::prefix('business')->group(function (){
+Route::prefix('business')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('login', [AuthController::class, 'login']);
         Route::post('check-phone', [AuthController::class, 'register']);
@@ -71,36 +73,36 @@ Route::prefix('business')->group(function (){
         });
     });
     Route::middleware('auth:official')->group(function () {
-        Route::controller(HomeController::class)->prefix('home')->group(function (){
+        Route::controller(HomeController::class)->prefix('home')->group(function () {
             Route::get('/', 'index');
         });
         /** -------------------------------- Kurulum Rotaları --------------------------------------- */
 
-        Route::controller(SetupController::class)->prefix('setup')->group(function (){
+        Route::controller(SetupController::class)->prefix('setup')->group(function () {
             Route::get('/get', 'get');
             Route::post('/update', 'update');
         });
 
-        Route::controller(OfficialCreditCardController::class)->prefix('cart')->group(function (){
+        Route::controller(OfficialCreditCardController::class)->prefix('cart')->group(function () {
             Route::get('/', 'index');
             Route::post('/get', 'get');
             Route::post('/delete', 'delete');
             Route::post('/save', 'store');
             Route::post('/update', 'update');
         });
-        Route::controller(PaymentController::class)->prefix('payment')->group(function (){
+        Route::controller(PaymentController::class)->prefix('payment')->group(function () {
             Route::get('/', 'index');
             Route::post('/pay', 'pay');
         });
 
-        Route::controller(DetailSetupController::class)->prefix('detail-setup')->group(function (){
+        Route::controller(DetailSetupController::class)->prefix('detail-setup')->group(function () {
             Route::get('/step-1/get', 'index');
             Route::post('/step-1/update', 'step1');
             Route::post('/step-1/upload/logo', 'uploadLogo');
             Route::post('/step-1/upload/gallery', 'uploadGallery');
         });
 
-        Route::controller(BusinessServiceController::class)->prefix('business-service')->group(function (){
+        Route::controller(BusinessServiceController::class)->prefix('business-service')->group(function () {
             Route::get('/', 'step2Get');
             Route::post('/get', 'step2GetService');
             Route::post('/add', 'step2AddService');
@@ -109,7 +111,7 @@ Route::prefix('business')->group(function (){
             /*Route::post('/update/logo', 'updateLogo');*/
         });
 
-        Route::controller(PersonalController::class)->prefix('personal')->group(function (){
+        Route::controller(PersonalController::class)->prefix('personal')->group(function () {
             Route::get('/', 'step3Get');
             Route::get('/add/get', 'step3AddPersonalGet');
             Route::post('/get', 'step3GetPersonal');
@@ -125,6 +127,15 @@ Route::prefix('business')->group(function (){
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
 
+        Route::prefix('customer/{customer}')->group(function () {
+            Route::get('cash-point', [CustomerInfoController::class, 'cashPointList']);
+            Route::get('product-sale', [CustomerInfoController::class, 'productSaleList']);
+            Route::get('package-sale', [CustomerInfoController::class, 'packageSaleList']);
+            Route::get('receivable', [CustomerInfoController::class, 'receivableList']);
+            Route::get('payment', [CustomerInfoController::class, 'payments']);
+            Route::get('comment', [CustomerInfoController::class, 'comments']);
+        });
+
         Route::apiResource('customerNote', BusinessCustomerNoteController::class);
         Route::apiResource('customerGallery', CustomerGalleryController::class);
 
@@ -133,7 +144,7 @@ Route::prefix('business')->group(function (){
         Route::apiResource('personel', PersonelController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
-        Route::prefix('personel')->group(function (){
+        Route::prefix('personel')->group(function () {
             Route::post('send/notification', [PersonelController::class, 'sendNotify']);
             Route::get('set-safe/{personel}', [PersonelController::class, 'setCase']);
         });
@@ -147,12 +158,12 @@ Route::prefix('business')->group(function (){
         Route::apiResource('package-sale', PackageSaleController::class)->only([
             'index', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
-        Route::prefix('package-sale')->group(function (){
-           Route::get('/{packageSale}/payments', [PackageSaleOperationController::class, 'payments']);
-           Route::get('/{packageSale}/usages', [PackageSaleOperationController::class, 'usages']);
+        Route::prefix('package-sale')->group(function () {
+            Route::get('/{packageSale}/payments', [PackageSaleOperationController::class, 'payments']);
+            Route::get('/{packageSale}/usages', [PackageSaleOperationController::class, 'usages']);
 
-           Route::post('/{packageSale}/add-payment', [PackageSaleOperationController::class, 'paymentsAdd']);
-           Route::post('/{packageSale}/add-usage', [PackageSaleOperationController::class, 'usagesAdd']);
+            Route::post('/{packageSale}/add-payment', [PackageSaleOperationController::class, 'paymentsAdd']);
+            Route::post('/{packageSale}/add-usage', [PackageSaleOperationController::class, 'usagesAdd']);
 
             Route::delete('/{packagePayment}/delete-payment', [PackageSaleOperationController::class, 'deletePayment']);
             Route::delete('/{packageUsage}/delete-usage', [PackageSaleOperationController::class, 'deleteUsage']);
@@ -169,14 +180,14 @@ Route::prefix('business')->group(function (){
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
         /** -----------------------------Randevuya Hizmet Ekleme ---------------------- */
-        Route::prefix('appointment')->group(function (){
+        Route::prefix('appointment')->group(function () {
             Route::get('/{appointment}/service/list', [AppointmentServicesController::class, 'index']);
             Route::post('/{appointment}/service/add', [AppointmentServicesController::class, 'store']);
             Route::delete('/{appointmentServices}/service/delete', [AppointmentServicesController::class, 'destroy']);
         });
 
         /** -----------------------------Randevuya Fotoğraf Ekleme ---------------------- */
-        Route::prefix('appointment')->group(function (){
+        Route::prefix('appointment')->group(function () {
             Route::get('/{appointment}/photo/list', [AppointmentPhotoController::class, 'index']);
             Route::post('/{appointment}/photo/add', [AppointmentPhotoController::class, 'store']);
             Route::delete('/{appointmentPhoto}/photo/delete', [AppointmentPhotoController::class, 'destroy']);
@@ -186,7 +197,7 @@ Route::prefix('business')->group(function (){
         Route::apiResource('adission', AdissionController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
-        Route::prefix('adission')->group(function (){
+        Route::prefix('adission')->group(function () {
             Route::get('/{adission}/sale/list', [AdissionProductSaleController::class, 'index']);
             Route::get('/{adission}/sale/create', [AdissionProductSaleController::class, 'create']);
             Route::post('/{adission}/sale/add', [AdissionProductSaleController::class, 'store']);
@@ -221,7 +232,7 @@ Route::prefix('business')->group(function (){
         ]);
         /** -------------------------------- Randevu Oluşturma --------------------------------------- */
 
-        Route::prefix('appointment-create')->controller(AppointmentCreateController::class)->group(function (){
+        Route::prefix('appointment-create')->controller(AppointmentCreateController::class)->group(function () {
             Route::get('get/services', 'getService');
             Route::get('get/customers', 'getCustomer');
             Route::post('get/personel', 'getPersonel');
@@ -256,7 +267,7 @@ Route::prefix('business')->group(function (){
         ]);
         /** -------------------------------- Doğum Günleri --------------------------------------- */
         Route::apiResource('birthday', BirthdayController::class)->only([
-            'index','create','store'
+            'index', 'create', 'store'
         ]);
 
         /** -------------------------------- Gelmeyenler --------------------------------------- */
@@ -282,12 +293,12 @@ Route::prefix('business')->group(function (){
 
         /** ------------------------------- Alacaklar ------------------------------------ */
         Route::apiResource('receivable', AppointmentReceivableController::class)->only([
-            'index', 'create', 'store','show', 'edit', 'update', 'destroy'
+            'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
         ]);
 
         /** ------------------------------- Borçlar ------------------------------------ */
         Route::apiResource('dep', BusinessDepController::class)->only([
-            'index', 'create', 'store','show', 'edit', 'update', 'destroy'
+            'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
         ]);
 
     });

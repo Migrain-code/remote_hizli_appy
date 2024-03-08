@@ -26,7 +26,12 @@ class ProductSales extends Model
             'name' => 'Silinmiş Müşteri',
         ]);
     }
-
+    public function business()
+    {
+        return $this->hasOne(Business::class,'id', 'business_id')->withDefault([
+            'name' => 'Silinmiş İşletme',
+        ]);
+    }
     public function personel()
     {
         return $this->hasOne(Personel::class,'id', 'personel_id')->withDefault([

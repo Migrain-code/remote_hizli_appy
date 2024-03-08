@@ -9,4 +9,9 @@ class CustomerCashPoint extends Model
 {
     use HasFactory;
     protected $dates = ["addition_date"];
+
+    public function appointment()
+    {
+        return $this->hasOne(Appointment::class, 'id', 'appointment_id');
+    }
 }
