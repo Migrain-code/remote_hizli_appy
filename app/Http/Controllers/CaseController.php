@@ -45,7 +45,6 @@ class CaseController extends Controller
     /**
      * Kasa Liste
      *
-     * @body listType
      * @param Request $request
      * @return JsonResponse
      */
