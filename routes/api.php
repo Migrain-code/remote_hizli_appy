@@ -41,7 +41,7 @@ use App\Http\Controllers\SubscribtionController;
 use App\Http\Controllers\BusinessDepController;
 use App\Http\Controllers\BusinessCostController;
 use \App\Http\Controllers\CustomerInfoController;
-
+use App\Http\Controllers\CaseController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -205,7 +205,7 @@ Route::prefix('business')->group(function () {
             Route::put('/{adission}/sale/{productSale}/update', [AdissionProductSaleController::class, 'update']);
             Route::delete('/{productSale}/sale/delete', [AdissionProductSaleController::class, 'destroy']);
 
-            Route::get('/{adission}/payment', [AdissionPaymentController::class, 'index']);//tahsilat listesis
+            Route::get('/{adission}/payment', [AdissionPaymentController::class, 'index']);//tahsilat listesi
             Route::get('/{adission}/payment/create', [AdissionPaymentController::class, 'create']);//tahsilat oluştur
             Route::post('/{adission}/payment/add', [AdissionPaymentController::class, 'store']);//tahsilat ekle
             Route::get('/{adission}/payment/{payment}/edit', [AdissionPaymentController::class, 'edit']);// tahsilat düzenle
@@ -301,5 +301,8 @@ Route::prefix('business')->group(function () {
             'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
         ]);
 
+        /** ------------------------------- Kasa ------------------------------------ */
+
+        Route::get('case', [CaseController::class, 'index']);
     });
 });
