@@ -302,7 +302,9 @@ Route::prefix('business')->group(function () {
         ]);
 
         /** ------------------------------- Kasa ------------------------------------ */
-
         Route::get('case', [CaseController::class, 'index']);
+
+        /** ------------------------------- Kasa ------------------------------------ */
+        Route::get('prim', [\App\Http\Controllers\PrimController::class, 'index']);
     });
 });
