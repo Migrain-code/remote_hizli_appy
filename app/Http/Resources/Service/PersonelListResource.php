@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources\Service;
 
-use App\Http\Resources\PersonelRestDayResource;
-use App\Http\Resources\PersonelServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PersonelListResource extends JsonResource

@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Adission;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Adission\ProductSaleAddRequest;
-use App\Http\Resources\PersonelListResource;
-use App\Http\Resources\ProductResource;
-use App\Http\Resources\ProductSaleDetailResource;
-use App\Http\Resources\ProductSaleListResource;
+use App\Http\Resources\Personel\PersonelListResource;
+use App\Http\Resources\Product\ProductResource;
+use App\Http\Resources\ProductSale\ProductSaleDetailResource;
+use App\Http\Resources\ProductSale\ProductSaleListResource;
 use App\Models\Appointment;
 use App\Models\Product;
 use App\Models\ProductSales;
-use Illuminate\Http\Request;
 
 /**
  * @group Adisyonlar

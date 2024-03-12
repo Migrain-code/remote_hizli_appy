@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceAddRequest;
-use App\Http\Resources\BusinessServiceResource;
-use App\Http\Resources\ServiceCategoryResource;
+use App\Http\Resources\Business\BusinessServiceResource;
+use App\Http\Resources\Service\ServiceCategoryResource;
 use App\Models\BusinessService;
 use App\Models\BusinnessType;
 use App\Models\ServiceCategory;

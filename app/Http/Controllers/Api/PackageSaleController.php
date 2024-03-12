@@ -3,23 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PackageSaleAddPaymentRequest;
 use App\Http\Requests\PackageSaleAddRequest;
-use App\Http\Requests\PackageSaleAddUsageRequest;
-use App\Http\Resources\BusinessServiceResource;
-use App\Http\Resources\CustomerListResource;
-use App\Http\Resources\PackageSaleDetailResource;
-use App\Http\Resources\PackageSaleListResource;
-use App\Http\Resources\PackageSalePaymentsListResource;
-use App\Http\Resources\PackageSaleUsagesListResource;
-use App\Http\Resources\PersonelListResource;
-use App\Models\Customer;
-use App\Models\PackagePayment;
+use App\Http\Resources\Business\BusinessServiceResource;
+use App\Http\Resources\Customer\CustomerListResource;
+use App\Http\Resources\PackageSale\PackageSaleDetailResource;
+use App\Http\Resources\PackageSale\PackageSaleListResource;
+use App\Http\Resources\Personel\PersonelListResource;
 use App\Models\PackageSale;
-use App\Models\PackageUsage;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Carbon;
 
 /**
  * @group PackageSale

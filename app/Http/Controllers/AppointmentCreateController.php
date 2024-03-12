@@ -4,16 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Appointment\AppointmentCreateRequest;
 use App\Http\Requests\Appointment\AppointmentSummaryRequest;
-use App\Http\Requests\Appointment\ClockGetRequest;
 use App\Http\Requests\Appointment\PersonelDateGetRequest;
 use App\Http\Requests\Appointment\ServicePersonelGetRequest;
-use App\Http\Resources\AppointmentPersonelResource;
-use App\Http\Resources\BusinessServiceResource;
-use App\Http\Resources\CustomerListResource;
-use App\Http\Resources\PersonelListResource;
+use App\Http\Resources\Business\BusinessServiceResource;
+use App\Http\Resources\Customer\CustomerListResource;
 use App\Models\Appointment;
 use App\Models\AppointmentServices;
-use App\Models\Business;
 use App\Models\BusinessService;
 use App\Models\Personel;
 use Illuminate\Http\Request;

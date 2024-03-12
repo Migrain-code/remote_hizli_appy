@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BusinessCategoryResource;
-use App\Http\Resources\BusinessPackageResource;
-use App\Http\Resources\BusinessResource;
-use App\Http\Resources\OfficialCardResource;
+use App\Http\Resources\Business\BusinessCategoryResource;
+use App\Http\Resources\Business\BusinessPackageResource;
+use App\Http\Resources\Business\BusinessResource;
+use App\Http\Resources\Official\OfficialCardResource;
 use App\Models\BusinessCategory;
 use App\Models\BusinnessType;
 use App\Models\BussinessPackage;

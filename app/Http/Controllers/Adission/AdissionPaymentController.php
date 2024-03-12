@@ -5,19 +5,11 @@ namespace App\Http\Controllers\Adission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Adission\AdissionSaveRequest;
 use App\Http\Requests\Adission\PaymentAddRequest;
-use App\Http\Requests\Adission\ProductSaleAddRequest;
 use App\Http\Resources\Adission\AdissionDetailResoruce;
 use App\Http\Resources\Adission\AdissionPaymentListResoruce;
-use App\Http\Resources\PersonelListResource;
-use App\Http\Resources\ProductResource;
-use App\Http\Resources\ProductSaleListResource;
 use App\Models\Appointment;
 use App\Models\AppointmentCollectionEntry;
-use App\Models\CustomerCashPoint;
-use App\Models\Product;
-use App\Models\ProductSales;
 use App\Models\RemainingPayment;
-use Illuminate\Http\Request;
 
 /**
  * @group Adisyonlar

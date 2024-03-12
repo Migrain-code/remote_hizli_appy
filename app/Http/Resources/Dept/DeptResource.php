@@ -3,7 +3,6 @@
 namespace App\Http\Resources\Dept;
 
 use App\Http\Resources\Customer\AbsentListResoruce;
-use App\Http\Resources\CustomerListResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DeptResource extends JsonResource

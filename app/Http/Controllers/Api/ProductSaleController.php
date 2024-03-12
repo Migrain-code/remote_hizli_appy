@@ -4,16 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductSaleAddRequest;
-use App\Http\Resources\CustomerListResource;
-use App\Http\Resources\PersonelListResource;
-use App\Http\Resources\ProductResource;
-use App\Http\Resources\ProductSaleDetailResource;
-use App\Http\Resources\ProductSaleListResource;
-use App\Models\PackageSale;
+use App\Http\Resources\Customer\CustomerListResource;
+use App\Http\Resources\Personel\PersonelListResource;
+use App\Http\Resources\Product\ProductResource;
+use App\Http\Resources\ProductSale\ProductSaleDetailResource;
+use App\Http\Resources\ProductSale\ProductSaleListResource;
 use App\Models\Product;
 use App\Models\ProductSales;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 /**
  * @group ProductSale

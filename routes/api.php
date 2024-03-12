@@ -42,6 +42,7 @@ use App\Http\Controllers\BusinessDepController;
 use App\Http\Controllers\BusinessCostController;
 use \App\Http\Controllers\CustomerInfoController;
 use App\Http\Controllers\CaseController;
+use \App\Http\Controllers\PrimController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -306,6 +307,6 @@ Route::prefix('business')->group(function () {
         Route::get('case', [CaseController::class, 'index']);
 
         /** ------------------------------- Prim ------------------------------------ */
-        Route::get('prim', [\App\Http\Controllers\PrimController::class, 'index']);
+        Route::get('prim', [PrimController::class, 'index']);
     });
 });

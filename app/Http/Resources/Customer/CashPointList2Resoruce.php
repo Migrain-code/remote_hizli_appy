@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Customer;
 
-use App\Http\Resources\AppointmentServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CashPointList2Resoruce extends JsonResource

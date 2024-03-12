@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api\City;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CityResource;
-use App\Http\Resources\DistrictResource;
-use App\Services\OneSignalNotification;
+use App\Http\Resources\Location\CityResource;
 use Illuminate\Http\Request;
 
 /**

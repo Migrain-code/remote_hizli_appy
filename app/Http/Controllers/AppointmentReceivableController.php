@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Receivable\ReceivableListAddRequest;
-use App\Http\Resources\CustomerListResource;
+use App\Http\Resources\Customer\CustomerListResource;
 use App\Http\Resources\Receivable\ReceivableDetailResource;
 use App\Http\Resources\Receivable\ReceivableListResource;
 use App\Models\AppointmentReceivable;

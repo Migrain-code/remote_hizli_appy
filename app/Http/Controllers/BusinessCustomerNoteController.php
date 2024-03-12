@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BusinessCustomerNoteAddRequest;
 use App\Http\Requests\BusinessCustomerNoteUpdateRequest;
-use App\Http\Resources\BusinessCustomerNoteResource;
+use App\Http\Resources\Business\BusinessCustomerNoteResource;
 use App\Models\BusinessCustomerNote;
 use App\Models\Customer;
-use Illuminate\Http\Request;
 
 /**
  * @group CustomerNote

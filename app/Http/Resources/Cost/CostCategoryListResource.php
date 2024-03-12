@@ -2,12 +2,6 @@
 
 namespace App\Http\Resources\Cost;
 
-use App\Http\Resources\BusinessCategoryResource;
-use App\Http\Resources\BusinessPackageResource;
-use App\Http\Resources\CityResource;
-use App\Http\Resources\DistrictResource;
-use App\Models\City;
-use App\Models\District;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CostCategoryListResource extends JsonResource

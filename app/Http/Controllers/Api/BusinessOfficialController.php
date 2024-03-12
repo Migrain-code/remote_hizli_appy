@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BusinessOfficial\BusinessOfficialAddRequest;
 use App\Http\Resources\Branches\BusinessBrancesResource;
-use App\Http\Resources\BusinessOfficialResource;
-use App\Http\Resources\BusinessResource;
+use App\Http\Resources\Business\BusinessOfficialResource;
 use App\Models\Business;
 use App\Models\BusinessOfficial;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 /**

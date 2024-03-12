@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Birthday\MessageSendRequest;
 use App\Http\Resources\Birthday\BirthdayMessageListResource;
-use App\Http\Resources\CustomerListResource;
-use App\Models\Customer;
+use App\Http\Resources\Customer\CustomerListResource;
 use App\Models\MessageList;
 use App\Services\Sms;
 use Illuminate\Http\Request;

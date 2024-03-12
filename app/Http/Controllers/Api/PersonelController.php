@@ -6,14 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonalAddRequest;
 use App\Http\Requests\PersonalUpdateRequest;
 use App\Http\Requests\PersonelNotificationAddRequest;
-use App\Http\Resources\AppointmentRangeResource;
-use App\Http\Resources\BusinessServiceResource;
-use App\Http\Resources\Cost\CostListResource;
-use App\Http\Resources\DayListResource;
+use App\Http\Resources\Appointment\AppointmentRangeResource;
+use App\Http\Resources\Business\BusinessServiceResource;
+use App\Http\Resources\Location\DayListResource;
 use App\Http\Resources\Personel\MaasListResource;
-use App\Http\Resources\PersonelAppointmentResource;
-use App\Http\Resources\PersonelListResource;
-use App\Http\Resources\PersonelResource;
+use App\Http\Resources\Personel\PersonelAppointmentResource;
+use App\Http\Resources\Personel\PersonelListResource;
+use App\Http\Resources\Personel\PersonelResource;
 use App\Models\AppointmentRange;
 use App\Models\BusinnessType;
 use App\Models\DayList;
@@ -24,7 +23,6 @@ use App\Models\PersonelService;
 use App\Services\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
  * @group PersonelInfo

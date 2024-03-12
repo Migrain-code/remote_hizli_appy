@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerAddRequest;
-use App\Http\Resources\AppointmentResource;
-use App\Http\Resources\BusinessCustomerNoteResource;
-use App\Http\Resources\CustomerDetailResource;
-use App\Http\Resources\CustomerListResource;
+use App\Http\Resources\Appointment\AppointmentResource;
+use App\Http\Resources\Business\BusinessCustomerNoteResource;
+use App\Http\Resources\Customer\CustomerDetailResource;
+use App\Http\Resources\Customer\CustomerListResource;
 use App\Models\BusinessCustomer;
-use App\Models\BusinessCustomerNote;
 use App\Models\Customer;
 use Carbon\Carbon;
-use Cassandra\Custom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 

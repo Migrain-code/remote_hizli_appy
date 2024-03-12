@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Adission;
 
-use App\Http\Resources\AppointmentServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AdissionPaymentListResoruce extends JsonResource

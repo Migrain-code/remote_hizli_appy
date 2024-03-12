@@ -4,25 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DetailSetupRequestStep1;
-use App\Http\Resources\AppointmentRangeResource;
-use App\Http\Resources\BusinessOfficialResource;
-use App\Http\Resources\BusinessResource;
-use App\Http\Resources\BusinessServiceResource;
-use App\Http\Resources\PersonelResource;
-use App\Http\Resources\ServiceCategoryResource;
+use App\Http\Resources\Appointment\AppointmentRangeResource;
+use App\Http\Resources\Business\BusinessOfficialResource;
 use App\Models\AppointmentRange;
 use App\Models\BusinessGallery;
-use App\Models\BusinessService;
-use App\Models\BusinessSlider;
 use App\Models\BusinnessType;
 use App\Models\DayList;
-use App\Models\Personel;
-use App\Models\PersonelService;
-use App\Models\ServiceCategory;
 use App\Services\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 

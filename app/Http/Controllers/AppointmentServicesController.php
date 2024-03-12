@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Appointment\ServiceAddRequest;
-use App\Http\Resources\BusinessServiceResource;
-use App\Http\Resources\PersonelListResource;
+use App\Http\Resources\Business\BusinessServiceResource;
+use App\Http\Resources\Personel\PersonelListResource;
 use App\Models\Appointment;
 use App\Models\AppointmentServices;
 use App\Models\BusinessService;

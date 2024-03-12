@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerGalleryAddRequest;
-use App\Http\Resources\CustomerGalleryResource;
+use App\Http\Resources\Customer\CustomerGalleryResource;
 use App\Models\CustomerGallery;
 use App\Services\UploadFile;
 use Illuminate\Http\Request;

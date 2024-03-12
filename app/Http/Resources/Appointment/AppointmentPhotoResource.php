@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Appointment;
 
-use App\Http\Resources\AppointmentServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppointmentPhotoResource extends JsonResource

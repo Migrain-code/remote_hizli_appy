@@ -2,18 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Appointment\ServiceAddRequest;
-use App\Http\Resources\AppointmentDetailResoruce;
-use App\Http\Resources\AppointmentResource;
-use App\Http\Resources\BusinessServiceResource;
-use App\Http\Resources\PersonelListResource;
+use App\Http\Resources\Appointment\AppointmentDetailResoruce;
+use App\Http\Resources\Appointment\AppointmentResource;
 use App\Models\Appointment;
-use App\Models\AppointmentServices;
-use App\Models\BusinessService;
-use App\Models\Personel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @group Appointment

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BusinessDep\DepListAddRequest;
-use App\Http\Resources\CustomerListResource;
+use App\Http\Resources\Customer\CustomerListResource;
 use App\Http\Resources\Dept\DeptResource;
 use App\Models\BusinessDep;
-use Illuminate\Http\Request;
 
 /**
  * @group Borçlar

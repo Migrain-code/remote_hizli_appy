@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BusinessOfficialResource;
-use App\Http\Resources\PersonelResource;
-use App\Models\BusinessOfficial;
+use App\Http\Resources\Personel\PersonelResource;
 use App\Models\Personel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;

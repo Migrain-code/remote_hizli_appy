@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfficialCreatidCardAddRequest;
 use App\Http\Requests\OfficialCreatidCardUpdateRequest;
-use App\Http\Resources\OfficialCardResource;
+use App\Http\Resources\Official\OfficialCardResource;
 use App\Models\OfficialCreatidCard;
 use Illuminate\Http\Request;
+
 /**
  * @group Credit Cart
  *

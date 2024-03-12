@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Cost\CostAddRequest;
 use App\Http\Resources\Cost\CostCategoryListResource;
 use App\Http\Resources\Cost\CostListResource;
-use App\Http\Resources\PersonelListResource;
+use App\Http\Resources\Personel\PersonelListResource;
 use App\Models\BusinessCost;
 use App\Models\CostCategory;
 
