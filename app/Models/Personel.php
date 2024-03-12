@@ -28,7 +28,10 @@ class Personel extends Authenticatable
     {
         return $this->hasMany(PersonelService::class, 'personel_id', 'id');
     }
-
+    public function costs()
+    {
+        return $this->hasMany(BusinessCost::class, 'personel_id', 'id');
+    }
     public function notifications()
     {
         return $this->hasMany(PersonelNotification::class, 'personel_id', 'id')->orderBy('created_at')->take(5);

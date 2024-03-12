@@ -8,7 +8,9 @@ use App\Http\Requests\PersonalUpdateRequest;
 use App\Http\Requests\PersonelNotificationAddRequest;
 use App\Http\Resources\AppointmentRangeResource;
 use App\Http\Resources\BusinessServiceResource;
+use App\Http\Resources\Cost\CostListResource;
 use App\Http\Resources\DayListResource;
+use App\Http\Resources\Personel\MaasListResource;
 use App\Http\Resources\PersonelAppointmentResource;
 use App\Http\Resources\PersonelListResource;
 use App\Http\Resources\PersonelResource;
@@ -23,6 +25,7 @@ use App\Services\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
 /**
  * @group PersonelInfo
  *
@@ -54,26 +57,26 @@ class PersonelController extends Controller
         $business = $user->business;
 
         $rates = [];
-        for ($i = 0; $i <= 100; $i++){
+        for ($i = 0; $i <= 100; $i++) {
             $rates[] = [
                 'id' => $i,
-                'name' => $i. "&",
+                'name' => $i . "&",
             ];
         }
 
         return response()->json([
-           'dayList' => DayListResource::collection(DayList::all()),
-           'services' => BusinessServiceResource::collection($business->services),
-           'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
-           'rates' => $rates,
-           'genders' => BusinnessType::all(),
+            'dayList' => DayListResource::collection(DayList::all()),
+            'services' => BusinessServiceResource::collection($business->services),
+            'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
+            'rates' => $rates,
+            'genders' => BusinnessType::all(),
         ]);
     }
 
     /**
      * Personel Ekle
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(PersonalAddRequest $request)
@@ -101,16 +104,16 @@ class PersonelController extends Controller
 
         $dayList = DayList::all();
 
-        if ($request->hasFile('logo')){
+        if ($request->hasFile('logo')) {
             $response = UploadFile::uploadFile($request->file('logo'), 'personel_images');
             $personel->image = $response["image"]["way"];
         }
         if ($personel->save()) {
-            foreach ($dayList as $day){
+            foreach ($dayList as $day) {
                 $restDay = new PersonelRestDay();
                 $restDay->personel_id = $personel->id;
                 $restDay->day_id = $day->id;
-                $restDay->status = in_array($day->id, explode(',',$request->restDay)) ? 1 : 0;
+                $restDay->status = in_array($day->id, explode(',', $request->restDay)) ? 1 : 0;
                 $restDay->save();
             }
             if (in_array('all', explode(',', $request->services))) {
@@ -143,13 +146,13 @@ class PersonelController extends Controller
     /**
      * Personel Detayı
      *
-     * @param  Personel $personel
+     * @param Personel $personel
      * @return \Illuminate\Http\Response
      */
     public function show(Personel $personel)
     {
-        $openedAppointments = $personel->appointments()->whereNotIn('status', [3,4, 5])->get();
-        $completedAppointments = $personel->appointments()->whereIn('status', [3,4])->get();
+        $openedAppointments = $personel->appointments()->whereNotIn('status', [3, 4, 5])->get();
+        $completedAppointments = $personel->appointments()->whereIn('status', [3, 4])->get();
         $closedAppointments = $personel->appointments()->where('status', 5)->get();
 
         return response()->json([
@@ -162,7 +165,7 @@ class PersonelController extends Controller
     /**
      * Personel Düzenle
      *
-     * @param  Personel $personel
+     * @param Personel $personel
      * @return \Illuminate\Http\Response
      */
     public function edit(Personel $personel)
@@ -173,8 +176,8 @@ class PersonelController extends Controller
     /**
      * Personel Güncelle
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Personel $personel
+     * @param \Illuminate\Http\Request $request
+     * @param Personel $personel
      * @return \Illuminate\Http\Response
      */
     public function update(PersonalUpdateRequest $request, Personel $personel)
@@ -184,7 +187,7 @@ class PersonelController extends Controller
 
         $personel->name = $request->input('name');
         $personel->email = $request->email;
-        if ($request->filled('password') && isset($request->password)){
+        if ($request->filled('password') && isset($request->password)) {
             $personel->password = Hash::make($request->password);
         }
         $personel->phone = $request->phone;
@@ -201,16 +204,16 @@ class PersonelController extends Controller
 
         $dayList = DayList::all();
 
-        if ($request->hasFile('logo')){
+        if ($request->hasFile('logo')) {
             $response = UploadFile::uploadFile($request->file('logo'), 'personel_images');
             $personel->image = $response["image"]["way"];
         }
         if ($personel->save()) {
-            foreach ($dayList as $day){
+            foreach ($dayList as $day) {
                 $restDay = new PersonelRestDay();
                 $restDay->personel_id = $personel->id;
                 $restDay->day_id = $day->id;
-                $restDay->status = in_array($day->id, explode(',',$request->restDay)) ? 1 : 0;
+                $restDay->status = in_array($day->id, explode(',', $request->restDay)) ? 1 : 0;
                 $restDay->save();
             }
             if (in_array('all', explode(',', $request->services))) {
@@ -243,12 +246,12 @@ class PersonelController extends Controller
     /**
      * Personel Sil
      *
-     * @param  Personel $personel
+     * @param Personel $personel
      * @return \Illuminate\Http\Response
      */
     public function destroy(Personel $personel)
     {
-        if ($personel){
+        if ($personel) {
             $personel->delete();
             return response()->json([
                 'status' => "success",
@@ -260,6 +263,7 @@ class PersonelController extends Controller
             'message' => "Personel Bulunamadı",
         ]);
     }
+
     /**
      * Personel Bildirim
      *
@@ -277,14 +281,14 @@ class PersonelController extends Controller
         $business = $user->business;
         $lastNotify = $business->personelNotifications()->latest()->first();
 
-        if (now()->diffInMinutes($lastNotify->created_at) < 3){
+        if (now()->diffInMinutes($lastNotify->created_at) < 3) {
             return response()->json([
                 'status' => "error",
                 'message' => "Toplu Bildirimleri 3 Dakikada Bir Gönderebilirsiniz",
             ]);
-        } else{
-            if (count($request->personelIds) > 0){
-                foreach ($request->personelIds as $personelId){
+        } else {
+            if (count($request->personelIds) > 0) {
+                foreach ($request->personelIds as $personelId) {
                     $personelNotification = new PersonelNotification();
                     $personelNotification->title = $request->title;
                     $personelNotification->message = $request->message;
@@ -298,8 +302,7 @@ class PersonelController extends Controller
                     'status' => "success",
                     'message' => "Personellere Bildirim Gönderildi",
                 ]);
-            }
-            else{
+            } else {
                 return response()->json([
                     'status' => "error",
                     'message' => "Lütfen Personel Seçiniz",
@@ -308,6 +311,7 @@ class PersonelController extends Controller
         }
 
     }
+
     /**
      * Kasa Yetkisi Ata
      *
@@ -316,22 +320,107 @@ class PersonelController extends Controller
      */
     public function setCase(Personel $personel)
     {
-        if ($personel->safe == 1){
+        if ($personel->safe == 1) {
             $personel->safe = 0;
-            if ($personel->save()){
+            if ($personel->save()) {
                 return response()->json([
                     'status' => "success",
                     'message' => "Personelden Kasa Yetkisi Alındı",
                 ]);
             }
-        } else{
+        } else {
             $personel->safe = 1;
-            if ($personel->save()){
+            if ($personel->save()) {
                 return response()->json([
                     'status' => "success",
                     'message' => "Personele Kasa Yetkisi Verildi",
                 ]);
             }
         }
+    }
+
+    /**
+     * Personel Kasası
+     *
+     * listType değişkeninde gönderilecek
+     * <ul>
+     *     <li>yesterday</li>
+     *     <li>thisWeek</li>
+     *     <li>thisMonth</li>
+     * </ul>
+     * @param Personel $personel
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function case(Personel $personel, Request $request)
+    {
+        $appoinments = $personel->appointments()->when($request->filled('listType'), function ($q) use ($request) {
+            if ($request->listType == "thisWeek") {
+                $startOfWeek = now()->startOfWeek();
+                $endOfWeek = now()->endOfWeek();
+                $q->whereBetween('start_time', [$startOfWeek, $endOfWeek]);
+            } elseif ($request->listType == "thisMonth") {
+                $startOfMonth = now()->startOfMonth();
+                $endOfMonth = now()->endOfMonth();
+                $q->whereBetween('start_time', [$startOfMonth, $endOfMonth]);
+            } elseif ($request->listType == "thisYear") {
+                $startOfYear = now()->startOfYear();
+                $endOfYear = now()->endOfYear();
+                $q->whereBetween('start_time', [$startOfYear, $endOfYear]);
+            } else {
+                $q->whereDate('start_time', now()->subDays(1)->toDateString());
+            }
+        })->get();
+        $servicePrice = 0;
+        foreach ($appoinments as $appointment) {
+            $servicePrice += $appointment->service->price;
+        }
+        $hizmetHakedis = $servicePrice - ($servicePrice * $personel->rate) / 100;
+        $productPrice = $personel->sales()->when($request->filled('listType'), function ($q) use ($request) {
+            if ($request->listType == "thisWeek") {
+                $startOfWeek = now()->startOfWeek();
+                $endOfWeek = now()->endOfWeek();
+                $q->whereBetween('created_at', [$startOfWeek, $endOfWeek]);
+            } elseif ($request->listType == "thisMonth") {
+                $startOfMonth = now()->startOfMonth();
+                $endOfMonth = now()->endOfMonth();
+                $q->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+            } elseif ($request->listType == "thisYear") {
+                $startOfYear = now()->startOfYear();
+                $endOfYear = now()->endOfYear();
+                $q->whereBetween('created_at', [$startOfYear, $endOfYear]);
+            } else {
+                $q->whereDate('created_at', now()->subDays(1)->toDateString());
+            }
+        })->sum('total');
+
+        $urunHakedis = $productPrice - (($productPrice * $personel->product_rate) / 100);
+
+        return response()->json([
+            'totalCiro' => number_format($servicePrice + $productPrice, 2),
+            'progressPayment' => number_format($hizmetHakedis + $urunHakedis, 2),
+            'balanceInside' => number_format($this->totalBalance($personel) - $this->calculatePayedBalance($personel)->sum('price'),  2),
+            'balancePayed' => number_format($this->calculatePayedBalance($personel)->sum('price'), 2),
+            'payments' => MaasListResource::collection($this->calculatePayedBalance($personel)),
+        ]);
+    }
+
+    public function totalBalance($personel)
+    {
+        $productPrice = $personel->sales->sum('total');
+        $servicePrice = 0;
+        foreach ($personel->appointments as $appointment) {
+            $servicePrice += $appointment->service->price;
+        }
+        $hizmetHakedis = $servicePrice - ($servicePrice * $personel->rate) / 100;
+        $urunHakedis = $productPrice - (($productPrice * $personel->product_rate) / 100);
+
+        return $hizmetHakedis + $urunHakedis;
+    }
+
+    public function calculatePayedBalance($personel)
+    {
+        $costs = $personel->costs()->where('cost_category_id', 1)->get();
+        return $costs;
     }
 }

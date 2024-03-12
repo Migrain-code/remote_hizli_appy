@@ -145,6 +145,7 @@ Route::prefix('business')->group(function () {
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
         Route::prefix('personel')->group(function () {
+            Route::get('{personel}/case', [PersonelController::class, 'case']);
             Route::post('send/notification', [PersonelController::class, 'sendNotify']);
             Route::get('set-safe/{personel}', [PersonelController::class, 'setCase']);
         });
@@ -304,7 +305,7 @@ Route::prefix('business')->group(function () {
         /** ------------------------------- Kasa ------------------------------------ */
         Route::get('case', [CaseController::class, 'index']);
 
-        /** ------------------------------- Kasa ------------------------------------ */
+        /** ------------------------------- Prim ------------------------------------ */
         Route::get('prim', [\App\Http\Controllers\PrimController::class, 'index']);
     });
 });
