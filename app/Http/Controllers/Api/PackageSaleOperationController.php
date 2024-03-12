@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PackageSaleAddPaymentRequest;
-use App\Http\Requests\PackageSaleAddUsageRequest;
+use App\Http\Requests\PackageSale\PackageSaleAddPaymentRequest;
+use App\Http\Requests\PackageSale\PackageSaleAddUsageRequest;
 use App\Http\Resources\PackageSale\PackageSalePaymentsListResource;
 use App\Http\Resources\PackageSale\PackageSaleUsagesListResource;
 use App\Models\PackagePayment;

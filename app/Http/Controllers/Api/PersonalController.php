@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PersonalAddRequest;
-use App\Http\Requests\PersonalUpdateRequest;
+use App\Http\Requests\Personel\PersonalAddRequest;
+use App\Http\Requests\Personel\PersonalUpdateRequest;
 use App\Http\Resources\Appointment\AppointmentRangeResource;
 use App\Http\Resources\Business\BusinessServiceResource;
 use App\Http\Resources\Personel\PersonelResource;

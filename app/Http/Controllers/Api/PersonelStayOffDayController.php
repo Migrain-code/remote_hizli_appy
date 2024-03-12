@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PersonelStayOffDayAddRequest;
+use App\Http\Requests\Personel\PersonelStayOffDayAddRequest;
 use App\Http\Resources\Personel\PersonelListResource;
 use App\Http\Resources\Personel\PersonelStayOffDayListResource;
 use App\Models\PersonelStayOffDay;

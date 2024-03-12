@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CustomerAddRequest;
+use App\Http\Requests\Customer\CustomerAddRequest;
 use App\Http\Resources\Appointment\AppointmentResource;
 use App\Http\Resources\Business\BusinessCustomerNoteResource;
 use App\Http\Resources\Customer\CustomerDetailResource;

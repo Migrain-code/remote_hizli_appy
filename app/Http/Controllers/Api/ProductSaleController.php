@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductSaleAddRequest;
+use App\Http\Requests\Product\ProductSaleAddRequest;
 use App\Http\Resources\Customer\CustomerListResource;
 use App\Http\Resources\Personel\PersonelListResource;
 use App\Http\Resources\Product\ProductResource;

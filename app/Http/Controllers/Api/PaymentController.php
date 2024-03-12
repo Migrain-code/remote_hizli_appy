@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\OfficialPaymentRequest;
+use App\Http\Requests\Official\OfficialPaymentRequest;
 use App\Http\Resources\Business\BusinessPackageResource;
 use App\Http\Resources\Official\OfficialCardResource;
 use Illuminate\Http\Request;

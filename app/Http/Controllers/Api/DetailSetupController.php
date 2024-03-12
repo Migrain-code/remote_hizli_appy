@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DetailSetupRequestStep1;
+use App\Http\Requests\Setup\DetailSetupRequestStep1;
 use App\Http\Resources\Appointment\AppointmentRangeResource;
 use App\Http\Resources\Business\BusinessOfficialResource;
 use App\Models\AppointmentRange;
