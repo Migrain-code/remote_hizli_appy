@@ -50,7 +50,10 @@ class Personel extends Authenticatable
     {
         return $this->hasMany(ProductSales::class, 'personel_id', 'id');
     }
-
+    public function permission()
+    {
+        return $this->hasOne(PersonelNotificationPermission::class, 'personel_id', 'id');
+    }
     public function stayOffDays()
     {
         return $this->hasOne(PersonelStayOffDay::class, 'personel_id', 'id');
@@ -65,6 +68,14 @@ class Personel extends Authenticatable
         }
         // Eğer tarih izin tarihleri arasında değilse,false döndürüyoruz.
         return false;
+    }
+
+    public function createPermission()
+    {
+        $permission = new PersonelNotificationPermission();
+        $permission->personel_id = $this->id;
+        $permission->save();
+        return $permission;
     }
     protected static function booted()
     {
