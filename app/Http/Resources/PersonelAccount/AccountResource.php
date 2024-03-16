@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\PersonelAccount;
 
+use App\Http\Resources\Business\BusinessResource;
 use App\Http\Resources\Personel\PersonelRestDayResource;
 use App\Http\Resources\Personel\PersonelServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -34,6 +35,7 @@ class AccountResource extends JsonResource
           'appointmentRange' => $this->appointmentRange,
           'safe' => $this->safe,
           'user_type' => 1,
+          'business' => BusinessResource::make($this->business)
         ];
     }
 }
