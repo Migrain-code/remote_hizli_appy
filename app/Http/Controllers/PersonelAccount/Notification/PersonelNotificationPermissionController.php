@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NotificationPermission\PermissionUpdateRequest;
 use App\Http\Resources\NotificationPermission\NotificationPermissionListResource;
 use App\Models\BusinessNotificationPermission;
+use App\Models\PersonelNotificationPermission;
 
 /**
  * @group Personel Bildirim İzinleri
@@ -42,7 +43,7 @@ class PersonelNotificationPermissionController extends Controller
      * @param  PermissionUpdateRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(PermissionUpdateRequest $request)
+    public function update(PermissionUpdateRequest $request, PersonelNotificationPermission $notificationPermission)
     {
         $notificationPermission = $this->personel->permission;
         $notificationPermission->{$request->column} = !$notificationPermission->{$request->column};

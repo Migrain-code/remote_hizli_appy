@@ -13,7 +13,7 @@ Route::prefix('personel')->group(function () {
         ]);
         /*------Bildirim İzinleri- --------*/
         Route::resource('notification-permission', \App\Http\Controllers\PersonelAccount\Notification\PersonelNotificationPermissionController::class)->only([
-            'index', 'store'
+            'index', 'update'
         ]);
         /*------Bildirimler - --------*/
         Route::resource('notification', \App\Http\Controllers\PersonelAccount\Notification\PersonelNotificationController::class)->only([
