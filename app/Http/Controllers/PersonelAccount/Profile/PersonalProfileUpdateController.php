@@ -64,7 +64,7 @@ class PersonalProfileUpdateController extends Controller
      * @param Personel $personel
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(PersonalProfileUpdateRequest $request)
+    public function store(PersonalProfileUpdateRequest $request)
     {
         $personel = $this->personel;
         if ($request->filled('password') && isset($request->password)) {
