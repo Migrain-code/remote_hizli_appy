@@ -6,8 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Personel\PersonalUpdateRequest;
 use App\Http\Requests\PersonelAccount\PersonalLoginRequest;
 use App\Http\Requests\PersonelAccount\PersonalProfileUpdateRequest;
+use App\Http\Resources\Appointment\AppointmentRangeResource;
+use App\Http\Resources\Business\BusinessServiceResource;
+use App\Http\Resources\Location\DayListResource;
 use App\Http\Resources\Personel\PersonelResource;
 use App\Http\Resources\PersonelAccount\AccountResource;
+use App\Models\AppointmentRange;
+use App\Models\BusinnessType;
 use App\Models\DayList;
 use App\Models\Personel;
 use App\Models\PersonelRestDay;
@@ -32,6 +37,26 @@ class PersonalProfileUpdateController extends Controller
         });
     }
 
+    /**
+     * Profil Bilgileri
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index()
+    {
+        return response()->json(AccountResource::make($this->personel));
+    }
+    /**
+     * Profil Oluşturma
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function create(Request $request)
+    {
+        return response()->json([
+            'dayList' => DayListResource::collection(DayList::all()),
+            'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
+        ]);
+    }
     /**
      * Profil Güncelle
      *

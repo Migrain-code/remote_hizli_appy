@@ -6,11 +6,10 @@ Route::prefix('personel')->group(function () {
     });
 
     Route::middleware('auth:personel')->group(function () {
-        Route::get('user', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'user']);
         Route::post('logout', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'logout']);
         /*------- Hesabım Apisi -----------*/
-        Route::post('profile/update', [\App\Http\Controllers\PersonelAccount\Profile\PersonalProfileUpdateController::class, 'update']);
-
+        Route::resource('profile', \App\Http\Controllers\PersonelAccount\Profile\PersonalProfileUpdateController::class);
+        
 
     });
 });
