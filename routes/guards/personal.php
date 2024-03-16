@@ -30,7 +30,7 @@ Route::prefix('personel')->group(function () {
             Route::delete('/{appointmentPhoto}/photo/delete', [\App\Http\Controllers\Appointment\AppointmentPhotoController::class, 'destroy']);
         });
         /*--------İzinler --------------*/
-        Route::apiResource('stay-off-day', \App\Http\Controllers\PersonelAccount\StayOffDay\PersonelStayOffDayController::class)->only([
+        Route::apiResource('stayoffday', \App\Http\Controllers\PersonelAccount\StayOffDay\PersonelStayOffDayController::class)->only([
             'index', 'create', 'store', 'destroy'
         ]);
         /*--------Kasa --------------*/
