@@ -35,6 +35,15 @@ Route::prefix('personel')->group(function () {
         ]);
         /*--------Kasa --------------*/
         Route::get('/case', [\App\Http\Controllers\PersonelAccount\Case\PersonelCaseController::class, 'case']);
-
+        /*------- Randevu Oluştur----------*/
+        Route::prefix('appointment-create')->controller(\App\Http\Controllers\PersonelAccount\Appointment\PersonelAppointmentCreateController::class)->group(function () {
+            Route::get('get/services', 'getService');
+            Route::get('get/customers', 'getCustomer');
+            //Route::post('get/personel', 'getPersonel');
+            Route::post('get/date', 'getDate');
+            Route::post('get/clock', 'getClock');
+            Route::post('/', 'appointmentCreate');
+            Route::post('/summary', 'summary');
+        });
     });
 });

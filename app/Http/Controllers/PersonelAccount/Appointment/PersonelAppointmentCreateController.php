@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Appointment;
+namespace App\Http\Controllers\PersonelAccount\Appointment;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Appointment\AppointmentCreateRequest;
@@ -17,11 +17,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 /**
- * @group AppointmentCreate
+ * @group Personel Randevu Oluştur
  *
  */
-class AppointmentCreateController extends Controller
+class PersonelAppointmentCreateController extends Controller
 {
+    private $personel;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->personel = auth()->user();
+            return $next($request);
+        });
+    }
     /**
      *
      * Hizmet Listesi
@@ -30,8 +39,7 @@ class AppointmentCreateController extends Controller
      */
     public function getService(Request $request)
     {
-        $user = $request->user();
-        $business = $user->business;
+        $business = $this->personel->business;
 
         $womanServicesArray = $business->services()->where('type', 1)->with('categorys')->get();
         $womanServiceCategories = $womanServicesArray->groupBy('categorys.name');
@@ -58,7 +66,7 @@ class AppointmentCreateController extends Controller
      * @param Request $request
      * @return void
      */
-    public function getPersonel(ServicePersonelGetRequest $request)
+    /*public function getPersonel(ServicePersonelGetRequest $request)
     {
         $getData = $request->serviceIds;
 
@@ -84,7 +92,7 @@ class AppointmentCreateController extends Controller
             ];
         }
         return response()->json($ap_services);
-    }
+    }*/
     /**
      *
      * Müşteri Listesi
@@ -93,8 +101,7 @@ class AppointmentCreateController extends Controller
      */
     public function getCustomer(Request $request)
     {
-        $user = $request->user();
-        $business = $user->business;
+        $business = $this->personel->business;
         return response()->json(CustomerListResource::collection($business->customers));
     }
     /**
@@ -103,16 +110,14 @@ class AppointmentCreateController extends Controller
      * @param Request $request
      * @return void
      */
-    public function getDate(PersonelDateGetRequest $request)
+    public function getDate(Request $request)
     {
         $personels = [];
         $getData = $request->personelIds;
 
-        foreach ($getData as $personel_id) {
-            $personels[] = Personel::find($personel_id);
-        }
-        $user = $request->user();
-        $business = $user->business;
+        $personels[] = $this->personel;
+
+        $business = $this->personel->business;
 
         $remainingDays = Carbon::now()->subDays(1)->diffInDays(Carbon::now()->copy()->endOfMonth());
 
@@ -170,84 +175,16 @@ class AppointmentCreateController extends Controller
     {
         $getDate = Carbon::parse($request->date);
         $business = $request->user()->business;
-        $personelIds = [];
-        $serviceIds = [];
-        foreach ($request->personelIds as $personelId){
-            $personelIds[] = explode('_', $personelId)[0];
-            $serviceIds[] = explode('_', $personelId)[1];
-        }
-        $uniquePersonals = array_unique($personelIds);
 
-        // personelleri gelen id lere göre db den collection olarak al
         $personels = [];
-        foreach ($uniquePersonals as $id) {
-            $personels[] = Personel::find($id);
-        }
+
+        $personels[] = $this->personel;
+
         $clocks = [];
-        if (count($uniquePersonals) == 1) {
-            foreach ($personels as $personel) {
 
-                $disabledDays[] = $this->findTimes($personel);
+        foreach ($personels as $personel) {
 
-                if (Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek == $business->off_day) {
-                    $clocks[] = [
-                        'id' => $getDate->format('d_m_Y_'),
-                        'saat' => 'İşletme bu tarihte hizmet vermemektedir',
-                        'date' => $getDate->format('d.m.Y'),
-                        'value' => $getDate->format('d.m.Y '),
-                        'durum' => false,
-                    ];
-                    return response()->json([
-                        "status" => "error",
-                        "message" => "İşletme bu tarihte hizmet vermemektedir"
-                    ], 422);
-                } else {
-                    if (in_array(Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek, $personel->restDays()->pluck('day_id')->toArray())) {
-                        $clocks[] = [
-                            'id' => $getDate->format('d_m_Y_'),
-                            'saat' => 'Personel bu tarihte hizmet vermemektedir',
-                            'date' => $getDate->format('d.m.Y'),
-                            'value' => $getDate->format('d.m.Y '),
-                            'durum' => false,
-                        ];
-                        return response()->json([
-                            "status" => "error",
-                            "message" => "Personel bu tarihte hizmet vermemektedir"
-                        ], 422);
-                    } else {
-                        if ($personel->checkDateIsOff($getDate)) {
-                            $clocks[] = [
-                                'id' => $getDate->format('d_m_Y_'),
-                                'saat' => 'Personel ' . Carbon::parse($personel->stayOffDays->start_time)->format('d.m.Y H:i') . " tarihinden " . Carbon::parse($personel->stayOffDays->end_time)->format('d.m.Y H:i') . " Tarihine Kadar İzinlidir",
-                                'date' => $getDate->format('d.m.Y'),
-                                'value' => $getDate->format('d.m.Y '),
-                                'durum' => false,
-                            ];
-                            return response()->json([
-                                "status" => "error",
-                                "message" => 'Personel ' . Carbon::parse($personel->stayOffDays->start_time)->format('d.m.Y H:i') . " tarihinden " . Carbon::parse($personel->stayOffDays->end_time)->format('d.m.Y H:i') . " Tarihine Kadar İzinlidir",
-                            ], 422);
-                        } else {
-                            for ($i = \Illuminate\Support\Carbon::parse($personel->start_time); $i < \Illuminate\Support\Carbon::parse($personel->end_time); $i->addMinute($personel->range)) {
-                                $clocks[] = [
-                                    'id' => $getDate->format('d_m_Y_' . $i->format('H_i')),
-                                    'saat' => $i->format('H:i'),
-                                    'date' => $getDate->format('d.m.Y'),
-                                    'value' => $getDate->format('d.m.Y ' . $i->format('H:i')),
-                                    'durum' => in_array($getDate->format('d.m.Y ') . $i->format('H:i'), $disabledDays[0]) ? false : true,
-                                ];
-                            }
-
-
-                        }
-
-                    }
-                }
-
-
-            }
-
-        } else { // birden fazla ve farklı personel seçilmişse
+            $disabledDays[] = $this->findTimes($personel);
 
             if (Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek == $business->off_day) {
                 $clocks[] = [
@@ -262,83 +199,52 @@ class AppointmentCreateController extends Controller
                     "message" => "İşletme bu tarihte hizmet vermemektedir"
                 ], 422);
             } else {
-                // işletme çalışma saatlerine randevu aralığına göre diziye ekle
-                $businessClocks = [];
-                for ($i = \Illuminate\Support\Carbon::parse($business->start_time); $i < \Illuminate\Support\Carbon::parse($business->end_time); $i->addMinute($business->appoinment_range)) {
-                    $businessClocks[] = $getDate->format('d.m.Y ' . $i->format('H:i'));
-                }
-                // personellerin dolu saatlerini bul
-                $disabledClocks = [];
-                foreach ($personels as $personel) {
-                    $disabledClocks[] = $this->findTimes($personel);
-                }
-                // diziyi tek boyuta düşür
-                $flattenedArray = [];
-                foreach ($disabledClocks as $subArray) {
-                    $flattenedArray = array_merge($flattenedArray, $subArray);
-                }
-                // dizi deki aynı olan verileri kaldır
-                $disabledTimes = array_unique($flattenedArray);
-
-                // hizmetlerin sürelerini al ve toplam süreye ekle
-                $totalMinute = 0;
-                foreach ($serviceIds as $serviceId) {
-                    $service = BusinessService::find($serviceId);
-                    $totalMinute += $service->time;
-                }
-                $totalMinutes = $totalMinute;
-
-                foreach ($businessClocks as $index => $clock) {
-
-                    $i = Carbon::parse($clock);
-                    $clocks[] = array(
-                        'id' => $getDate->format('d_m_Y_' . $i->format('H_i')),
-                        'saat' => $i->format('H:i'),
+                if (in_array(Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek, $personel->restDays()->pluck('day_id')->toArray())) {
+                    $clocks[] = [
+                        'id' => $getDate->format('d_m_Y_'),
+                        'saat' => 'Personel bu tarihte hizmet vermemektedir',
                         'date' => $getDate->format('d.m.Y'),
-                        'value' => $getDate->format('d.m.Y ' . $i->format('H:i')),
-                        // işletmenin çalışma saatleri ile personelin çalışma saatlerini karşılaştır aynı olanları false yap
-                        'durum' => !in_array($getDate->format('d.m.Y ') . $i->format('H:i'), $disabledTimes),
-                    );
-                }
-                $found = false;
-                $startTime = null;
-                $currentTime = null;
-                $totalTime = 0;
-                foreach ($clocks as $clock) {
-                    if ($clock['durum']) {
-                        if ($currentTime === null) {
-                            $currentTime = Carbon::parse($clock['value']);
-                            $startTime = $currentTime;
-                        } else {
-                            $nextTime = Carbon::parse($clock['value']);
-                            $timeDifference = $nextTime->diffInMinutes($currentTime);
-                            $totalTime += $timeDifference;
-
-                            // Eğer toplam süre  60 dakika veya daha fazla ise, durumu false olarak ayarla
-                            if ($totalTime >= $totalMinutes) {
-                                $found = true;
-                                break;
-                            }
-
-                            $currentTime = $nextTime;
-                        }
-                    } else {
-                        $currentTime = null;
-                        $totalTime = 0; // Boş alan başladığında toplam süreyi sıfırlayın
-                    }
-                }
-
-                if (!$found) {
+                        'value' => $getDate->format('d.m.Y '),
+                        'durum' => false,
+                    ];
                     return response()->json([
                         "status" => "error",
-                        "message" => "Seçtiğiniz Hizmetler için uygun randevu aralığı bulunmamaktadır. Personeli veya Hizmeti Değiştirerek Yeniden Saat Arayabilirsiniz."
-                    ],422);
+                        "message" => "Personel bu tarihte hizmet vermemektedir"
+                    ], 422);
+                } else {
+                    if ($personel->checkDateIsOff($getDate)) {
+                        $clocks[] = [
+                            'id' => $getDate->format('d_m_Y_'),
+                            'saat' => 'Personel ' . Carbon::parse($personel->stayOffDays->start_time)->format('d.m.Y H:i') . " tarihinden " . Carbon::parse($personel->stayOffDays->end_time)->format('d.m.Y H:i') . " Tarihine Kadar İzinlidir",
+                            'date' => $getDate->format('d.m.Y'),
+                            'value' => $getDate->format('d.m.Y '),
+                            'durum' => false,
+                        ];
+                        return response()->json([
+                            "status" => "error",
+                            "message" => 'Personel ' . Carbon::parse($personel->stayOffDays->start_time)->format('d.m.Y H:i') . " tarihinden " . Carbon::parse($personel->stayOffDays->end_time)->format('d.m.Y H:i') . " Tarihine Kadar İzinlidir",
+                        ], 422);
+                    } else {
+                        for ($i = \Illuminate\Support\Carbon::parse($personel->start_time); $i < \Illuminate\Support\Carbon::parse($personel->end_time); $i->addMinute($personel->range)) {
+                            $clocks[] = [
+                                'id' => $getDate->format('d_m_Y_' . $i->format('H_i')),
+                                'saat' => $i->format('H:i'),
+                                'date' => $getDate->format('d.m.Y'),
+                                'value' => $getDate->format('d.m.Y ' . $i->format('H:i')),
+                                'durum' => in_array($getDate->format('d.m.Y ') . $i->format('H:i'), $disabledDays[0]) ? false : true,
+                            ];
+                        }
+
+
+                    }
+
                 }
             }
+
+
         }
+
         return response()->json($clocks);
-
-
     }
 
     /**
@@ -349,8 +255,7 @@ class AppointmentCreateController extends Controller
      */
     public function summary(AppointmentSummaryRequest $request)
     {
-        $user = $request->user();
-        $business = $user->business;
+        $business = $this->personel->business;
         $customer = $business->customers()->where('customer_id', $request->customer_id)->first();
         $businessServices = $business->services()->whereIn('id', $request->services)->get();
 
@@ -410,15 +315,14 @@ class AppointmentCreateController extends Controller
         $personelIds = [];
         $serviceIds = [];
         foreach ($request->personels as $personelId){
-            $personelIds[] = explode('_', $personelId)[0];
             $serviceIds[] = explode('_', $personelId)[1];
         }
 
         $appointmentStartTime = Carbon::parse($request->times[0]);
-        foreach ($serviceIds as $index => $serviceId) {
+        foreach ($serviceIds as $serviceId) {
             $findService = BusinessService::find($serviceId);
             $appointmentService = new AppointmentServices();
-            $appointmentService->personel_id = $personelIds[$index];
+            $appointmentService->personel_id = $this->personel->id;
             $appointmentService->service_id = $serviceId;
             $appointmentService->start_time = $appointmentStartTime->format('d.m.Y H:i');
             $appointmentService->end_time = $appointmentStartTime->addMinutes($findService->time)->format('d.m.Y H:i');
