@@ -10,7 +10,7 @@ use App\Services\UploadFile;
 use Illuminate\Http\Request;
 
 /**
- * @group Personel Randevular
+ * @group Randevu Fotoğraflar
  *
  */
 class AppointmentPhotoController extends Controller
