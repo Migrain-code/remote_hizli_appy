@@ -14,28 +14,23 @@ class AppointmentServices extends Model
         0 => [
             'html' => '<span class="badge light badge-warning fw-bolder px-2 py-2">Onay Bekliyor</span>',
             'text' => 'Onay Bekliyor',
+            "color" => "#fff04f"
         ],
         1 => [
             'html' => '<span class="badge light badge-success fw-bolder px-2 py-2">Onaylandı</span>',
-            'text' => 'Onaylandı'
+            'text' => 'Onaylandı',
+            "color" => "#6aab73"
         ],
         2 => [
-            'html' => '<span class="badge light badge-info fw-bolder px-2 py-2">Randevu Zamanı</span>',
-            'text' => 'Randevu Zamanı'
+            'html' => '<span class="badge badge-outline-success fw-bolder px-2 py-2">Tamamlandı</span>',
+            'text' => 'Tamamlandı',
+            "color" => "#4a7750"
         ],
         3 => [
-            'html' => '<span class="badge badge-outline-success fw-bolder px-2 py-2">Tamamlandı</span>',
-            'text' => 'Tamamlandı'
-        ],
-        4 => [
-            'html' => '<span class="badge badge-outline-info fw-bolder px-2 py-2">Ödeme Alındı</span>',
-            'text' => 'Ödeme Alındı'
-        ],
-        5 => [
             'html' => '<span class="badge light badge-danger fw-bolder px-2 py-2">İptal Edildi</span>',
-            'text' => 'İptal Edildi'
+            'text' => 'İptal Edildi',
+            "color" => "#bf0d36"
         ],
-
     ];
     public function status($type)
     {

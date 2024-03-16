@@ -19,6 +19,22 @@ Route::prefix('personel')->group(function () {
         Route::resource('notification', \App\Http\Controllers\PersonelAccount\Notification\PersonelNotificationController::class)->only([
             'index', 'show', 'destroy'
         ]);
+        /*------ Randevular -----------*/
+        Route::apiResource('appointment', \App\Http\Controllers\PersonelAccount\Appointment\PersonelAppointmentController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+        /*------- Randevu Fotoğrafları----------*/
+        Route::prefix('appointment')->group(function () {
+            Route::get('/{appointment}/photo/list', [\App\Http\Controllers\Appointment\AppointmentPhotoController::class, 'index']);
+            Route::post('/{appointment}/photo/add', [\App\Http\Controllers\Appointment\AppointmentPhotoController::class, 'store']);
+            Route::delete('/{appointmentPhoto}/photo/delete', [\App\Http\Controllers\Appointment\AppointmentPhotoController::class, 'destroy']);
+        });
+        /*--------İzinler --------------*/
+        Route::apiResource('stay-off-day', \App\Http\Controllers\PersonelAccount\StayOffDay\PersonelStayOffDayController::class)->only([
+            'index', 'create', 'store', 'destroy'
+        ]);
+        /*--------Kasa --------------*/
+        Route::get('/case', [\App\Http\Controllers\PersonelAccount\Case\PersonelCaseController::class, 'case']);
 
     });
 });
