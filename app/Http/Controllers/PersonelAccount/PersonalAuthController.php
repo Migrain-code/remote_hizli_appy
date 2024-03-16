@@ -1,39 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\PersonelAccount;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PersonelAccount\PersonalLoginRequest;
 use App\Http\Resources\Personel\PersonelResource;
+use App\Http\Resources\PersonelAccount\AccountResource;
 use App\Models\Personel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 /**
  * @group PersonalAuth
+ *
  */
 class PersonalAuthController extends Controller
 {
-    /**
-     * POST api/personal/auth/login
-     *
-     * Status Codes
-     * <ul>
-     * <li>phone</li>
-     * <li>password</li>
-     * <li> 401 Unauthorized Hatası </li>
-     * </ul>
-     * Login apisi
-     *
-     *
-     */
+    private $personel;
 
-    public function login(Request $request)
+    public function __construct()
     {
-        $request->validate([
-            'phone' => 'required|string',
-            'password' => 'required|string'
-        ]);
+        $this->middleware(function ($request, $next) {
+            $this->personel = auth('personel')->user();
+            return $next($request);
+        });
+    }
 
+    /**
+     * Personel Girişi
+     * @param PersonalLoginRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function login(PersonalLoginRequest $request)
+    {
         $user = Personel::where('phone', $request->phone)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -46,20 +45,14 @@ class PersonalAuthController extends Controller
 
         return response()->json([
             'token' => $token,
-            'user' => PersonelResource::make($user),
+            'user' => AccountResource::make($user),
         ]);
     }
 
     /**
-     * POST api/personal/auth/logout
-     *
-     *
-     * <ul>
-     * <li>Token Göndermeniz Yeterli</li>
-     * </ul>
-     * Logout apisi
-     *
-     * @header Bearer {token}
+     * Personel Çıkış Yap
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      *
      */
     public function logout(Request $request)
@@ -70,22 +63,13 @@ class PersonalAuthController extends Controller
 
         return response()->json(['message' => 'Sistemden Çıkış Yapıldı']);
     }
+
     /**
-     * GET api/personal/auth/user
-     *
-     *
-     * <ul>
-     * <li>Token Göndermeniz Yeterli</li>
-     * </ul>
-     * Logout apisi
-     *
-     * @header Bearer {token}
-     *
+     * Personel Bilgisi
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function user(Request $request)
+    public function user()
     {
-        return response()->json([
-            'user' => PersonelResource::make($request->user()),
-        ]);
+        return response()->json(AccountResource::make($this->personel));
     }
 }

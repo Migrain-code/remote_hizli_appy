@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Notification;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Notification\NotificationListResource;
 use App\Models\BusinessNotification;
-use Illuminate\Http\Request;
 
 /**
  * @group Notifications

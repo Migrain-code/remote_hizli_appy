@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Personel;
+namespace App\Http\Resources\PersonelAccount;
 
+use App\Http\Resources\Personel\PersonelRestDayResource;
+use App\Http\Resources\Personel\PersonelServiceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PersonelResource extends JsonResource
+class AccountResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -29,8 +31,6 @@ class PersonelResource extends JsonResource
           'rate' => $this->rate,
           'appointment_range' => $this->range,
           'description' => $this->description,
-          'services' => PersonelServiceResource::collection($this->services),
-          'rest_day' => PersonelRestDayResource::collection($this->restDays),
           'appointmentRange' => $this->appointmentRange,
           'safe' => $this->safe,
           'user_type' => 1,

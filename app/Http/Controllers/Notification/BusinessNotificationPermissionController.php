@@ -3,84 +3,55 @@
 namespace App\Http\Controllers\Notification;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NotificationPermission\PermissionUpdateRequest;
+use App\Http\Resources\NotificationPermission\NotificationPermissionListResource;
 use App\Models\BusinessNotificationPermission;
-use Illuminate\Http\Request;
 
+/**
+ * @group NotificationPermission
+ *
+ */
 class BusinessNotificationPermissionController extends Controller
 {
+    private $business;
+    private $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->business = auth()->user()->business;
+            $this->user = auth()->user();
+            return $next($request);
+        });
+    }
     /**
-     * Display a listing of the resource.
+     * Bildirim İzinleri
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return response()->json(NotificationPermissionListResource::make($this->user->permission));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Bildirim Güncelle
      *
-     * @return \Illuminate\Http\Response
+     * Bildirim izinleri listesindeki response dönen verilerden is_email,is_sms,is_phone,is_notification örnek gönderim ({"column": "is_email"})
+     *
+     * @param  PermissionUpdateRequest  $request
+     * @param  BusinessNotificationPermission $notificationPermission
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function update(PermissionUpdateRequest $request, BusinessNotificationPermission $notificationPermission)
     {
-        //
+        $notificationPermission->{$request->column} = !$notificationPermission->{$request->column};
+        if ($notificationPermission->save()){
+            return response()->json([
+                'status' => "success",
+                'message' => "Bildirim Ayarlarınız Güncellendi",
+            ]);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\BusinessNotificationPermission  $businessNotificationPermission
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BusinessNotificationPermission $businessNotificationPermission)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\BusinessNotificationPermission  $businessNotificationPermission
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BusinessNotificationPermission $businessNotificationPermission)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BusinessNotificationPermission  $businessNotificationPermission
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, BusinessNotificationPermission $businessNotificationPermission)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\BusinessNotificationPermission  $businessNotificationPermission
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(BusinessNotificationPermission $businessNotificationPermission)
-    {
-        //
-    }
 }

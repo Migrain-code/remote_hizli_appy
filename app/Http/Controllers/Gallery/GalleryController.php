@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Gallery;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Gallery\GalleryAddRequest;
 use App\Http\Resources\Gallery\GalleryListResource;
 use App\Models\BusinessGallery;
 use App\Services\UploadFile;
-use Illuminate\Http\Request;
 
 /**
  * @group BusinessGallery

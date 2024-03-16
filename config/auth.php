@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'admin',
-        'passwords' => 'admin',
+        'guard' => 'official',
+        'passwords' => 'official',
     ],
 
     /*
@@ -36,21 +36,13 @@ return [
     */
 
     'guards' => [
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admin',
-        ],
         'official' => [
             'driver' => 'passport',
             'provider' => 'official',
         ],
-        'personal' => [
+        'personel' => [
             'driver' => 'passport',
-            'provider' => 'personal',
-        ],
-        'api' => [
-            'driver' => 'passport',
-            'provider' => 'official',
+            'provider' => 'personel',
         ],
     ],
 
@@ -72,15 +64,11 @@ return [
     */
 
     'providers' => [
-        'admin' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
         'official' => [
             'driver' => 'eloquent',
             'model' => App\Models\BusinessOfficial::class,
         ],
-        'personal' => [
+        'personel' => [
             'driver' => 'eloquent',
             'model' => App\Models\Personel::class,
         ],
@@ -103,20 +91,14 @@ return [
     */
 
     'passwords' => [
-        'admin' => [
-            'provider' => 'admin',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
         'official' => [
             'provider' => 'official',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
-        'personal' => [
-            'provider' => 'personal',
+        'personel' => [
+            'provider' => 'personel',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
