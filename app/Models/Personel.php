@@ -45,7 +45,6 @@ class Personel extends Authenticatable
     {
         return $this->hasMany(AppointmentServices::class, 'personel_id', 'id');
     }
-
     public function sales()
     {
         return $this->hasMany(ProductSales::class, 'personel_id', 'id');
