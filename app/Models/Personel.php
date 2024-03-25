@@ -61,9 +61,10 @@ class Personel extends Authenticatable
     {
         // stayOffDays ilişkisini kullanarak izin tarihlerini alıyoruz.
         $offDays = $this->stayOffDays;
-
-        if ($getDate >= $offDays->start_time && $getDate <= $offDays->end_time) {
-            return true;
+        if ($offDays){
+            if ($getDate >= $offDays->start_time && $getDate <= $offDays->end_time) {
+                return true;
+            }
         }
         // Eğer tarih izin tarihleri arasında değilse,false döndürüyoruz.
         return false;
