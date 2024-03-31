@@ -207,6 +207,7 @@ class PersonelController extends Controller
         $personel->rate = $request->rate;
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
+        $personel->product_rate = $request->productRate;
 
         $dayList = DayList::all();
 
