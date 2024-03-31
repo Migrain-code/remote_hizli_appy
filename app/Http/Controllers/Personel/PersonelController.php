@@ -73,7 +73,7 @@ class PersonelController extends Controller
             'services' => BusinessServiceResource::collection($business->services),
             'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
             'rates' => $rates,
-            'productRates' => $product_rates,
+            'productRate' => $product_rates,
             'genders' => BusinnessType::all(),
         ]);
     }
