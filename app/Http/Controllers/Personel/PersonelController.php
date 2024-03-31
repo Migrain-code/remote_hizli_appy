@@ -58,15 +58,22 @@ class PersonelController extends Controller
         for ($i = 0; $i <= 100; $i++) {
             $rates[] = [
                 'id' => $i,
-                'name' => $i . "&",
+                'name' => $i . "%",
             ];
         }
-
+        $product_rates = [];
+        for ($j = 0; $j <= 100; $j++) {
+            $product_rates[] = [
+                'id' => $j,
+                'name' => $j . "%",
+            ];
+        }
         return response()->json([
             'dayList' => DayListResource::collection(DayList::all()),
             'services' => BusinessServiceResource::collection($business->services),
             'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
             'rates' => $rates,
+            'productRates' => $product_rates,
             'genders' => BusinnessType::all(),
         ]);
     }
@@ -97,6 +104,7 @@ class PersonelController extends Controller
         $personel->food_end = $request->foodEnd;
         $personel->gender = $business->type->id == 3 ? $request->gender : $business->type->id;
         $personel->rate = $request->rate;
+        $personel->product_rate = $request->productRate;
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
 
