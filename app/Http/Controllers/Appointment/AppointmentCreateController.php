@@ -61,6 +61,16 @@ class AppointmentCreateController extends Controller
     public function getPersonel(ServicePersonelGetRequest $request)
     {
         $getData = $request->serviceIds;
+        $salonTypes = [
+            [
+                'id' => 1,
+                'name' => "Vip Salon"
+            ],
+            [
+                'id' => 1,
+                'name' => "Normal Salon"
+            ],
+        ];
 
         $ap_services = [];
         foreach ($getData as $id) {
@@ -81,6 +91,7 @@ class AppointmentCreateController extends Controller
                 'id' => $id,
                 'title' => $service->subCategory->getName() . " için personel seçiniz",
                 'personels' => $servicePersonels,
+                'salonType' => $salonTypes,
             ];
         }
         return response()->json($ap_services);
