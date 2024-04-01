@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Promossion;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Promossion\PromosionUpdateRequest;
 use App\Http\Resources\Promosion\PromossionListResource;
+use App\Models\BusinessPromossion;
 
 /**
  * @group Promosyonlar
@@ -31,7 +32,11 @@ class BusinessPromossionController extends Controller
     public function index()
     {
         $promossions = $this->business->promossions;
-
+        if (!$promossions){
+            $promossion = new BusinessPromossion();
+            $promossion->business_id = 0;
+            $promossion->save();
+        }
         return response()->json(PromossionListResource::make($promossions));
     }
 
