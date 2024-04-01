@@ -34,7 +34,7 @@ class BusinessPromossionController extends Controller
         $promossions = $this->business->promossions;
         if (!$promossions){
             $promossion = new BusinessPromossion();
-            $promossion->business_id = 0;
+            $promossion->business_id = $this->business->id;
             $promossion->save();
         }
         return response()->json(PromossionListResource::make($promossions));
