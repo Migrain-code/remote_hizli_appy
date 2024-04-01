@@ -174,6 +174,7 @@ class ProductSaleController extends Controller
      */
     public function destroy(ProductSales $productSale)
     {
+        return $productSale->$productSale->product_id;
         $productFind = Product::find($productSale->product_id);
         if (isset($productFind)){
             $productFind = $productFind->piece + $productSale->piece;
