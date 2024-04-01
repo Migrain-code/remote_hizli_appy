@@ -74,7 +74,7 @@ class AdissionProductSaleController extends Controller
             return response()->json([
                 'status' => "error",
                 'message' => "Satışını Yapmaya Çalıştığınız Ürünün Stoğu Yetersiz. Ürüne Stok Eklemesi Yaparak Satışı Gerçekleştirebilirsiniz"
-            ]);
+            ],422);
         }
 
         $productSale = new ProductSales();
