@@ -77,6 +77,7 @@ class BusinessOfficialController extends Controller
         $official->business_id = $request->input('branch_id');
         if ($official->save()) {
             $official->company_id = $official->business->company_id;
+            $official->save();
             return response()->json([
                 'status' => "success",
                 'message' => "Yetkili " . $official->business->name . " İşletmenize Eklendi"
