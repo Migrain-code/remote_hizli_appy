@@ -32,7 +32,7 @@ class BusinessPromossionController extends Controller
     public function index()
     {
         $promossions = $this->business->promossions;
-        if (!$promossions){
+        if (!isset($promossions)){
             $promossion = new BusinessPromossion();
             $promossion->business_id = $this->business->id;
             $promossion->save();
