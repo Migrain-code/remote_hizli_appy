@@ -104,7 +104,7 @@ class PersonelController extends Controller
         $personel->food_end = $request->foodEnd;
         $personel->gender = $business->type->id == 3 ? $request->gender : $business->type->id;
         $personel->rate = $request->rate;
-        $personel->product_rate = $request->productRate;
+        $personel->product_rate =0; //$request->productRate;
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
 
@@ -207,7 +207,7 @@ class PersonelController extends Controller
         $personel->rate = $request->rate;
         $personel->range = $request->appointmentRange;
         $personel->description = $request->description;
-        $personel->product_rate = $request->productRate;
+        $personel->product_rate = 0;//$request->productRate;
 
         $dayList = DayList::all();
 
