@@ -103,7 +103,7 @@ class CustomerInfoController extends Controller
      */
     public function receivableList(Customer $customer)
     {
-        $receivables = $customer->receivables()->where('business_id', $this->business->id)->get();
+        $receivables = $customer->deps()->where('business_id', $this->business->id)->get();
         return response()->json(ReceivableListResource::collection($receivables));
     }
     /**

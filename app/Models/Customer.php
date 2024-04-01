@@ -73,7 +73,10 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(AppointmentReceivable::class, 'customer_id', 'id');
     }
-
+    public function deps()
+    {
+        return $this->hasMany(BusinessDep::class, 'customer_id', 'id');
+    }
     public function comments()
     {
         return $this->hasMany(BusinessComment::class, 'customer_id', 'id');
