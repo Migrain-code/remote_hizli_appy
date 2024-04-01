@@ -37,13 +37,13 @@ class AdissionController extends Controller
         //$appoinments = $business->appointments()->whereDate('start_time', $reqDate)->orderBy('start_time', 'asc')->get();
         $appoinments = $business->appointments()->when($request->filled('listType'), function ($q) use ($request) {
             if ($request->listType == "open") {
-                $q->where('status', 2);
+                $q->whereNotIn('status', [1])->where('status', 2);
             } elseif ($request->listType == "closed") {
                 $q->whereIn('status', [5, 6]);
             } elseif ($request->listType == "canceled") {
                 $q->whereIn('status', [3, 4]);
             } else {
-                $q->where('status', 2);
+                $q->whereNotIn('status', [1])->where('status', 2);
             }
         })->get();
         return response()->json(AppointmentResource::collection($appoinments));
