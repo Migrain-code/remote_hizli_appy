@@ -17,7 +17,7 @@ class PersonelServiceResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "businessServiceId" => $this->service->id,
+            "businessServiceId" => $this->service?->id,
             "business_service" => new BusinessServiceResource($this->service),
         ];
     }
