@@ -278,11 +278,6 @@ Route::prefix('business')->group(function () {
             'index',
         ]);
 
-        /** -------------------------------- Gelmeyenler --------------------------------------- */
-        Route::apiResource('customer-absent', AbsentCustomerController::class)->only([
-            'index',
-        ]);
-
         /** ------------------------------- Abonelik ------------------------------------ */
 
         Route::apiResource('subscribtion', SubscribtionController::class)->only([
