@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
  *
  */
 
-class SetupController extends Controller
+class   SetupController extends Controller
 {
     /**
      * GET api/setup
