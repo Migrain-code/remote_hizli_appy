@@ -305,13 +305,17 @@ class AdissionPaymentController extends Controller
 
     }
     public function calculateCampaignDiscount($adission){ //indirim tl dönüşümü
-        $total = number_format(($adission->total * $adission->discount) / 100, 2);
-        return $total;
+        $total = calculateTotal($adission->services) + $adission->sales->sum("total");
+
+        $disTotal = number_format(($total * $adission->discount) / 100, 2);
+        return $disTotal;
     }
     public function calculateCollectedTotal($adission) //tahsil edilecek tutar
     {
-        $total = ceil($adission->total - ((($adission->total * $adission->discount) / 100) + $adission->point));
-        return $total;
+        $total = calculateTotal($adission->services) + $adission->sales->sum("total");
+
+        $recTotal = ceil($total - ((($total * $adission->discount) / 100) + $adission->point));
+        return $recTotal;
     }
 
     public function remainingTotal($adission) //kalan  tutar
