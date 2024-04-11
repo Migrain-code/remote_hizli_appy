@@ -41,7 +41,7 @@ class AdissionAddCashPointController extends Controller
             ], 422);
         }
 
-        if ($cashPoint->price > $this->remainingTotal($adission)) {
+        /*if ($cashPoint->price > $this->remainingTotal($adission)) {
             $collectionTotal = $cashPoint->price - $this->remainingTotal($adission);
             $adission->point = $this->remainingTotal($adission);
             $adission->save();
@@ -52,7 +52,7 @@ class AdissionAddCashPointController extends Controller
                 'status' => "error",
                 'message' => "Parapuan Ödemeye Uygulandı. Parapuan tutarı ödeme tutarından fazla oluduğu için parapuandan " . $adission->point . " TL tahsil edildi."
             ]);
-        }
+        }*/
         $adission->point = $cashPoint->price;
         $adission->save();
 
