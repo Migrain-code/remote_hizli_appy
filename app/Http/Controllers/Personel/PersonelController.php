@@ -406,7 +406,7 @@ class PersonelController extends Controller
         return response()->json([
             'totalCiro' => number_format($servicePrice + $productPrice, 2),
             'progressPayment' => number_format($hizmetHakedis + $urunHakedis, 2),
-            'balanceInside' => number_format($this->totalBalance($personel) - $this->calculatePayedBalance($personel)->sum('price'),  2),
+            'balanceInside' => number_format(($hizmetHakedis + $urunHakedis) - $this->calculatePayedBalance($personel)->sum('price'),  2),
             'balancePayed' => number_format($this->calculatePayedBalance($personel)->sum('price'), 2),
             'payments' => MaasListResource::collection($this->calculatePayedBalance($personel)),
         ]);
