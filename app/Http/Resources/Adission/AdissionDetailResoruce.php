@@ -15,7 +15,7 @@ class AdissionDetailResoruce extends JsonResource
      */
     public function toArray($request)
     {
-        $total = formatPrice(calculateTotal($this->services) + $this->sales->sum("total"));
+        $total = calculateTotal($this->services) + $this->sales->sum("total");
         return [
             'id' => $this->id,
             'name' => $this->customer->name,
