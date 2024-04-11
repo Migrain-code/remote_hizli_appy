@@ -41,7 +41,7 @@ class AuthController extends Controller
         ]);
 
         $user = BusinessOfficial::where('phone', $request->phone)->first();
-
+        //asdasd
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'Telefon Numarası veya şifre yanlış'
