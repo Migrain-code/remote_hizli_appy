@@ -14,6 +14,7 @@ class AppointmentDetailResoruce extends JsonResource
      */
     public function toArray($request)
     {
+        $total = calculateTotal($this->services) + $this->sales->sum("total");
         return [
             'id' => $this->id,
             'name' => $this->customer->name,
@@ -24,9 +25,9 @@ class AppointmentDetailResoruce extends JsonResource
             'note' => $this->note,
             'isCampaign' => isset($this->campaign_id),
             'total' => $this->total,
-            'campaignDiscount' => number_format(($this->total * $this->discount) / 100, 2),
+            'campaignDiscount' => number_format(($total * $this->discount) / 100, 2),
             'cashPoint' =>  $this->point,
-            'collectedTotal' => ceil($this->total - ((($this->total * $this->discount) / 100) + $this->point)),
+            'collectedTotal' => $total - ((($total * $this->discount) / 100) + $this->point),
             'services' => AppointmentServiceResource::collection($this->services),
         ];
     }
