@@ -258,7 +258,7 @@ class AdissionPaymentController extends Controller
         $promossion = $this->business->promossions;
         $discountRate = 0;
 
-            switch ($request->payment_type_id){
+            /*switch ($request->payment_type_id){
                 case 0:
                     $discountRate = $promossion->cash;
                     break;
@@ -270,7 +270,7 @@ class AdissionPaymentController extends Controller
                     break;
                 default:
                     $discountRate = 0;
-            }
+            }*/
             //dd($discountRate);
             $discountTotal= ($request->price * $discountRate) / 100;
 
