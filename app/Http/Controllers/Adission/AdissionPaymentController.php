@@ -257,7 +257,7 @@ class AdissionPaymentController extends Controller
     {
         $promossion = $this->business->promossions;
         $discountRate = 0;
-        if (in_array($request->payment_type_id,[0,1,2])){
+
             switch ($request->payment_type_id){
                 case 0:
                     $discountRate = $promossion->cash;
@@ -278,7 +278,7 @@ class AdissionPaymentController extends Controller
             $adission->save();
 
             return true;
-        }
+
         return false;
     }
     public function calculateAppointmentEarnedPoint($request, $adission)
