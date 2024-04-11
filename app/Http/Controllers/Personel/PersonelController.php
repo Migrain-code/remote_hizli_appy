@@ -427,7 +427,9 @@ class PersonelController extends Controller
 
     public function calculatePayedBalance($personel)
     {
-        $costs = $personel->costs()->where('cost_category_id', 1)->get();
+        $costs = $personel->costs()
+            //->where('cost_category_id', 1)
+            ->get();
         return $costs;
     }
 }
