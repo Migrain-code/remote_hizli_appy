@@ -30,7 +30,16 @@ function clearPhone($phoneNumber){
     return $newPhoneNumber;
 
 }
-
+function calculateTotal($services)
+{
+    $total = 0;
+    foreach ($services as $service) {
+        if ($service->service) {
+            $total += $service->service->price;
+        }
+    }
+    return $total;
+}
 function sendNotification($title, $message, $link = null){
     $oneSignalService = new \App\Services\OneSignalNotification();
     $result = $oneSignalService->sendNotification('Test Başlık', 'Test Mesaj');

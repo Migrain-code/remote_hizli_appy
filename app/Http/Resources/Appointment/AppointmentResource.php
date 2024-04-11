@@ -22,7 +22,7 @@ class AppointmentResource extends JsonResource
             'date' => $this->start_time->format('d.m.y H:i'),
             'status' => $this->status("text"),
             'statusColor' => $this->status("color"),
-            'total' => $this->total,
+            'total' => calculateTotal($this->services),
         ];
     }
 }
