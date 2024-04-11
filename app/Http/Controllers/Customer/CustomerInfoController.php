@@ -37,7 +37,7 @@ class CustomerInfoController extends Controller
     {
         return response()->json([
             'total' => $customer->cashPoints->count(),
-            'cashPoints' => CashPointList2Resoruce::collection($customer->cashPoints)
+            'cashPoints' => CashPointList2Resoruce::collection($customer->allCashPoints)
         ]);
     }
     /**
