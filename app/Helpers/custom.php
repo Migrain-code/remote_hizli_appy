@@ -40,6 +40,10 @@ function calculateTotal($services)
     }
     return $total;
 }
+function formatPrice($price)
+{
+    return number_format($price, 2) . ' ₺';
+}
 function sendNotification($title, $message, $link = null){
     $oneSignalService = new \App\Services\OneSignalNotification();
     $result = $oneSignalService->sendNotification('Test Başlık', 'Test Mesaj');
