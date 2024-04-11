@@ -39,8 +39,8 @@ class PrimController extends Controller
 
             $productPrice = $personel->sales->sum('total');
 
-            $serviceRate = $servicePrice - (($servicePrice * $personel->rate) / 100);
-            $productRate = $productPrice - (($productPrice * $personel->product_rate) / 100);
+            $serviceRate = (($servicePrice * $personel->rate) / 100);
+            $productRate = (($productPrice * $personel->product_rate) / 100);
             $total = $serviceRate + $productRate;
             $prims[] = [
                 'personelName' => $personel->name,
