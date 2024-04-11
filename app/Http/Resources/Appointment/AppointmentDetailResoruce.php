@@ -27,7 +27,7 @@ class AppointmentDetailResoruce extends JsonResource
             'total' => $this->total,
             'campaignDiscount' => number_format(($total * $this->discount) / 100, 2),
             'cashPoint' =>  $this->point,
-            'collectedTotal' => $total - ((($total * $this->discount) / 100) + $this->point),
+            'collectedTotal' => $total - $this->point,
             'services' => AppointmentServiceResource::collection($this->services),
         ];
     }
