@@ -419,8 +419,8 @@ class PersonelController extends Controller
         foreach ($personel->appointments as $appointment) {
             $servicePrice += $appointment->service->price;
         }
-        $hizmetHakedis = $servicePrice - ($servicePrice * $personel->rate) / 100;
-        $urunHakedis = $productPrice - (($productPrice * $personel->product_rate) / 100);
+        $hizmetHakedis = ($servicePrice * $personel->rate) / 100;
+        $urunHakedis = (($productPrice * $personel->product_rate) / 100);
 
         return $hizmetHakedis + $urunHakedis;
     }
