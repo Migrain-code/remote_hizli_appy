@@ -170,7 +170,7 @@ class AdissionAddCashPointController extends Controller
     }
     public function calculateCollectedTotal($adission) //tahsil edilecek tutar
     {
-        $total = calculateTotal($this->services) + $this->sales->sum("total")
+        $total = calculateTotal($this->services) + $this->sales->sum("total");
         $recTotal = $total - ((($total * $adission->discount) / 100) + $adission->point);
         return $recTotal;
     }
