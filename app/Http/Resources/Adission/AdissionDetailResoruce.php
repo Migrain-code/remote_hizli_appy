@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class AdissionDetailResoruce extends JsonResource
 {
+
     /**
      * Transform the resource into an array.
      *
@@ -14,6 +15,7 @@ class AdissionDetailResoruce extends JsonResource
      */
     public function toArray($request)
     {
+        $total = formatPrice(calculateTotal($this->services) + $this->sales->sum("total"));
         return [
             'id' => $this->id,
             'name' => $this->customer->name,
@@ -23,7 +25,7 @@ class AdissionDetailResoruce extends JsonResource
             'comment_status' => $this->comment_status,
             'note' => $this->note,
             'isCampaign' => isset($this->campaign_id),
-            'total' => $this->total,
+            'total' => $total,
             'campaignDiscount' => $this->calculateCampaignDiscount(),//kampanya indirimi
             'cashPoint' =>  $this->point,//kullanılan cash point
             'collectedTotal' => $this->calculateCollectedTotal(),//tahsil edilecek tutar
@@ -34,16 +36,18 @@ class AdissionDetailResoruce extends JsonResource
         ];
     }
     public function calculateCampaignDiscount(){ //indirim tl dönüşümü
-        $total = number_format(($this->total * $this->discount) / 100, 2);
-        return $total;
+        $total = formatPrice(calculateTotal($this->services) + $this->sales->sum("total"));
+        $discounttotal = number_format(($total * $this->discount) / 100, 2);
+        return $discounttotal;
     }
     public function calculateCollectedTotal() //tahsil edilecek tutar
     {
-        $total = ceil($this->total - ((($this->total * $this->discount) / 100) + $this->point));
-        return $total;
+        $total = formatPrice(calculateTotal($this->services) + $this->sales->sum("total"));
+        $recTotal = ceil($total - ((($total * $this->discount) / 100) + $this->point));
+        return $recTotal;
     }
 
-    public function remainingTotal() //kalan  tutar
+    public function remainingTotal() //kalan tutar
     {
         return ($this->calculateCollectedTotal() - $this->payments->sum("price")) - $this->receivables()->whereStatus(1)->sum('price');
     }
