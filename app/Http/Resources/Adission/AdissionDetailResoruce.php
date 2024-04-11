@@ -36,13 +36,13 @@ class AdissionDetailResoruce extends JsonResource
         ];
     }
     public function calculateCampaignDiscount(){ //indirim tl dönüşümü
-        $total = formatPrice(calculateTotal($this->services) + $this->sales->sum("total"));
+        $total = calculateTotal($this->services) + $this->sales->sum("total");
         $discounttotal = number_format(($total * $this->discount) / 100, 2);
         return $discounttotal;
     }
     public function calculateCollectedTotal() //tahsil edilecek tutar
     {
-        $total = formatPrice(calculateTotal($this->services) + $this->sales->sum("total"));
+        $total = calculateTotal($this->services) + $this->sales->sum("total");
         $recTotal = ceil($total - ((($total * $this->discount) / 100) + $this->point));
         return $recTotal;
     }
