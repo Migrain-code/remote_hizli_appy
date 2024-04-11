@@ -382,7 +382,7 @@ class PersonelController extends Controller
         foreach ($appoinments as $appointment) {
             $servicePrice += $appointment->service->price;
         }
-        $hizmetHakedis = $servicePrice - ($servicePrice * $personel->rate) / 100;
+        $hizmetHakedis = ($servicePrice * $personel->rate) / 100;
         $productPrice = $personel->sales()->when($request->filled('listType'), function ($q) use ($request) {
             if ($request->listType == "thisWeek") {
                 $startOfWeek = now()->startOfWeek();
@@ -401,7 +401,7 @@ class PersonelController extends Controller
             }
         })->sum('total');
 
-        $urunHakedis = $productPrice - (($productPrice * $personel->product_rate) / 100);
+        $urunHakedis = (($productPrice * $personel->product_rate) / 100);
 
         return response()->json([
             'totalCiro' => number_format($servicePrice + $productPrice, 2),
