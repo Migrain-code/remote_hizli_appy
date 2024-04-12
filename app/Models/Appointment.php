@@ -116,4 +116,22 @@ class Appointment extends Model
         }
         return $total;
     }
+
+    function totalServiceAndProduct(){ // toplam ürün ve hizmet satışı
+        return $this->calculateTotal() + $this->sales->sum('total');
+    }
+    public function calculateCampaignDiscount(){ //kampanya indirimi
+        $total = (($this->totalServiceAndProduct() * $this->discount) / 100);
+        return $total;
+    }
+    public function calculateCollectedTotal() //tahsil edilecek tutar
+    {
+        $total = $this->totalServiceAndProduct() - $this->calculateCampaignDiscount() - $this->point;
+        return $total;
+    }
+
+    public function remainingTotal() //kalan  tutar
+    {
+        return ($this->calculateCollectedTotal() - $this->payments->sum("price")) - $this->receivables()->whereStatus(1)->sum('price');
+    }
 }

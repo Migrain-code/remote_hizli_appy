@@ -16,10 +16,7 @@ class PersonelAppointmentResource extends JsonResource
     public function toArray($request)
     {
         $services = $this->services->where('personel_id', auth('personel')->id());
-        $total = 0;
-        foreach ($services as $row){
-            $total += $row->service->price;
-        }
+
         return [
             'id' => $this->id,
             'customer' => CustomerDetailResource::make($this->customer),
@@ -27,7 +24,7 @@ class PersonelAppointmentResource extends JsonResource
             'date' =>  $services->first()->start_time->format('d.m.y H:i'),
             'status' => $this->status("text"),
             'statusColor' => $this->status("color"),
-            'total' =>  $total,
+            'total' =>  $this->calculateCollectedTotal(),
         ];
     }
 }

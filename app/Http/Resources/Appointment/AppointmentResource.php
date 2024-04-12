@@ -25,4 +25,5 @@ class AppointmentResource extends JsonResource
             'total' => formatPrice(calculateTotal($this->services) + $this->sales->sum("total")),
         ];
     }
+
 }
