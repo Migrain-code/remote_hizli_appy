@@ -27,11 +27,11 @@ class PromosionUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'cash' => ['required', Rule::in([0, 100])],
-            'creditCard' => ['required', Rule::in([0, 100])],
-            'eft' => ['required', Rule::in([0, 100])],
-            'limit' => ['required', Rule::in([0, 100])],
-            'birthday'=> ['required', Rule::in([0, 100])],
+            'cash' => ['required', 'numeric', 'between:0,100'],
+            'credit' => ['required', 'numeric', 'between:0,100'],
+            'eft' => ['required', 'numeric', 'between:0,100'],
+            'use_limit' => ['required'],
+            'birthday'=> ['required', 'numeric', 'between:0,100'],
         ];
     }
 
