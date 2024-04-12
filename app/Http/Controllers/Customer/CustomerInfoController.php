@@ -139,7 +139,7 @@ class CustomerInfoController extends Controller
         }
 
         $appointmentIds = $customer->appointments()->has('payments')->pluck('id')->toArray();
-        $appointmentPayed = AppointmentCollectionEntry::whereIn('appointment_id', [$appointmentIds])->get();
+        $appointmentPayed = AppointmentCollectionEntry::whereIn('appointment_id', $appointmentIds)->get();
         foreach ($appointmentPayed as $payed){
             $payments[] = [
                 "id" => $payed->appointment_id,
