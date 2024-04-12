@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Official;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BusinessOfficial\BusinessOfficialAddRequest;
+use App\Http\Requests\BusinessOfficial\BusinessOfficialUpdateRequest;
 use App\Http\Resources\Branches\BusinessBrancesResource;
 use App\Http\Resources\Business\BusinessOfficialResource;
 use App\Models\Business;
@@ -107,7 +108,7 @@ class BusinessOfficialController extends Controller
      * @param BusinessOfficial $official
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(BusinessOfficialAddRequest $request, BusinessOfficial $official)
+    public function update(BusinessOfficialUpdateRequest $request, BusinessOfficial $official)
     {
         if ($official->email != $request->input('email') && $this->existEmail($request->input('email'))) {
             return response()->json([
@@ -126,7 +127,9 @@ class BusinessOfficialController extends Controller
         $official->name = $request->input('name');
         $official->phone = $request->input('phone');
         $official->email = $request->input('email');
-        $official->password = Hash::make($request->input('password'));
+        if ($request->filled('password')){
+            $official->password = Hash::make($request->input('password'));
+        }
         $official->business_id = $request->input('branch_id');
         if ($official->save()) {
             return response()->json([
