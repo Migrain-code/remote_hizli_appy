@@ -440,6 +440,8 @@ class AppointmentCreateController extends Controller
         $appointment->start_time = $appointment->services()->first()->start_time;
         $appointment->end_time = $appointment->services()->skip($appointment->services()->count() - 1)->first()->end_time;
         $appointment->total = $request->total;
+        $appointment->discount = $request->discountTotal;
+
         if ($appointment->save()) {
             return response()->json([
                 'status' => "success",
