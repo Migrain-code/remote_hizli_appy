@@ -31,6 +31,7 @@ class PersonelAppointmentCreateController extends Controller
             return $next($request);
         });
     }
+
     /**
      *
      * Hizmet Listesi
@@ -55,9 +56,9 @@ class PersonelAppointmentCreateController extends Controller
 
 
         return response()->json([
-           'womanCategories' => $womanServices,
-           'manCategories' => $manServices,
-           'unisexCategories' => $unisexServices,
+            'womanCategories' => $womanServices,
+            'manCategories' => $manServices,
+            'unisexCategories' => $unisexServices,
         ]);
     }
     /**
@@ -104,6 +105,7 @@ class PersonelAppointmentCreateController extends Controller
         $business = $this->personel->business;
         return response()->json(CustomerListResource::collection($business->customers));
     }
+
     /**
      *
      * Tarih Listesi
@@ -164,6 +166,7 @@ class PersonelAppointmentCreateController extends Controller
             'dates' => $dates,
         ]);
     }
+
     /**
      *
      * Saat Listesi
@@ -312,10 +315,9 @@ class PersonelAppointmentCreateController extends Controller
 
         $appointment->save();
 
-        $personelIds = [];
         $serviceIds = [];
-        foreach ($request->personels as $personelId){
-            $serviceIds[] = explode('_', $personelId)[1];
+        foreach ($request->services as $serviceId) {
+            $serviceIds[] = $serviceId;
         }
 
         $appointmentStartTime = Carbon::parse($request->times[0]);
@@ -348,14 +350,14 @@ class PersonelAppointmentCreateController extends Controller
     }
 
 
-
-    function transformServices($womanServiceCategories){
+    function transformServices($womanServiceCategories)
+    {
         $transformedDataWoman = [];
         foreach ($womanServiceCategories as $category => $services) {
 
             $transformedServices = [];
             foreach ($services as $service) {
-                if ($service->personels->count() > 0){
+                if ($service->personels->count() > 0) {
                     $transformedServices[] = [
                         'id' => $service->id,
                         'name' => $service->subCategory->getName(),
