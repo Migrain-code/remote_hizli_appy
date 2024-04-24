@@ -59,7 +59,7 @@ class HomeController extends Controller
                 'customer' =>isset($getAppointment) ? CustomerDetailResource::make($getAppointment->appointment->customer) : "",
                 'appointmentId' =>isset($getAppointment) ? $getAppointment->appointment_id : '',
                 'status' => isset($getAppointment),
-                'color_code' =>  isset($getAppointment) ? $getAppointment->status('color_code') : 'primary',
+                'color_code' =>  isset($getAppointment) ? $getAppointment->status('color') : 'primary',
             ];
         }
 
