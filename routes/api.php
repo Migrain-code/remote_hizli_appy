@@ -79,6 +79,10 @@ Route::prefix('business')->group(function () {
         Route::controller(HomeController::class)->prefix('home')->group(function () {
             Route::get('/', 'index');
         });
+        Route::controller(HomeController::class)->prefix('setting')->group(function () {
+            Route::get('/', 'setting');
+            Route::post('/update', 'settingUpdate');
+        });
         /** -------------------------------- Kurulum Rotaları --------------------------------------- */
 
         Route::controller(SetupController::class)->prefix('setup')->group(function () {
@@ -306,6 +310,7 @@ Route::prefix('business')->group(function () {
         Route::apiResource('dep', BusinessDepController::class)->only([
             'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
         ]);
+        /** ------------------------------- Yorumlar ------------------------------------ */
         Route::apiResource('comment', \App\Http\Controllers\BusinessCommentController::class)->only([
             'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
         ]);
