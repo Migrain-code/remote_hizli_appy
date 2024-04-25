@@ -21,6 +21,7 @@ class CustomerDetailResource extends JsonResource
            'email' => $this->email,
            'gender' => $this->gender,
            'birthday' => $this->birthday,
+           'image' => image($this->image)
         ];
     }
 }

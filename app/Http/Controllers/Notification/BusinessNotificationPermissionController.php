@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Notification;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NotificationPermission\PermissionUpdateRequest;
-use App\Http\Resources\NotificationPermission\NotificationPermissionListResource;
+use App\Http\Resources\NotificationPermission\DeviceNotificationPermissionListResource;
 use App\Models\BusinessNotificationPermission;
 
 /**
@@ -31,7 +31,7 @@ class BusinessNotificationPermissionController extends Controller
      */
     public function index()
     {
-        return response()->json(NotificationPermissionListResource::make($this->user->permission));
+        return response()->json(DeviceNotificationPermissionListResource::make($this->user->permission));
     }
 
     /**

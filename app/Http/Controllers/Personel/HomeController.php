@@ -39,6 +39,7 @@ class HomeController extends Controller
     }
     /**
      * Personel Anasayfası
+     * appointment_date gönderilecek
      * @param Request $request
      * @return array
      */

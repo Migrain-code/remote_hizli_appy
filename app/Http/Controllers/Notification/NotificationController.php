@@ -61,4 +61,13 @@ class NotificationController extends Controller
             ]);
         }
     }
+
+    /**
+     * Parapuan Bildirimleri
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function cashPointNotification()
+    {
+        return response()->json(NotificationListResource::collection($this->user->cashPointnotifications));
+    }
 }

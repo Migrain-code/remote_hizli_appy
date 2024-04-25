@@ -32,9 +32,20 @@ class BusinessOfficial extends Authenticatable
     {
         return $this->hasOne(BusinessNotificationPermission::class, 'business_id', 'id');
     }
-
-    public function notifications()
+    public function devicePermission()
+    {
+        return $this->hasOne(BusinessDeviceNotificationPermission::class, 'business_id', 'id');
+    }
+    public function allNotification()
     {
         return $this->hasMany(BusinessNotification::class, 'business_id', 'id');
+    }
+    public function notifications()
+    {
+        return $this->allNotification()->where('type', 0);
+    }
+    public function cashPointnotifications()
+    {
+        return $this->allNotification()->where('type', 1);
     }
 }

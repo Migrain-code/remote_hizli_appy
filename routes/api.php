@@ -43,6 +43,7 @@ use App\Http\Controllers\Setup\DetailSetupController;
 use App\Http\Controllers\Setup\SetupController;
 use App\Http\Controllers\Subscription\SubscribtionController;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\BusinessDeviceNotificationPermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -264,10 +265,17 @@ Route::prefix('business')->group(function () {
         Route::apiResource('notification-permission', BusinessNotificationPermissionController::class)->only([
             'index', 'update'
         ]);
+        /** -------------------------------- Cihaz Bildirim İzinleri --------------------------------------- */
+        Route::apiResource('device-notification-permission', BusinessDeviceNotificationPermissionController::class)->only([
+            'index', 'update'
+        ]);
         /** -------------------------------- Bildirimler --------------------------------------- */
         Route::apiResource('notification', NotificationController::class)->only([
             'index', 'show', 'destroy'
         ]);
+        // parapuan bildirimleri
+        Route::get('cash-point-notification', [NotificationController::class, 'cashPointNotification']);
+
         /** -------------------------------- Doğum Günleri --------------------------------------- */
         Route::apiResource('birthday', BirthdayController::class)->only([
             'index', 'create', 'store'
@@ -298,7 +306,9 @@ Route::prefix('business')->group(function () {
         Route::apiResource('dep', BusinessDepController::class)->only([
             'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
         ]);
-
+        Route::apiResource('comment', \App\Http\Controllers\BusinessCommentController::class)->only([
+            'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
+        ]);
         /** ------------------------------- Kasa ------------------------------------ */
         Route::get('case', [CaseController::class, 'index']);
 

@@ -133,4 +133,8 @@ class Business extends Model
     {
         return $this->hasMany(BusinessOfficial::class, 'company_id', 'company_id');
     }
+    public function comments()
+    {
+        return $this->hasMany(BusinessComment::class, 'business_id', 'id');
+    }
 }
