@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BusinessInfo\BusinessInfoUpdateRequest;
+use App\Http\Requests\Password\PasswordUpdateRequest;
 use App\Http\Requests\Setup\DetailSetupRequestStep1;
 use App\Http\Resources\Appointment\AppointmentRangeResource;
 use App\Http\Resources\Business\BusinessOfficialResource;
@@ -52,7 +53,7 @@ class HomeController extends Controller
 
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(PasswordUpdateRequest $request)
     {
         $user = $this->user;
         $user->password = Hash::make($request->input('password'));
