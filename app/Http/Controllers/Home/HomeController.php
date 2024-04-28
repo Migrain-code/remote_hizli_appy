@@ -168,7 +168,6 @@ class HomeController extends Controller
         return response()->json([
             'status' => "success",
             'message' => "İşletme Bilgileri Kayıt Edildi",
-            'user' => BusinessOfficialResource::make($this->user),
         ]);
     }
 }
