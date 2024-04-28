@@ -13,6 +13,7 @@ use App\Http\Resources\Customer\CustomerDetailResource;
 use App\Models\AppointmentRange;
 use App\Models\BusinnessType;
 use App\Models\DayList;
+use App\Services\UploadFile;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
@@ -158,6 +159,10 @@ class HomeController extends Controller
         $business->city = $request->input('cityId');
         $business->district = $request->input('districtId');
         $business->commission = $request->input('commission');
+        if ($request->hasFile('logo')) {
+            $response = UploadFile::uploadFile($request->file('logo'), 'business_logos');
+            $business->logo = $response["image"]["way"];
+        }
         $business->save();
 
         return response()->json([
