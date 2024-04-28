@@ -76,6 +76,7 @@ Route::prefix('business')->group(function () {
         });
     });
     Route::middleware('auth:official')->group(function () {
+        Route::post('update-password', [HomeController::class, 'updatePassword']);
         Route::controller(HomeController::class)->prefix('home')->group(function () {
             Route::get('/', 'index');
         });

@@ -13,6 +13,7 @@ use App\Models\DayList;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @group BusinessHome
@@ -21,14 +22,17 @@ use Illuminate\Support\Carbon;
 class HomeController extends Controller
 {
     private $business;
+    private $user;
 
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->business = auth()->user()->business;
+            $this->user = auth()->user();
+            $this->business = $this->user->business;
             return $next($request);
         });
     }
+
     /**
      * İşletme anasayfa apisi
      *
@@ -48,17 +52,29 @@ class HomeController extends Controller
 
     }
 
+    public function updatePassword(Request $request)
+    {
+        $user = $this->user;
+        $user->password = Hash::make($request->input('password'));
+        if ($user->save()) {
+            return response()->json([
+                'status' => "success",
+                'message' => "Şifreniz Güncellendi"
+            ]);
+        }
+    }
+
     /**
      * İşletme Bilgileri
      * @return \Illuminate\Http\JsonResponse
      */
     public function setting()
     {
-        $commissions=[];
-        for ($i = 0; $i <= 100; $i++){
-            $commissions[]= [
+        $commissions = [];
+        for ($i = 0; $i <= 100; $i++) {
+            $commissions[] = [
                 'id' => $i,
-                'name' => "%". $i
+                'name' => "%" . $i
             ];
         }
         return response()->json([
@@ -69,6 +85,7 @@ class HomeController extends Controller
             'aboutText' => "Test Mesaj",
         ]);
     }
+
     /**
      * İşletme Bilgileri Güncelle
      * @return \Illuminate\Http\JsonResponse
