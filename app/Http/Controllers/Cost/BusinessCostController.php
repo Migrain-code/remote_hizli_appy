@@ -9,6 +9,7 @@ use App\Http\Resources\Cost\CostListResource;
 use App\Http\Resources\Personel\PersonelListResource;
 use App\Models\BusinessCost;
 use App\Models\CostCategory;
+use Illuminate\Http\Request;
 
 /**
  * @group Masraflar
@@ -27,12 +28,29 @@ class BusinessCostController extends Controller
     }
     /**
      * Masraflar Listesi
-     *
+     * Default Tümü
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(CostListResource::collection($this->business->costs));
+        $costs = $this->business->costs()->when($request->filled('listType'), function ($q) use ($request) {
+            if ($request->listType == "thisWeek") {
+                $startOfWeek = now()->startOfWeek();
+                $endOfWeek = now()->endOfWeek();
+                $q->whereBetween('created_at', [$startOfWeek, $endOfWeek]);
+            } elseif ($request->listType == "thisMonth") {
+                $startOfMonth = now()->startOfMonth();
+                $endOfMonth = now()->endOfMonth();
+                $q->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+            } elseif ($request->listType == "thisYear") {
+                $startOfYear = now()->startOfYear();
+                $endOfYear = now()->endOfYear();
+                $q->whereBetween('created_at', [$startOfYear, $endOfYear]);
+            } else {
+                $q->whereDate('created_at', now()->toDateString());
+            }
+        })->get();
+        return response()->json(CostListResource::collection($costs));
     }
 
     /**
