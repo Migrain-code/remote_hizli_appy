@@ -78,6 +78,7 @@ Route::prefix('business')->group(function () {
     Route::middleware('auth:official')->group(function () {
         Route::post('update-password', [HomeController::class, 'updatePassword']);
         Route::get('delete-account', [HomeController::class, 'deleteAccount']);
+        Route::get('notification-count', [HomeController::class, 'notificationCount']);
         Route::controller(HomeController::class)->prefix('home')->group(function () {
             Route::get('/', 'index');
         });
@@ -86,7 +87,6 @@ Route::prefix('business')->group(function () {
             Route::post('/update', 'settingUpdate');
         });
         /** -------------------------------- Kurulum Rotaları --------------------------------------- */
-
         Route::controller(SetupController::class)->prefix('setup')->group(function () {
             Route::get('/get', 'get');
             Route::post('/update', 'update');

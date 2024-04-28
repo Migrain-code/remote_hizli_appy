@@ -65,6 +65,10 @@ class HomeController extends Controller
         }
     }
 
+    public function notificationCount()
+    {
+        return response()->json($this->business->notifications->count());
+    }
     public function deleteAccount()
     {
         $user = $this->user;
