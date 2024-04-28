@@ -52,7 +52,7 @@ class HomeController extends Controller
             'appointmentCount' => $this->business->appointments->count(),
             'productSale' => $this->business->sales->count(),//toplam ürün satışı
             'adisyonCount' =>  formatPrice($adissionTotal), //adisyon toplamı
-            'totalCount' => $this->packages->count(), //toplam paket satışı
+            'totalCount' => $this->business->packages->count(), //toplam paket satışı
             'newCustomerCount' => $this->business->customers->count(),
             'totalCustomerCount' => $this->business->customers->count(),
             'appointments' => $todayAppointments,
