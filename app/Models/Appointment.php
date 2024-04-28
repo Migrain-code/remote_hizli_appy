@@ -14,37 +14,37 @@ class Appointment extends Model
         0 => [
             'html' => '<span class="badge light badge-warning fw-bolder px-2 py-2">Onay Bekliyor</span>',
             'text' => 'Onay Bekliyor',
-            "color" => "#fff04f"
+            "color" => "#FFEAB7"
         ],
         1 => [
             'html' => '<span class="badge light badge-success fw-bolder px-2 py-2">Onaylandı</span>',
             'text' => 'Onaylandı',
-            "color" => "#6aab73"
+            "color" => "#D4F0F4"
         ],
         2 => [
             'html' => '<span class="badge badge-outline-success fw-bolder px-2 py-2">Tamamlandı</span>',
             'text' => 'Tamamlandı',
-            "color" => "#4a7750"
+            "color" => "#D4F0F4"
         ],
         3 => [
             'html' => '<span class="badge light badge-danger fw-bolder px-2 py-2">İptal Edildi</span>',
             'text' => 'İptal Edildi',
-            "color" => "#bf0d36"
+            "color" => "#FFB7B7"
         ],
         4 => [
             'html' => '<span class="badge badge-outline-info fw-bolder px-2 py-2">Gelmedi</span>',
             'text' => 'Gelmedi',
-            "color" => "#bf0d36"
+            "color" => "#FFB7B7"
         ],
         5 => [
             'html' => '<span class="badge badge-outline-info fw-bolder px-2 py-2">Geldi</span>',
             'text' => 'Geldi',
-            "color" => "#4a7750"
+            "color" => "#D4F0F4"
         ],
         6 => [
             'html' => '<span class="badge badge-outline-info fw-bolder px-2 py-2">Tahsilatsız Kapatıldı</span>',
             'text' => 'Tahsilatsız Kapatıldı',
-            "color" => "#2f4aaf"
+            "color" => "#FFEAB7"
         ],
 
     ];
