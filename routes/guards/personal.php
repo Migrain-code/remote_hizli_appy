@@ -3,6 +3,8 @@
 Route::prefix('personel')->group(function () {
     Route::prefix('auth')->group(function (){
         Route::post('login', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'login']);
+        Route::post('reset-password', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'passwordReset']);
+        Route::post('verify-reset-password', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'verifyResetPassword']);
     });
 
     Route::middleware('auth:personel')->group(function () {
