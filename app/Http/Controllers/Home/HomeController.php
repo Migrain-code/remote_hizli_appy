@@ -65,14 +65,17 @@ class HomeController extends Controller
 
         while ($i < $endTime){
 
-            $getAppointment = $business->appointments()->where('start_time', $i->toDateTime())->first();
+            $getAppointment = $business->appointments()->whereHas('services')->where('start_time', $i->toDateTime())->first();
+
             $clocks[] = [
-                'id' =>isset($getAppointment) ? route('personel.appointment.detail', $getAppointment->appointment_id) : '',
-                'clock' => $i->format('H:i'). "-". $i->addMinute($business->range->time)->format('H:i'),
-                'title' =>isset($getAppointment) ? $getAppointment->services->first()->subCategory->name : '',
+                'id' =>isset($getAppointment) ? $getAppointment->id : '',
+                'clock' => $i->format('H:i'),
+                'title' =>isset($getAppointment) ? $getAppointment->services->first()->subCategory->name : 'Boş',
                 'customer' =>isset($getAppointment) ? CustomerDetailResource::make($getAppointment->appointment->customer) : "",
                 'color_code' =>  isset($getAppointment) ? $getAppointment->status('color') : '#6aab73',
             ];
+
+            $i->addMinute($business->range->time);
         }
 
         return $clocks;
