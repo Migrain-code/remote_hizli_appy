@@ -8,6 +8,7 @@ use App\Http\Requests\Password\PasswordUpdateRequest;
 use App\Http\Requests\Setup\DetailSetupRequestStep1;
 use App\Http\Resources\Appointment\AppointmentRangeResource;
 use App\Http\Resources\Business\BusinessOfficialResource;
+use App\Http\Resources\Customer\CustomerDetailResource;
 use App\Models\AppointmentRange;
 use App\Models\BusinnessType;
 use App\Models\DayList;
@@ -41,7 +42,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-
+        $appointments = $this->getClock(now());
+        dd($appointments);
         return response()->json([
             'appointmentCount' => "5",
             'productSale' => "150",
@@ -49,10 +51,32 @@ class HomeController extends Controller
             'totalCount' => "240",
             'newCustomerCount' => "500",
             'totalCustomerCount' => "750",
+            'appointments' => "",
         ]);
 
     }
+    public function getClock($appointmentDate)
+    {
+        $business = $this->business;
+        $clocks = [];
+        $getDate = Carbon::parse($appointmentDate);
+        $i = Carbon::parse($getDate->format('Y-m-d').' '.$business->start_time);
+        $endTime = Carbon::parse($getDate->format('Y-m-d').' '.$business->end_time);
 
+        while ($i < $endTime){
+
+            $getAppointment = $business->appointments()->where('start_time', $i->toDateTime())->first();
+            $clocks[] = [
+                'id' =>isset($getAppointment) ? route('personel.appointment.detail', $getAppointment->appointment_id) : '',
+                'clock' => $i->format('H:i'). "-". $i->addMinute($business->range->time)->format('H:i'),
+                'title' =>isset($getAppointment) ? $getAppointment->services->first()->subCategory->name : '',
+                'customer' =>isset($getAppointment) ? CustomerDetailResource::make($getAppointment->appointment->customer) : "",
+                'color_code' =>  isset($getAppointment) ? $getAppointment->status('color') : '#6aab73',
+            ];
+        }
+
+        return $clocks;
+    }
     public function updatePassword(PasswordUpdateRequest $request)
     {
         $user = $this->user;
