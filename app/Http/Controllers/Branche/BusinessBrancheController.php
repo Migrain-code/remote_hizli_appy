@@ -77,7 +77,19 @@ class BusinessBrancheController extends Controller
             ]);
         }
     }
-
+    /**
+     * Şube Kopyala
+     *
+     * Tıklanan şubenin bilgieleri ile yeni bir şube olarak klonlayacak
+     * @param  \Illuminate\Http\Request  $request
+     * @param   Business $branche
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function edit(Business $branche)
+    {
+        $newBusiness = new Business();
+        //$newBusiness->name =
+    }
     /**
      * Şube Değiştir
      *

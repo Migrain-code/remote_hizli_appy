@@ -11,15 +11,15 @@ Route::prefix('personel')->group(function () {
         Route::get('/today/appointment', [\App\Http\Controllers\Personel\HomeController::class, 'getClock']);
 
         /*------- Hesabım Apisi -----------*/
-        Route::resource('profile', \App\Http\Controllers\PersonelAccount\Profile\PersonalProfileUpdateController::class)->only([
+        Route::apiResource('profile', \App\Http\Controllers\PersonelAccount\Profile\PersonalProfileUpdateController::class)->only([
             'index', 'create', 'store'
         ]);
         /*------Bildirim İzinleri- --------*/
-        Route::resource('notification-permission', \App\Http\Controllers\PersonelAccount\Notification\PersonelNotificationPermissionController::class)->only([
+        Route::apiResource('notification-permission', \App\Http\Controllers\PersonelAccount\Notification\PersonelNotificationPermissionController::class)->only([
             'index', 'update'
         ]);
         /*------Bildirimler - --------*/
-        Route::resource('notification', \App\Http\Controllers\PersonelAccount\Notification\PersonelNotificationController::class)->only([
+        Route::apiResource('notification', \App\Http\Controllers\PersonelAccount\Notification\PersonelNotificationController::class)->only([
             'index', 'show', 'destroy'
         ]);
         /*------ Randevular -----------*/
