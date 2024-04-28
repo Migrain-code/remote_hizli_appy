@@ -87,12 +87,31 @@ class BusinessBrancheController extends Controller
      */
     public function edit(Business $branche)
     {
-        dd($branche);
-        $newBusiness = new Business();
-        $newBusiness->name = $branche->name. " Kopya";
+       // dd($branche);
+        $services = $branche->services;
+        $newBusiness = $branche->replicate();
+        $newBusiness->name .= " Kopya";
         $newBusiness->branch_name = $newBusiness->name;
         $newBusiness->slug = Str::slug($newBusiness->name);
-       // $newBusiness->
+        $newBusiness->is_main = 0;
+
+        if ($newBusiness->save()){
+            foreach ($branche->services as $service) {
+                $newService = $service->replicate();
+                $newService->business_id = $newBusiness->id;
+                $newService->save();
+            }
+            foreach ($branche->products as $product) {
+                $newProduct = $product->replicate();
+                $newProduct->business_id = $newBusiness->id;
+                $newProduct->save();
+            }
+            return response()->json([
+                'status' => "success",
+                'message' => "Şube Kopyalandı"
+            ]);
+        }
+
     }
     /**
      * Şube Değiştir
