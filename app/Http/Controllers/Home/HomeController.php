@@ -43,7 +43,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $appointments = $this->getClock(now());
-        dd($appointments);
+
         return response()->json([
             'appointmentCount' => "5",
             'productSale' => "150",
@@ -51,7 +51,7 @@ class HomeController extends Controller
             'totalCount' => "240",
             'newCustomerCount' => "500",
             'totalCustomerCount' => "750",
-            'appointments' => "",
+            'appointments' => $appointments,
         ]);
 
     }
