@@ -47,7 +47,11 @@ class AuthController extends Controller
                 'message' => 'Telefon Numarası veya şifre yanlış'
             ], 401);
         }
-
+        if ($user->status == 0){
+            return response()->json([
+                'message' => 'Telefon Numarası veya şifre yanlış'
+            ], 401);
+        }
         $token = $user->createToken('Access Token')->accessToken;
 
         return response()->json([

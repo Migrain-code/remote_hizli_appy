@@ -65,6 +65,17 @@ class HomeController extends Controller
         }
     }
 
+    public function deleteAccount()
+    {
+        $user = $this->user;
+        $user->status = 0;
+        if ($user->save()){
+            return response()->json([
+                'status' => "success",
+                'message' => "Hesabınız ve işletme bilgileriniz başarılı bir şekilde silindi"
+            ]);
+        }
+    }
     /**
      * İşletme Bilgileri
      * @return \Illuminate\Http\JsonResponse
