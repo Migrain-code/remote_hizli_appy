@@ -55,6 +55,7 @@ class PersonalProfileUpdateController extends Controller
         return response()->json([
             'dayList' => DayListResource::collection(DayList::all()),
             'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
+            'services' => BusinessServiceResource::collection($this->personel->business->services),
         ]);
     }
     /**
