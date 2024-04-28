@@ -265,7 +265,7 @@ Route::prefix('business')->group(function () {
         ]);
         /** -------------------------------- Şubeler --------------------------------------- */
         Route::apiResource('branche', BusinessBrancheController::class)->only([
-            'index', 'create', 'store', 'update', 'destroy'
+            'index', 'create','edit', 'store', 'update', 'destroy'
         ]);
         /** -------------------------------- Bildirim İzinleri --------------------------------------- */
         Route::apiResource('notification-permission', BusinessNotificationPermissionController::class)->only([

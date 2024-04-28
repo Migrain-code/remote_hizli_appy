@@ -87,8 +87,12 @@ class BusinessBrancheController extends Controller
      */
     public function edit(Business $branche)
     {
+        dd($branche);
         $newBusiness = new Business();
-        $newBusiness->name = $branche->name;
+        $newBusiness->name = $branche->name. " Kopya";
+        $newBusiness->branch_name = $newBusiness->name;
+        $newBusiness->slug = Str::slug($newBusiness->name);
+       // $newBusiness->
     }
     /**
      * Şube Değiştir

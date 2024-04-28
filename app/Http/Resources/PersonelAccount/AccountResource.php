@@ -37,7 +37,8 @@ class AccountResource extends JsonResource
           'closeDay' => $this->restDays,
           'safe' => $this->safe,
           'user_type' => 1,
-          'business' => BusinessResource::make($this->business)
+          'about_text' => "asd",
+          'business' => BusinessResource::make($this->business),
         ];
     }
 }
