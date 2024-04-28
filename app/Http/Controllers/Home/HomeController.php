@@ -42,16 +42,20 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $appointments = $this->getClock(now());
-
+        $todayAppointments = $this->getClock(now());
+        $adissions = $this->business->appointments()->whereIn('status', [5, 6])->get();
+        $adissionTotal = 0;
+        foreach ($adissions as $adission){
+            $adissionTotal += $adission->calculateCollectedTotal(); // tahsil edilecklerin toplamı
+        }
         return response()->json([
-            'appointmentCount' => "5",
-            'productSale' => "150",
-            'adisyonCount' => "56",
-            'totalCount' => "240",
-            'newCustomerCount' => "500",
-            'totalCustomerCount' => "750",
-            'appointments' => $appointments,
+            'appointmentCount' => $this->business->appointments->count(),
+            'productSale' => $this->business->sales->count(),
+            'adisyonCount' =>  formatPrice($adissionTotal), //adisyon toplamı
+            'totalCount' => 15, //toplam kasa
+            'newCustomerCount' => $this->business->customers,
+            'totalCustomerCount' => $this->business->customers,
+            'appointments' => $todayAppointments,
         ]);
 
     }
@@ -71,7 +75,7 @@ class HomeController extends Controller
                 'id' =>isset($getAppointment) ? $getAppointment->id : '',
                 'clock' => $i->format('H:i'),
                 'title' =>isset($getAppointment) ? $getAppointment->services->first()->service->subCategory->name : 'Boş',
-                'customer' =>isset($getAppointment) ? CustomerDetailResource::make($getAppointment->customer) : "",
+                'customer' =>isset($getAppointment) ? $getAppointment->customer->name : "",
                 'color_code' =>  isset($getAppointment) ? $getAppointment->status('color') : '#6aab73',
             ];
 
