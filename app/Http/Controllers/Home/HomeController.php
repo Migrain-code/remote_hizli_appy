@@ -36,8 +36,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $user = $request->user();
-        $business = $user->business;
 
         return response()->json([
             'appointmentCount' => "5",

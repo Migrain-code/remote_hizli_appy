@@ -24,12 +24,14 @@ class BusinessCommentController extends Controller
 
     /**
      * Yorum Listesi
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         return response()->json([
-            'comments' => CommentListResource::collection($this->business->comments)
+            'comments' => CommentListResource::collection($this->business->comments),
+            'commentTotal' => $this->business->comments->count(),
+            'commentPoint' => $this->business->comments->sum('point') / $this->business->comments()->count()
         ]);
     }
 
