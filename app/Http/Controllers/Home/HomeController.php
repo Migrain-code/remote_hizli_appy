@@ -8,6 +8,7 @@ use App\Http\Requests\Password\PasswordUpdateRequest;
 use App\Http\Requests\Setup\DetailSetupRequestStep1;
 use App\Http\Resources\Appointment\AppointmentRangeResource;
 use App\Http\Resources\Business\BusinessOfficialResource;
+use App\Http\Resources\Business\BusinessResource;
 use App\Http\Resources\Customer\CustomerDetailResource;
 use App\Models\AppointmentRange;
 use App\Models\BusinnessType;
@@ -130,6 +131,7 @@ class HomeController extends Controller
             'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
             'commissions' => $commissions,
             'aboutText' => "Test Mesaj",
+            'business'=> BusinessResource::make($this->business)
         ]);
     }
 
