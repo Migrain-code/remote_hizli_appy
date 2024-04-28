@@ -70,7 +70,7 @@ class HomeController extends Controller
             $clocks[] = [
                 'id' =>isset($getAppointment) ? $getAppointment->id : '',
                 'clock' => $i->format('H:i'),
-                'title' =>isset($getAppointment) ? $getAppointment->services->first()->subCategory->name : 'Boş',
+                'title' =>isset($getAppointment) ? $getAppointment->services->first()->service->subCategory->name : 'Boş',
                 'customer' =>isset($getAppointment) ? CustomerDetailResource::make($getAppointment->appointment->customer) : "",
                 'color_code' =>  isset($getAppointment) ? $getAppointment->status('color') : '#6aab73',
             ];
