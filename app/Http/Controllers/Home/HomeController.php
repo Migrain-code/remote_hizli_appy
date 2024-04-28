@@ -76,7 +76,7 @@ class HomeController extends Controller
                 'clock' => $i->format('H:i'),
                 'title' =>isset($getAppointment) ? $getAppointment->services->first()->service->subCategory->name : 'Boş',
                 'customer' =>isset($getAppointment) ? $getAppointment->customer->name : "",
-                'color_code' =>  isset($getAppointment) ? $getAppointment->status('color') : '#6aab73',
+                'color_code' =>  isset($getAppointment) ? $getAppointment->status('color') : '#5dc26b',
             ];
 
             $i->addMinute($business->range->time);
