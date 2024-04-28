@@ -50,9 +50,9 @@ class HomeController extends Controller
         }
         return response()->json([
             'appointmentCount' => $this->business->appointments->count(),
-            'productSale' => $this->business->sales->count(),
+            'productSale' => $this->business->sales->count(),//toplam ürün satışı
             'adisyonCount' =>  formatPrice($adissionTotal), //adisyon toplamı
-            'totalCount' => 15, //toplam kasa
+            'totalCount' => $this->packages->count(), //toplam paket satışı
             'newCustomerCount' => $this->business->customers->count(),
             'totalCustomerCount' => $this->business->customers->count(),
             'appointments' => $todayAppointments,
