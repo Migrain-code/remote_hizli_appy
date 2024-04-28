@@ -53,8 +53,8 @@ class HomeController extends Controller
             'productSale' => $this->business->sales->count(),
             'adisyonCount' =>  formatPrice($adissionTotal), //adisyon toplamı
             'totalCount' => 15, //toplam kasa
-            'newCustomerCount' => $this->business->customers,
-            'totalCustomerCount' => $this->business->customers,
+            'newCustomerCount' => $this->business->customers->count(),
+            'totalCustomerCount' => $this->business->customers->count(),
             'appointments' => $todayAppointments,
         ]);
 
