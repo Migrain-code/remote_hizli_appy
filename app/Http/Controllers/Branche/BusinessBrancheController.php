@@ -88,13 +88,13 @@ class BusinessBrancheController extends Controller
     public function edit(Business $branche)
     {
        // dd($branche);
-        $services = $branche->services;
+
         $newBusiness = $branche->replicate();
         $newBusiness->name .= " Kopya";
         $newBusiness->branch_name = $newBusiness->name;
         $newBusiness->slug = Str::slug($newBusiness->name);
         $newBusiness->is_main = 0;
-
+        $newBusiness->admin_id = null;
         if ($newBusiness->save()){
             foreach ($branche->services as $service) {
                 $newService = $service->replicate();
