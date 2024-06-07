@@ -28,7 +28,11 @@ class CustomerController extends Controller
     {
         $user = $request->user();
         $business = $user->business;
-        return response()->json(CustomerListResource::collection($business->customers));
+        $customers = $business->customers()->whereHas('customer', function ($q) use ($request) {
+            $name = strtolower($request->input('name'));
+            $q->whereRaw('LOWER(name) like ?', ['%' . $name . '%']);
+        })->take(20)->get();
+        return response()->json(CustomerListResource::collection($customers));
     }
 
     /**

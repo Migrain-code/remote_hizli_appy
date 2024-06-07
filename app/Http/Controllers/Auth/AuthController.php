@@ -111,26 +111,18 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $this->createVerifyCode($request->phone);
-
-        return response()->json([
-            'status' => "success",
-            'message' => "Lütfen Telefon Numaranızı Doğrulayınız"
-        ]);
-        /*if ($this->existPhone(clearPhone($request->phone))) {
+        if ($this->existPhone(clearPhone($request->phone))) {
             return response()->json([
                 'status' => "warning",
                 'message' => "Bu telefon numarası ile kayıtlı kullanıcı bulunmakta."
             ]);
         } else {
-
-            $this->createVerifyCode($request->phone);
-
+            $this->createVerifyCode(clearPhone($request->phone));
             return response()->json([
                 'status' => "success",
                 'message' => "Lütfen Telefon Numaranızı Doğrulayınız"
             ]);
-        }*/
+        }
     }
 
     /**
@@ -266,6 +258,11 @@ class AuthController extends Controller
                     ]);
                 }
             }
+        } else{
+            return response()->json([
+                'status' => "danger",
+                'message' => "Doğrulama Kodu Hatalı veya Yanlış Tuşladınız"
+            ], 422);
         }
     }
 
