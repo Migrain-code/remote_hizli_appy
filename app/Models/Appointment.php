@@ -24,7 +24,7 @@ class Appointment extends Model
         2 => [
             'html' => '<span class="badge badge-outline-success fw-bolder px-2 py-2">Tamamlandı</span>',
             'text' => 'Tamamlandı',
-            "color" => "#D4F0F4"
+            "color" => "#4a7750"
         ],
         3 => [
             'html' => '<span class="badge light badge-danger fw-bolder px-2 py-2">İptal Edildi</span>',
