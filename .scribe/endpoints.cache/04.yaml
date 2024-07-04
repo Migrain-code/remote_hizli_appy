@@ -78,13 +78,13 @@ endpoints:
         name: column
         description: ''
         required: true
-        example: numquam
+        example: est
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      column: numquam
+      column: est
     fileParameters: []
     responses:
       -

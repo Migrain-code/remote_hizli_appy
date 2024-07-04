@@ -90,6 +90,65 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - POST
+    uri: api/personel/speed-appointment/add/customer
+    metadata:
+      groupName: 'Saat Kapatma'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Müşteri Ekle'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      phone:
+        name: phone
+        description: ''
+        required: true
+        example: facere
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: corporis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      phone: facere
+      name: corporis
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - GET
     uri: 'api/personel/speed-appointment/personel/{personel_id}/services'
     metadata:
@@ -172,13 +231,13 @@ endpoints:
         name: appointment_date
         description: 'value geçerli bir tarih olmalıdır.'
         required: true
-        example: '2024-07-04T16:18:40'
+        example: '2024-07-04T17:39:40'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      appointment_date: '2024-07-04T16:18:40'
+      appointment_date: '2024-07-04T17:39:40'
     fileParameters: []
     responses:
       -
@@ -231,7 +290,7 @@ endpoints:
         name: appointment_date
         description: 'value geçerli bir tarih olmalıdır.'
         required: true
-        example: '2024-07-04T16:18:40'
+        example: '2024-07-04T17:39:40'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -240,7 +299,7 @@ endpoints:
         name: customer_id
         description: ''
         required: true
-        example: magni
+        example: molestias
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -249,7 +308,7 @@ endpoints:
         name: service_id
         description: ''
         required: true
-        example: perspiciatis
+        example: in
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -258,7 +317,7 @@ endpoints:
         name: start_time
         description: ''
         required: true
-        example: necessitatibus
+        example: qui
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -267,17 +326,17 @@ endpoints:
         name: end_time
         description: ''
         required: true
-        example: delectus
+        example: maxime
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      appointment_date: '2024-07-04T16:18:40'
-      customer_id: magni
-      service_id: perspiciatis
-      start_time: necessitatibus
-      end_time: delectus
+      appointment_date: '2024-07-04T17:39:40'
+      customer_id: molestias
+      service_id: in
+      start_time: qui
+      end_time: maxime
     fileParameters: []
     responses:
       -

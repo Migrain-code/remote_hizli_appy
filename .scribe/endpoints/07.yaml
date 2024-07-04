@@ -65,7 +65,7 @@ endpoints:
         name: start_time
         description: ''
         required: true
-        example: inventore
+        example: sed
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -74,14 +74,14 @@ endpoints:
         name: end_time
         description: ''
         required: true
-        example: sint
+        example: aspernatur
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      start_time: inventore
-      end_time: sint
+      start_time: sed
+      end_time: aspernatur
     fileParameters: []
     responses:
       -

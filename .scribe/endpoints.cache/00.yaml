@@ -28,7 +28,7 @@ endpoints:
         name: phone
         description: ''
         required: true
-        example: aut
+        example: rerum
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -37,14 +37,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: omnis
+        example: enim
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      phone: aut
-      password: omnis
+      phone: rerum
+      password: enim
     fileParameters: []
     responses:
       -
@@ -210,13 +210,13 @@ endpoints:
         name: password
         description: 'value değeri 6 karakter değerinden büyük olmalıdır.'
         required: true
-        example: '(8a5-\m`=ADQ"'
+        example: '^%&bYA]c8~YVe)V1jr^'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      password: '(8a5-\m`=ADQ"'
+      password: '^%&bYA]c8~YVe)V1jr^'
     fileParameters: []
     responses:
       -

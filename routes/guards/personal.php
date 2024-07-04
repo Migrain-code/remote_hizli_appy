@@ -20,6 +20,7 @@ Route::prefix('personel')->group(function () {
             ->group(function (){
                 Route::get('/', 'index')->name('index');
                 Route::get('customer', 'getCustomerList');
+                Route::post('add/customer', 'newCustomer');
                 Route::get('personel/list', 'getPersonelList');
                 Route::get('personel/{personel}/services', 'getPersonelServiceList');
                 Route::get('personel/{personel}/clocks', 'getPersonelClocks');

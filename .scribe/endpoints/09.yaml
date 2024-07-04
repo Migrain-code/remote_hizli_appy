@@ -182,7 +182,7 @@ endpoints:
         name: customer_id
         description: ''
         required: true
-        example: beatae
+        example: magni
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -191,7 +191,7 @@ endpoints:
         name: appointment_date
         description: 'value geçerli bir tarih olmalıdır.'
         required: true
-        example: '2024-07-04T16:18:41'
+        example: '2024-07-04T17:39:40'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -200,7 +200,7 @@ endpoints:
         name: personels
         description: ''
         required: true
-        example: repellat
+        example: soluta
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -209,7 +209,7 @@ endpoints:
         name: times
         description: ''
         required: true
-        example: fuga
+        example: modi
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -218,7 +218,7 @@ endpoints:
         name: services
         description: ''
         required: true
-        example: dolore
+        example: repellendus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -227,7 +227,7 @@ endpoints:
         name: total
         description: ''
         required: true
-        example: quasi
+        example: suscipit
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -236,19 +236,19 @@ endpoints:
         name: discountTotal
         description: ''
         required: true
-        example: perferendis
+        example: vitae
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      customer_id: beatae
-      appointment_date: '2024-07-04T16:18:41'
-      personels: repellat
-      times: fuga
-      services: dolore
-      total: quasi
-      discountTotal: perferendis
+      customer_id: magni
+      appointment_date: '2024-07-04T17:39:40'
+      personels: soluta
+      times: modi
+      services: repellendus
+      total: suscipit
+      discountTotal: vitae
     fileParameters: []
     responses:
       -
@@ -291,7 +291,7 @@ endpoints:
         name: customer_id
         description: ''
         required: true
-        example: quisquam
+        example: eius
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -300,7 +300,7 @@ endpoints:
         name: appointment_date
         description: 'value geçerli bir tarih olmalıdır.'
         required: true
-        example: '2024-07-04T16:18:41'
+        example: '2024-07-04T17:39:40'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -309,7 +309,7 @@ endpoints:
         name: times
         description: ''
         required: true
-        example: itaque
+        example: quas
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -318,7 +318,7 @@ endpoints:
         name: services
         description: ''
         required: true
-        example: tempora
+        example: libero
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -327,17 +327,17 @@ endpoints:
         name: discountTotal
         description: ''
         required: true
-        example: modi
+        example: at
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      customer_id: quisquam
-      appointment_date: '2024-07-04T16:18:41'
-      times: itaque
-      services: tempora
-      discountTotal: modi
+      customer_id: eius
+      appointment_date: '2024-07-04T17:39:40'
+      times: quas
+      services: libero
+      discountTotal: at
     fileParameters: []
     responses:
       -

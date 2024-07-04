@@ -5,18 +5,25 @@ namespace App\Http\Controllers\PersonelAccount\SpeedAppointment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Appointment\AppointmentCreateRequest;
 use App\Http\Requests\Customer\CustomerSearchRequest;
+use App\Http\Requests\PersonelAccount\SpeedAppointment\AddCustomerRequest;
 use App\Http\Requests\PersonelAccount\SpeedAppointment\GetPersonelClockRequest;
 use App\Http\Requests\PersonelAccount\SpeedAppointment\SpeedAppointmentCreateRequest;
 use App\Http\Resources\Customer\CustomerListResource;
 use App\Http\Resources\Personel\PersonelListResource;
 use App\Http\Resources\Personel\PersonelServiceResource;
 use App\Http\Resources\PersonelAccount\Rooms\RoomsListResource;
+use App\Http\Resources\PersonelAccount\SpeedAppointment\PersonelAppointmentServiceResource;
 use App\Models\Appointment;
 use App\Models\AppointmentServices;
+use App\Models\BusinessCustomer;
 use App\Models\BusinessService;
+use App\Models\Customer;
+use App\Models\CustomerNotificationPermission;
 use App\Models\Personel;
+use App\Services\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @group Saat Kapatma
@@ -44,6 +51,46 @@ class SpeedAppointmentController extends Controller
         $personels = $this->business->personels;
         return response()->json(PersonelListResource::collection($personels));
     }
+    /**
+     *  Müşteri Ekle
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|void
+     */
+    public function newCustomer(AddCustomerRequest $request)
+    {
+        $phone = clearPhone($request->input('phone'));
+        if (strlen($phone) != 11) {
+            return response()->json([
+                'status' => "error",
+                'message' => "Lütfen Telefon Numarasını 11 Haneli olarak giriş yapın"
+            ], 422);
+        }
+        if ($this->existPhone($phone)) {
+            return response()->json([
+                'status' => "error",
+                'message' => "Bu telefon numarası ile kayıtlı müşteri bulunuyor lütfen başka bir numara giriniz"
+            ],422);
+        }
+        $generatePassword = rand(100000, 999999);
+        $customer = new Customer();
+        $customer->name = $request->input('name');
+        $customer->phone = clearPhone($request->input('phone'));
+        $customer->password = Hash::make($generatePassword);
+        $customer->status = 1;
+        $customer->verify_phone = 1;
+        if ($customer->save()) {
+            $message = "Merhaba " . $customer->name . ", Hızlı Randevu'ya hoş geldiniz! Giriş Bilgileriniz: Tel: " . $customer->phone . ", Şifre: " . $generatePassword . ". İyi günler , Hızlı Randevu";
+
+            Sms::send($customer->phone, $message);
+            $this->addPermission($customer->id);
+            $this->addBusinessCustomerList($customer->id);
+            return response()->json([
+                'status' => "success",
+                'message' => "Müşteri Başarılı Bir Şekilde Eklendi"
+            ]);
+        }
+    }
+
     /**
      * Müşteri Listesi
      *
@@ -74,7 +121,7 @@ class SpeedAppointmentController extends Controller
         $rooms = $personel->rooms;
 
         return response()->json([
-            'services' => PersonelServiceResource::collection($services),
+            'services' => PersonelAppointmentServiceResource::collection($services),
             'rooms' => RoomsListResource::collection($rooms),
         ]);
     }
@@ -267,4 +314,33 @@ class SpeedAppointmentController extends Controller
         return $disableds;
     }
 
+    public function existPhone($phone)
+    {
+        $existPhone = Customer::where('phone', $phone)->first();
+        if ($existPhone != null) {
+            $result = true;
+        } else {
+            $result = false;
+        }
+        return $result;
+    }
+    public function addPermission($id)
+    {
+        $permission = new CustomerNotificationPermission();
+        $permission->customer_id = $id;
+        $permission->save();
+
+        return $permission;
+    }
+
+    public function addBusinessCustomerList($id)
+    {
+        $businessCustomer = new BusinessCustomer();
+        $businessCustomer->business_id = $this->business->id;
+        $businessCustomer->customer_id = $id;
+        $businessCustomer->type = 1;
+        $businessCustomer->status = 1;
+        $businessCustomer->save();
+        return $businessCustomer;
+    }
 }
