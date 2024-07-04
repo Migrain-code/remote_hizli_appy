@@ -127,6 +127,19 @@ class Personel extends Authenticatable
         return $this->hasMany(PersonelNotification::class, 'personel_id', 'id')->orderBy('created_at')->take(5);
     }
 
+    public function unreadNotifications()
+    {
+        return $this->notifications()->where('status', 0);
+    }
+
+    public function isNotificationStatus()
+    {
+        if($this->unreadNotifications->count() > 0){
+            return true;
+        }
+        return false;
+    }
+
     public function notificationMenu()
     {
         return $this->hasMany(PersonelNotification::class, 'personel_id', 'id')->orderBy('created_at', 'desc')->take(10);

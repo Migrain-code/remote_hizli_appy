@@ -33,12 +33,13 @@ class AccountResource extends JsonResource
           'appointment_range' => $this->range,
           'description' => $this->description,
           'appointmentRange' => $this->appointmentRange,
-          'services' => PersonelServiceResource::collection($this->services),
           'closeDay' => $this->restDays,
           'safe' => $this->safe,
           'user_type' => 1,
           'about_text' => "asd",
+          'is_notification' => $this->isNotificationStatus(),
           'business' => BusinessResource::make($this->business),
+          'services' => PersonelServiceResource::collection($this->services),
         ];
     }
 }

@@ -22,6 +22,7 @@ class NotificationListResource extends JsonResource
           'created_at' => $this->created_at->format('d.m.Y'),
           'created_clock' => $this->created_at->format('H:i'),
           'link' => $this->link,
+          'status' => $this->status,
         ];
     }
 }

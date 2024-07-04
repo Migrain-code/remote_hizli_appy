@@ -42,6 +42,8 @@ class PersonelNotificationController extends Controller
      */
     public function show(PersonelNotification $notification)
     {
+        $notification->status = 1;
+        $notification->save();
         return response()->json(NotificationListResource::make($notification));
     }
 
