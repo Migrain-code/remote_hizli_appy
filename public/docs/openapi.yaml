@@ -191,7 +191,7 @@ paths:
         in: path
         name: adission
         description: 'The adission.'
-        example: corrupti
+        example: nostrum
         required: true
         schema:
           type: string
@@ -226,23 +226,23 @@ paths:
                 product_id:
                   type: string
                   description: ''
-                  example: suscipit
+                  example: fugit
                 personel_id:
                   type: string
                   description: ''
-                  example: deserunt
+                  example: aliquam
                 payment_type_id:
                   type: string
                   description: ''
-                  example: illum
+                  example: velit
                 amount:
                   type: string
                   description: ''
-                  example: quam
+                  example: voluptate
                 price:
                   type: string
                   description: ''
-                  example: error
+                  example: corporis
               required:
                 - product_id
                 - personel_id
@@ -321,23 +321,23 @@ paths:
                 product_id:
                   type: string
                   description: ''
-                  example: illo
+                  example: recusandae
                 personel_id:
                   type: string
                   description: ''
-                  example: libero
+                  example: sed
                 payment_type_id:
                   type: string
                   description: ''
-                  example: provident
+                  example: quidem
                 amount:
                   type: string
                   description: ''
-                  example: modi
+                  example: ea
                 price:
                   type: string
                   description: ''
-                  example: delectus
+                  example: dolores
               required:
                 - product_id
                 - personel_id
@@ -486,11 +486,11 @@ paths:
                 payment_type_id:
                   type: string
                   description: ''
-                  example: fuga
+                  example: voluptatem
                 price:
                   type: string
                   description: ''
-                  example: magnam
+                  example: quidem
               required:
                 - payment_type_id
                 - price
@@ -574,11 +574,11 @@ paths:
                 payment_type_id:
                   type: string
                   description: ''
-                  example: non
+                  example: quos
                 price:
                   type: string
                   description: ''
-                  example: tempora
+                  example: quasi
               required:
                 - payment_type_id
                 - price
@@ -652,7 +652,7 @@ paths:
                 isPoint:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
                 note:
                   type: string
                   description: ''
@@ -766,7 +766,7 @@ paths:
         in: path
         name: cashPoint_id
         description: 'The ID of the cashPoint.'
-        example: 9
+        example: 13
         required: true
         schema:
           type: integer
@@ -878,7 +878,7 @@ paths:
         in: path
         name: receivable_id
         description: 'The ID of the receivable.'
-        example: 15
+        example: 14
         required: true
         schema:
           type: integer
@@ -934,15 +934,15 @@ paths:
                 customerId:
                   type: string
                   description: ''
-                  example: aliquid
+                  example: esse
                 paymentDate:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:46'
+                  example: '2024-07-04T19:14:53'
                 price:
                   type: string
                   description: ''
-                  example: accusamus
+                  example: aliquam
                 note:
                   type: string
                   description: ''
@@ -1043,7 +1043,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the receivable.'
-        example: 17
+        example: 9
         required: true
         schema:
           type: integer
@@ -1074,7 +1074,7 @@ paths:
         in: path
         name: receivable_id
         description: 'The ID of the receivable.'
-        example: 9
+        example: 13
         required: true
         schema:
           type: integer
@@ -1266,11 +1266,11 @@ paths:
                 serviceId:
                   type: string
                   description: ''
-                  example: sit
+                  example: dicta
                 personelId:
                   type: string
                   description: ''
-                  example: nihil
+                  example: officiis
               required:
                 - serviceId
                 - personelId
@@ -1390,7 +1390,7 @@ paths:
                 serviceIds:
                   type: string
                   description: ''
-                  example: perferendis
+                  example: est
               required:
                 - serviceIds
       security: []
@@ -1425,7 +1425,7 @@ paths:
                 personelIds:
                   type: string
                   description: ''
-                  example: natus
+                  example: vitae
               required:
                 - personelIds
       security: []
@@ -1482,31 +1482,31 @@ paths:
                 customer_id:
                   type: string
                   description: ''
-                  example: mollitia
+                  example: in
                 appointment_date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:45'
+                  example: '2024-07-04T19:14:52'
                 personels:
                   type: string
                   description: ''
-                  example: rem
+                  example: in
                 times:
                   type: string
                   description: ''
-                  example: aut
+                  example: facilis
                 services:
                   type: string
                   description: ''
-                  example: natus
+                  example: ut
                 total:
                   type: string
                   description: ''
-                  example: quia
+                  example: et
                 discountTotal:
                   type: string
                   description: ''
-                  example: laudantium
+                  example: tenetur
               required:
                 - customer_id
                 - appointment_date
@@ -1547,23 +1547,23 @@ paths:
                 customer_id:
                   type: string
                   description: ''
-                  example: aut
+                  example: consectetur
                 appointment_date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:45'
+                  example: '2024-07-04T19:14:52'
                 times:
                   type: string
                   description: ''
-                  example: sed
+                  example: qui
                 services:
                   type: string
                   description: ''
-                  example: iste
+                  example: illum
                 discountTotal:
                   type: string
                   description: ''
-                  example: aut
+                  example: maiores
               required:
                 - customer_id
                 - appointment_date
@@ -1602,11 +1602,11 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: qui
+                  example: voluptatem
                 password:
                   type: string
                   description: ''
-                  example: 'Crdy=e.S*I'
+                  example: '}~A/CddK'
               required:
                 - phone
                 - password
@@ -1825,7 +1825,7 @@ paths:
                 messageId:
                   type: string
                   description: ''
-                  example: eaque
+                  example: nihil
               required:
                 - messageId
       security: []
@@ -1903,15 +1903,15 @@ paths:
                 customerId:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: veniam
                 paymentDate:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:46'
+                  example: '2024-07-04T19:14:54'
                 price:
                   type: string
                   description: ''
-                  example: qui
+                  example: at
                 note:
                   type: string
                   description: ''
@@ -1995,15 +1995,15 @@ paths:
                 customerId:
                   type: string
                   description: ''
-                  example: non
+                  example: aut
                 paymentDate:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:46'
+                  example: '2024-07-04T19:14:54'
                 price:
                   type: string
                   description: ''
-                  example: officia
+                  example: aut
                 note:
                   type: string
                   description: ''
@@ -2039,7 +2039,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the dep.'
-        example: 18
+        example: 14
         required: true
         schema:
           type: integer
@@ -2070,7 +2070,7 @@ paths:
         in: path
         name: dep_id
         description: 'The ID of the dep.'
-        example: 11
+        example: 10
         required: true
         schema:
           type: integer
@@ -2126,7 +2126,7 @@ paths:
                 image:
                   type: string
                   description: ''
-                  example: debitis
+                  example: provident
               required:
                 - image
       security: []
@@ -2192,7 +2192,7 @@ paths:
                 password:
                   type: string
                   description: 'value değeri 6 karakter değerinden büyük olmalıdır.'
-                  example: '[]`d7x'
+                  example: '!+jlaeKC"~si1BB%hh\i'
               required:
                 - password
       security: []
@@ -2315,63 +2315,63 @@ paths:
                 businessName:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: jljtrbmpocshngszs
+                  example: udyqdtpxqlgzxmrfv
                 appointmentRange:
                   type: number
                   description: ''
-                  example: 3152.72
+                  example: 3824.9
                 businessType:
                   type: number
                   description: ''
-                  example: 125583.0
+                  example: 246.91542
                 phone:
                   type: string
                   description: 'value değeri 10 karakter değerinden büyük olmalıdır. value değeri 10 karakter değerinden küçük olmalıdır.'
-                  example: uvpamubufa
+                  example: natxqsmtu
                 startTime:
                   type: string
                   description: ''
-                  example: aut
+                  example: quis
                 endTime:
                   type: string
                   description: ''
-                  example: dolor
+                  example: eveniet
                 email:
                   type: string
                   description: ''
-                  example: jamir68@example.net
+                  example: njohnston@example.net
                 year:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:41'
+                  example: '2024-07-04T19:14:48'
                 address:
                   type: string
                   description: ''
-                  example: ut
+                  example: vitae
                 cityId:
                   type: number
                   description: ''
-                  example: 36726246.1
+                  example: 2222116.0
                 districtId:
                   type: number
                   description: ''
-                  example: 3.9881
+                  example: 1.73364
                 commission:
                   type: number
                   description: ''
-                  example: 3506.8
+                  example: 0.0
                 personalCount:
                   type: number
                   description: ''
-                  example: 2.508
+                  example: 10923.0
                 offDay:
                   type: number
                   description: ''
-                  example: 0.0
+                  example: 103203.61671163
                 aboutText:
                   type: string
                   description: ''
-                  example: recusandae
+                  example: esse
               required:
                 - businessName
                 - appointmentRange
@@ -2441,23 +2441,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: occaecati
+                  example: rerum
                 phone:
                   type: string
                   description: 'value değeri 11 karakter değerinden büyük olmalıdır. value değeri 11 karakter değerinden küçük olmalıdır.'
-                  example: kfuekk
+                  example: mzzau
                 email:
                   type: string
                   description: 'value biçimi geçersiz.'
-                  example: carole66@example.net
+                  example: oleta58@example.org
                 password:
                   type: string
                   description: ''
-                  example: repellendus
+                  example: perspiciatis
                 branch_id:
                   type: string
                   description: ''
-                  example: a
+                  example: eaque
               required:
                 - name
                 - phone
@@ -2549,19 +2549,19 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: doloribus
+                  example: sint
                 phone:
                   type: string
                   description: 'value değeri 11 karakter değerinden büyük olmalıdır. value değeri 11 karakter değerinden küçük olmalıdır.'
-                  example: lazpfmxkpn
+                  example: dqjjrliba
                 email:
                   type: string
                   description: 'value biçimi geçersiz.'
-                  example: jeremy.buckridge@example.org
+                  example: kianna13@example.com
                 branch_id:
                   type: string
                   description: ''
-                  example: nihil
+                  example: voluptas
               required:
                 - name
                 - phone
@@ -2694,23 +2694,23 @@ paths:
                 typeId:
                   type: string
                   description: ''
-                  example: ducimus
+                  example: ad
                 categoryId:
                   type: string
                   description: ''
-                  example: omnis
+                  example: suscipit
                 subCategoryId:
                   type: string
                   description: ''
-                  example: aut
+                  example: dolores
                 time:
                   type: string
                   description: ''
-                  example: sunt
+                  example: dolorum
                 price:
                   type: string
                   description: ''
-                  example: minus
+                  example: quisquam
               required:
                 - typeId
                 - categoryId
@@ -2798,6 +2798,50 @@ paths:
       tags:
         - 'Cihaz Bildirimleri'
       security: []
+  '/api/business/device-notification-permission/{id}':
+    put:
+      summary: 'Bildirim Güncelle'
+      operationId: bildirimGncelle
+      description: 'Bildirim izinleri listesindeki response dönen verilerden is_email,is_sms,is_phone,is_notification örnek gönderim ({"column": "is_email"})'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Cihaz Bildirimleri'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                column:
+                  type: string
+                  description: ''
+                  example: ad
+              required:
+                - column
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the device notification permission.'
+        example: 1
+        required: true
+        schema:
+          type: integer
   /api/city/list:
     get:
       summary: 'GET api/city/list'
@@ -4447,27 +4491,27 @@ paths:
                 name:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: bygxsdkvcvntti
+                  example: sugcdooiklsfgnrh
                 number:
                   type: number
                   description: 'value değeri 16 değerinden büyük olmalıdır.'
-                  example: 35
+                  example: 20
                 month:
                   type: number
                   description: 'value 1 - 12 arasında olmalıdır.'
-                  example: 2
+                  example: 1
                 year:
                   type: number
                   description: ''
-                  example: 5091.3355484
+                  example: 53.30769
                 cvc:
                   type: string
                   description: 'Must match the regex /^\d{3,4}$/.'
-                  example: '676'
+                  example: '800'
                 name_on_the_card:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: dsjyhnxygsgqjxmem
+                  example: xvwfqyrotwkf
                 is_default:
                   type: number
                   description: ''
@@ -4515,35 +4559,35 @@ paths:
                 cart_id:
                   type: string
                   description: 'value değeri 1 karakter değerinden büyük olmalıdır.'
-                  example: zuxotfsegjatqqiinhysbfseqxvjdryvvtkrycuhazvx
+                  example: vlzcarrzocblnhhsfpdvjrbz
                 name:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: vqntjzscaqivrtpkzfdjnwvg
+                  example: umrbxsdqrgxkbomhiyauzey
                 number:
                   type: number
                   description: 'value değeri 16 değerinden büyük olmalıdır.'
-                  example: 22
+                  example: 80
                 month:
                   type: number
                   description: 'value 1 - 12 arasında olmalıdır.'
-                  example: 1
+                  example: 2
                 year:
                   type: number
                   description: ''
-                  example: 0.92505593
+                  example: 2029.3436
                 cvc:
                   type: string
                   description: 'Must match the regex /^\d{3,4}$/.'
-                  example: '359'
+                  example: '364'
                 name_on_the_card:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: ciyiurzqbf
+                  example: mobkecorevcsbjaxtcyqxah
                 is_default:
                   type: number
                   description: ''
-                  example: '1'
+                  example: '0'
                   enum:
                     - '0'
                     - '1'
@@ -4609,23 +4653,23 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: maiores
+                  example: enim
                 phone:
                   type: string
                   description: ''
-                  example: quia
+                  example: similique
                 email:
                   type: string
                   description: ''
-                  example: minima
+                  example: sapiente
                 password:
                   type: string
                   description: ''
-                  example: atque
+                  example: tempore
                 gender:
                   type: string
                   description: ''
-                  example: et
+                  example: ipsa
                 birthday:
                   type: string
                   description: ''
@@ -4794,11 +4838,11 @@ paths:
                 customer_id:
                   type: string
                   description: ''
-                  example: tenetur
+                  example: qui
                 image:
                   type: string
                   description: ''
-                  example: dolore
+                  example: voluptatum
               required:
                 - customer_id
                 - image
@@ -5051,15 +5095,15 @@ paths:
                 customer_id:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: ipsam
                 title:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: ab
                 note:
                   type: string
                   description: ''
-                  example: vero
+                  example: dolores
               required:
                 - customer_id
                 - title
@@ -5117,11 +5161,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: a
+                  example: ut
                 note:
                   type: string
                   description: ''
-                  example: velit
+                  example: qui
               required:
                 - title
                 - note
@@ -5152,7 +5196,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the customerNote.'
-        example: 9
+        example: 3
         required: true
         schema:
           type: integer
@@ -5209,31 +5253,31 @@ paths:
                 officialName:
                   type: string
                   description: 'value değeri 255 karakter değerinden küçük olmalıdır.'
-                  example: d
+                  example: qgdofphefkvxejheplu
                 appointmentRange:
                   type: number
                   description: ''
-                  example: 942774547.04658
+                  example: 29294.3499754
                 email:
                   type: string
                   description: ''
-                  example: draynor@example.net
+                  example: paucek.trenton@example.com
                 year:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:42'
+                  example: '2024-07-04T19:14:49'
                 commission:
                   type: number
                   description: ''
-                  example: 38313563.85262
+                  example: 985294.0
                 personalCount:
                   type: number
                   description: ''
-                  example: 249846335.2
+                  example: 153.36753841
                 aboutText:
                   type: string
                   description: ''
-                  example: nostrum
+                  example: nisi
               required:
                 - officialName
                 - appointmentRange
@@ -5383,23 +5427,23 @@ paths:
                 costCategoryId:
                   type: string
                   description: ''
-                  example: id
+                  example: optio
                 personelId:
                   type: string
                   description: ''
-                  example: dolor
+                  example: ut
                 paymentTypeId:
                   type: string
                   description: ''
-                  example: maiores
+                  example: sed
                 price:
                   type: string
                   description: ''
-                  example: ducimus
+                  example: voluptate
                 operationDate:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:46'
+                  example: '2024-07-04T19:14:53'
                 description:
                   type: string
                   description: ''
@@ -5499,23 +5543,23 @@ paths:
                 costCategoryId:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: iure
                 personelId:
                   type: string
                   description: ''
-                  example: et
+                  example: reprehenderit
                 paymentTypeId:
                   type: string
                   description: ''
-                  example: reiciendis
+                  example: facilis
                 price:
                   type: string
                   description: ''
-                  example: reprehenderit
+                  example: sed
                 operationDate:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:46'
+                  example: '2024-07-04T19:14:53'
                 description:
                   type: string
                   description: ''
@@ -5614,7 +5658,7 @@ paths:
                 column:
                   type: string
                   description: ''
-                  example: quasi
+                  example: quae
               required:
                 - column
       security: []
@@ -5775,31 +5819,31 @@ paths:
                 seller_date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:43'
+                  example: '2024-07-04T19:14:50'
                 customer_id:
                   type: string
                   description: ''
-                  example: id
+                  example: assumenda
                 service_id:
                   type: string
                   description: ''
-                  example: ratione
+                  example: rem
                 package_type:
                   type: string
                   description: ''
-                  example: qui
+                  example: non
                 personel_id:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: iste
                 amount:
                   type: string
                   description: ''
-                  example: corrupti
+                  example: officia
                 total:
                   type: string
                   description: ''
-                  example: libero
+                  example: et
               required:
                 - seller_date
                 - customer_id
@@ -5893,31 +5937,31 @@ paths:
                 seller_date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:43'
+                  example: '2024-07-04T19:14:50'
                 customer_id:
                   type: string
                   description: ''
-                  example: aut
+                  example: omnis
                 service_id:
                   type: string
                   description: ''
-                  example: maxime
+                  example: ex
                 package_type:
                   type: string
                   description: ''
-                  example: aut
+                  example: minima
                 personel_id:
                   type: string
                   description: ''
-                  example: aut
+                  example: enim
                 amount:
                   type: string
                   description: ''
-                  example: nihil
+                  example: a
                 total:
                   type: string
                   description: ''
-                  example: in
+                  example: cupiditate
               required:
                 - seller_date
                 - customer_id
@@ -6050,11 +6094,11 @@ paths:
                 price:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: expedita
                 amount:
                   type: string
                   description: ''
-                  example: quia
+                  example: voluptas
               required:
                 - price
                 - amount
@@ -6099,15 +6143,15 @@ paths:
                 personel_id:
                   type: string
                   description: ''
-                  example: inventore
+                  example: corrupti
                 amount:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: et
                 operation_date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:43'
+                  example: '2024-07-04T19:14:51'
               required:
                 - personel_id
                 - amount
@@ -6237,7 +6281,7 @@ paths:
                 cart_id:
                   type: string
                   description: 'value değeri 1 karakter değerinden büyük olmalıdır.'
-                  example: dtnsyicqlzzixruxnufnwdgzdbrpeeeuytugfmxchjichazcmcdxhwaencxrtgbppwanolpkbakaoafanaqgyiad
+                  example: q
               required:
                 - cart_id
       security: []
@@ -6388,55 +6432,55 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: qui
+                  example: dolores
                 email:
                   type: string
                   description: ''
-                  example: molestias
+                  example: magni
                 phone:
                   type: string
                   description: ''
-                  example: reiciendis
+                  example: non
                 password:
                   type: string
                   description: ''
-                  example: placeat
+                  example: dolorem
                 approveType:
                   type: string
                   description: ''
-                  example: eaque
+                  example: facere
                 restDay:
                   type: string
                   description: ''
-                  example: corrupti
+                  example: et
                 startTime:
                   type: string
                   description: ''
-                  example: qui
+                  example: occaecati
                 endTime:
                   type: string
                   description: ''
-                  example: quibusdam
+                  example: aut
                 gender:
                   type: string
                   description: ''
-                  example: reiciendis
+                  example: nulla
                 rate:
                   type: string
                   description: ''
-                  example: quia
+                  example: deserunt
                 appointmentRange:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: et
                 description:
                   type: string
                   description: ''
-                  example: sit
+                  example: aut
                 services:
                   type: string
                   description: ''
-                  example: mollitia
+                  example: hic
               required:
                 - name
                 - email
@@ -6490,55 +6534,55 @@ paths:
                 personal_id:
                   type: string
                   description: ''
-                  example: illum
+                  example: veritatis
                 name:
                   type: string
                   description: ''
-                  example: quo
+                  example: qui
                 email:
                   type: string
                   description: ''
-                  example: sunt
+                  example: nemo
                 phone:
                   type: string
                   description: ''
-                  example: officia
+                  example: sed
                 approveType:
                   type: string
                   description: ''
-                  example: ipsa
+                  example: vel
                 restDay:
                   type: string
                   description: ''
-                  example: odit
+                  example: doloremque
                 startTime:
                   type: string
                   description: ''
-                  example: molestias
+                  example: voluptatem
                 endTime:
                   type: string
                   description: ''
-                  example: qui
+                  example: rerum
                 gender:
                   type: string
                   description: ''
-                  example: qui
+                  example: suscipit
                 rate:
                   type: string
                   description: ''
-                  example: laboriosam
+                  example: et
                 appointmentRange:
                   type: string
                   description: ''
-                  example: ut
+                  example: modi
                 description:
                   type: string
                   description: ''
-                  example: sunt
+                  example: sit
                 services:
                   type: string
                   description: ''
-                  example: magni
+                  example: ea
               required:
                 - personal_id
                 - name
@@ -6614,11 +6658,11 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: rerum
+                  example: sapiente
                 password:
                   type: string
                   description: ''
-                  example: enim
+                  example: delectus
               required:
                 - phone
                 - password
@@ -6719,7 +6763,7 @@ paths:
                 password:
                   type: string
                   description: 'value değeri 6 karakter değerinden büyük olmalıdır.'
-                  example: '^%&bYA]c8~YVe)V1jr^'
+                  example: 'AS<e#5('
               required:
                 - password
       security: []
@@ -6872,7 +6916,7 @@ paths:
                 column:
                   type: string
                   description: ''
-                  example: est
+                  example: nihil
               required:
                 - column
       security: []
@@ -6937,47 +6981,47 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: enim
+                  example: in
                 email:
                   type: string
                   description: ''
-                  example: laudantium
+                  example: non
                 phone:
                   type: string
                   description: ''
-                  example: cumque
+                  example: voluptas
                 approveType:
                   type: string
                   description: ''
-                  example: quo
+                  example: cupiditate
                 restDay:
                   type: string
                   description: ''
-                  example: totam
+                  example: inventore
                 startTime:
                   type: string
                   description: ''
-                  example: illo
+                  example: voluptas
                 endTime:
                   type: string
                   description: ''
-                  example: aut
+                  example: impedit
                 foodStart:
                   type: string
                   description: ''
-                  example: corrupti
+                  example: quo
                 foodEnd:
                   type: string
                   description: ''
-                  example: laudantium
+                  example: excepturi
                 appointmentRange:
                   type: string
                   description: ''
-                  example: autem
+                  example: dolores
                 description:
                   type: string
                   description: ''
-                  example: molestias
+                  example: aut
                 logo:
                   type: string
                   description: ''
@@ -7069,11 +7113,11 @@ paths:
                 start_time:
                   type: string
                   description: ''
-                  example: sed
+                  example: ut
                 end_time:
                   type: string
                   description: ''
-                  example: aspernatur
+                  example: est
               required:
                 - start_time
                 - end_time
@@ -7161,55 +7205,55 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: dolores
+                  example: voluptates
                 email:
                   type: string
                   description: ''
-                  example: sint
+                  example: dicta
                 phone:
                   type: string
                   description: ''
-                  example: nemo
+                  example: laborum
                 password:
                   type: string
                   description: ''
-                  example: nobis
+                  example: labore
                 approveType:
                   type: string
                   description: ''
-                  example: explicabo
+                  example: sint
                 restDay:
                   type: string
                   description: ''
-                  example: quia
+                  example: adipisci
                 startTime:
                   type: string
                   description: ''
-                  example: ea
+                  example: id
                 endTime:
                   type: string
                   description: ''
-                  example: nam
+                  example: pariatur
                 gender:
                   type: string
                   description: ''
-                  example: cum
+                  example: consequatur
                 rate:
                   type: string
                   description: ''
-                  example: accusamus
+                  example: facilis
                 appointmentRange:
                   type: string
                   description: ''
-                  example: beatae
+                  example: ipsa
                 description:
                   type: string
                   description: ''
-                  example: quia
+                  example: qui
                 services:
                   type: string
                   description: ''
-                  example: sint
+                  example: voluptatem
               required:
                 - name
                 - email
@@ -7299,35 +7343,35 @@ paths:
                 personal_id:
                   type: string
                   description: ''
-                  example: consequatur
+                  example: voluptatem
                 name:
                   type: string
                   description: ''
-                  example: et
+                  example: in
                 email:
                   type: string
                   description: ''
-                  example: laboriosam
+                  example: ut
                 phone:
                   type: string
                   description: ''
-                  example: quam
+                  example: cumque
                 approveType:
                   type: string
                   description: ''
-                  example: dolores
+                  example: ut
                 restDay:
                   type: string
                   description: ''
-                  example: sit
+                  example: perferendis
                 startTime:
                   type: string
                   description: ''
-                  example: assumenda
+                  example: laboriosam
                 endTime:
                   type: string
                   description: ''
-                  example: dolores
+                  example: doloremque
                 gender:
                   type: string
                   description: ''
@@ -7335,19 +7379,19 @@ paths:
                 rate:
                   type: string
                   description: ''
-                  example: ad
+                  example: odit
                 appointmentRange:
                   type: string
                   description: ''
-                  example: atque
+                  example: neque
                 description:
                   type: string
                   description: ''
-                  example: officia
+                  example: ut
                 services:
                   type: string
                   description: ''
-                  example: quas
+                  example: natus
               required:
                 - personal_id
                 - name
@@ -7486,11 +7530,11 @@ paths:
                 title:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: dolore
                 message:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: sequi
                 personelIds:
                   type: object
                   description: ''
@@ -7673,31 +7717,31 @@ paths:
                 customer_id:
                   type: string
                   description: ''
-                  example: magni
+                  example: tempora
                 appointment_date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:40'
+                  example: '2024-07-04T19:14:48'
                 personels:
                   type: string
                   description: ''
-                  example: soluta
+                  example: quo
                 times:
                   type: string
                   description: ''
-                  example: modi
+                  example: adipisci
                 services:
                   type: string
                   description: ''
-                  example: repellendus
+                  example: cupiditate
                 total:
                   type: string
                   description: ''
-                  example: suscipit
+                  example: soluta
                 discountTotal:
                   type: string
                   description: ''
-                  example: vitae
+                  example: similique
               required:
                 - customer_id
                 - appointment_date
@@ -7738,23 +7782,23 @@ paths:
                 customer_id:
                   type: string
                   description: ''
-                  example: eius
+                  example: est
                 appointment_date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:40'
+                  example: '2024-07-04T19:14:48'
                 times:
                   type: string
                   description: ''
-                  example: quas
+                  example: sint
                 services:
                   type: string
                   description: ''
-                  example: libero
+                  example: dolorum
                 discountTotal:
                   type: string
                   description: ''
-                  example: at
+                  example: est
               required:
                 - customer_id
                 - appointment_date
@@ -8126,15 +8170,15 @@ paths:
                 start_time:
                   type: string
                   description: ''
-                  example: qui
+                  example: et
                 end_time:
                   type: string
                   description: ''
-                  example: rem
+                  example: perspiciatis
                 personels:
                   type: string
                   description: ''
-                  example: velit
+                  example: dolorem
               required:
                 - start_time
                 - end_time
@@ -8267,19 +8311,19 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: et
+                  example: asperiores
                 price:
                   type: string
                   description: ''
-                  example: dolorum
+                  example: quis
                 amount:
                   type: string
                   description: ''
-                  example: ut
+                  example: possimus
                 barcode:
                   type: string
                   description: ''
-                  example: ea
+                  example: at
               required:
                 - name
                 - price
@@ -8411,31 +8455,31 @@ paths:
                 customer_id:
                   type: string
                   description: ''
-                  example: esse
+                  example: possimus
                 product_id:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: qui
                 personel_id:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: fugit
                 payment_type_id:
                   type: string
                   description: ''
-                  example: qui
+                  example: praesentium
                 amount:
                   type: string
                   description: ''
-                  example: impedit
+                  example: ut
                 price:
                   type: string
                   description: ''
-                  example: similique
+                  example: ex
                 date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:43'
+                  example: '2024-07-04T19:14:50'
               required:
                 - customer_id
                 - product_id
@@ -8494,7 +8538,7 @@ paths:
         in: path
         name: product_sale_id
         description: 'The ID of the product sale.'
-        example: dolores
+        example: ipsa
         required: true
         schema:
           type: string
@@ -8529,31 +8573,31 @@ paths:
                 customer_id:
                   type: string
                   description: ''
-                  example: magni
+                  example: odio
                 product_id:
                   type: string
                   description: ''
-                  example: tempore
+                  example: accusantium
                 personel_id:
                   type: string
                   description: ''
-                  example: quis
+                  example: placeat
                 payment_type_id:
                   type: string
                   description: ''
-                  example: ut
+                  example: dolor
                 amount:
                   type: string
                   description: ''
-                  example: incidunt
+                  example: nisi
                 price:
                   type: string
                   description: ''
-                  example: est
+                  example: alias
                 date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:43'
+                  example: '2024-07-04T19:14:50'
               required:
                 - customer_id
                 - product_id
@@ -8657,7 +8701,7 @@ paths:
                 limit:
                   type: string
                   description: ''
-                  example: quod
+                  example: ea
                 birthday:
                   type: number
                   description: 'value 0 - 100 arasında olmalıdır.'
@@ -8755,11 +8799,11 @@ paths:
                 phone:
                   type: string
                   description: ''
-                  example: facere
+                  example: et
                 name:
                   type: string
                   description: ''
-                  example: corporis
+                  example: modi
               required:
                 - phone
                 - name
@@ -8826,7 +8870,7 @@ paths:
                 appointment_date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:40'
+                  example: '2024-07-04T19:14:47'
               required:
                 - appointment_date
       security: []
@@ -8841,8 +8885,8 @@ paths:
           type: integer
   '/api/personel/speed-appointment/personel/{personel_id}/create':
     post:
-      summary: ''
-      operationId: postApiPersonelSpeedAppointmentPersonelPersonel_idCreate
+      summary: 'Randevu Oluştur'
+      operationId: randevuOlutur
       description: ''
       parameters: []
       responses:
@@ -8870,25 +8914,34 @@ paths:
                 appointment_date:
                   type: string
                   description: 'value geçerli bir tarih olmalıdır.'
-                  example: '2024-07-04T17:39:40'
+                  example: '2024-07-04T19:14:47'
+                appointment_type:
+                  type: string
+                  description: ''
+                  example: quae
                 customer_id:
                   type: string
                   description: ''
-                  example: molestias
+                  example: harum
+                room_id:
+                  type: string
+                  description: ''
+                  example: null
                 service_id:
                   type: string
                   description: ''
-                  example: in
+                  example: adipisci
                 start_time:
                   type: string
                   description: ''
-                  example: qui
+                  example: numquam
                 end_time:
                   type: string
                   description: ''
-                  example: maxime
+                  example: occaecati
               required:
                 - appointment_date
+                - appointment_type
                 - customer_id
                 - service_id
                 - start_time
@@ -8955,23 +9008,23 @@ paths:
                 typeId:
                   type: string
                   description: ''
-                  example: commodi
+                  example: aspernatur
                 categoryId:
                   type: string
                   description: ''
-                  example: non
+                  example: adipisci
                 subCategoryId:
                   type: string
                   description: ''
-                  example: culpa
+                  example: eum
                 time:
                   type: string
                   description: ''
-                  example: laudantium
+                  example: dignissimos
                 price:
                   type: string
                   description: ''
-                  example: occaecati
+                  example: mollitia
               required:
                 - typeId
                 - categoryId
@@ -9297,15 +9350,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: rem
+                  example: fugiat
                 branchName:
                   type: string
                   description: ''
-                  example: tempore
+                  example: eligendi
                 officialId:
                   type: string
                   description: ''
-                  example: odit
+                  example: doloremque
               required:
                 - name
                 - branchName

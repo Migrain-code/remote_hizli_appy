@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "1876465f-9778-4793-ba33-4b3207818081",
+        "_postman_id": "253a4305-2674-4e4a-acea-e147bd3b2d67",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -359,7 +359,7 @@
                                 {
                                     "id": "adission",
                                     "key": "adission",
-                                    "value": "corrupti",
+                                    "value": "nostrum",
                                     "description": "The adission."
                                 }
                             ]
@@ -433,7 +433,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"product_id\":\"suscipit\",\"personel_id\":\"deserunt\",\"payment_type_id\":\"illum\",\"amount\":\"quam\",\"price\":\"error\"}"
+                            "raw": "{\"product_id\":\"fugit\",\"personel_id\":\"aliquam\",\"payment_type_id\":\"velit\",\"amount\":\"voluptate\",\"price\":\"corporis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -554,7 +554,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"product_id\":\"illo\",\"personel_id\":\"libero\",\"payment_type_id\":\"provident\",\"amount\":\"modi\",\"price\":\"delectus\"}"
+                            "raw": "{\"product_id\":\"recusandae\",\"personel_id\":\"sed\",\"payment_type_id\":\"quidem\",\"amount\":\"ea\",\"price\":\"dolores\"}"
                         },
                         "description": "",
                         "auth": {
@@ -781,7 +781,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"payment_type_id\":\"fuga\",\"price\":\"magnam\"}"
+                            "raw": "{\"payment_type_id\":\"voluptatem\",\"price\":\"quidem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -908,7 +908,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"payment_type_id\":\"non\",\"price\":\"tempora\"}"
+                            "raw": "{\"payment_type_id\":\"quos\",\"price\":\"quasi\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1029,7 +1029,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"isPoint\":true}"
+                            "raw": "{\"isPoint\":false}"
                         },
                         "description": "",
                         "auth": {
@@ -1188,7 +1188,7 @@
                                 {
                                     "id": "cashPoint_id",
                                     "key": "cashPoint_id",
-                                    "value": "9",
+                                    "value": "13",
                                     "description": "The ID of the cashPoint."
                                 }
                             ]
@@ -1362,7 +1362,7 @@
                                 {
                                     "id": "receivable_id",
                                     "key": "receivable_id",
-                                    "value": "15",
+                                    "value": "14",
                                     "description": "The ID of the receivable."
                                 }
                             ]
@@ -1424,7 +1424,7 @@
                                 {
                                     "id": "receivable_id",
                                     "key": "receivable_id",
-                                    "value": "1",
+                                    "value": "19",
                                     "description": "The ID of the receivable."
                                 }
                             ]
@@ -1592,7 +1592,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customerId\":\"aliquid\",\"paymentDate\":\"2024-07-04T17:39:46\",\"price\":\"accusamus\"}"
+                            "raw": "{\"customerId\":\"esse\",\"paymentDate\":\"2024-07-04T19:14:53\",\"price\":\"aliquam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1633,7 +1633,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "17",
+                                    "value": "9",
                                     "description": "The ID of the receivable."
                                 }
                             ]
@@ -1689,7 +1689,7 @@
                                 {
                                     "id": "receivable_id",
                                     "key": "receivable_id",
-                                    "value": "9",
+                                    "value": "13",
                                     "description": "The ID of the receivable."
                                 }
                             ]
@@ -1745,7 +1745,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2",
+                                    "value": "8",
                                     "description": "The ID of the receivable."
                                 }
                             ]
@@ -1801,7 +1801,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
+                                    "value": "1",
                                     "description": "The ID of the receivable."
                                 }
                             ]
@@ -2209,7 +2209,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"serviceId\":\"sit\",\"personelId\":\"nihil\"}"
+                            "raw": "{\"serviceId\":\"dicta\",\"personelId\":\"officiis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2418,7 +2418,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"serviceIds\":\"perferendis\"}"
+                            "raw": "{\"serviceIds\":\"est\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2469,7 +2469,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"personelIds\":\"natus\"}"
+                            "raw": "{\"personelIds\":\"vitae\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2568,7 +2568,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_id\":\"mollitia\",\"appointment_date\":\"2024-07-04T17:39:45\",\"personels\":\"rem\",\"times\":\"aut\",\"services\":\"natus\",\"total\":\"quia\",\"discountTotal\":\"laudantium\"}"
+                            "raw": "{\"customer_id\":\"in\",\"appointment_date\":\"2024-07-04T19:14:52\",\"personels\":\"in\",\"times\":\"facilis\",\"services\":\"ut\",\"total\":\"et\",\"discountTotal\":\"tenetur\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2619,7 +2619,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_id\":\"aut\",\"appointment_date\":\"2024-07-04T17:39:45\",\"times\":\"sed\",\"services\":\"iste\",\"discountTotal\":\"aut\"}"
+                            "raw": "{\"customer_id\":\"consectetur\",\"appointment_date\":\"2024-07-04T19:14:52\",\"times\":\"qui\",\"services\":\"illum\",\"discountTotal\":\"maiores\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2676,7 +2676,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone\":\"qui\",\"password\":\"Crdy=e.S*I\"}"
+                            "raw": "{\"phone\":\"voluptatem\",\"password\":\"}~A\\\/CddK\"}"
                         },
                         "description": "Status Codes\n<ul>\n<li>phone<\/li>\n<li>password<\/li>\n<li> 401 Unauthorized Hatas\u0131 <\/li>\n<\/ul>\nLogin apisi",
                         "auth": {
@@ -3165,7 +3165,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"messageId\":\"eaque\"}"
+                            "raw": "{\"messageId\":\"nihil\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3318,7 +3318,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customerId\":\"dolorem\",\"paymentDate\":\"2024-07-04T17:39:46\",\"price\":\"qui\"}"
+                            "raw": "{\"customerId\":\"veniam\",\"paymentDate\":\"2024-07-04T19:14:54\",\"price\":\"at\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3359,7 +3359,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "18",
+                                    "value": "14",
                                     "description": "The ID of the dep."
                                 }
                             ]
@@ -3415,7 +3415,7 @@
                                 {
                                     "id": "dep_id",
                                     "key": "dep_id",
-                                    "value": "11",
+                                    "value": "10",
                                     "description": "The ID of the dep."
                                 }
                             ]
@@ -3489,7 +3489,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customerId\":\"non\",\"paymentDate\":\"2024-07-04T17:39:46\",\"price\":\"officia\"}"
+                            "raw": "{\"customerId\":\"aut\",\"paymentDate\":\"2024-07-04T19:14:54\",\"price\":\"aut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3530,7 +3530,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
+                                    "value": "12",
                                     "description": "The ID of the dep."
                                 }
                             ]
@@ -3650,7 +3650,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"image\":\"debitis\"}"
+                            "raw": "{\"image\":\"provident\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3763,7 +3763,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"password\":\"[]`d7x\"}"
+                            "raw": "{\"password\":\"!+jlaeKC\\\"~si1BB%hh\\\\i\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4006,7 +4006,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"businessName\":\"jljtrbmpocshngszs\",\"appointmentRange\":3152.72,\"businessType\":125583,\"phone\":\"uvpamubufa\",\"startTime\":\"aut\",\"endTime\":\"dolor\",\"email\":\"jamir68@example.net\",\"year\":\"2024-07-04T17:39:41\",\"address\":\"ut\",\"cityId\":36726246.1,\"districtId\":3.9881,\"commission\":3506.8,\"personalCount\":2.508,\"offDay\":0,\"aboutText\":\"recusandae\"}"
+                            "raw": "{\"businessName\":\"udyqdtpxqlgzxmrfv\",\"appointmentRange\":3824.9,\"businessType\":246.91542,\"phone\":\"natxqsmtu\",\"startTime\":\"quis\",\"endTime\":\"eveniet\",\"email\":\"njohnston@example.net\",\"year\":\"2024-07-04T19:14:48\",\"address\":\"vitae\",\"cityId\":2222116,\"districtId\":1.73364,\"commission\":0,\"personalCount\":10923,\"offDay\":103203.616711627,\"aboutText\":\"esse\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4159,7 +4159,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"occaecati\",\"phone\":\"kfuekk\",\"email\":\"carole66@example.net\",\"password\":\"repellendus\",\"branch_id\":\"a\"}"
+                            "raw": "{\"name\":\"rerum\",\"phone\":\"mzzau\",\"email\":\"oleta58@example.org\",\"password\":\"perspiciatis\",\"branch_id\":\"eaque\"}"
                         },
                         "description": "branch_id \u015fube se\u00e7iniz aln\u0131ndan se\u00e7ilen \u015fubenin idsi olacak",
                         "auth": {
@@ -4274,7 +4274,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"doloribus\",\"phone\":\"lazpfmxkpn\",\"email\":\"jeremy.buckridge@example.org\",\"branch_id\":\"nihil\"}"
+                            "raw": "{\"name\":\"sint\",\"phone\":\"dqjjrliba\",\"email\":\"kianna13@example.com\",\"branch_id\":\"voluptas\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4495,7 +4495,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"typeId\":\"ducimus\",\"categoryId\":\"omnis\",\"subCategoryId\":\"aut\",\"time\":\"sunt\",\"price\":\"minus\"}"
+                            "raw": "{\"typeId\":\"ad\",\"categoryId\":\"suscipit\",\"subCategoryId\":\"dolores\",\"time\":\"dolorum\",\"price\":\"quisquam\"}"
                         },
                         "description": "Hizmetlerin listesini d\u00f6nd\u00fcrecek size buradaki hizmet listesinden se\u00e7ilen hizmetlerden se\u00e7ilen hizmet eklenecek\n<br> Gerekli alanlar\n<ul>\n<li> token <\/li>\n<li> typeId |required | cinsiyet id si gelecek buradan  <\/li>\n<li> categoryId |required | hizmetin category id si gelecek buradan  <\/li>\n<li> subCategoryId |required | hizmetin sub_category id si gelecek buradan  <\/li>\n<li> time |required | hizmetin s\u00fcresi gelecek buradan  <\/li>\n<li> price |required | hizmetin fiyat\u0131 gelecek buradan  <\/li>\n<\/ul>",
                         "auth": {
@@ -4656,6 +4656,65 @@
                         ],
                         "body": null,
                         "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Bildirim G\u00fcncelle",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/business\/device-notification-permission\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/business\/device-notification-permission\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the device notification permission."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"column\":\"ad\"}"
+                        },
+                        "description": "Bildirim izinleri listesindeki response d\u00f6nen verilerden is_email,is_sms,is_phone,is_notification \u00f6rnek g\u00f6nderim ({\"column\": \"is_email\"})",
                         "auth": {
                             "type": "noauth"
                         }
@@ -5028,7 +5087,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"bygxsdkvcvntti\",\"number\":35,\"month\":2,\"year\":5091.3355484,\"cvc\":\"676\",\"name_on_the_card\":\"dsjyhnxygsgqjxmem\",\"is_default\":\"0\"}"
+                            "raw": "{\"name\":\"sugcdooiklsfgnrh\",\"number\":20,\"month\":1,\"year\":53.30769,\"cvc\":\"800\",\"name_on_the_card\":\"xvwfqyrotwkf\",\"is_default\":\"0\"}"
                         },
                         "description": "<ul>\n<li>Bearer Token | required | Kullan\u0131c\u0131 Tokeni<\/li>\n<li>name | string | required | Kart\u0131n\u0131z\u0131n Ad\u0131<\/li>\n<li>cvc | number | required | CVC kodu<\/li>\n<li>number | string | required | Kart Numaras\u0131 <\/li>\n<li>month  | string | required | Ay Bilgisi<\/li>\n<li>year  | string | required | Y\u0131l Bilgisi<\/li>\n<li>name_on_the_card  | string | required | Kart \u00dczerindeki isim<\/li>\n<li>is_default  | numeric | required | Varsay\u0131lan Kart se\u00e7imi is_default == 0 \"se\u00e7ili de\u011fil\" is_default == 1 \"se\u00e7ili\" <\/li>\n<\/ul>\nKullan\u0131c\u0131 kart kay\u0131t Apisi",
                         "auth": {
@@ -5079,7 +5138,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cart_id\":\"zuxotfsegjatqqiinhysbfseqxvjdryvvtkrycuhazvx\",\"name\":\"vqntjzscaqivrtpkzfdjnwvg\",\"number\":22,\"month\":1,\"year\":0.92505593,\"cvc\":\"359\",\"name_on_the_card\":\"ciyiurzqbf\",\"is_default\":\"1\"}"
+                            "raw": "{\"cart_id\":\"vlzcarrzocblnhhsfpdvjrbz\",\"name\":\"umrbxsdqrgxkbomhiyauzey\",\"number\":80,\"month\":2,\"year\":2029.3436,\"cvc\":\"364\",\"name_on_the_card\":\"mobkecorevcsbjaxtcyqxah\",\"is_default\":\"0\"}"
                         },
                         "description": "<ul>\n<li>Bearer Token | required | Kullan\u0131c\u0131 Tokeni<\/li>\n<li>cart_id | required | Kullan\u0131c\u0131 Tokeni<\/li>\n<li>name | string | required | Kart\u0131n\u0131z\u0131n Ad\u0131<\/li>\n<li>cvc | number | required | CVC kodu<\/li>\n<li>number | string | required | Kart Numaras\u0131 <\/li>\n<li>month  | string | required | Ay Bilgisi<\/li>\n<li>year  | string | required | Y\u0131l Bilgisi<\/li>\n<li>name_on_the_card  | string | required | Kart \u00dczerindeki isim<\/li>\n<li>is_default  | numeric | required | Varsay\u0131lan Kart se\u00e7imi is_default == 0 \"se\u00e7ili de\u011fil\" is_default == 1 \"se\u00e7ili\" <\/li>\n<\/ul>\nKullan\u0131c\u0131 kart g\u00fcncelleme Apisi",
                         "auth": {
@@ -5184,7 +5243,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"maiores\",\"phone\":\"quia\",\"email\":\"minima\",\"password\":\"atque\",\"gender\":\"et\",\"birthday\":\"omnis\"}"
+                            "raw": "{\"name\":\"enim\",\"phone\":\"similique\",\"email\":\"sapiente\",\"password\":\"tempore\",\"gender\":\"ipsa\",\"birthday\":\"omnis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -5513,7 +5572,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_id\":\"tenetur\",\"image\":\"dolore\"}"
+                            "raw": "{\"customer_id\":\"qui\",\"image\":\"voluptatum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -5968,7 +6027,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_id\":\"dolorem\",\"title\":\"molestiae\",\"note\":\"vero\"}"
+                            "raw": "{\"customer_id\":\"ipsam\",\"title\":\"ab\",\"note\":\"dolores\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6009,7 +6068,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "9",
+                                    "value": "3",
                                     "description": "The ID of the customerNote."
                                 }
                             ]
@@ -6065,7 +6124,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "11",
+                                    "value": "13",
                                     "description": "The ID of the customerNote."
                                 }
                             ]
@@ -6083,7 +6142,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"a\",\"note\":\"velit\"}"
+                            "raw": "{\"title\":\"ut\",\"note\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6124,7 +6183,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "4",
                                     "description": "The ID of the customerNote."
                                 }
                             ]
@@ -6244,7 +6303,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"officialName\":\"d\",\"appointmentRange\":942774547.04658,\"email\":\"draynor@example.net\",\"year\":\"2024-07-04T17:39:42\",\"commission\":38313563.85262,\"personalCount\":249846335.2,\"aboutText\":\"nostrum\"}"
+                            "raw": "{\"officialName\":\"qgdofphefkvxejheplu\",\"appointmentRange\":29294.3499754,\"email\":\"paucek.trenton@example.com\",\"year\":\"2024-07-04T19:14:49\",\"commission\":985294,\"personalCount\":153.36753841,\"aboutText\":\"nisi\"}"
                         },
                         "description": "<ul>\n<li>Bearer Token<\/li>\n<li>officialName | string | required | Salon Sahibinin ad\u0131<\/li>\n<li>businessName | string | required | Salon Ad\u0131<\/li>\n<li>offDay | numeric | required | kapal\u0131 oldu\u011fu g\u00fcn\u00fcn id si <\/li>\n<li>businessType | numeric | required | i\u015fletme t\u00fcr\u00fc id'si <\/li>\n<li>cityId  | string | required | \u015eehir<\/li>\n<li>districtId  | string | required | \u0130l\u00e7e<\/li>\n<li>phone | string | required | \u0130\u015fletme Telefon Numaras\u0131<\/li>\n<li>email | string | required | \u0130\u015fletme E-posta Adresi<\/li>\n<li>commission | string | required | P. Kredi kart\u0131 kesintisi | \u00f6rne\u011fin (10, 20, 30,40)<\/li>\n<li>appointmentRange | string | required | Randevu aral\u0131\u011f\u0131 | \u00f6rne\u011fin (10, 20, 30,40)<\/li>\n<li>personalCount | string | required | Personel Say\u0131s\u0131 | \u00f6rne\u011fin (1, 3, 5,10)<\/li>\n<li>aboutText | string | required| \u0130\u015fletme Hakk\u0131nda Yaz\u0131s\u0131<\/li>\n<li>startTime | string | required| \u0130\u015fletme A\u00e7\u0131l\u0131\u015f Saati \u00d6rne\u011fin (12:08)<\/li>\n<li>endTime | string | required| \u0130\u015fletme Kapan\u0131\u015f Saati \u00d6rne\u011fin (18:08)<\/li>\n<li>year | date | required| Kurulu\u015f Tarihi \u00f6rne\u011fin (2023-04-01)<\/li>\n<li>address | text | required| Address Metni<\/li>\n<li>logo | file | required| i\u015fletme logo<\/li>\n<li>images | file | required| i\u015fletme g\u00f6rselleri<\/li>\n<\/ul>\nDetayl\u0131 Kurulum Ekran\u0131 \u0130\u015fletme Bilgileri g\u00fcncelleme Apisi",
                         "auth": {
@@ -6601,7 +6660,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"costCategoryId\":\"id\",\"personelId\":\"dolor\",\"paymentTypeId\":\"maiores\",\"price\":\"ducimus\",\"operationDate\":\"2024-07-04T17:39:46\"}"
+                            "raw": "{\"costCategoryId\":\"optio\",\"personelId\":\"ut\",\"paymentTypeId\":\"sed\",\"price\":\"voluptate\",\"operationDate\":\"2024-07-04T19:14:53\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6716,7 +6775,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"costCategoryId\":\"consequatur\",\"personelId\":\"et\",\"paymentTypeId\":\"reiciendis\",\"price\":\"reprehenderit\",\"operationDate\":\"2024-07-04T17:39:46\"}"
+                            "raw": "{\"costCategoryId\":\"iure\",\"personelId\":\"reprehenderit\",\"paymentTypeId\":\"facilis\",\"price\":\"sed\",\"operationDate\":\"2024-07-04T19:14:53\"}"
                         },
                         "description": "",
                         "auth": {
@@ -6885,7 +6944,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"column\":\"quasi\"}"
+                            "raw": "{\"column\":\"quae\"}"
                         },
                         "description": "Bildirim izinleri listesindeki response d\u00f6nen verilerden is_email,is_sms,is_phone,is_notification \u00f6rnek g\u00f6nderim ({\"column\": \"is_email\"})",
                         "auth": {
@@ -7252,7 +7311,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"seller_date\":\"2024-07-04T17:39:43\",\"customer_id\":\"id\",\"service_id\":\"ratione\",\"package_type\":\"qui\",\"personel_id\":\"dolorem\",\"amount\":\"corrupti\",\"total\":\"libero\"}"
+                            "raw": "{\"seller_date\":\"2024-07-04T19:14:50\",\"customer_id\":\"assumenda\",\"service_id\":\"rem\",\"package_type\":\"non\",\"personel_id\":\"iste\",\"amount\":\"officia\",\"total\":\"et\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7367,7 +7426,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"seller_date\":\"2024-07-04T17:39:43\",\"customer_id\":\"aut\",\"service_id\":\"maxime\",\"package_type\":\"aut\",\"personel_id\":\"aut\",\"amount\":\"nihil\",\"total\":\"in\"}"
+                            "raw": "{\"seller_date\":\"2024-07-04T19:14:50\",\"customer_id\":\"omnis\",\"service_id\":\"ex\",\"package_type\":\"minima\",\"personel_id\":\"enim\",\"amount\":\"a\",\"total\":\"cupiditate\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7594,7 +7653,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"price\":\"voluptatem\",\"amount\":\"quia\"}"
+                            "raw": "{\"price\":\"expedita\",\"amount\":\"voluptas\"}"
                         },
                         "description": "",
                         "auth": {
@@ -7653,7 +7712,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"personel_id\":\"inventore\",\"amount\":\"voluptas\",\"operation_date\":\"2024-07-04T17:39:43\"}"
+                            "raw": "{\"personel_id\":\"corrupti\",\"amount\":\"et\",\"operation_date\":\"2024-07-04T19:14:51\"}"
                         },
                         "description": "Personel listesine istek at\u0131larak personel listesini alabilirsiniz",
                         "auth": {
@@ -7870,7 +7929,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cart_id\":\"dtnsyicqlzzixruxnufnwdgzdbrpeeeuytugfmxchjichazcmcdxhwaencxrtgbppwanolpkbakaoafanaqgyiad\"}"
+                            "raw": "{\"cart_id\":\"q\"}"
                         },
                         "description": "<ul>\n<li>Bearer Token | string | required | Kullan\u0131c\u0131 Token<\/li>\n<li>cart_id | numeric | required | Se\u00e7ilen Kart Bilgisi<\/li>\n<\/ul>\nKullan\u0131c\u0131n\u0131 i\u015fletmesinin packet bilgisi ve kullan\u0131c\u0131n\u0131n cartlar\u0131",
                         "auth": {
@@ -8135,7 +8194,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"qui\",\"email\":\"molestias\",\"phone\":\"reiciendis\",\"password\":\"placeat\",\"approveType\":\"eaque\",\"restDay\":\"corrupti\",\"startTime\":\"qui\",\"endTime\":\"quibusdam\",\"gender\":\"reiciendis\",\"rate\":\"quia\",\"appointmentRange\":\"voluptatem\",\"description\":\"sit\",\"services\":\"mollitia\"}"
+                            "raw": "{\"name\":\"dolores\",\"email\":\"magni\",\"phone\":\"non\",\"password\":\"dolorem\",\"approveType\":\"facere\",\"restDay\":\"et\",\"startTime\":\"occaecati\",\"endTime\":\"aut\",\"gender\":\"nulla\",\"rate\":\"deserunt\",\"appointmentRange\":\"et\",\"description\":\"aut\",\"services\":\"hic\"}"
                         },
                         "description": "Personel Ekleme pointi\n<br> Gerekli alanlar\n<ul>\n<li> token <\/li>\n<li> name |required | string | <\/li>\n<li> image |required | string | <\/li>\n<li> email |required | string | <\/li>\n<li> phone |required | string | <\/li>\n<li> password |required | string | <\/li>\n<li> approveType |required | numeric | \u00f6rne\u011fin 1 veya 0<\/li>\n<li> restDay |required | numeric | haftan\u0131n g\u00fcnlerinden herhangi bir g\u00fcn\u00fcn id si<\/li>\n<li> startTime |required | string | \u00f6rne\u011fin 10:43 <\/li>\n<li> endTime |required | string | \u00f6rne\u011fin 10:43<\/li>\n<li> foodStart |required | string | \u00f6rne\u011fin 10:43<\/li>\n<li> foodEnd |required | string | \u00f6rne\u011fin 10:43<\/li>\n<li> gender |required | numeric | 1 => kad\u0131n,2 => erkek,3 => Unisex herhangi biri<\/li>\n<li> rate |required | numeric | 10 personel y\u00fczdesi 10 = %10<\/li>\n<li> appointmentRange |required | numeric | randevu aral\u0131\u011f\u0131 \u00f6rne\u011fin \"15\" dk baz\u0131nda<\/li>\n<li> description |required | string<\/li>\n<li> services | required | array | e\u011fer t\u00fcm\u00fc se\u00e7ene\u011fi se\u00e7ilirse \"all\" olarak g\u00f6nderebilirsiniz dizi i\u00e7erisinde<\/li>\n<\/ul>",
                         "auth": {
@@ -8190,7 +8249,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"personal_id\":\"illum\",\"name\":\"quo\",\"email\":\"sunt\",\"phone\":\"officia\",\"approveType\":\"ipsa\",\"restDay\":\"odit\",\"startTime\":\"molestias\",\"endTime\":\"qui\",\"gender\":\"qui\",\"rate\":\"laboriosam\",\"appointmentRange\":\"ut\",\"description\":\"sunt\",\"services\":\"magni\"}"
+                            "raw": "{\"personal_id\":\"veritatis\",\"name\":\"qui\",\"email\":\"nemo\",\"phone\":\"sed\",\"approveType\":\"vel\",\"restDay\":\"doloremque\",\"startTime\":\"voluptatem\",\"endTime\":\"rerum\",\"gender\":\"suscipit\",\"rate\":\"et\",\"appointmentRange\":\"modi\",\"description\":\"sit\",\"services\":\"ea\"}"
                         },
                         "description": "Personel G\u00fcncelleme pointi\n<br> Gerekli alanlar\n<ul>\n<li> token <\/li>\n<li> personal_id | required | numeric<\/li>\n<li> name |required | string | personal ad\u0131<\/li>\n<li> image |required | string | personel g\u00f6rseli<\/li>\n<li> email |required | string | mail adresi<\/li>\n<li> phone |required | string | telefon numaras\u0131<\/li>\n<li> password |required | string | \u015fifre<\/li>\n<li> approveType |required | numeric | \u00f6rne\u011fin 1 veya 0<\/li>\n<li> restDay |required | numeric | haftan\u0131n g\u00fcnlerinden herhangi bir g\u00fcn\u00fcn id si<\/li>\n<li> startTime |required | string | \u00f6rne\u011fin 10:43 <\/li>\n<li> endTime |required | string | \u00f6rne\u011fin 10:43<\/li>\n<li> foodStart |required | string | \u00f6rne\u011fin 10:43<\/li>\n<li> foodEnd |required | string | \u00f6rne\u011fin 10:43<\/li>\n<li> gender |required | numeric | 1 => kad\u0131n,2 => erkek,3 => Unisex herhangi biri<\/li>\n<li> rate |required | numeric | 10 personel y\u00fczdesi 10 = %10<\/li>\n<li> appointmentRange |required | numeric | randevu aral\u0131\u011f\u0131 \u00f6rne\u011fin \"15\" dk baz\u0131nda<\/li>\n<li> description |required | string<\/li>\n<li> services | required | array | e\u011fer t\u00fcm\u00fc se\u00e7ene\u011fi se\u00e7ilirse \"all\" olarak g\u00f6nderebilirsiniz dizi i\u00e7erisinde<\/li>\n<\/ul>",
                         "auth": {
@@ -8299,7 +8358,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone\":\"rerum\",\"password\":\"enim\"}"
+                            "raw": "{\"phone\":\"sapiente\",\"password\":\"delectus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8518,7 +8577,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"password\":\"^%&bYA]c8~YVe)V1jr^\"}"
+                            "raw": "{\"password\":\"AS<e#5(\"}"
                         },
                         "description": "",
                         "auth": {
@@ -8845,7 +8904,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"column\":\"est\"}"
+                            "raw": "{\"column\":\"nihil\"}"
                         },
                         "description": "is_email,is_sms,is_phone,is_notification \u00f6rnek g\u00f6nderim ({\"column\": \"is_email\"})",
                         "auth": {
@@ -8998,7 +9057,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"enim\",\"email\":\"laudantium\",\"phone\":\"cumque\",\"approveType\":\"quo\",\"restDay\":\"totam\",\"startTime\":\"illo\",\"endTime\":\"aut\",\"foodStart\":\"corrupti\",\"foodEnd\":\"laudantium\",\"appointmentRange\":\"autem\",\"description\":\"molestias\"}"
+                            "raw": "{\"name\":\"in\",\"email\":\"non\",\"phone\":\"voluptas\",\"approveType\":\"cupiditate\",\"restDay\":\"inventore\",\"startTime\":\"voluptas\",\"endTime\":\"impedit\",\"foodStart\":\"quo\",\"foodEnd\":\"excepturi\",\"appointmentRange\":\"dolores\",\"description\":\"aut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -9103,7 +9162,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"start_time\":\"sed\",\"end_time\":\"aspernatur\"}"
+                            "raw": "{\"start_time\":\"ut\",\"end_time\":\"est\"}"
                         },
                         "description": "",
                         "auth": {
@@ -9312,7 +9371,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"dolores\",\"email\":\"sint\",\"phone\":\"nemo\",\"password\":\"nobis\",\"approveType\":\"explicabo\",\"restDay\":\"quia\",\"startTime\":\"ea\",\"endTime\":\"nam\",\"gender\":\"cum\",\"rate\":\"accusamus\",\"appointmentRange\":\"beatae\",\"description\":\"quia\",\"services\":\"sint\"}"
+                            "raw": "{\"name\":\"voluptates\",\"email\":\"dicta\",\"phone\":\"laborum\",\"password\":\"labore\",\"approveType\":\"sint\",\"restDay\":\"adipisci\",\"startTime\":\"id\",\"endTime\":\"pariatur\",\"gender\":\"consequatur\",\"rate\":\"facilis\",\"appointmentRange\":\"ipsa\",\"description\":\"qui\",\"services\":\"voluptatem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -9483,7 +9542,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"personal_id\":\"consequatur\",\"name\":\"et\",\"email\":\"laboriosam\",\"phone\":\"quam\",\"approveType\":\"dolores\",\"restDay\":\"sit\",\"startTime\":\"assumenda\",\"endTime\":\"dolores\",\"gender\":\"qui\",\"rate\":\"ad\",\"appointmentRange\":\"atque\",\"description\":\"officia\",\"services\":\"quas\"}"
+                            "raw": "{\"personal_id\":\"voluptatem\",\"name\":\"in\",\"email\":\"ut\",\"phone\":\"cumque\",\"approveType\":\"ut\",\"restDay\":\"perferendis\",\"startTime\":\"laboriosam\",\"endTime\":\"doloremque\",\"gender\":\"qui\",\"rate\":\"odit\",\"appointmentRange\":\"neque\",\"description\":\"ut\",\"services\":\"natus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -9646,7 +9705,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"necessitatibus\",\"message\":\"voluptatem\",\"personelIds\":[]}"
+                            "raw": "{\"title\":\"dolore\",\"message\":\"sequi\",\"personelIds\":[]}"
                         },
                         "description": "\u00f6rnek : {\n\"title\": \"Test Bildirimi app\",\n\"message\": \"Test Bildirimi app i\u00e7erik\",\n\"personelIds\": [2,3,5]\n}",
                         "auth": {
@@ -10005,7 +10064,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_id\":\"magni\",\"appointment_date\":\"2024-07-04T17:39:40\",\"personels\":\"soluta\",\"times\":\"modi\",\"services\":\"repellendus\",\"total\":\"suscipit\",\"discountTotal\":\"vitae\"}"
+                            "raw": "{\"customer_id\":\"tempora\",\"appointment_date\":\"2024-07-04T19:14:48\",\"personels\":\"quo\",\"times\":\"adipisci\",\"services\":\"cupiditate\",\"total\":\"soluta\",\"discountTotal\":\"similique\"}"
                         },
                         "description": "",
                         "auth": {
@@ -10056,7 +10115,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_id\":\"eius\",\"appointment_date\":\"2024-07-04T17:39:40\",\"times\":\"quas\",\"services\":\"libero\",\"discountTotal\":\"at\"}"
+                            "raw": "{\"customer_id\":\"est\",\"appointment_date\":\"2024-07-04T19:14:48\",\"times\":\"sint\",\"services\":\"dolorum\",\"discountTotal\":\"est\"}"
                         },
                         "description": "",
                         "auth": {
@@ -10823,7 +10882,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"start_time\":\"qui\",\"end_time\":\"rem\",\"personels\":\"velit\"}"
+                            "raw": "{\"start_time\":\"et\",\"end_time\":\"perspiciatis\",\"personels\":\"dolorem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -11038,7 +11097,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"et\",\"price\":\"dolorum\",\"amount\":\"ut\",\"barcode\":\"ea\"}"
+                            "raw": "{\"name\":\"asperiores\",\"price\":\"quis\",\"amount\":\"possimus\",\"barcode\":\"at\"}"
                         },
                         "description": "",
                         "auth": {
@@ -11359,7 +11418,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_id\":\"esse\",\"product_id\":\"voluptatem\",\"personel_id\":\"molestiae\",\"payment_type_id\":\"qui\",\"amount\":\"impedit\",\"price\":\"similique\",\"date\":\"2024-07-04T17:39:43\"}"
+                            "raw": "{\"customer_id\":\"possimus\",\"product_id\":\"qui\",\"personel_id\":\"fugit\",\"payment_type_id\":\"praesentium\",\"amount\":\"ut\",\"price\":\"ex\",\"date\":\"2024-07-04T19:14:50\"}"
                         },
                         "description": "note | iste\u011fe g\u00f6re g\u00f6nderilebilir",
                         "auth": {
@@ -11400,7 +11459,7 @@
                                 {
                                     "id": "product_sale_id",
                                     "key": "product_sale_id",
-                                    "value": "dolores",
+                                    "value": "ipsa",
                                     "description": "The ID of the product sale."
                                 }
                             ]
@@ -11474,7 +11533,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customer_id\":\"magni\",\"product_id\":\"tempore\",\"personel_id\":\"quis\",\"payment_type_id\":\"ut\",\"amount\":\"incidunt\",\"price\":\"est\",\"date\":\"2024-07-04T17:39:43\"}"
+                            "raw": "{\"customer_id\":\"odio\",\"product_id\":\"accusantium\",\"personel_id\":\"placeat\",\"payment_type_id\":\"dolor\",\"amount\":\"nisi\",\"price\":\"alias\",\"date\":\"2024-07-04T19:14:50\"}"
                         },
                         "description": "",
                         "auth": {
@@ -11635,7 +11694,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cash\":0,\"creditCard\":0,\"eft\":0,\"limit\":\"quod\",\"birthday\":0}"
+                            "raw": "{\"cash\":0,\"creditCard\":0,\"eft\":0,\"limit\":\"ea\",\"birthday\":0}"
                         },
                         "description": "Burada i\u015fletmenin promosyon listesi d\u00f6necek. 1-100 aras\u0131nda se\u00e7im alanlar\u0131nda mobilde\nde\u011fer \u00fcretilip apiden gelen rate verisine g\u00f6re selected attribute aktif edilecek",
                         "auth": {
@@ -11791,7 +11850,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone\":\"facere\",\"name\":\"corporis\"}"
+                            "raw": "{\"phone\":\"et\",\"name\":\"modi\"}"
                         },
                         "description": "",
                         "auth": {
@@ -11906,7 +11965,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"appointment_date\":\"2024-07-04T17:39:40\"}"
+                            "raw": "{\"appointment_date\":\"2024-07-04T19:14:47\"}"
                         },
                         "description": "",
                         "auth": {
@@ -11936,7 +11995,7 @@
                     ]
                 },
                 {
-                    "name": "POST api\/personel\/speed-appointment\/personel\/{personel_id}\/create",
+                    "name": "Randevu Olu\u015ftur",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -11965,7 +12024,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"appointment_date\":\"2024-07-04T17:39:40\",\"customer_id\":\"molestias\",\"service_id\":\"in\",\"start_time\":\"qui\",\"end_time\":\"maxime\"}"
+                            "raw": "{\"appointment_date\":\"2024-07-04T19:14:47\",\"appointment_type\":\"quae\",\"customer_id\":\"harum\",\"service_id\":\"adipisci\",\"start_time\":\"numquam\",\"end_time\":\"occaecati\"}"
                         },
                         "description": "",
                         "auth": {
@@ -12118,7 +12177,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"typeId\":\"commodi\",\"categoryId\":\"non\",\"subCategoryId\":\"culpa\",\"time\":\"laudantium\",\"price\":\"occaecati\"}"
+                            "raw": "{\"typeId\":\"aspernatur\",\"categoryId\":\"adipisci\",\"subCategoryId\":\"eum\",\"time\":\"dignissimos\",\"price\":\"mollitia\"}"
                         },
                         "description": "",
                         "auth": {
@@ -12817,7 +12876,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"rem\",\"branchName\":\"tempore\",\"officialId\":\"odit\"}"
+                            "raw": "{\"name\":\"fugiat\",\"branchName\":\"eligendi\",\"officialId\":\"doloremque\"}"
                         },
                         "description": "",
                         "auth": {

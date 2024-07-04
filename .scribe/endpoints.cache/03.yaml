@@ -106,7 +106,7 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: enim
+        example: in
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -115,7 +115,7 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: laudantium
+        example: non
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -124,7 +124,7 @@ endpoints:
         name: phone
         description: ''
         required: true
-        example: cumque
+        example: voluptas
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -133,7 +133,7 @@ endpoints:
         name: approveType
         description: ''
         required: true
-        example: quo
+        example: cupiditate
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -142,7 +142,7 @@ endpoints:
         name: restDay
         description: ''
         required: true
-        example: totam
+        example: inventore
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -151,7 +151,7 @@ endpoints:
         name: startTime
         description: ''
         required: true
-        example: illo
+        example: voluptas
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -160,7 +160,7 @@ endpoints:
         name: endTime
         description: ''
         required: true
-        example: aut
+        example: impedit
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -169,7 +169,7 @@ endpoints:
         name: foodStart
         description: ''
         required: true
-        example: corrupti
+        example: quo
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -178,7 +178,7 @@ endpoints:
         name: foodEnd
         description: ''
         required: true
-        example: laudantium
+        example: excepturi
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -187,7 +187,7 @@ endpoints:
         name: appointmentRange
         description: ''
         required: true
-        example: autem
+        example: dolores
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -196,7 +196,7 @@ endpoints:
         name: description
         description: ''
         required: true
-        example: molestias
+        example: aut
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -211,17 +211,17 @@ endpoints:
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: enim
-      email: laudantium
-      phone: cumque
-      approveType: quo
-      restDay: totam
-      startTime: illo
-      endTime: aut
-      foodStart: corrupti
-      foodEnd: laudantium
-      appointmentRange: autem
-      description: molestias
+      name: in
+      email: non
+      phone: voluptas
+      approveType: cupiditate
+      restDay: inventore
+      startTime: voluptas
+      endTime: impedit
+      foodStart: quo
+      foodEnd: excepturi
+      appointmentRange: dolores
+      description: aut
     fileParameters: []
     responses:
       -

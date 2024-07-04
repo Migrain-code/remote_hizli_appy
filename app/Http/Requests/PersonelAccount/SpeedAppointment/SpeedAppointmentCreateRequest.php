@@ -27,7 +27,9 @@ class SpeedAppointmentCreateRequest extends FormRequest
     {
         return [
             'appointment_date' => 'required|date',
+            'appointment_type' => "required",
             'customer_id' => 'required',
+            'room_id' => 'nullable',
             'service_id' => 'required',
             'start_time' => "required",
             'end_time' => "required",
@@ -38,7 +40,9 @@ class SpeedAppointmentCreateRequest extends FormRequest
     {
         return [
             'appointment_date' => 'Randevu Tarihi',
+            'appointment_type' => "Randevu Türü closeClock veya appointmentCreate olmalıdır. Bu randevu",
             'customer_id' => 'Müşteri Seçimi',
+            'room_id' => 'Oda Seçimi',
             'service_id' => 'Hizmet Seçimi',
             'start_time' => "Başlangıç Saati",
             'end_time' => "Bitiş Saati",
