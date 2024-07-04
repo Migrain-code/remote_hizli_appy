@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PersonelAccount\Notification;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NotificationPermission\PermissionUpdateRequest;
 use App\Http\Resources\NotificationPermission\DeviceNotificationPermissionListResource;
+use App\Http\Resources\NotificationPermission\NotificationPermissionListResource;
 use App\Models\BusinessNotificationPermission;
 use App\Models\PersonelNotificationPermission;
 
@@ -32,7 +33,7 @@ class PersonelNotificationPermissionController extends Controller
         if (isset($this->personel->permission) == false){
             $this->personel->createPermission();
         }
-        return response()->json(DeviceNotificationPermissionListResource::make($this->personel->permission));
+        return response()->json(NotificationPermissionListResource::make($this->personel->permission));
     }
 
     /**
