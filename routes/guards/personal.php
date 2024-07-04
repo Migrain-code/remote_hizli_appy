@@ -12,7 +12,10 @@ Route::prefix('personel')->group(function () {
         Route::post('update-password', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'updatePassword']);
         Route::post('logout', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'logout']);
 
-        Route::get('/today/appointment', [\App\Http\Controllers\Personel\HomeController::class, 'getClock']);
+        Route::prefix('home')->group(function (){
+            Route::get('/day-list', [\App\Http\Controllers\Personel\HomeController::class, 'getDate']);
+            Route::get('/', [\App\Http\Controllers\Personel\HomeController::class, 'getClock']);
+        });
 
         /*------- Saat Kapatma -----------*/
         Route::prefix('speed-appointment')

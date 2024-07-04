@@ -113,7 +113,7 @@ endpoints:
         name: phone
         description: ''
         required: true
-        example: et
+        example: perferendis
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -122,14 +122,14 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: modi
+        example: nemo
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      phone: et
-      name: modi
+      phone: perferendis
+      name: nemo
     fileParameters: []
     responses:
       -
@@ -231,13 +231,13 @@ endpoints:
         name: appointment_date
         description: 'value geçerli bir tarih olmalıdır.'
         required: true
-        example: '2024-07-04T19:14:47'
+        example: '2024-07-04T20:00:05'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      appointment_date: '2024-07-04T19:14:47'
+      appointment_date: '2024-07-04T20:00:05'
     fileParameters: []
     responses:
       -
@@ -290,7 +290,7 @@ endpoints:
         name: appointment_date
         description: 'value geçerli bir tarih olmalıdır.'
         required: true
-        example: '2024-07-04T19:14:47'
+        example: '2024-07-04T20:00:05'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -299,7 +299,7 @@ endpoints:
         name: appointment_type
         description: ''
         required: true
-        example: quae
+        example: deserunt
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -308,7 +308,7 @@ endpoints:
         name: customer_id
         description: ''
         required: true
-        example: harum
+        example: ducimus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -326,7 +326,7 @@ endpoints:
         name: service_id
         description: ''
         required: true
-        example: adipisci
+        example: omnis
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -335,27 +335,26 @@ endpoints:
         name: start_time
         description: ''
         required: true
-        example: numquam
+        example: repellendus
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
       end_time:
         name: end_time
-        description: ''
-        required: true
-        example: occaecati
+        description: 'This field is required when <code>appointment_type</code> is <code>closeClock</code>.'
+        required: false
+        example: null
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      appointment_date: '2024-07-04T19:14:47'
-      appointment_type: quae
-      customer_id: harum
-      service_id: adipisci
-      start_time: numquam
-      end_time: occaecati
+      appointment_date: '2024-07-04T20:00:05'
+      appointment_type: deserunt
+      customer_id: ducimus
+      service_id: omnis
+      start_time: repellendus
     fileParameters: []
     responses:
       -

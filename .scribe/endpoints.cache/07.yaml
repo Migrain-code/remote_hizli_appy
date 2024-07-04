@@ -67,7 +67,7 @@ endpoints:
         name: start_time
         description: ''
         required: true
-        example: ut
+        example: odit
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -76,14 +76,14 @@ endpoints:
         name: end_time
         description: ''
         required: true
-        example: est
+        example: saepe
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      start_time: ut
-      end_time: est
+      start_time: odit
+      end_time: saepe
     fileParameters: []
     responses:
       -

@@ -76,13 +76,13 @@ endpoints:
         name: column
         description: ''
         required: true
-        example: nihil
+        example: nisi
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      column: nihil
+      column: nisi
     fileParameters: []
     responses:
       -
