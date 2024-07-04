@@ -9,6 +9,7 @@ Route::prefix('personel')->group(function () {
 
     Route::middleware('auth:personel')->group(function () {
         Route::get('user', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'user']);
+        Route::post('update-password', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'updatePassword']);
         Route::post('logout', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'logout']);
 
         Route::get('/today/appointment', [\App\Http\Controllers\Personel\HomeController::class, 'getClock']);

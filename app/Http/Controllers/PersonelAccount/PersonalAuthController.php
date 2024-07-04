@@ -134,4 +134,16 @@ class PersonalAuthController extends Controller
 
         return $generateCode;
     }
+
+    public function updatePassword(Request $request)
+    {
+        $user = $this->personel;
+        $user->password = Hash::make($request->input('password'));
+        if ($user->save()) {
+            return response()->json([
+                'status' => "success",
+                'message' => "Şifreniz Güncellendi"
+            ]);
+        }
+    }
 }
