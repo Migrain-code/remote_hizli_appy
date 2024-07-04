@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PersonelAccount;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PersonelAccount\PasswordUpdateRequest;
 use App\Http\Requests\PersonelAccount\PersonalLoginRequest;
 use App\Http\Resources\Personel\PersonelResource;
 use App\Http\Resources\PersonelAccount\AccountResource;
@@ -135,7 +136,7 @@ class PersonalAuthController extends Controller
         return $generateCode;
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(PasswordUpdateRequest $request)
     {
         $user = $this->personel;
         $user->password = Hash::make($request->input('password'));
