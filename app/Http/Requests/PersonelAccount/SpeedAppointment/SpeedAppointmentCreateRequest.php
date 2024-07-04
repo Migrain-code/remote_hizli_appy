@@ -32,7 +32,9 @@ class SpeedAppointmentCreateRequest extends FormRequest
             'room_id' => 'nullable',
             'service_id' => 'required',
             'start_time' => "required",
-            'end_time' => "required",
+            'end_time' => [
+                'required_if:appointment_type,closeClock'
+            ],
         ];
     }
 
@@ -40,7 +42,7 @@ class SpeedAppointmentCreateRequest extends FormRequest
     {
         return [
             'appointment_date' => 'Randevu Tarihi',
-            'appointment_type' => "Randevu Türü closeClock veya appointmentCreate olmalıdır. Bu randevu",
+            'appointment_type' => "Randevu Türü",
             'customer_id' => 'Müşteri Seçimi',
             'room_id' => 'Oda Seçimi',
             'service_id' => 'Hizmet Seçimi',
@@ -48,7 +50,12 @@ class SpeedAppointmentCreateRequest extends FormRequest
             'end_time' => "Bitiş Saati",
         ];
     }
-
+    public function messages()
+    {
+        return [
+            'end_time.required_if' => 'Bitiş Saati alanı, Randevu Türü Saat Kapatma türüne sahip olduğunda zorunludur.',
+        ];
+    }
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
