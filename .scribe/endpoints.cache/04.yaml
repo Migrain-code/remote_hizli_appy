@@ -78,13 +78,13 @@ endpoints:
         name: column
         description: ''
         required: true
-        example: nisi
+        example: recusandae
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      column: nisi
+      column: recusandae
     fileParameters: []
     responses:
       -

@@ -26,7 +26,7 @@ endpoints:
         name: phone
         description: ''
         required: true
-        example: iure
+        example: non
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -35,14 +35,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: a
+        example: sunt
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      phone: iure
-      password: a
+      phone: non
+      password: sunt
     fileParameters: []
     responses:
       -
@@ -208,13 +208,13 @@ endpoints:
         name: password
         description: 'value değeri 6 karakter değerinden büyük olmalıdır.'
         required: true
-        example: eV2@G1M4gG
+        example: 'r$@M`G(NDCSW#A'
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      password: eV2@G1M4gG
+      password: 'r$@M`G(NDCSW#A'
     fileParameters: []
     responses:
       -

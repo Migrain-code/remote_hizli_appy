@@ -66,13 +66,13 @@ endpoints:
 
           appointment_date gönderilecek
         required: false
-        example: aspernatur
+        example: iure
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      appointment_date: aspernatur
+      appointment_date: iure
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
