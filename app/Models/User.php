@@ -47,13 +47,13 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereSurname($value)
  * @method static Builder|User whereUpdatedAt($value)
- * @mixin Eloquent
  * @property string $birthday
  * @property string $job
  * @property string $image
  * @method static Builder|User whereBirthday($value)
  * @method static Builder|User whereImage($value)
  * @method static Builder|User whereJob($value)
+ * @mixin Eloquent
  */
 class User extends Authenticatable
 {

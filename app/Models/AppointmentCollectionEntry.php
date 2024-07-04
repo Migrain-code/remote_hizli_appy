@@ -5,6 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $appointment_id
+ * @property int $payment_type_id
+ * @property string $price
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|AppointmentCollectionEntry newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AppointmentCollectionEntry newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AppointmentCollectionEntry query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AppointmentCollectionEntry whereAppointmentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppointmentCollectionEntry whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppointmentCollectionEntry whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppointmentCollectionEntry wherePaymentTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppointmentCollectionEntry wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AppointmentCollectionEntry whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class AppointmentCollectionEntry extends Model
 {
     use HasFactory;

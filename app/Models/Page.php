@@ -26,10 +26,20 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Page whereSlug($value)
  * @method static Builder|Page whereTitle($value)
  * @method static Builder|Page whereUpdatedAt($value)
- * @mixin Eloquent
  * @property int $menu_id
  * @method static Builder|Page whereMenuId($value)
  * @property-read Menu|null $menu
+ * @property string $image
+ * @property string $description
+ * @property string $meta_keys
+ * @property string $meta_description
+ * @property int $status
+ * @method static Builder|Page whereDescription($value)
+ * @method static Builder|Page whereImage($value)
+ * @method static Builder|Page whereMetaDescription($value)
+ * @method static Builder|Page whereMetaKeys($value)
+ * @method static Builder|Page whereStatus($value)
+ * @mixin Eloquent
  */
 class Page extends Model
 {

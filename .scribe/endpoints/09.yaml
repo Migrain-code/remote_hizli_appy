@@ -1,28 +1,22 @@
-name: Personal
+name: 'Personel Randevu Oluştur'
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/business/personal
+    uri: api/personel/appointment-create/get/services
     metadata:
-      groupName: Personal
+      groupName: 'Personel Randevu Oluştur'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'GET api/personal'
-      description: |-
-        Personel listesini döndürecek size
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        </ul>
+      title: 'Hizmet Listesi'
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-      Bearer: '{token}'
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -49,24 +43,19 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/business/personal/add/get
+    uri: api/personel/appointment-create/get/customers
     metadata:
-      groupName: Personal
+      groupName: 'Personel Randevu Oluştur'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'GET api/business/personal/add/get'
-      description: |-
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        </ul>
+      title: 'Müşteri Listesi'
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-      Bearer: '{token}'
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -93,26 +82,19 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/business/personal/get
+    uri: api/personel/appointment-create/get/date
     metadata:
-      groupName: Personal
+      groupName: 'Personel Randevu Oluştur'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'POST api/personal/get'
-      description: |-
-        id si gönderilen personelin getirecek
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        <li>personalId | required | güncellenecek personel id si</li>
-        </ul>
+      title: 'Tarih Listesi'
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-      Bearer: '{token}'
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -120,7 +102,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -130,184 +121,145 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/business/personal/add
+    uri: api/personel/appointment-create/get/clock
     metadata:
-      groupName: Personal
+      groupName: 'Personel Randevu Oluştur'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'POST api/personal/add'
-      description: |-
-        Personel Ekleme pointi
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        <li> name |required | string | </li>
-        <li> image |required | string | </li>
-        <li> email |required | string | </li>
-        <li> phone |required | string | </li>
-        <li> password |required | string | </li>
-        <li> approveType |required | numeric | örneğin 1 veya 0</li>
-        <li> restDay |required | numeric | haftanın günlerinden herhangi bir günün id si</li>
-        <li> startTime |required | string | örneğin 10:43 </li>
-        <li> endTime |required | string | örneğin 10:43</li>
-        <li> foodStart |required | string | örneğin 10:43</li>
-        <li> foodEnd |required | string | örneğin 10:43</li>
-        <li> gender |required | numeric | 1 => kadın,2 => erkek,3 => Unisex herhangi biri</li>
-        <li> rate |required | numeric | 10 personel yüzdesi 10 = %10</li>
-        <li> appointmentRange |required | numeric | randevu aralığı örneğin "15" dk bazında</li>
-        <li> description |required | string</li>
-        <li> services | required | array | eğer tümü seçeneği seçilirse "all" olarak gönderebilirsiniz dizi içerisinde</li>
-        </ul>
+      title: 'Saat Listesi'
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-      Bearer: '{token}'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/personel/appointment-create
+    metadata:
+      groupName: 'Personel Randevu Oluştur'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Randevu Oluştur'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      name:
-        name: name
+      customer_id:
+        name: customer_id
         description: ''
         required: true
-        example: voluptates
+        example: beatae
         type: string
         enumValues: []
+        exampleWasSpecified: false
         custom: []
-      email:
-        name: email
-        description: ''
+      appointment_date:
+        name: appointment_date
+        description: 'value geçerli bir tarih olmalıdır.'
         required: true
-        example: similique
+        example: '2024-07-04T16:18:41'
         type: string
         enumValues: []
+        exampleWasSpecified: false
         custom: []
-      phone:
-        name: phone
+      personels:
+        name: personels
         description: ''
         required: true
-        example: illum
+        example: repellat
         type: string
         enumValues: []
+        exampleWasSpecified: false
         custom: []
-      password:
-        name: password
+      times:
+        name: times
         description: ''
         required: true
-        example: culpa
+        example: fuga
         type: string
         enumValues: []
-        custom: []
-      approveType:
-        name: approveType
-        description: ''
-        required: true
-        example: nam
-        type: string
-        enumValues: []
-        custom: []
-      restDay:
-        name: restDay
-        description: ''
-        required: true
-        example: repellendus
-        type: string
-        enumValues: []
-        custom: []
-      startTime:
-        name: startTime
-        description: ''
-        required: true
-        example: accusantium
-        type: string
-        enumValues: []
-        custom: []
-      endTime:
-        name: endTime
-        description: ''
-        required: true
-        example: modi
-        type: string
-        enumValues: []
-        custom: []
-      foodStart:
-        name: foodStart
-        description: ''
-        required: true
-        example: minima
-        type: string
-        enumValues: []
-        custom: []
-      foodEnd:
-        name: foodEnd
-        description: ''
-        required: true
-        example: neque
-        type: string
-        enumValues: []
-        custom: []
-      gender:
-        name: gender
-        description: ''
-        required: true
-        example: eligendi
-        type: string
-        enumValues: []
-        custom: []
-      rate:
-        name: rate
-        description: ''
-        required: true
-        example: pariatur
-        type: string
-        enumValues: []
-        custom: []
-      appointmentRange:
-        name: appointmentRange
-        description: ''
-        required: true
-        example: blanditiis
-        type: string
-        enumValues: []
-        custom: []
-      description:
-        name: description
-        description: ''
-        required: true
-        example: fugiat
-        type: string
-        enumValues: []
+        exampleWasSpecified: false
         custom: []
       services:
         name: services
         description: ''
         required: true
-        example: et
+        example: dolore
         type: string
         enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      total:
+        name: total
+        description: ''
+        required: true
+        example: quasi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      discountTotal:
+        name: discountTotal
+        description: ''
+        required: true
+        example: perferendis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      name: voluptates
-      email: similique
-      phone: illum
-      password: culpa
-      approveType: nam
-      restDay: repellendus
-      startTime: accusantium
-      endTime: modi
-      foodStart: minima
-      foodEnd: neque
-      gender: eligendi
-      rate: pariatur
-      appointmentRange: blanditiis
-      description: fugiat
-      services: et
+      customer_id: beatae
+      appointment_date: '2024-07-04T16:18:41'
+      personels: repellat
+      times: fuga
+      services: dolore
+      total: quasi
+      discountTotal: perferendis
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -317,222 +269,86 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/business/personal/update
+    uri: api/personel/appointment-create/summary
     metadata:
-      groupName: Personal
+      groupName: 'Personel Randevu Oluştur'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'POST api/personal/update'
-      description: |-
-        Personel Güncelleme pointi
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        <li> personal_id | required | numeric</li>
-        <li> name |required | string | personal adı</li>
-        <li> image |required | string | personel görseli</li>
-        <li> email |required | string | mail adresi</li>
-        <li> phone |required | string | telefon numarası</li>
-        <li> password |required | string | şifre</li>
-        <li> approveType |required | numeric | örneğin 1 veya 0</li>
-        <li> restDay |required | numeric | haftanın günlerinden herhangi bir günün id si</li>
-        <li> startTime |required | string | örneğin 10:43 </li>
-        <li> endTime |required | string | örneğin 10:43</li>
-        <li> foodStart |required | string | örneğin 10:43</li>
-        <li> foodEnd |required | string | örneğin 10:43</li>
-        <li> gender |required | numeric | 1 => kadın,2 => erkek,3 => Unisex herhangi biri</li>
-        <li> rate |required | numeric | 10 personel yüzdesi 10 = %10</li>
-        <li> appointmentRange |required | numeric | randevu aralığı örneğin "15" dk bazında</li>
-        <li> description |required | string</li>
-        <li> services | required | array | eğer tümü seçeneği seçilirse "all" olarak gönderebilirsiniz dizi içerisinde</li>
-        </ul>
+      title: 'Randevu Özeti'
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-      Bearer: '{token}'
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      personal_id:
-        name: personal_id
-        description: ''
-        required: true
-        example: temporibus
-        type: string
-        enumValues: []
-        custom: []
-      name:
-        name: name
-        description: ''
-        required: true
-        example: sunt
-        type: string
-        enumValues: []
-        custom: []
-      email:
-        name: email
-        description: ''
-        required: true
-        example: vero
-        type: string
-        enumValues: []
-        custom: []
-      phone:
-        name: phone
-        description: ''
-        required: true
-        example: enim
-        type: string
-        enumValues: []
-        custom: []
-      approveType:
-        name: approveType
-        description: ''
-        required: true
-        example: harum
-        type: string
-        enumValues: []
-        custom: []
-      restDay:
-        name: restDay
-        description: ''
-        required: true
-        example: temporibus
-        type: string
-        enumValues: []
-        custom: []
-      startTime:
-        name: startTime
-        description: ''
-        required: true
-        example: excepturi
-        type: string
-        enumValues: []
-        custom: []
-      endTime:
-        name: endTime
-        description: ''
-        required: true
-        example: quaerat
-        type: string
-        enumValues: []
-        custom: []
-      foodStart:
-        name: foodStart
-        description: ''
-        required: true
-        example: explicabo
-        type: string
-        enumValues: []
-        custom: []
-      foodEnd:
-        name: foodEnd
-        description: ''
-        required: true
-        example: deleniti
-        type: string
-        enumValues: []
-        custom: []
-      gender:
-        name: gender
-        description: ''
-        required: true
-        example: velit
-        type: string
-        enumValues: []
-        custom: []
-      rate:
-        name: rate
-        description: ''
-        required: true
-        example: et
-        type: string
-        enumValues: []
-        custom: []
-      appointmentRange:
-        name: appointmentRange
-        description: ''
-        required: true
-        example: expedita
-        type: string
-        enumValues: []
-        custom: []
-      description:
-        name: description
+      customer_id:
+        name: customer_id
         description: ''
         required: true
         example: quisquam
         type: string
         enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      appointment_date:
+        name: appointment_date
+        description: 'value geçerli bir tarih olmalıdır.'
+        required: true
+        example: '2024-07-04T16:18:41'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      times:
+        name: times
+        description: ''
+        required: true
+        example: itaque
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
         custom: []
       services:
         name: services
         description: ''
         required: true
-        example: veniam
+        example: tempora
         type: string
         enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      discountTotal:
+        name: discountTotal
+        description: ''
+        required: true
+        example: modi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      personal_id: temporibus
-      name: sunt
-      email: vero
-      phone: enim
-      approveType: harum
-      restDay: temporibus
-      startTime: excepturi
-      endTime: quaerat
-      foodStart: explicabo
-      foodEnd: deleniti
-      gender: velit
-      rate: et
-      appointmentRange: expedita
-      description: quisquam
-      services: veniam
+      customer_id: quisquam
+      appointment_date: '2024-07-04T16:18:41'
+      times: itaque
+      services: tempora
+      discountTotal: modi
     fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/business/personal/delete
-    metadata:
-      groupName: Personal
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'POST api/personal/get'
-      description: |-
-        id si gönderilen personeli silecek
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        <li>personalId | required | silinecek personel id si</li>
-        </ul>
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Bearer: '{token}'
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null

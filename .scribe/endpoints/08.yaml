@@ -1,28 +1,28 @@
-name: BusinessService
+name: 'Personel Kasa'
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/business/business-service
+    uri: api/personel/case
     metadata:
-      groupName: BusinessService
+      groupName: 'Personel Kasa'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'GET api/business-service'
+      title: 'Personel Kasası'
       description: |-
-        Hizmetlerin listesini döndürecek size buradaki hizmet listesinden seçilen hizmetlerden seçilen hizmet eklenecek
-        <br> Gerekli alanlar
+        listType değişkeninde gönderilecek
         <ul>
-        <li> token </li>
+            <li>yesterday</li>
+            <li>thisWeek</li>
+            <li>thisMonth</li>
         </ul>
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-      Bearer: '{token}'
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -40,208 +40,6 @@ endpoints:
           access-control-allow-origin: '*'
         description: null
         custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/business/business-service/get
-    metadata:
-      groupName: BusinessService
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'POST api/business-service/get'
-      description: |-
-        id si gönderilen işletme hizmetinin bilgilerini getirecek
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        <li>businessServiceId | required | güncellenecek hizmetin idsi</li>
-        </ul>
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Bearer: '{token}'
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/business/business-service/add
-    metadata:
-      groupName: BusinessService
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'POST api/business-service/add'
-      description: |-
-        Hizmetlerin listesini döndürecek size buradaki hizmet listesinden seçilen hizmetlerden seçilen hizmet eklenecek
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        <li> typeId |required | cinsiyet id si gelecek buradan  </li>
-        <li> categoryId |required | hizmetin category id si gelecek buradan  </li>
-        <li> subCategoryId |required | hizmetin sub_category id si gelecek buradan  </li>
-        <li> time |required | hizmetin süresi gelecek buradan  </li>
-        <li> price |required | hizmetin fiyatı gelecek buradan  </li>
-        </ul>
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Bearer: '{token}'
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      typeId:
-        name: typeId
-        description: ''
-        required: true
-        example: veritatis
-        type: string
-        enumValues: []
-        custom: []
-      categoryId:
-        name: categoryId
-        description: ''
-        required: true
-        example: illo
-        type: string
-        enumValues: []
-        custom: []
-      subCategoryId:
-        name: subCategoryId
-        description: ''
-        required: true
-        example: non
-        type: string
-        enumValues: []
-        custom: []
-      time:
-        name: time
-        description: ''
-        required: true
-        example: ad
-        type: string
-        enumValues: []
-        custom: []
-      price:
-        name: price
-        description: ''
-        required: true
-        example: facilis
-        type: string
-        enumValues: []
-        custom: []
-    cleanBodyParameters:
-      typeId: veritatis
-      categoryId: illo
-      subCategoryId: non
-      time: ad
-      price: facilis
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/business/business-service/update
-    metadata:
-      groupName: BusinessService
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'POST api/business-service/update'
-      description: |-
-        id si gönderilen işletme hizmetinin bilgilerini güncelleyek
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        <li>businessServiceId | required | güncellenecek hizmetin idsi</li>
-        <li> typeId |required | cinsiyet id si gelecek buradan  </li>
-        <li> categoryId |required | hizmetin category id si gelecek buradan  </li>
-        <li> subCategoryId |required | hizmetin sub_category id si gelecek buradan  </li>
-        <li> time |required | hizmetin süresi gelecek buradan  </li>
-        <li> price |required | hizmetin fiyatı gelecek buradan  </li>
-        </ul>
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Bearer: '{token}'
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/business/business-service/delete
-    metadata:
-      groupName: BusinessService
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'POST api/business-service/delete'
-      description: |-
-        id si gönderilen işletme hizmetinin bilgilerini getirecek
-        <br> Gerekli alanlar
-        <ul>
-        <li> token </li>
-        <li>businessServiceId | required | güncellenecek hizmetin idsi</li>
-        </ul>
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Bearer: '{token}'
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null

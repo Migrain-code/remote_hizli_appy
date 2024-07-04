@@ -25,9 +25,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Menu whereId($value)
  * @method static Builder|Menu whereName($value)
  * @method static Builder|Menu whereUpdatedAt($value)
- * @mixin Eloquent
  * @property-read Collection|Page[] $pages
  * @property-read int|null $pages_count
+ * @mixin Eloquent
  */
 class Menu extends Model
 {

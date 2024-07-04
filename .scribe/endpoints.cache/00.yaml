@@ -6,21 +6,14 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/personal/auth/login
+    uri: api/personel/auth/login
     metadata:
       groupName: PersonalAuth
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'POST api/personal/auth/login'
-      description: |-
-        Status Codes
-        <ul>
-        <li>phone</li>
-        <li>password</li>
-        <li> 401 Unauthorized Hatası </li>
-        </ul>
-        Login apisi
+      title: 'Personel Girişi'
+      description: ''
       authenticated: false
       custom: []
     headers:
@@ -35,23 +28,118 @@ endpoints:
         name: phone
         description: ''
         required: true
-        example: assumenda
+        example: aut
         type: string
         enumValues: []
+        exampleWasSpecified: false
         custom: []
       password:
         name: password
         description: ''
         required: true
-        example: ',P~i[L)KK`)]Uw$2'
+        example: omnis
         type: string
         enumValues: []
+        exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      phone: assumenda
-      password: ',P~i[L)KK`)]Uw$2'
+      phone: aut
+      password: omnis
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Telefon Numaras\u0131 veya \u015fifre yanl\u0131\u015f"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '59'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/personel/auth/reset-password
+    metadata:
+      groupName: PersonalAuth
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"status":"warning","message":"Bu telefon numaras\u0131 ile kay\u0131tl\u0131 kullan\u0131c\u0131 bulunamad\u0131"}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/personel/auth/verify-reset-password
+    metadata:
+      groupName: PersonalAuth
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: ''
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '57'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -61,24 +149,19 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/personal/user
+    uri: api/personel/user
     metadata:
       groupName: PersonalAuth
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'GET api/personal/auth/user'
-      description: |-
-        <ul>
-        <li>Token Göndermeniz Yeterli</li>
-        </ul>
-        Logout apisi
+      title: 'Personel Bilgisi'
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-      Bearer: '{token}'
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -105,24 +188,68 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/personal/logout
+    uri: api/personel/update-password
     metadata:
       groupName: PersonalAuth
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'POST api/personal/auth/logout'
-      description: |-
-        <ul>
-        <li>Token Göndermeniz Yeterli</li>
-        </ul>
-        Logout apisi
+      title: ''
+      description: ''
       authenticated: false
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-      Bearer: '{token}'
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      password:
+        name: password
+        description: 'value değeri 6 karakter değerinden büyük olmalıdır.'
+        required: true
+        example: '(8a5-\m`=ADQ"'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      password: '(8a5-\m`=ADQ"'
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/personel/logout
+    metadata:
+      groupName: PersonalAuth
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Personel Çıkış Yap'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
@@ -130,7 +257,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null

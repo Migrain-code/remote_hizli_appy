@@ -1,16 +1,16 @@
-name: BusinessHome
+name: 'Personel Hesabı'
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/business/home
+    uri: api/personel/profile
     metadata:
-      groupName: BusinessHome
+      groupName: 'Personel Hesabı'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'İşletme anasayfa apisi'
+      title: 'Profil Bilgileri'
       description: ''
       authenticated: false
       custom: []
@@ -23,6 +23,203 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/personel/profile/create
+    metadata:
+      groupName: 'Personel Hesabı'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Profil Oluşturma'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/personel/profile
+    metadata:
+      groupName: 'Personel Hesabı'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Profil Güncelle'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: ''
+        required: true
+        example: dignissimos
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: ''
+        required: true
+        example: aut
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      phone:
+        name: phone
+        description: ''
+        required: true
+        example: rerum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      approveType:
+        name: approveType
+        description: ''
+        required: true
+        example: praesentium
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      restDay:
+        name: restDay
+        description: ''
+        required: true
+        example: autem
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      startTime:
+        name: startTime
+        description: ''
+        required: true
+        example: veritatis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      endTime:
+        name: endTime
+        description: ''
+        required: true
+        example: vel
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      foodStart:
+        name: foodStart
+        description: ''
+        required: true
+        example: sed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      foodEnd:
+        name: foodEnd
+        description: ''
+        required: true
+        example: explicabo
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      appointmentRange:
+        name: appointmentRange
+        description: ''
+        required: true
+        example: minima
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: true
+        example: dolore
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      logo:
+        name: logo
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      name: dignissimos
+      email: aut
+      phone: rerum
+      approveType: praesentium
+      restDay: autem
+      startTime: veritatis
+      endTime: vel
+      foodStart: sed
+      foodEnd: explicabo
+      appointmentRange: minima
+      description: dolore
     fileParameters: []
     responses:
       -

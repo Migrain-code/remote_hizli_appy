@@ -5,6 +5,32 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $business_id
+ * @property int $cash
+ * @property int $credit_cart
+ * @property int $eft
+ * @property int $use_limit
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $birthday_discount
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion whereBirthdayDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion whereBusinessId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion whereCash($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion whereCreditCart($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion whereEft($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BusinessPromossion whereUseLimit($value)
+ * @mixin \Eloquent
+ */
 class BusinessPromossion extends Model
 {
     use HasFactory;

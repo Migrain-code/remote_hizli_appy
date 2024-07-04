@@ -14,6 +14,17 @@ Route::prefix('personel')->group(function () {
 
         Route::get('/today/appointment', [\App\Http\Controllers\Personel\HomeController::class, 'getClock']);
 
+        /*------- Saat Kapatma -----------*/
+        Route::prefix('speed-appointment')
+            ->controller(\App\Http\Controllers\PersonelAccount\SpeedAppointment\SpeedAppointmentController::class)
+            ->group(function (){
+                Route::get('/', 'index')->name('index');
+                Route::get('customer', 'getCustomerList');
+                Route::get('personel/list', 'getPersonelList');
+                Route::get('personel/{personel}/services', 'getPersonelServiceList');
+                Route::get('personel/{personel}/clocks', 'getPersonelClocks');
+                Route::post('personel/{personel}/create', 'appointmentCreate');
+            });
         /*------- Hesabım Apisi -----------*/
         Route::apiResource('profile', \App\Http\Controllers\PersonelAccount\Profile\PersonalProfileUpdateController::class)->only([
             'index', 'create', 'store'

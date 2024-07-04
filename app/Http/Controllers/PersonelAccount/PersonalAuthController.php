@@ -19,16 +19,6 @@ use Illuminate\Support\Facades\Hash;
  */
 class PersonalAuthController extends Controller
 {
-    private $personel;
-
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            $this->personel = auth('personel')->user();
-            return $next($request);
-        });
-    }
-
     /**
      * Personel Girişi
      * @param PersonalLoginRequest $request
@@ -73,7 +63,8 @@ class PersonalAuthController extends Controller
      */
     public function user()
     {
-        return response()->json(AccountResource::make($this->personel));
+        $personel = auth('personel')->user();
+        return response()->json(AccountResource::make($personel));
     }
 
     public function passwordReset(Request $request)
@@ -138,9 +129,9 @@ class PersonalAuthController extends Controller
 
     public function updatePassword(PasswordUpdateRequest $request)
     {
-        $user = $this->personel;
-        $user->password = Hash::make($request->input('password'));
-        if ($user->save()) {
+        $personel = auth('personel')->user();
+        $personel->password = Hash::make($request->input('password'));
+        if ($personel->save()) {
             return response()->json([
                 'status' => "success",
                 'message' => "Şifreniz Güncellendi"
