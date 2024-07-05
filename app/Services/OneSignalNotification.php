@@ -1,33 +1,63 @@
 <?php
 
 namespace App\Services;
-use OneSignal\OneSignal;
-use Illuminate\Support\Facades\Config;
-use GuzzleHttp\Client;
+use DateTime;
+use onesignal\client\api\DefaultApi;
+use onesignal\client\Configuration;
+use onesignal\client\model\GetNotificationRequestBody;
+use onesignal\client\model\Notification;
+use onesignal\client\model\StringMap;
+use onesignal\client\model\Player;
+use onesignal\client\model\UpdatePlayerTagsRequestBody;
+use onesignal\client\model\ExportPlayersRequestBody;
+use onesignal\client\model\Segment;
+use onesignal\client\model\FilterExpressions;
+use PHPUnit\Framework\TestCase;
+use GuzzleHttp;
 
 class OneSignalNotification
 {
     protected $oneSignal;
+    protected $APP_ID = "";
+    protected $APP_KEY_TOKEN = "";
+    protected $USER_KEY_TOKEN = "";
+
+    protected $apiInstance = "";
 
     public function __construct()
     {
-        $this->oneSignal = new OneSignal(
-            env('ONESIGNAL_APP_ID'),
-            env('ONESIGNAL_REST_API_KEY')
+        $this->APP_ID = env('ONESIGNAL_APP_ID');
+        $this->APP_KEY_TOKEN = env('ONESIGNAL_REST_API_KEY');
+        $this->USER_KEY_TOKEN = env('ONESIGNAL_AUTH_KEY');
+
+        $config = Configuration::getDefaultConfiguration()
+            ->setAppKeyToken($this->APP_KEY_TOKEN)
+            ->setUserKeyToken($this->USER_KEY_TOKEN);
+        $this->apiInstance = new DefaultApi(
+            new GuzzleHttp\Client(),
+            $config
         );
     }
 
-    public function sendNotification($userId, $message, $url = null)
-    {
-        $params = [
-            'contents' => ['en' => $message],
-            'include_player_ids' => [$userId],
-        ];
+    function createNotification($enContent): Notification {
+        $content = new StringMap();
+        $content->setEn($enContent);
 
-        if ($url) {
-            $params['url'] = $url;
-        }
+        $notification = new Notification();
+        $notification->setAppId($this->APP_ID);
+        $notification->setContents($content);
+        $notification->setIncludedSegments(['Subscribed Users']);
 
-        $this->oneSignal->notifications->add($params);
+        return $notification;
     }
+
+    public function sendNotification($message)
+    {
+        $notification = $this->createNotification($message);
+
+        $result = $this->apiInstance->createNotification($notification);
+        return $result;
+    }
+
+
 }

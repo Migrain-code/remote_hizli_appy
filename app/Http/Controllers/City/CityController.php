@@ -64,8 +64,8 @@ class CityController extends Controller
     public function testNotify(Request $request)
     {
         $oneSignalService = new OneSignalNotification();
-        $response = $oneSignalService->sendNotification(1, 'TEST');
-
+        $response = $oneSignalService->sendNotification('Test Bildirimi Mesajı');
+        dd($response);
         return response()->json([
             'message' => 'Notification sent successfully',
             'response' => $response,
