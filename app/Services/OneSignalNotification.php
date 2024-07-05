@@ -33,13 +33,18 @@ class OneSignalNotification
         $config = Configuration::getDefaultConfiguration()
             ->setAppKeyToken($this->APP_KEY_TOKEN)
             ->setUserKeyToken($this->USER_KEY_TOKEN);
+
+        $guzzleConfig = [
+            'verify' => false, // SSL sertifikası doğrulamasını devre dışı bırak
+            // Diğer GuzzleHttp istemci yapılandırma seçenekleri
+        ];
         $this->apiInstance = new DefaultApi(
-            new GuzzleHttp\Client(),
+            new GuzzleHttp\Client($guzzleConfig),
             $config
         );
     }
 
-    function createNotification($enContent): Notification {
+    function createNotification($enContent): Notification { // belirli bir kullanıcı grubuna gönderme
         $content = new StringMap();
         $content->setEn($enContent);
 
@@ -50,14 +55,18 @@ class OneSignalNotification
 
         return $notification;
     }
-
-    public function sendNotification($message)
+    public function sendNotificationToUser($playerId, $message) // tek kullanıcıya gönderme
     {
-        $notification = $this->createNotification($message);
+        $content = new StringMap();
+        $content->setEn($message);
+
+        $notification = new Notification();
+        $notification->setAppId($this->APP_ID);
+        $notification->setContents($content);
+        $notification->setIncludePlayerIds([$playerId]); // Belirli bir kullanıcıya göndermek için Player ID belirtin
 
         $result = $this->apiInstance->createNotification($notification);
         return $result;
     }
-
 
 }
