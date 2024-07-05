@@ -100,7 +100,6 @@ class AppointmentServices extends Model
         $service = $this->service;
         $personelPrice = $this->getPersonelPrice;
 
-
         if ($service->price_type_id == 1 && $this->total == 0){ // aralıklı fiyatsa
             return formatPrice($service->price). " - ". formatPrice($service->max_price);
         } else{
