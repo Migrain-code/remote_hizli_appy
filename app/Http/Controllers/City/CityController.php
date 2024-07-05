@@ -4,7 +4,11 @@ namespace App\Http\Controllers\City;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Location\CityResource;
+use App\Services\OneSignalNotification;
 use Illuminate\Http\Request;
+
+use Berkayk\OneSignal\OneSignalClient;
+use OneSignal;
 
 /**
  *
@@ -57,10 +61,14 @@ class CityController extends Controller
         ]);
     }
 
-    public function testNotif(Request $request)
+    public function testNotify(Request $request)
     {
-        $result = sendNotification('test', 'test mesaj');
+        $oneSignalService = new OneSignalNotification();
+        $response = $oneSignalService->sendNotification(1, 'TEST');
 
-        return $result;
+        return response()->json([
+            'message' => 'Notification sent successfully',
+            'response' => $response,
+        ]);
     }
 }

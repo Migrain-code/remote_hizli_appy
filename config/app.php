@@ -199,6 +199,7 @@ return [
         App\Providers\NetgsmServiceProvider::class,
 
         Laravel\Passport\PassportServiceProvider::class,
+
     ],
 
     /*
@@ -215,6 +216,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Html' => Spatie\Html\Facades\Html::class,
+
     ])->toArray(),
 
 ];

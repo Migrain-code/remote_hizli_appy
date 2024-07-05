@@ -375,6 +375,7 @@ class HomeController extends Controller
             'clock' => $slotStart->format('H:i')."-".$slotEnd->format('H:i'),
             'clock_start' => $slotStart->format('H:i'), // Save the start time
             'title' => $isBooked ? $appointmentDetails->service->subCategory->name : '',
+            'appointment_id' => $isBooked ? $appointmentDetails->appointment_id : "",
             'customer' => $isBooked ? CustomerListResource::make($appointmentDetails->appointment->customer) : "",
             'routeType' => $isBooked ? 'appointmentDetail' : 'createAppointment',
             'status' => $isBooked,

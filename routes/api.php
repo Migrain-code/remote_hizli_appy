@@ -61,7 +61,7 @@ Route::prefix('city')->group(function () {
     Route::get('list', [CityController::class, 'index']);
     Route::post('get', [CityController::class, 'get']);
 });
-Route::post('test/notify', [CityController::class, 'testNotif']);
+Route::post('test/notify', [CityController::class, 'testNotify']);
 Route::prefix('business')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('login', [AuthController::class, 'login']);
