@@ -120,8 +120,12 @@ class SpeedAppointmentController extends Controller
     public function getPersonelServiceList(Personel $personel)
     {
         $services = $personel->services;
-        $rooms = $personel->rooms;
-
+        $roomCount = $personel->rooms->count();
+        if ($roomCount > 1){
+            $rooms = $personel->rooms;
+        } else{
+            $rooms = [];
+        }
         return response()->json([
             'services' => PersonelAppointmentServiceResource::collection($services),
             'rooms' => RoomsListResource::collection($rooms),
@@ -193,8 +197,19 @@ class SpeedAppointmentController extends Controller
     public function appointmentCreate(Personel $personel, SpeedAppointmentCreateRequest $request)
     {
         $business = $this->business;
+        if ($personel->rooms->count() == 1){
+            $roomId = $personel->rooms->first()->room_id;
+        } else{
+            $roomId = $request->room_id;
+            if (isset($roomId)){
+                return response()->json([
+                    'status' => "error",
+                    'message' => "Oda Seçimi Alanı Gereklidir"
+                ], 422);
+            }
+        }
         if ($request->appointment_type != "closeClock") {
-            $result = $this->checkClock($personel, $request->start_time, $request->service_id, $request->room_id);
+            $result = $this->checkClock($personel, $request->start_time, $request->service_id, $roomId);
             if ($result["status"] == "error"){
                 return response()->json($result, 422);
             }
