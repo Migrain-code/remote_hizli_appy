@@ -217,6 +217,7 @@ class SpeedAppointmentController extends Controller
         $appointment = new Appointment();
         $appointment->customer_id = $request->customer_id;
         $appointment->business_id = $business->id;
+        $appointment->room_id = $roomId;
         $appointment->save();
 
 
