@@ -201,7 +201,7 @@ class SpeedAppointmentController extends Controller
             $roomId = $personel->rooms->first()->room_id;
         } else{
             $roomId = $request->room_id;
-            if (isset($roomId)){
+            if (!isset($roomId)){
                 return response()->json([
                     'status' => "error",
                     'message' => "Oda Seçimi Alanı Gereklidir"
