@@ -380,7 +380,7 @@ class HomeController extends Controller
             'routeType' => $isBooked ? 'appointmentDetail' : 'createAppointment',
             'status' => $isBooked,
             'salon' => isset($appointmentDetails->appointment->room) ? $appointmentDetails->appointment->room->name : "Salon",
-            'salon_color' => isset($appointmentDetails->appointment->room) ? $appointmentDetails->appointment->room->color : "#009ef7",
+            'salon_color' => isset($appointmentDetails->appointment->room) ? '#3C525E' : "#3C525E",
             'color_code' => $isBooked ? '#00000019' : '#88F7C2',
         ];
     }

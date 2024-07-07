@@ -17,7 +17,7 @@ class MaasListResource extends JsonResource
         return [
            'id' => $this->id,
            'operation_date' => $this->operation_date->format('d.m.Y'),
-           'paymentType' => $this->type(),
+           'paymentType' => $this->type('name'),
            'price' => $this->price,
         ];
     }
