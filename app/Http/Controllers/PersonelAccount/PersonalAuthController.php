@@ -144,7 +144,7 @@ class PersonalAuthController extends Controller
     /**
      * Bildiriim Tokenı Kaydetme
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function saveToken(Request $request)
     {
@@ -170,5 +170,9 @@ class PersonalAuthController extends Controller
 
             }
         }
+        return response()->json([
+           'status' => "success",
+           'message' => "Cihaz Kayıt Edildi"
+        ]);
     }
 }
