@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PersonelAccount\Case;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Personel\MaasListResource;
+use App\Models\AppointmentServices;
 use App\Models\Personel;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,11 @@ class PersonelCaseController extends Controller
      */
     public function case(Request $request)
     {
+        $services = AppointmentServices::all();
+        foreach ($services as $appointment){
+             $appointment->total = $appointment->servicePrice();
+             $appointment->save();
+         }
         $personel = $this->personel;
         return response()->json([
             'case' => $personel->case($request->listType, $request->start_date, $request->end_date),
