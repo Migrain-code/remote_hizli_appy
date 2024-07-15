@@ -7,8 +7,10 @@ use App\Http\Requests\PersonelAccount\PasswordUpdateRequest;
 use App\Http\Requests\PersonelAccount\PersonalLoginRequest;
 use App\Http\Resources\Personel\PersonelResource;
 use App\Http\Resources\PersonelAccount\AccountResource;
+use App\Models\Device;
 use App\Models\Personel;
 use App\Models\SmsConfirmation;
+use App\Services\NotificationService;
 use App\Services\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -136,6 +138,37 @@ class PersonalAuthController extends Controller
                 'status' => "success",
                 'message' => "Şifreniz Güncellendi"
             ]);
+        }
+    }
+
+    /**
+     * Bildiriim Tokenı Kaydetme
+     * @param Request $request
+     * @return void
+     */
+    public function saveToken(Request $request)
+    {
+        $user = auth('personel')->user();
+        $title = "Merhaba ". $user->name;
+        $message = "Hızlı Randevu Sistemine Hoşgeldiniz";
+        if (isset($user->device)){
+            $deviceToken = $request->input('device_token');
+            if (isset($deviceToken) && $user->device->token != $deviceToken) { // İŞTE BU SATIR
+                $device = $user->device;
+                $device->token = $deviceToken;
+                $device->save();
+            }
+            NotificationService::sendPushNotification($user->device->token, $title, $message);
+        } else{
+            if ($request->filled('device_token')){
+                $device = new Device();
+                $device->customer_id = $user->id;
+                $device->token = $request->input('device_token');
+                $device->type = 2;//personel, 3 => business Token
+                $device->save();
+                NotificationService::sendPushNotification($device->token, $title, $message);
+
+            }
         }
     }
 }

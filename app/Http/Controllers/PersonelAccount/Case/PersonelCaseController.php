@@ -39,8 +39,8 @@ class PersonelCaseController extends Controller
     {
         $personel = $this->personel;
         return response()->json([
-           'case' => $personel->case($request->listType),
-           'payments' => MaasListResource::collection($personel->calculatePayedBalance()),
+            'case' => $personel->case($request->listType, $request->start_date, $request->end_date),
+            'payments' => MaasListResource::collection($personel->calculatePayedBalance()),
         ]);
     }
 
