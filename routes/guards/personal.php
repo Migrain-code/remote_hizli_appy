@@ -2,6 +2,7 @@
 //Personel Apileri
 Route::prefix('personel')->group(function () {
     Route::prefix('auth')->group(function (){
+        Route::get('show-login', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'showLogin']);
         Route::post('login', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'login']);
         Route::post('reset-password', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'passwordReset']);
         Route::post('verify-reset-password', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'verifyResetPassword']);

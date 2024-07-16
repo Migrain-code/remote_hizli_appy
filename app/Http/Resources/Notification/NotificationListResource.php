@@ -23,6 +23,7 @@ class NotificationListResource extends JsonResource
           'created_clock' => $this->created_at->format('H:i'),
           'link' => $this->link,
           'status' => $this->status,
+          'icon' => "asd",
         ];
     }
 }

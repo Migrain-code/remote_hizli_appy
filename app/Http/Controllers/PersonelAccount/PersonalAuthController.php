@@ -21,6 +21,16 @@ use Illuminate\Support\Facades\Hash;
  */
 class PersonalAuthController extends Controller
 {
+    public function showLogin()
+    {
+        return response()->json([
+           'status'=> "success",
+           'image' => asset('business/bg.png'),
+           'title' => "Hızlı Randevu",
+           'logo' => image(setting('speed_footer_logo')),
+           'sub_title' => "Hızlı Randevu",
+        ]);
+    }
     /**
      * Personel Girişi
      * @param PersonalLoginRequest $request
