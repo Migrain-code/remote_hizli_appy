@@ -25,7 +25,7 @@ class PersonalAuthController extends Controller
     {
         return response()->json([
            'status'=> "success",
-           'image' => asset('business/bg.png'),
+           'image' => 'https://file.hizlirandevu.com.tr/storage/main_page_images/kmISvSZgub2R2wABXd06Cf8MlxKQRHlC5ZY03cc7.jpg',
            'title' => "Hızlı Randevu",
            'logo' => image(setting('speed_footer_logo')),
            'sub_title' => "Hızlı Randevu",
