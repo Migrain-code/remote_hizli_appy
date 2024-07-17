@@ -41,7 +41,7 @@ Route::prefix('personel')->group(function () {
         ]);
         /*------Bildirimler - --------*/
         Route::apiResource('notification', \App\Http\Controllers\PersonelAccount\Notification\PersonelNotificationController::class)->only([
-            'index', 'show', 'destroy'
+            'index', 'store','show', 'destroy'
         ]);
         /*------ Randevular -----------*/
         Route::apiResource('appointment', \App\Http\Controllers\PersonelAccount\Appointment\PersonelAppointmentController::class)->only([
