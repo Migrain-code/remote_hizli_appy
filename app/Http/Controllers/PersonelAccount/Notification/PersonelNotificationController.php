@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Notification\NotificationListResource;
 use App\Models\BusinessNotification;
 use App\Models\PersonelNotification;
+use Illuminate\Http\Request;
 
 /**
  * @group Personel Bildirimler
@@ -33,7 +34,21 @@ class PersonelNotificationController extends Controller
         return response()->json(NotificationListResource::collection($this->personel->notifications));
     }
 
-
+    /**
+     * Tümünü Okundu İşaretle
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
+    {
+        PersonelNotification::where('personel_id', $this->personel->id)->update([
+            'status' => 1,
+        ]);
+        return response()->json([
+            'status' => "success",
+            'message' => "Tüm Bildirimleriniz Okundu Olarak İşaretlendi"
+        ]);
+    }
     /**
      * Bildirim Detayı
      *
