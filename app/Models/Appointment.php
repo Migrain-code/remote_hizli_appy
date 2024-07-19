@@ -239,9 +239,7 @@ class Appointment extends Model
         // Randevu başlangıç saatinden 2 saat öncesini hesaplayın
 
         $reminderTime = $this->start_time->subMinutes($this->business->reminder_time);
-        // Şu an ile hatırlatma zamanı arasındaki farkı hesaplayın
-        $delay = $reminderTime->diffInSeconds(now());
-        SendReminderJob::dispatch($this)->delay($delay);
 
+        SendReminderJob::dispatch($this)->delay($reminderTime);
     }
 }
