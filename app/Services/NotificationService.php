@@ -13,6 +13,7 @@ class NotificationService
                 'to' => $expoToken,
                 'title' => $title,
                 'body' => $body,
+                'sound'=> 'default',
             ],
         ]);
 
