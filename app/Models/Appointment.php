@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\SendReminderJob;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -232,5 +233,14 @@ class Appointment extends Model
     public function remainingTotal() //kalan  tutar
     {
         return ($this->calculateCollectedTotal() - $this->payments->sum("price")) - $this->receivables()->whereStatus(1)->sum('price');
+    }
+    public function scheduleReminder()
+    {
+        // Randevu başlangıç saatinden 2 saat öncesini hesaplayın
+
+        $reminderTime = $this->start_time->subMinutes($this->business->reminder_time);
+
+        SendReminderJob::dispatch($this)->delay($reminderTime);
+
     }
 }

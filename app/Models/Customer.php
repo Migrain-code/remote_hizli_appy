@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\NotificationService;
 use App\Services\Sms;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -94,19 +95,26 @@ class Customer extends Authenticatable
         return true;
     }
 
-    public function sendNotification($title, $content)
+    public function sendNotification($title, $message, $iconId = 1)
     {
-        $customerNotification = new CustomerNotificationMobile();
-        $customerNotification->customer_id = $this->id;
-        $customerNotification->title = $title;
-        $customerNotification->slug = Str::slug(uniqid());
-        $customerNotification->content = $content;
-        $customerNotification->notification_id = 1;
-        $customerNotification->save();
+        $notification = new CustomerNotificationMobile();
+        $notification->notification_id = $iconId;
+        $notification->title = $title;
+        $notification->content = $message;
+        $notification->status = 0;
+        $notification->slug = uniqid();
+        $notification->customer_id = $this->id;
+        $notification->save();
 
-        return $customerNotification;
+        if (isset($this->device)){
+            NotificationService::sendPushNotification($this->device->token, $title, $message);
+        }
+        return true;
     }
-
+    public function device()
+    {
+        return $this->hasOne(Device::class, 'customer_id', 'id')->where('type', 1);
+    }
     public function cashPoints()
     {
         return $this->hasMany(CustomerCashPoint::class, 'customer_id', 'id')->where('price', '>', 0);
