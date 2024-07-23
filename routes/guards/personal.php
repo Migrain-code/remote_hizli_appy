@@ -13,7 +13,7 @@ Route::prefix('personel')->group(function () {
         Route::get('user', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'user']);
         Route::post('update-password', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'updatePassword']);
         Route::post('logout', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'logout']);
-
+        Route::get('delete-account', [\App\Http\Controllers\PersonelAccount\PersonalAuthController::class, 'deleteAccount']);
         Route::prefix('home')->group(function (){
             Route::get('/day-list', [\App\Http\Controllers\Personel\HomeController::class, 'getDate']);
             Route::get('/', [\App\Http\Controllers\Personel\HomeController::class, 'getClock']);

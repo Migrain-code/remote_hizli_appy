@@ -42,10 +42,16 @@ class PersonalAuthController extends Controller
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
+                'status' => "error",
                 'message' => 'Telefon Numarası veya şifre yanlış'
             ], 401);
         }
-
+        if($user->status == 2){
+            return response()->json([
+                'status' => "error",
+                'message' => 'Telefon Numarası veya şifre yanlış'
+            ], 401);
+        }
         $token = $user->createToken('Access Token')->accessToken;
 
         return response()->json([
@@ -69,6 +75,24 @@ class PersonalAuthController extends Controller
         return response()->json(['message' => 'Sistemden Çıkış Yapıldı']);
     }
 
+    /**
+     * Personel Hesap Silme
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|void
+     *
+     */
+    public function deleteAccount(Request $request)
+    {
+        $personel = auth('personel')->user();
+        $personel->status = 2; //silinmiş kullanıcı
+        if ($personel->save()){
+            return response()->json([
+                'status' => "success",
+                'message' => "Personel Hesabınız Başarılı bir şekilde silindi"
+            ]);
+        }
+    }
     /**
      * Personel Bilgisi
      * @return \Illuminate\Http\JsonResponse
