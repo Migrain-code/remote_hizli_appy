@@ -187,10 +187,10 @@ class SpeedAppointmentController extends Controller
             return $clocks;
         } else{
             $clocks[] = [
-                'id' => "",
+                'id' => "1",
                 'saat' => "Personelin Bugünkü Tüm Saatleri Dolu. Lütfen Başka bir tarih seçiniz",
-                'date' => "",
-                'value' => "",
+                'date' => "1",
+                'value' => "1",
             ];
             return $clocks;
         }
