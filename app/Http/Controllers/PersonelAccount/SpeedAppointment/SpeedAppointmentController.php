@@ -200,13 +200,16 @@ class SpeedAppointmentController extends Controller
         if ($personel->rooms->count() == 1){
             $roomId = $personel->rooms->first()->room_id;
         } else{
-            $roomId = $request->room_id;
-            if (!isset($roomId)){
-                return response()->json([
-                    'status' => "error",
-                    'message' => "Oda Seçimi Alanı Gereklidir"
-                ], 422);
+            if ($business->activeRooms->count() > 0){
+                $roomId = $request->room_id;
+                if (!isset($roomId)){
+                    return response()->json([
+                        'status' => "error",
+                        'message' => "Oda Seçimi Alanı Gereklidir"
+                    ], 422);
+                }
             }
+
         }
         if ($request->appointment_type != "closeClock") {
             $result = $this->checkClock($personel, $request->start_time, $request->service_id, $roomId);
