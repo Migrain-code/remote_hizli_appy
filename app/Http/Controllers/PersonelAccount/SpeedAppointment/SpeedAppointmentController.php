@@ -186,10 +186,13 @@ class SpeedAppointmentController extends Controller
         if (count($clocks)  > 0){
             return $clocks;
         } else{
-            return response()->json([
-               'status' => "error",
-               'message' => "Personelin Bugünkü Tüm Saatleri Dolu. Lütfen Başka bir tarih seçiniz"
-            ], 200);
+            $clocks[] = [
+                'id' => "",
+                'saat' => "Personelin Bugünkü Tüm Saatleri Dolu. Lütfen Başka bir tarih seçiniz",
+                'date' => "",
+                'value' => "",
+            ];
+            return $clocks;
         }
     }
 
