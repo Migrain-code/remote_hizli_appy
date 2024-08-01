@@ -183,8 +183,14 @@ class SpeedAppointmentController extends Controller
 
             }
         }
-
-        return $clocks;
+        if (count($clocks)  > 0){
+            return $clocks;
+        } else{
+            return response()->json([
+               'status' => "error",
+               'message' => "Personelin Bugünkü Tüm Saatleri Dolu. Lütfen Başka bir tarih seçiniz"
+            ], 422);
+        }
     }
 
     /**
