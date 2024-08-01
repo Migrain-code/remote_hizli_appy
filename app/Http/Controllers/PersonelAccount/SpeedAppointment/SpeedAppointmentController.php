@@ -197,6 +197,7 @@ class SpeedAppointmentController extends Controller
     public function appointmentCreate(Personel $personel, SpeedAppointmentCreateRequest $request)
     {
         $business = $this->business;
+        $roomId = null;
         if ($personel->rooms->count() == 1){
             $roomId = $personel->rooms->first()->room_id;
         } else{
