@@ -29,7 +29,7 @@ class BusinessInfoUpdateRequest extends FormRequest
             'businessName' => 'required|string|max:255',
             'appointmentRange' => 'required|numeric',
             'businessType' => 'required|numeric',
-            'phone' => 'required|string|min:10|max:10',
+            'phone' => 'required|string|min:10|max:11',
             'startTime' => 'required|string',
             'endTime' => 'required|string',
             'email' => 'required|string',
@@ -38,7 +38,7 @@ class BusinessInfoUpdateRequest extends FormRequest
             'cityId' => 'required|numeric',
             'districtId' => 'required|numeric',
             'commission' => 'required|numeric',
-            'personalCount' => 'required|numeric',
+            'personalCount' => 'required',
             'offDay' => 'required|numeric',
             'aboutText' => 'required|string',
         ];
