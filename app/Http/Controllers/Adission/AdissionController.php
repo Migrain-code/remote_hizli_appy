@@ -45,7 +45,8 @@ class AdissionController extends Controller
             } else {
                 $q->whereNotIn('status', [0])->whereIn('status', [1,2]);
             }
-        })->get();
+        })->where('start_time', now()->toDateString())
+            ->get();
         return response()->json(AppointmentResource::collection($appoinments));
     }
 
