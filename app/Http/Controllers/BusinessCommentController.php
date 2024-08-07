@@ -31,7 +31,7 @@ class BusinessCommentController extends Controller
         return response()->json([
             'comments' => CommentListResource::collection($this->business->comments),
             'commentTotal' => $this->business->comments->count(),
-            'commentPoint' => $this->business->comments->sum('point') / $this->business->comments()->count()
+            'commentPoint' => $this->business->comments->sum('point') > 0 ? ($this->business->comments->sum('point') / $this->business->comments()->count()) : 0
         ]);
     }
 
