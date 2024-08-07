@@ -85,7 +85,11 @@ class BusinessOfficial extends Authenticatable
     {
         return $this->hasMany(SupportRequest::class, 'user_id', 'id');
     }
+    public function cashPointnotifications()
+    {
+        return $this->hasMany(CustomerNotificationMobile::class, 'customer_id', 'id')->where('type', 1);
 
+    }
     public function sendWelcomeMessage()
     {
         $notification = new BusinessNotification();
@@ -103,6 +107,7 @@ class BusinessOfficial extends Authenticatable
         $notification->save();
     }
 
+
     public function setPermission($roleId)
     {
         $role = Role::findById($roleId);
@@ -115,4 +120,6 @@ class BusinessOfficial extends Authenticatable
             $this->givePermissionTo($permission->name);
         }
     }
+    
+    
 }
