@@ -118,7 +118,10 @@ class AppointmentController extends Controller
     {
         $appointment->status = 3;
         $appointment->save();
-
+        foreach ($appointment->services as $service){
+            $service->status = 3;
+            $service->save();
+        }
         return response()->json([
             'status' => "success",
             'message' => "Randevu İptal Edildi"
