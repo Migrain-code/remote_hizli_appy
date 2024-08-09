@@ -83,7 +83,10 @@ class PersonelAppointmentController extends Controller
     {
         $appointment->status = 2;
         $appointment->save();
-
+        foreach ($appointment->services as $service){
+            $service->status = 2;
+            $service->save();
+        }
         return response()->json([
             'status' => "success",
             'message' => "Randevuya Durumu Başarılı Bir Şekilde Güncellendi"
@@ -120,7 +123,10 @@ class PersonelAppointmentController extends Controller
     {
         $appointment->status = 3;
         $appointment->save();
-
+        foreach ($appointment->services as $service){
+            $service->status = 3;
+            $service->save();
+        }
         return response()->json([
             'status' => "success",
             'message' => "Randevu İptal Edildi"
