@@ -17,6 +17,7 @@ class CustomerListResource extends JsonResource
         return [
            'id' => $this->customer?->id,
            'name' => $this->customer?->name,
+           'phone' => $this->customer?->phone,
         ];
     }
 }

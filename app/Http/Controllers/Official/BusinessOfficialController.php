@@ -62,13 +62,13 @@ class BusinessOfficialController extends Controller
             return response()->json([
                 'status' => "error",
                 'message' => "Bu e-posta adresi ile kayıtlı yetkili bulunmakta"
-            ]);
+            ], 422);
         }
         if ($this->existPhone(clearPhone($request->input('phone')))) {
             return response()->json([
                 'status' => "error",
                 'message' => "Bu telefon numarası ile kayıtlı yetkili bulunmakta"
-            ]);
+            ],422);
         }
         $official = new BusinessOfficial();
         $official->name = $request->input('name');
@@ -114,14 +114,14 @@ class BusinessOfficialController extends Controller
             return response()->json([
                 'status' => "error",
                 'message' => "Bu e-posta adresi ile kayıtlı yetkili bulunmakta"
-            ]);
+            ],422);
         }
 
         if ($official->phone != clearPhone($request->input('phone')) && $this->existPhone(clearPhone($request->input('phone')))) {
             return response()->json([
                 'status' => "error",
                 'message' => "Bu telefon numarası ile kayıtlı yetkili bulunmakta"
-            ]);
+            ],422);
         }
 
         $official->name = $request->input('name');
@@ -151,7 +151,7 @@ class BusinessOfficialController extends Controller
             return response()->json([
                 'status' => "error",
                 'message' => "Bu yetkili admin olduğu için hesabı silemezsiniz ancak bilgilerini güncelleyebilirsiniz."
-            ]);
+            ],422);
         }
         if ($official->delete()){
             return response()->json([

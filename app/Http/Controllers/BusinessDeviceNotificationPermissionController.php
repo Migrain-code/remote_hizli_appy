@@ -32,6 +32,7 @@ class BusinessDeviceNotificationPermissionController extends Controller
     public function index()
     {
         $permissions = $this->user->devicePermission;
+       
         if (!isset($permissions)){
             $permissions = new BusinessDeviceNotificationPermission();
             $permissions->business_id = $this->user->id;

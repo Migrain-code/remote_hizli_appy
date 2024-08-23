@@ -177,7 +177,7 @@ class ProductSaleController extends Controller
 
         $productFind = Product::find($productSale->product_id);
         if (isset($productFind)){
-            $productFind = $productFind->piece + $productSale->piece;
+            $productFind->piece = $productFind->piece + $productSale->piece;
             $productFind->save();
         }
 

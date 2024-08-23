@@ -28,10 +28,14 @@ class CustomerController extends Controller
     {
         $user = $request->user();
         $business = $user->business;
-        $customers = $business->customers()->whereHas('customer', function ($q) use ($request) {
-            $name = strtolower($request->input('name'));
-            $q->whereRaw('LOWER(name) like ?', ['%' . $name . '%']);
-        })->take(20)->get();
+        $customers = $business->customers()->has('customer')->with('customer')->select('id', 'customer_id', 'status', 'created_at')
+            ->when($request->filled('name'), function ($q) use ($request) {
+                $name = strtolower($request->input('name'));
+                $q->whereHas('customer', function ($q) use ($name) {
+                    $q->whereRaw('LOWER(name) like ?', ['%' . $name . '%'])->orWhere('phone', 'like', '%' . $name . '%');
+                });
+            })
+            ->take(150)->get();
         return response()->json(CustomerListResource::collection($customers));
     }
 
