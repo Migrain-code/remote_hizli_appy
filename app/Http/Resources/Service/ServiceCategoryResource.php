@@ -18,7 +18,7 @@ class ServiceCategoryResource extends JsonResource
            'id' => $this->id,
            'name' => $this->getName(),
            'order' => $this->order_number,
-           'gender' => $this->type->name,
+           'gender' => "",
            'sub_categories' =>ServiceSubCategoryResource::collection($this->subCategories),
         ];
     }
