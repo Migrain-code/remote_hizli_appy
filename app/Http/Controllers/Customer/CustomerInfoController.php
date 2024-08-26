@@ -36,8 +36,8 @@ class CustomerInfoController extends Controller
     public function cashPointList(Customer $customer)
     {
         return response()->json([
-            'total' => $customer->cashPoints->count(),
-            'cashPoints' => CashPointList2Resoruce::collection($customer->allCashPoints)
+            'total' => $customer->withBusinessCashpoints->count(),
+            'cashPoints' => CashPointList2Resoruce::collection($customer->withBusinessCashpoints)
         ]);
     }
     /**
