@@ -17,6 +17,9 @@ class RoomsListResource extends JsonResource
         return [
            'id' => $this->id,
            'name' => $this->name,
+           'colorCode' => $this->color,
+           'price' => "% ".$this->price,
+           'status' => $this->status == 1
         ];
     }
 }

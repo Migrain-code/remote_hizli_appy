@@ -44,7 +44,7 @@ use App\Http\Controllers\Setup\SetupController;
 use App\Http\Controllers\Subscription\SubscribtionController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\BusinessDeviceNotificationPermissionController;
-
+use App\Http\Controllers\Room\BusinessRoomController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -81,6 +81,7 @@ Route::prefix('business')->group(function () {
         Route::get('notification-count', [HomeController::class, 'notificationCount']);
         Route::controller(HomeController::class)->prefix('home')->group(function () {
             Route::get('/', 'index');
+            Route::get('personel-appointment/{personel}', 'getPersonelClock');
         });
         Route::controller(HomeController::class)->prefix('setting')->group(function () {
             Route::get('/', 'setting');
@@ -321,5 +322,10 @@ Route::prefix('business')->group(function () {
 
         /** ------------------------------- Prim ------------------------------------ */
         Route::get('prim', [PrimController::class, 'index']);
+
+        /** -------------------------------- Odalar --------------------------------------- */
+        Route::apiResource('room', BusinessRoomController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
     });
 });

@@ -18,7 +18,7 @@ class CashPointList2Resoruce extends JsonResource
             'id' => $this->id,
             'price' => $this->price == 0 ? "Kullanıldı ".$this->price." " : $this->price,
             'appointmentId' => $this->appointment_id,
-            'businessName' => $this->appointment->business->name,
+            'businessName' => $this->appointment?->business?->name,
             'created_at' => $this->addition_date->format('d.m.Y H:i:s') //tanımlanma tarihi
         ];
     }
