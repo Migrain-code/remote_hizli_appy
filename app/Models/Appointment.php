@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Jobs\SendReminderJob;
+use App\Services\NotificationService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -241,5 +242,22 @@ class Appointment extends Model
         $reminderTime = $this->start_time->subMinutes($this->business->reminder_time);
 
         SendReminderJob::dispatch($this)->delay($reminderTime);
+    }
+
+    public function sendPersonelNotification()
+    {
+        foreach ($this->services as $service){
+            $personelNotification = new PersonelNotification();
+            $personelNotification->business_id = $this->business_id;
+            $personelNotification->personel_id = $service->personel_id;
+            $personelNotification->title = "Merhaba ".$service->personel->name." ,Yeni bir randevunuz var!";
+            $personelNotification->message = $this->customer->name. " "." adlı müşteriniz sizden ". $service->start_time. " tarihine ".$service->service->subCategory->getName()." hizmetine randevu aldı.";
+            $personelNotification->link = uniqid();
+            $personelNotification->save();
+
+            if (isset($service->personel->device)){
+                NotificationService::sendPushNotification($service->personel->device->token, $personelNotification->title, $personelNotification->message);
+            }
+        }
     }
 }

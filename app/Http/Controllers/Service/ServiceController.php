@@ -38,25 +38,8 @@ class ServiceController extends Controller
     {
 
         $business = $this->business;
-
-        $womanServicesArray = $business->services()->where('type', 1)->with('categorys')->get();
-        $womanServiceCategories = $womanServicesArray->groupBy('categorys.name');
-        $womanServices = $this->transformServices($womanServiceCategories);
-
-        $manServicesArray = $business->services()->where('type', 2)->with('categorys')->get();
-        $manServiceCategories = $manServicesArray->groupBy('categorys.name');
-        $manServices = $this->transformServices($manServiceCategories);
-
-        $unisexServicesArray = $business->services()->where('type', 3)->with('categorys')->get();
-        $unisexServiceCategories = $unisexServicesArray->groupBy('categorys.name');
-        $unisexServices = $this->transformServices($unisexServiceCategories);
-
-
-        return response()->json([
-            'womanCategories' => $womanServices,
-            'manCategories' => $manServices,
-            'unisexCategories' => $unisexServices,
-        ]);
+        $services = $business->services;
+        return response()->json(BusinessServiceResource::collection($services));
     }
 
     /**

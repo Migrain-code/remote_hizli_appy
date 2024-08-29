@@ -244,13 +244,13 @@ Route::prefix('business')->group(function () {
         /** -------------------------------- Randevu Oluşturma --------------------------------------- */
 
         Route::prefix('appointment-create')->controller(AppointmentCreateController::class)->group(function () {
-            Route::get('get/services', 'getService');
-            Route::get('get/customers', 'getCustomer');
-            Route::post('get/personel', 'getPersonel');
-            Route::post('get/date', 'getDate');
-            Route::post('get/clock', 'getClock');
+            Route::get('personel', 'getPersonel');
+            Route::get('services', 'getService');
+            Route::get('date', 'getDate');
+            Route::get('clock', 'getClock');
+            Route::get('customers', 'getCustomer');
+            Route::get('/summary', 'summary');
             Route::post('/', 'appointmentCreate');
-            Route::post('/summary', 'summary');
         });
         /** -------------------------------- Hizmetler --------------------------------------- */
         Route::apiResource('service', ServiceController::class)->only([

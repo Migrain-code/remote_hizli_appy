@@ -27,12 +27,8 @@ class AppointmentCreateRequest extends FormRequest
     {
         return [
             'customer_id' => "required",
-            'appointment_date' => 'required|date',
             'personels' => "required",
-            'times' => "required",
-            'services' => "required",
-            'total' => "required",
-            'discountTotal' => "required",
+            'appointment_time' => "required",
         ];
     }
 
@@ -41,12 +37,8 @@ class AppointmentCreateRequest extends FormRequest
 
         return [
             'customer_id' => "Müşteri",
-            'appointment_date' => 'Randevu Tarihi',
             'personels' => "Personeller",
-            'times' => "Saatler",
-            'services' => "Hizmetler",
-            'total' => "Toplam Ücret",
-            'discountTotal' => "İndirim Tutarı",
+            'appointment_time' => "Randevu Tarihi ve Saati",
         ];
     }
 
@@ -54,7 +46,7 @@ class AppointmentCreateRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => 'error',
-            'message' => 'Eksik Alanlar Var',
+            'message' => $validator->errors()->first(),
             'errors' => $validator->errors()->all(),
         ], 422));
     }
