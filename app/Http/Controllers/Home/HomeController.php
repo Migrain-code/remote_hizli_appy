@@ -94,7 +94,7 @@ class HomeController extends Controller
 
         return response()->json([
             'personels' => PersonelListResource::collection($personels),
-            'advert' => AdvertListResource::make($advert),
+            //'advert' => AdvertListResource::make($advert),
             'dates' => $dates,
         ]);
     }
