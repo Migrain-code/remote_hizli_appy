@@ -46,6 +46,8 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\BusinessDeviceNotificationPermissionController;
 use App\Http\Controllers\Room\BusinessRoomController;
 use App\Http\Controllers\CustomWorkTimeController;
+use App\Http\Controllers\BusinessCloseDayController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -333,5 +335,21 @@ Route::prefix('business')->group(function () {
         Route::apiResource('custom-work-time', CustomWorkTimeController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
+        /** -------------------------------- Özel Kapalı Günler --------------------------------------- */
+        Route::apiResource('close-day', BusinessCloseDayController::class)->only([
+            'index', 'show', 'store', 'edit', 'update', 'destroy'
+        ]);
+
+        /*------- Saat Kapatma -----------*/
+        Route::prefix('speed-appointment')
+            ->controller(\App\Http\Controllers\CloseClock\SpeedAppointmentController::class)
+            ->group(function (){
+                Route::get('/', 'index')->name('index');
+                Route::get('customer', 'getCustomerList');
+                Route::post('add/customer', 'newCustomer');
+                Route::get('personel/{personel}/services', 'getPersonelServiceList');
+                Route::get('personel/{personel}/clocks', 'getPersonelClocks');
+                Route::post('personel/{personel}/create', 'appointmentCreate');
+            });
     });
 });
