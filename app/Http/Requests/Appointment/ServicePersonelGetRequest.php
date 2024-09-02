@@ -26,7 +26,7 @@ class ServicePersonelGetRequest extends FormRequest
     public function rules()
     {
         return [
-            'serviceIds' => 'required',
+            'services' => 'required',
         ];
     }
 
@@ -34,7 +34,7 @@ class ServicePersonelGetRequest extends FormRequest
     {
 
         return [
-            'serviceIds' => 'Hizmetler',
+            'services' => 'Hizmetler',
         ];
     }
 

@@ -26,17 +26,16 @@ class ClockGetRequest extends FormRequest
     public function rules()
     {
         return [
-            'date' => 'required|date',
-            'personelIds' => "required",
+            'appointment_date' => 'required|date',
+            'personels' => "required",
         ];
     }
 
     public function attributes()
     {
-
         return [
-            'date' => 'Tarih',
-            'personelIds' => "Personeller",
+            'appointment_date' => 'Tarih',
+            'personels' => "Personeller",
         ];
     }
 
@@ -44,7 +43,7 @@ class ClockGetRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => 'error',
-            'message' => 'Eksik Alanlar Var',
+            'message' => $validator->errors()->first(),
             'errors' => $validator->errors()->all(),
         ], 422));
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Appointment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Appointment\AppointmentCreateRequest;
 use App\Http\Requests\Appointment\AppointmentSummaryRequest;
+use App\Http\Requests\Appointment\ClockGetRequest;
 use App\Http\Requests\Appointment\GetClockRequest;
 use App\Http\Requests\Appointment\PersonelDateGetRequest;
 use App\Http\Requests\Appointment\ServicePersonelGetRequest;
@@ -52,11 +53,12 @@ class AppointmentCreateController extends Controller
         $unisexServices = $this->transformServices($unisexServiceCategories);*/
 
         return response()->json([
-           'business_type' => $business->type_id,
-           'womanCategories' => $womanServices,
-           'manCategories' => $manServices,
+            'business_type' => $business->type_id,
+            'womanCategories' => $womanServices,
+            'manCategories' => $manServices,
         ]);
     }
+
     /**
      *
      * Personel Listesi
@@ -67,7 +69,7 @@ class AppointmentCreateController extends Controller
     {
         $user = $request->user();
         $business = $user->business;
-        $getData = $request->serviceIds;
+        $getData = $request->services;
         $room_id = $request->room_id;
         $rooms = [];
         if ($business->rooms->count() > 0) {
@@ -128,6 +130,7 @@ class AppointmentCreateController extends Controller
 
         ]);
     }
+
     /**
      *
      * Müşteri Listesi
@@ -144,6 +147,7 @@ class AppointmentCreateController extends Controller
         })->take(20)->get();
         return response()->json(CustomerListResource::collection($customers));
     }
+
     /**
      *
      * Tarih Listesi
@@ -203,7 +207,7 @@ class AppointmentCreateController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function getClock(Request $request, Business $business)
+    public function getClock(ClockGetRequest $request, Business $business)
     {
         $getDate = Carbon::parse($request->appointment_date);
         $personelIds = [];
@@ -214,7 +218,6 @@ class AppointmentCreateController extends Controller
         }
         $uniquePersonals = array_unique($personelIds);
 
-        // personelleri gelen id lere göre db den collection olarak al
         $personels = [];
         foreach ($uniquePersonals as $id) {
             $personels[] = Personel::find($id);
@@ -357,14 +360,14 @@ class AppointmentCreateController extends Controller
                         if (in_array(Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek, $personel->restDays()->pluck('day_id')->toArray())) {
                             return response()->json([
                                 "status" => "error",
-                                "message" => "Personel ".$personel->name." bu tarihte hizmet vermemektedir"
+                                "message" => "Personel " . $personel->name . " bu tarihte hizmet vermemektedir"
                             ], 200);
                         } else {
                             //personel kapalı değilse personel izin gün kontrolü
                             if ($personel->checkDateIsOff($getDate)) {
                                 return response()->json([
                                     "status" => "error",
-                                    "message" => "Personel ".$personel->name." bu tarihte hizmet vermemektedir"
+                                    "message" => "Personel " . $personel->name . " bu tarihte hizmet vermemektedir"
                                 ], 200);
                             } else {
                                 for ($i = Carbon::parse($personel->start_time); $i < Carbon::parse($personel->end_time); $i->addMinute($personel->appointmentRange->time)) {
@@ -381,7 +384,6 @@ class AppointmentCreateController extends Controller
 
                         }
                     }
-
 
 
                 }
@@ -415,13 +417,13 @@ class AppointmentCreateController extends Controller
                     $service = BusinessService::find($serviceId);
                     $totalServiceTime += $service->time;
                 }
-                if ($clockRange < $totalServiceTime){
+                if ($clockRange < $totalServiceTime) {
                     return response()->json([
                         "status" => "error",
                         "message" => "Seçtiğiniz Hizmetlere Uygun Randevu Aralığı Bulunamadı"
                     ], 200);
                 }
-                foreach ($totalClocks as $clock){
+                foreach ($totalClocks as $clock) {
                     $parsedClock = Carbon::parse($clock);
                     $clocks[] = [
                         'id' => $parsedClock->format('d_m_Y_' . $parsedClock->format('H_i')),
@@ -450,12 +452,17 @@ class AppointmentCreateController extends Controller
     {
         $user = $request->user();
         $business = $user->business;
+        $serviceIds = [];
+        foreach ($request->personels as $personel) {
+            $serviceIds[] = explode("_", $personel)[1];
+        }
+
         $customer = $business->customers()->where('customer_id', $request->customer_id)->first();
-        $businessServices = $business->services()->whereIn('id', $request->services)->get();
+        $businessServices = $business->services()->whereIn('id', $serviceIds)->get();
 
         return response()->json([
             'customer' => CustomerListResource::make($customer),
-            'appointmentDate' => $request->times[0],
+            'appointmentDate' => $request->appointment_time,
             'services' => BusinessServiceResource::collection($businessServices),
             'total' => $businessServices->sum('price'),
         ]);
@@ -544,7 +551,7 @@ class AppointmentCreateController extends Controller
 
         }
         if ($appointment->save()) {
-            if (isset($request->campaign_id)){
+            if (isset($request->campaign_id)) {
                 $campaign = Campaign::find($request->campaign_id);
                 $discount = $campaign->discount;
                 $appointment->campaign_id = $request->campaign_id;
@@ -553,8 +560,8 @@ class AppointmentCreateController extends Controller
             }
             //$appointment->customer->sendSms($message);
             $title = "Randevunuz Oluşturuldu";
-            $appointment->customer->sendNotification($title, $message);
-            $appointment->sendPersonelNotification();
+           // $appointment->customer->sendNotification($title, $message);
+          //  $appointment->sendPersonelNotification();
             $appointment->scheduleReminder();
             $appointment->calculateTotal();
             return response()->json([
@@ -571,14 +578,14 @@ class AppointmentCreateController extends Controller
     }
 
 
-
-    function transformServices($womanServiceCategories){
+    function transformServices($womanServiceCategories)
+    {
         $transformedDataWoman = [];
         foreach ($womanServiceCategories as $category => $services) {
 
             $transformedServices = [];
             foreach ($services as $service) {
-                if ($service->personels->count() > 0){
+                if ($service->personels->count() > 0) {
                     $transformedServices[] = [
                         'id' => $service->id,
                         'name' => $service->subCategory->getName(),

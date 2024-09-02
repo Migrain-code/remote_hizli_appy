@@ -45,6 +45,7 @@ use App\Http\Controllers\Subscription\SubscribtionController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\BusinessDeviceNotificationPermissionController;
 use App\Http\Controllers\Room\BusinessRoomController;
+use App\Http\Controllers\CustomWorkTimeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -325,6 +326,11 @@ Route::prefix('business')->group(function () {
 
         /** -------------------------------- Odalar --------------------------------------- */
         Route::apiResource('room', BusinessRoomController::class)->only([
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ]);
+
+        /** -------------------------------- Özel Çalışma Saatleri --------------------------------------- */
+        Route::apiResource('custom-work-time', CustomWorkTimeController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
     });

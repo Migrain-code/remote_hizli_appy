@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Appointment;
+namespace App\Http\Requests\CustomWorkTime;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class AppointmentSummaryRequest extends FormRequest
+class CustomWorkTimeAddRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +26,11 @@ class AppointmentSummaryRequest extends FormRequest
     public function rules()
     {
         return [
-            'customer_id' => "required",
-            'appointment_date' => 'required|date',
-            'appointment_time' => "required",
-            'personels' => "required",
-            'discountTotal' => "required",
+            'personels' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
         ];
     }
 
@@ -38,12 +38,11 @@ class AppointmentSummaryRequest extends FormRequest
     {
 
         return [
-            'customer_id' => "Müşteri",
-            'appointment_date' => 'Randevu Tarihi',
-            'appointment_time' => "Randevu Saati",
-            'personels' => "Hizmetler",
-            'total' => "Toplam Ücret",
-            'discountTotal' => "İndirim Tutarı",
+            'personels' => 'Personel Seçimi',
+            'start_date' => 'Başlangıç Tarihi',
+            'end_date' => 'Bitiş Tarihi',
+            'start_time' => 'Başlangıç Saati',
+            'end_time' => 'Bitiş Saati',
         ];
     }
 
@@ -51,7 +50,7 @@ class AppointmentSummaryRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => 'error',
-            'message' => 'Eksik Alanlar Var',
+            'message' => $validator->errors()->first(),
             'errors' => $validator->errors()->all(),
         ], 422));
     }
