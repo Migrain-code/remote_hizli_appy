@@ -275,6 +275,10 @@ class SpeedAppointmentController extends Controller
 
             if ($business->approve_type == 1 && $request->appointment_type == "closeClock") {// Manuel onay ve saat kapatma ise
                 $appointment->status = 0; // Onay bekliyor durumu
+                foreach ($appointment->services as $service) {
+                    $service->status = 0;
+                    $service->save();
+                }
             } else {
                 $appointment->status = 1; // onaylandı durumu
 

@@ -37,7 +37,7 @@ class AdissionController extends Controller
         //$appoinments = $business->appointments()->whereDate('start_time', $reqDate)->orderBy('start_time', 'asc')->get();
         $appoinments = $business->appointments()->when($request->filled('listType'), function ($q) use ($request) {
             if ($request->listType == "open") {
-                $q->whereNotIn('status', [0])->whereIn('status', [1,2]);
+                $q->whereIn('status', [1,2]);
             } elseif ($request->listType == "closed") {
                 $q->whereIn('status', [5, 6]);
             } elseif ($request->listType == "canceled") {
@@ -45,8 +45,9 @@ class AdissionController extends Controller
             } else {
                 $q->whereNotIn('status', [0])->whereIn('status', [1,2]);
             }
-        })->where('start_time', now()->toDateString())
+        })/*->where('start_time', now()->toDateString())*/
             ->get();
+
         return response()->json(AppointmentResource::collection($appoinments));
     }
 
