@@ -448,24 +448,24 @@ class Personel extends Authenticatable
                 $q->whereBetween('start_time', [$startDate->toDateString(), $endDate->toDateString()]);
             })
             ->when($listType, function ($q) use ($listType) {
-            switch ($listType) {
-                case 'thisWeek':
-                    $q->whereBetween('start_time', [now()->startOfWeek(), now()->endOfWeek()]);
-                    break;
-                case 'thisMonth':
-                    $q->whereBetween('start_time', [now()->startOfMonth(), now()->endOfMonth()]);
-                    break;
-                case 'thisYear':
-                    $q->whereBetween('start_time', [now()->startOfYear(), now()->endOfYear()]);
-                    break;
-                case 'thisDay':
-                    $q->whereDate('start_time', now()->toDateString());
-                    break;
-                default:
-                    $q->whereDate('start_time', now()->subDays(1)->toDateString());
-                    break;
-            }
-        })->get();
+                switch ($listType) {
+                    case 'thisWeek':
+                        $q->whereBetween('start_time', [now()->startOfWeek(), now()->endOfWeek()]);
+                        break;
+                    case 'thisMonth':
+                        $q->whereBetween('start_time', [now()->startOfMonth(), now()->endOfMonth()]);
+                        break;
+                    case 'thisYear':
+                        $q->whereBetween('start_time', [now()->startOfYear(), now()->endOfYear()]);
+                        break;
+                    case 'thisDay':
+                        $q->whereDate('start_time', now()->toDateString());
+                        break;
+                    default:
+                        $q->whereDate('start_time', now()->subDays(1)->toDateString());
+                        break;
+                }
+            })->get();
 
         /*foreach ($appointments as $appointment){
             $appointment->total = $appointment->servicePrice();
@@ -492,24 +492,24 @@ class Personel extends Authenticatable
                 $q->whereBetween('created_at', [$startDate->toDateString(), $endDate->toDateString()]);
             })
             ->when($listType, function ($q) use ($listType) {
-            switch ($listType) {
-                case 'thisWeek':
-                    $q->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
-                    break;
-                case 'thisMonth':
-                    $q->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()]);
-                    break;
-                case 'thisYear':
-                    $q->whereBetween('created_at', [now()->startOfYear(), now()->endOfYear()]);
-                    break;
-                case 'thisDay':
-                    $q->whereDate('created_at', now()->toDateString());
-                    break;
-                default:
-                    $q->whereDate('created_at', now()->subDays(1)->toDateString());
-                    break;
-            }
-        })->sum('total');
+                switch ($listType) {
+                    case 'thisWeek':
+                        $q->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+                        break;
+                    case 'thisMonth':
+                        $q->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()]);
+                        break;
+                    case 'thisYear':
+                        $q->whereBetween('created_at', [now()->startOfYear(), now()->endOfYear()]);
+                        break;
+                    case 'thisDay':
+                        $q->whereDate('created_at', now()->toDateString());
+                        break;
+                    default:
+                        $q->whereDate('created_at', now()->subDays(1)->toDateString());
+                        break;
+                }
+            })->sum('total');
 
         $productHakedis = ($productPrice * $this->product_rate) / 100;
         return [
@@ -528,24 +528,24 @@ class Personel extends Authenticatable
                 $q->whereBetween('seller_date', [$startDate->toDateString(), $endDate->toDateString()]);
             })
             ->when($listType, function ($q) use ($listType) {
-            switch ($listType) {
-                case 'thisWeek':
-                    $q->whereBetween('seller_date', [now()->startOfWeek(), now()->endOfWeek()]);
-                    break;
-                case 'thisMonth':
-                    $q->whereBetween('seller_date', [now()->startOfMonth(), now()->endOfMonth()]);
-                    break;
-                case 'thisYear':
-                    $q->whereBetween('seller_date', [now()->startOfYear(), now()->endOfYear()]);
-                    break;
-                case 'thisDay':
-                    $q->whereDate('seller_date', now()->toDateString());
-                    break;
-                default:
-                    $q->whereDate('seller_date', now()->subDays(1)->toDateString());
-                    break;
-            }
-        })->sum('total');
+                switch ($listType) {
+                    case 'thisWeek':
+                        $q->whereBetween('seller_date', [now()->startOfWeek(), now()->endOfWeek()]);
+                        break;
+                    case 'thisMonth':
+                        $q->whereBetween('seller_date', [now()->startOfMonth(), now()->endOfMonth()]);
+                        break;
+                    case 'thisYear':
+                        $q->whereBetween('seller_date', [now()->startOfYear(), now()->endOfYear()]);
+                        break;
+                    case 'thisDay':
+                        $q->whereDate('seller_date', now()->toDateString());
+                        break;
+                    default:
+                        $q->whereDate('seller_date', now()->subDays(1)->toDateString());
+                        break;
+                }
+            })->sum('total');
 
         $packageHakedis = ($packagePrice * $this->product_rate) / 100;
         return [

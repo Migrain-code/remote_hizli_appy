@@ -47,6 +47,7 @@ use \App\Http\Controllers\BusinessDeviceNotificationPermissionController;
 use App\Http\Controllers\Room\BusinessRoomController;
 use App\Http\Controllers\CustomWorkTimeController;
 use App\Http\Controllers\BusinessCloseDayController;
+use App\Http\Controllers\AppointmentRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -340,7 +341,7 @@ Route::prefix('business')->group(function () {
             'index', 'show', 'store', 'edit', 'update', 'destroy'
         ]);
 
-        /*------- Saat Kapatma -----------*/
+        /*------- Saat Kapatma ve Adisyon Oluşturma -----------*/
         Route::prefix('speed-appointment')
             ->controller(\App\Http\Controllers\CloseClock\SpeedAppointmentController::class)
             ->group(function (){
@@ -351,5 +352,11 @@ Route::prefix('business')->group(function () {
                 Route::get('personel/{personel}/clocks', 'getPersonelClocks');
                 Route::post('personel/{personel}/create', 'appointmentCreate');
             });
+
+        /** -------------------------------- Randevu Talepleri --------------------------------------- */
+        Route::apiResource('appointment-request', AppointmentRequestController::class)->only([
+            'index', 'show', 'store', 'edit', 'update', 'destroy'
+        ]);
+
     });
 });

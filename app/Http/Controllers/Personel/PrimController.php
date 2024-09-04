@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Personel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Personel\PersonelListResource;
+use App\Models\Personel;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 /**
  * @group Prim
@@ -27,35 +31,28 @@ class PrimController extends Controller
         });
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $prims = [];
-        $personels = $this->business->personels;
-        foreach ($personels as $personel) {
-            $servicePrice = 0;
-            foreach ($personel->appointments as $appointment) {
-                $servicePrice += $appointment->service->price;
-            }
-
-            $productPrice = $personel->sales->sum('total');
-
-            $serviceRate = (($servicePrice * $personel->rate) / 100);
-            $productRate = (($productPrice * $personel->product_rate) / 100);
-            $total = $serviceRate + $productRate;
-            $prims[] = [
-                'personelName' => $personel->name,
-                'servicePrice' => $serviceRate,
-                'productPrice' => $productRate,
-                'total' => $total,
-            ];
-            $this->case['servicePrice'] += $serviceRate;
-            $this->case['productPrice'] += $productRate;
-            $this->case['total'] += $total;
+        $startTime = now();
+        $endTime = now();
+        if ($request->filled('min_date') && $request->filled('max_date')){
+            $startTime = Carbon::parse($request->min_date)->toDateString();
+            $endTime = Carbon::parse($request->max_date)->toDateString();
         }
 
+        $personels = $this->business->personels;
+        if ($request->filled('personel_id')){
+            $personel = Personel::find($request->personel_id);
+        } else{
+            $personel = $personels->first();
+        }
+
+        $case = $personel->case(null, $startTime, $endTime);
+
         return response()->json([
-            'case' => $this->case,
-            'personels' => $prims
+           'case' => $case,
+           'selected_personel' => PersonelListResource::make($personel),
+           'personels' => PersonelListResource::collection($personels),
         ]);
     }
 }

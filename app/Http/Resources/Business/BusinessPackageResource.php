@@ -19,6 +19,7 @@ class BusinessPackageResource extends JsonResource
             'name' => $this->name,
             'price' => $this->price,
             'type' => $this->type,
+            'typeName' => $this->type == 0 ? "Aylık" : "Yıllık",
             'proparties' => BusinessPackagePropartieResource::collection( $this->proparties),
         ];
     }

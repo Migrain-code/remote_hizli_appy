@@ -11,7 +11,13 @@ function image($path)
 function setting($key){
     return config('settings.'.$key);
 }
-
+function maskPhone($phone){
+    if (strlen($phone) > 10){
+        $maskedPhone = substr_replace(clearPhone($phone), str_repeat('*', strlen($phone) - 2), 0, -2);
+        return $maskedPhone;
+    }
+    return $phone;
+}
 function authUser(){
     if (auth('official')->check()){
         return auth('official')->user();

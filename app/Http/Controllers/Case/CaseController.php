@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PackagePayment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 /**
  * @group Kasa
@@ -22,7 +23,7 @@ class CaseController extends Controller
     public function __construct()
     {
         $this->case = [
-            'closedTotal' => 0,
+            //'closedTotal' => 0,
             'total' => 0,
             'cashTotal' => 0,
             'creditTotal' => 0,
@@ -52,35 +53,48 @@ class CaseController extends Controller
     public function index(Request $request)
     {
         $business = $this->business;
+        if (!$request->filled('min_date') && !$request->filled('max_date')) {
+            $request->merge(['date_range' => now()->format('d.m.Y') . ' - ' . now()->format('d.m.Y')]);
+        } else{
+            $request->merge(["date_range" => Carbon::parse($request->min_date)->format('d.m.Y'). ' - ' .Carbon::parse($request->max_date)->format('d.m.Y')]);
+        }
 
         $this->adissionCalculator($business, $request);
         $this->productSaleCalculator($business, $request);
         $this->paymentsCalculator($business, $request);
+
+        $closingBalance = $this->case;
+        $totalExpense = $this->payments;
+        $totals = [
+            'total' => $this->case["total"] - $this->payments["total"],
+            'cashTotal' => $this->case["cashTotal"] - $this->payments["cashTotal"],
+            'creditTotal' => $this->case["creditTotal"] - $this->payments["creditTotal"],
+            'eftTotal' => $this->case["eftTotal"] - $this->payments["eftTotal"],
+            'otherTotal' => $this->case["otherTotal"] - $this->payments["otherTotal"]
+        ];
+
         return response()->json([
-            'closingBalance' => $this->case,
-            'totalExpense' => $this->payments
+            'remainingTotal' => $totals,
+            'revenues' => $closingBalance,
+            'expense' => $totalExpense
         ]);
     }
 
     public function adissionCalculator($business, $request)
     {
-        $adissions = $business->appointments()->whereIn('status', [5, 6])->when($request->filled('listType'), function ($q) use ($request) {
-            if ($request->listType == "thisWeek") {
-                $startOfWeek = now()->startOfWeek();
-                $endOfWeek = now()->endOfWeek();
-                $q->whereBetween('start_time', [$startOfWeek, $endOfWeek]);
-            } elseif ($request->listType == "thisMonth") {
-                $startOfMonth = now()->startOfMonth();
-                $endOfMonth = now()->endOfMonth();
-                $q->whereBetween('start_time', [$startOfMonth, $endOfMonth]);
-            } elseif ($request->listType == "thisYear") {
-                $startOfYear = now()->startOfYear();
-                $endOfYear = now()->endOfYear();
-                $q->whereBetween('start_time', [$startOfYear, $endOfYear]);
-            } else {
-                $q->whereDate('start_time', now()->toDateString());
-            }
-        })->get();
+        $adissions = $business->appointments()->whereIn('status', [5, 6])
+            ->when($request->filled('date_range'), function ($q) use ($request) {
+                $timePartition = explode('-', $request->date_range);
+                $startTime = Carbon::createFromFormat('d.m.Y', trim($timePartition[0]))->startOfDay();
+                $endTime = Carbon::createFromFormat('d.m.Y', trim($timePartition[1]))->endOfDay();
+
+                if ($startTime == $endTime){
+                    $q->whereDate('start_time', $startTime);
+                } else{
+                    $q->whereBetween('start_time', [$startTime, $endTime]);
+                }
+            })
+            ->get();
 
         foreach ($adissions as $adission) {
             foreach ($adission->payments as $payment) {
@@ -119,7 +133,18 @@ class CaseController extends Controller
                 } else {
                     $q->whereDate('created_at', now()->toDateString());
                 }
-            })->get();
+            })
+            ->when($request->filled('date_range'), function ($q) use ($request) {
+                $startTime = now();
+                $endTime = now();
+                if ($request->filled('date_range')) {
+                    $timePartition = explode('-', $request->date_range);
+                    $startTime = Carbon::parse(clearPhone($timePartition[0]))->toDateString();
+                    $endTime = Carbon::parse(clearPhone($timePartition[1]))->toDateString();
+                }
+                $q->whereBetween('created_at', [$startTime, $endTime]);
+            })
+            ->get();
 
         foreach ($sales as $sale) {
             if ($sale->payment_type == 0) {
@@ -134,31 +159,6 @@ class CaseController extends Controller
         }
         $this->case["total"] = $this->case["cashTotal"] + $this->case["creditTotal"] + $this->case["eftTotal"] + $this->case["otherTotal"];
 
-        return $this->case;
-    }
-
-    public function packagePaymentCalculator($business, $request)
-    {
-        $packageIds = $business->packages()->pluck('id')->toArray();
-        $packagePayments = PackagePayment::whereIn('package_id', [$packageIds])->when($request->filled('listType'), function ($q) use ($request) {
-            if ($request->listType == "thisWeek") {
-                $startOfWeek = now()->startOfWeek();
-                $endOfWeek = now()->endOfWeek();
-                $q->whereBetween('created_at', [$startOfWeek, $endOfWeek]);
-            } elseif ($request->listType == "thisMonth") {
-                $startOfMonth = now()->startOfMonth();
-                $endOfMonth = now()->endOfMonth();
-                $q->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
-            } elseif ($request->listType == "thisYear") {
-                $startOfYear = now()->startOfYear();
-                $endOfYear = now()->endOfYear();
-                $q->whereBetween('created_at', [$startOfYear, $endOfYear]);
-            } else {
-                $q->whereDate('created_at', now()->toDateString());
-            }
-        })->sum('price');
-        $this->case["cashTotal"] += $packagePayments;
-        $this->case["total"] += $this->case["cashTotal"];
         return $this->case;
     }
 
@@ -181,7 +181,18 @@ class CaseController extends Controller
                 } else {
                     $q->whereDate('operation_date', now()->toDateString());
                 }
-            })->get();
+            })
+            ->when($request->filled('date_range'), function ($q) use ($request) {
+                $startTime = now();
+                $endTime = now();
+                if ($request->filled('date_range')) {
+                    $timePartition = explode('-', $request->date_range);
+                    $startTime = Carbon::parse(clearPhone($timePartition[0]))->toDateString();
+                    $endTime = Carbon::parse(clearPhone($timePartition[1]))->toDateString();
+                }
+                $q->whereBetween('operation_date', [$startTime, $endTime]);
+            })
+            ->get();
 
         foreach ($costs as $cost) {
             if ($cost->payment_type_id == 0) {
@@ -198,4 +209,5 @@ class CaseController extends Controller
 
         return $this->payments;
     }
+
 }
