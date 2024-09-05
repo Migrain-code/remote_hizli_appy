@@ -550,6 +550,8 @@ class AppointmentCreateController extends Controller
             $message = $business->name . " İşletmesine " . $appointment->start_time->format('d.m.Y H:i') . " tarihine randevunuz oluşturuldu.";
 
         }
+        $appointment->location = "Hızlı Randevu Patron Mobil Randevu Oluşturma Alanı";
+
         if ($appointment->save()) {
             if (isset($request->campaign_id)) {
                 $campaign = Campaign::find($request->campaign_id);

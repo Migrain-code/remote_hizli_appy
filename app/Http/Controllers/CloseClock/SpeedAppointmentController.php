@@ -288,14 +288,14 @@ class SpeedAppointmentController extends Controller
                 }
             }
 
-
+        $appointment->location = "Hızlı Randevu Patron Mobil Saat Kapatma Ve Adisyon Alanı";
 
         if ($appointment->save()) {
             $title = "Randevunuz başarılı bir şekilde oluşturuldu";
             $message = $business->name . " İşletmesine " . $appointment->start_time->format('d.m.Y H:i') . " tarihine randevunuz oluşturuldu.";
             //$appointment->customer->sendSms($message);
 
-            //$appointment->customer->sendNotification($title, $message);
+            $appointment->customer->sendNotification($title, $message);
             $appointment->scheduleReminder();
             return response()->json([
                 'status' => "success",

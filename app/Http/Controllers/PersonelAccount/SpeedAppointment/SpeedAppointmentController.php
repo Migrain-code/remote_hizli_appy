@@ -289,6 +289,7 @@ class SpeedAppointmentController extends Controller
             }
 
 
+        $appointment->location = "Hızlı Randevu Personel Mobil Randevu Oluşturma";
 
         if ($appointment->save()) {
             $title = "Randevunuz başarılı bir şekilde oluşturuldu";
