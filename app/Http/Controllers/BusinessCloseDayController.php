@@ -48,6 +48,9 @@ class BusinessCloseDayController extends Controller
         $closeDay->start_time = $request->input('start_time');
         $closeDay->end_time = $request->input('end_time');
         $closeDay->business_id = $this->business->id;
+        if ($request->filled('status')){
+            $closeDay->status = $request->status;
+        }
         if ($closeDay->save()){
             return response()->json([
                 'status' => "success",
