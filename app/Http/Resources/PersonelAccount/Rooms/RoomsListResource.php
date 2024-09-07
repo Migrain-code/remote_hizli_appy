@@ -15,8 +15,8 @@ class RoomsListResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->room_id == 0 || is_null($this->room) ? 0 : $this->room->id,
-            'name' => $this->room_id == 0 || is_null($this->room) ? 'Salon' : $this->room->name,
+           'id' => $this->room_id == 0 ? 0 : $this->room->id,
+           'name' =>$this->room_id == 0 ? "Salon" : $this->room->name,
         ];
     }
 }
