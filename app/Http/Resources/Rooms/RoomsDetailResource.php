@@ -30,7 +30,7 @@ class RoomsDetailResource extends JsonResource
            'id' => $this->id,
            'name' => $this->name,
            'colorCode' => $this->color,
-           'price' => "% ".$this->price,
+           'price' => $this->price,
            'status' => $this->status == 1,
            'statusCode' => $this->status,
            'statusList' => $statusCodes
