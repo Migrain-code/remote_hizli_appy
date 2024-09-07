@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Room;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Room\RoomAddRequest;
+use App\Http\Resources\Rooms\RoomsDetailResource;
 use App\Http\Resources\Rooms\RoomsListResource;
 use App\Models\BusinessRoom;
 use Illuminate\Http\Request;
@@ -66,7 +67,7 @@ class BusinessRoomController extends Controller
      */
     public function show(BusinessRoom $room)
     {
-        return response()->json(RoomsListResource::make($room));
+        return response()->json(RoomsDetailResource::make($room));
     }
 
     /**
