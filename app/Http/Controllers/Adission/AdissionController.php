@@ -47,9 +47,9 @@ class AdissionController extends Controller
             }
         })/*->where('start_time', now()->toDateString())*/
             ->get();
-        foreach ($business->appointments as $appointment){
+        /*foreach ($business->appointments as $appointment){
             $appointment->delete();
-        }
+        }*/
 
         return response()->json(AppointmentResource::collection($appoinments));
     }
