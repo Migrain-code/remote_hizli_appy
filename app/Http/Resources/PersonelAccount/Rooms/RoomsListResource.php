@@ -15,8 +15,8 @@ class RoomsListResource extends JsonResource
     public function toArray($request)
     {
         return [
-           'id' => $this->room_id == 0 ? 0 : $this->room->id,
-           'name' =>$this->room_id == 0 ? "Salon" : $this->room->name,
+            'id' => $this->room ? $this->room->id : 0, // Safely check if the room exists
+            'name' => $this->room ? $this->room->name : 'Salon', // Fallback name if no room is found
         ];
     }
 }
