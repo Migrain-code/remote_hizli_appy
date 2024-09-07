@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BusinessCloseDay\CloseDayEditResource;
 use App\Http\Resources\BusinessCloseDay\CloseDayListResource;
 use App\Models\BusinessCloseDate;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class BusinessCloseDayController extends Controller
 
     public function show(BusinessCloseDate $closeDay)
     {
-        return response()->json(CloseDayListResource::make($closeDay));
+        return response()->json(CloseDayEditResource::make($closeDay));
     }
 
     public function update(BusinessCloseDate $closeDay, Request $request)
