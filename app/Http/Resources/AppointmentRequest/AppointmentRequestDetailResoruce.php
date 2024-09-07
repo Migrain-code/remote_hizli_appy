@@ -32,7 +32,21 @@ class AppointmentRequestDetailResoruce extends JsonResource
             'addedServices' => $this->added_services,
             'contactType' => $this->contact_type == 1 ? "Aranabilir" : "Aranamaz",
             'contactTypeCode' => $this->contact_type,
-            'questions' => $this->questions
+            'questions' => $this->editQuestions($this->questions)
         ];
+    }
+
+    public function editQuestions($questions)
+    {
+        $formattedQuestions = [];
+
+        foreach ($questions as $question => $answer) {
+            $formattedQuestions[] = [
+                'question' => $question,
+                'answer' => $answer
+            ];
+        }
+
+        return $formattedQuestions;
     }
 }
