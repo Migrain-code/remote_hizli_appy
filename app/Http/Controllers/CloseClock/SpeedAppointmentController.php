@@ -123,7 +123,7 @@ class SpeedAppointmentController extends Controller
         if ($roomCount > 1){
             $rooms = $personel->rooms;
         } else{
-            $rooms = collect([]);
+            $rooms = [];
         }
         //dd($rooms);
         return response()->json([
