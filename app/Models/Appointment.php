@@ -260,4 +260,11 @@ class Appointment extends Model
             }
         }
     }
+
+    protected static function booted()
+    {
+        static::deleted(function ($appointment) {
+            $appointment->services()->delete();
+        });
+    }
 }
