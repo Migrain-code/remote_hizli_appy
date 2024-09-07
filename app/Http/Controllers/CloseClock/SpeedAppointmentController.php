@@ -125,7 +125,7 @@ class SpeedAppointmentController extends Controller
         } else{
             $rooms = collect([]);
         }
-
+        dd($rooms);
         return response()->json([
             'services' => PersonelAppointmentServiceResource::collection($services),
             'rooms' => RoomsListResource::collection($rooms),
