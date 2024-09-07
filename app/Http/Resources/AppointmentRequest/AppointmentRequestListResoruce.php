@@ -28,7 +28,7 @@ class AppointmentRequestListResoruce extends JsonResource
             'status' => $this->status("text"),
             'statusCode' => $this->status,
             'phone' => $phone,
-            'call_date' => $this->call_date->toIso8601String(),
+            'call_date' => $this->call_date ? $this->call_date->toIso8601String() : null,
             'answer' => $this->answer,
         ];
     }
