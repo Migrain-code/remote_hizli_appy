@@ -162,7 +162,7 @@ class PersonelController extends Controller
         $openedAppointments = $personel->appointments()->whereNotIn('status', [3, 4, 5])
 
             ->where('start_time', '>=', $oneMonthAgo)
-            ->orderBy('start_time', 'asc')
+            ->orderBy('start_time', 'desc')
             ->take(50)
             ->get();
         $completedAppointments = $personel->appointments()
