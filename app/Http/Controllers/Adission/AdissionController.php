@@ -46,7 +46,7 @@ class AdissionController extends Controller
                 $q->whereNotIn('status', [0])->whereIn('status', [1,2]);
             }
         })/*->where('start_time', now()->toDateString())*/
-            ->get();
+            ->latest()->take(30)->get();
         /*foreach ($business->appointments as $appointment){
             $appointment->delete();
         }*/
