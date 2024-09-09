@@ -21,7 +21,7 @@ class AppointmentResource extends JsonResource
             'service' => $this->services->isNotEmpty() && optional($this->services->first()->service)->subCategory
                 ? $this->services->first()->service->subCategory->name . ($this->services->count() > 1 ? " +".($this->services->count()-1) : "")
                 : "Silinmiş",
-            'date' => $this->start_time->format('d.m.y H:i'),
+            'date' => $this->start_time ? $this->start_time->format('d.m.y H:i') : $this->id,
             'status' => $this->status("text"),
             'statusColor' => $this->status("color"),
             'total' => formatPrice($this->totalServiceAndProduct()), // toplam
