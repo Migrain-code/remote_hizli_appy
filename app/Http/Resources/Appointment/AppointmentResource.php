@@ -18,13 +18,16 @@ class AppointmentResource extends JsonResource
         return [
             'id' => $this->id,
             'customer' => CustomerDetailResource::make($this->customer),
-            'service' => $this->services->first()->service && $this->services->first()->service->subCategory ?  $this->services->first()->service->subCategory->name . ($this->services->count() > 1 ? " +".$this->services->count()-1 : "") : "Silinmiş",
+            'service' => $this->services->isNotEmpty() && optional($this->services->first()->service)->subCategory
+                ? $this->services->first()->service->subCategory->name . ($this->services->count() > 1 ? " +".($this->services->count()-1) : "")
+                : "Silinmiş",
             'date' => $this->start_time->format('d.m.y H:i'),
             'status' => $this->status("text"),
             'statusColor' => $this->status("color"),
             'total' => formatPrice($this->totalServiceAndProduct()), // toplam
             'collectedTotal' => formatPrice($this->calculateCollectedTotal()) // kalan
         ];
+
     }
 
 }
