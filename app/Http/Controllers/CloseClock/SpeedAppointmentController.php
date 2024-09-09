@@ -189,7 +189,7 @@ class SpeedAppointmentController extends Controller
             return response()->json([
                'status' => "error",
                'message' => "Personelin Bugünkü Tüm Saatleri Dolu. Lütfen Başka bir tarih seçiniz"
-            ], 200);
+            ], 422);
         }
     }
 
