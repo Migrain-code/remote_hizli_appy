@@ -123,8 +123,8 @@ class HomeController extends Controller
         $lastAppointment = null;
         if (isset($checkCustomWorkTime)) { // özel saat aralığı verilmişmi kontrol et
 
-            $startTime = Carbon::parse($getDate->format('Y-m-d').' '.$checkCustomWorkTime->start_time);
-            $endTime = Carbon::parse($getDate->format('Y-m-d').' '.$checkCustomWorkTime->end_time);
+            $startTime = Carbon::parse($getDate->format('Y-m-d').' '.$checkCustomWorkTime->start_time->format("H:i:s"));
+            $endTime = Carbon::parse($getDate->format('Y-m-d').' '.$checkCustomWorkTime->end_time->format("H:i:s"));
             $i = $startTime;
             if ($endTime < $i){ // verilmişse  ve bitiş tarihi başlangıç saatinden küçükse örneğin bitiş 03:00 başlangıç 09:00
                 while ($i < $endTime->endOfDay()) {
