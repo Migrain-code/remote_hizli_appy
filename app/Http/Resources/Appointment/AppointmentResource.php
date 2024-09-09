@@ -24,8 +24,8 @@ class AppointmentResource extends JsonResource
             'date' => $this->start_time ? $this->start_time->format('d.m.y H:i') : $this->id,
             'status' => $this->status("text"),
             'statusColor' => $this->status("color"),
-            'total' => formatPrice($this->totalServiceAndProduct()), // toplam
-            'collectedTotal' => formatPrice($this->calculateCollectedTotal()) // kalan
+            'total' => $this->total, //formatPrice($this->totalServiceAndProduct()), // toplam
+            'collectedTotal' => $this->total,//formatPrice($this->calculateCollectedTotal()) // kalan
         ];
 
     }
