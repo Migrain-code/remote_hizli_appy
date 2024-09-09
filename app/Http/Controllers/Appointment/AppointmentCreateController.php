@@ -226,7 +226,7 @@ class AppointmentCreateController extends Controller
         if (count($uniquePersonals) == 1) {
             foreach ($personels as $personel) {
 
-                $disabledDays[] = $this->findTimes($personel, $request->room_id);
+                $disabledDays[] = $this->findTimes($personel,$getDate, $request->room_id);
                 //işletme kapalı gün kontrolü
                 if (Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek == $business->off_day) {
                     return response()->json([
@@ -348,7 +348,7 @@ class AppointmentCreateController extends Controller
                 // işletme çalışma saatlerine randevu aralığına göre diziye ekle
                 foreach ($personels as $personel) {
                     $disabledDays = [];
-                    $disabledDays[] = $this->findTimes($personel, $request->room_id);
+                    $disabledDays[] = $this->findTimes($personel,$getDate, $request->room_id);
                     //işletme kapalı gün kontrolü
                     if (Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek == $business->off_day) {
                         return response()->json([
@@ -468,27 +468,56 @@ class AppointmentCreateController extends Controller
         ]);
     }
 
-    public function findTimes($personel)
+    public function findTimes($personel, $appointment_date, $room_id = null)
     {
         $disableds = [];
 
-        $appointments = $personel->appointments()->whereNotIn('status', [3])->get();
+        // personelin dolu randevu saatlerini al iptal edilmişleri de dahil et
+        $appointments = $personel->appointments()
+            ->whereDate('start_time', Carbon::parse($appointment_date)->toDateString())
+            ->whereNotIn('status', [3])->get();
 
         foreach ($appointments as $appointment) {
             $startDateTime = Carbon::parse($appointment->start_time);
             $endDateTime = Carbon::parse($appointment->end_time);
 
             $currentDateTime = $startDateTime->copy();
-            while ($currentDateTime <= $endDateTime) {
+            while ($currentDateTime < $endDateTime) {
 
                 $disableds[] = $currentDateTime->format('d.m.Y H:i');
 
-                $currentDateTime->addMinutes(intval($personel->range));
+                $currentDateTime->addMinutes(intval($personel->appointmentRange->time));
             }
         }
 
+        // randevu almaya 30 dk öncesine kadar izin ver
+        $startTime = Carbon::parse($personel->start_time);
+        $endTime = Carbon::parse($personel->end_time);
+        for ($i = $startTime; $i < $endTime; $i->addMinutes(intval($personel->appointmentRange->time))) {
+            if ($i < now()->addMinutes(5)) {
+                $disableds[] = $i->format('d.m.Y H:i');
+            }
+        }
+        $business = $personel->business;
+        if (isset($room_id) && $room_id > 0) {
+            // oda tipi seçilmşse o odadaki randevuları al ve disabled dizisine ata
+            $appointmentsBusiness = $business->appointments()->where('room_id', $room_id)->whereNotIn('status', [3])->get();
+            foreach ($appointmentsBusiness as $appointment) {
+                $businessStartDateTime = Carbon::parse($appointment->start_time);
+                $businessEndDateTime = Carbon::parse($appointment->end_time);
+
+                $businessCurrenDateTime = $businessStartDateTime->copy();
+                while ($businessCurrenDateTime <= $businessEndDateTime) {
+
+                    $disableds[] = $businessCurrenDateTime->format('d.m.Y H:i');
+
+                    $businessCurrenDateTime->addMinutes(intval($business->range->time));
+                }
+            }
+        }
         return $disableds;
     }
+
 
     /**
      *
