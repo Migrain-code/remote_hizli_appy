@@ -170,7 +170,7 @@ class PersonelController extends Controller
             ->take(50)
             ->get();
         $closedAppointments = $personel->appointments()
-            ->where('status', 5)
+            ->whereIn('status',[2,5])
             ->orderBy('start_time', 'desc')
             ->take(50)
             ->get();
