@@ -40,34 +40,29 @@ class AbsentCustomerController extends Controller
     {
         $business = $this->business;
         $listType = 15;
-        if ($request->filled('listType')){
+
+        if ($request->filled('listType')) {
             $listType = $request->listType;
         }
-        $today = Carbon::today();
 
         // 15 gün önceki tarihi alıyoruz
-        $fifteenDaysAgo = $today->copy()->subDays($listType);
+        $fifteenDaysAgo = Carbon::today()->subDays($listType);
 
+        // İşletmeye ait randevuların müşterilerini ve son randevu tarihlerini alıyoruz
+        $customers = Customer::whereIn('id', function ($query) use ($business) {
+            $query->select('customer_id')
+                ->from('appointments')
+                ->where('business_id', $business->id);
+        })
+            ->whereHas('appointments', function ($query) use ($fifteenDaysAgo) {
+                $query->where('start_time', '<', $fifteenDaysAgo);
+            })
+            ->with(['appointments' => function ($query) {
+                $query->latest('start_time')->first();
+            }])
+            ->get();
 
-        // Tüm randevuları alıyoruz
-        $appointmentsCustomer = $business->appointments()->pluck('customer_id')->toArray();
-        $customers = array_unique($appointmentsCustomer);
-
-        $customerList = [];
-
-        foreach ($customers as $customerId) {
-            // Müşteriye ait son randevunun tarihini alıyoruz
-            $customer = Customer::find($customerId);
-            if ($customer){
-                $lastAppointment = $customer->appointments()->latest('start_time')->first();
-                $lastAppointmentDate = $lastAppointment->start_time;
-
-                if ($lastAppointmentDate->lessThan($fifteenDaysAgo)) {
-                    $customerList[] = $customer;
-                }
-            }
-        }
-
-        return  response()->json(AbsentListResoruce::collection($customerList));
+        return response()->json(AbsentListResoruce::collection($customers));
     }
+
 }
