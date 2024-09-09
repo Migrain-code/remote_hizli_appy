@@ -22,6 +22,7 @@ use App\Models\PersonelRestDay;
 use App\Models\PersonelService;
 use App\Services\UploadFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -157,9 +158,21 @@ class PersonelController extends Controller
      */
     public function show(Personel $personel)
     {
-        $openedAppointments = $personel->appointments()->whereNotIn('status', [3, 4, 5])->get();
-        $completedAppointments = $personel->appointments()->whereIn('status', [3, 4])->get();
-        $closedAppointments = $personel->appointments()->where('status', 5)->get();
+        $oneMonthAgo = Carbon::now()->subMonth();
+        $openedAppointments = $personel->appointments()->whereNotIn('status', [3, 4, 5])
+            ->latest('start_time')
+            ->where('start_time', '>=', $oneMonthAgo)
+            ->take(50)
+            ->get();
+        $completedAppointments = $personel->appointments()
+            ->whereIn('status', [3, 4])->latest('start_time')
+            ->take(50)
+            ->get();
+        $closedAppointments = $personel->appointments()
+            ->where('status', 5)
+            ->latest('start_time')
+            ->take(50)
+            ->get();
 
         return response()->json([
             'openedAppointments' => PersonelAppointmentResource::collection($openedAppointments),
