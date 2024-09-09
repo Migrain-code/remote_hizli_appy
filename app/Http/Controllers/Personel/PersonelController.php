@@ -160,8 +160,9 @@ class PersonelController extends Controller
     {
         $oneMonthAgo = Carbon::now()->subMonth();
         $openedAppointments = $personel->appointments()->whereNotIn('status', [3, 4, 5])
-            ->latest('start_time')
+
             ->where('start_time', '>=', $oneMonthAgo)
+            ->orderBy('start_time', 'asc')
             ->take(50)
             ->get();
         $completedAppointments = $personel->appointments()
