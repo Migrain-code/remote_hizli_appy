@@ -45,24 +45,25 @@ class AbsentCustomerController extends Controller
             $listType = $request->listType;
         }
 
-        // 15 gün önceki tarihi alıyoruz
+        // 15 veya 30 gün önceki tarihi alıyoruz
         $fifteenDaysAgo = Carbon::today()->subDays($listType);
 
-        // İşletmeye ait randevuların müşterilerini ve son randevu tarihlerini alıyoruz
+        // İşletmeye ait müşterilerin son randevularına göre filtreleme
         $customers = Customer::whereIn('id', function ($query) use ($business) {
             $query->select('customer_id')
                 ->from('appointments')
                 ->where('business_id', $business->id);
         })
-            ->whereHas('appointments', function ($query) use ($fifteenDaysAgo) {
-                $query->where('start_time', '<', $fifteenDaysAgo);
+            ->whereDoesntHave('appointments', function ($query) use ($fifteenDaysAgo) {
+                $query->where('start_time', '>=', $fifteenDaysAgo);
             })
             ->with(['appointments' => function ($query) {
-                $query->latest('start_time')->first();
+                $query->latest('start_time');
             }])
             ->get();
 
         return response()->json(AbsentListResoruce::collection($customers));
     }
+
 
 }
