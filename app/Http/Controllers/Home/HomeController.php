@@ -106,8 +106,8 @@ class HomeController extends Controller
     public function getPersonelClock(Request $request, Personel $personel)
     {
         $clocks = [];
-        $getDate = Carbon::parse($request->appointment_date);
-        $checkCustomWorkTime = $personel->isCustomWorkTime($request->appointment_date);
+        $getDate = Carbon::parse($request->input('date'));
+        $checkCustomWorkTime = $personel->isCustomWorkTime($request->input('date'));
         $appointmentRange = $personel->appointmentRange->time; // Assuming this is in minutes
 
         $startOfDay = $getDate->copy()->startOfDay(); // 2024-06-14 00:00:00
