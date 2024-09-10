@@ -88,7 +88,7 @@ class AppointmentServices extends Model
     }
     public function service()
     {
-        return $this->hasOne(BusinessService::class, 'id', 'service_id');
+        return $this->hasOne(BusinessService::class, 'id', 'service_id')->withTrashed();
     }
 
     public function getPersonelPrice()
