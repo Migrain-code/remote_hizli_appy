@@ -91,7 +91,7 @@ class BusinessOfficial extends Authenticatable
     }
     public function cashPointnotifications()
     {
-        return $this->hasMany(BusinessNotification::class, 'business_id', 'id')->where('type', 1);
+        return $this->hasMany(BusinessNotification::class, 'business_id', 'id')->where('type', 1)->latest();
 
     }
     public function sendWelcomeMessage()
