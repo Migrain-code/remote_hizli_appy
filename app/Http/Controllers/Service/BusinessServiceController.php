@@ -68,7 +68,7 @@ class BusinessServiceController extends Controller
         $newBusinessService->sub_category = $request->input('subCategoryId');
         $newBusinessService->time = $request->input('time');
         $newBusinessService->price = $request->input('price');
-        $newBusinessService->is_featured = $request->prefered == 0 ? 1 : 0; //0 evet 1 hayır olarak eklenmiş appe
+        $newBusinessService->is_featured = $request->prefered;
         $newBusinessService->save();
 
         return response()->json([
