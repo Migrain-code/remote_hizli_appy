@@ -112,6 +112,14 @@ class BusinessDepController extends Controller
         ]);
     }
 
+    public function pay(BusinessDep $dep)
+    {
+        $dep->price = 0;
+        if ($dep->save()) return response()->json([
+            'status' => "success",
+            'message' => "Borç Başarılı Bir Şekilde Ödendi Olarak Güncellendi"
+        ]);
+    }
     public function extracted($businessDep, $request): void
     {
         $businessDep->business_id = $this->business->id;

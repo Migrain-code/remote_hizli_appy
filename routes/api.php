@@ -317,6 +317,7 @@ Route::prefix('business')->group(function () {
         Route::apiResource('dep', BusinessDepController::class)->only([
             'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
         ]);
+        Route::get('dep/{dep}/pay', [BusinessDepController::class, 'pay']);
         /** ------------------------------- Yorumlar ------------------------------------ */
         Route::apiResource('comment', \App\Http\Controllers\BusinessCommentController::class)->only([
             'index', 'create', 'store', 'show', 'edit', 'update', 'destroy'
