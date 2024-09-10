@@ -15,17 +15,18 @@ class PackageSaleListResource extends JsonResource
     public function toArray($request)
     {
         return [
-           'id' => $this->id,
-           'customerName' => $this->customer->name,
-           'sellerDate' => $this->seller_date->format('d.m.Y H:i'),
-           'serviceName' => isset($this->service) ? $this->service?->subCategory?->getName() : "",
-           'personelName' => $this->personel->name,
-           'packageType' => $this->packageType("name"),
-           'amount' => $this->amount,
-           'remainingAmount' => $this->amount - $this->usages->sum('amount'),
-           'total' => $this->total. "₺",
-           'payedTotal' => $this->payeds->sum('price'),
-           'remainingTotal' =>  $this->total - $this->payeds->sum('price')
+            'id' => $this->id,
+            'customerName' => isset($this->customer) ? $this->customer->name : 'Unknown Customer',
+            'sellerDate' => $this->seller_date ? $this->seller_date->format('d.m.Y H:i') : 'Unknown Date',
+            'serviceName' => isset($this->service) ? $this->service?->subCategory?->getName() : 'Unknown Service',
+            'personelName' => isset($this->personel) ? $this->personel->name : 'Unknown Personel',
+            'packageType' => $this->packageType("name") ?? 'Unknown Package',
+            'amount' => $this->amount,
+            'remainingAmount' => $this->amount - $this->usages->sum('amount'),
+            'total' => $this->total . "₺",
+            'payedTotal' => $this->payeds->sum('price'),
+            'remainingTotal' => $this->total - $this->payeds->sum('price'),
         ];
     }
+
 }
