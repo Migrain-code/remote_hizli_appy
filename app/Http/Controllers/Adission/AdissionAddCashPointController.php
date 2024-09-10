@@ -115,7 +115,7 @@ class AdissionAddCashPointController extends Controller
         $receivable->appointment_id = $adission->id;
         $receivable->business_id = $adission->business_id;
         $receivable->customer_id = $adission->customer_id;
-        $receivable->payment_date = $request->paymentDate;
+        $receivable->payment_date = $request->date;
         $receivable->price = $request->price;
         $receivable->note = $request->note;
         if ($receivable->save()){
