@@ -19,7 +19,7 @@ class PackageSaleUsagesListResource extends JsonResource
            'id' => $this->id,
            'personel' => PersonelListResource::make($this->personel),
            'amount' => $this->amount,
-           'created_at' => $this->created_at->format('d.m.Y H:i:s'),
+           'created_at' => $this->created_at->format('d.m.Y'),
         ];
     }
 }

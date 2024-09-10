@@ -85,7 +85,7 @@ class PackageSale extends Model
 
     public function usages()
     {
-        return $this->hasMany(PackageUsage::class, 'package_id', 'id');
+        return $this->hasMany(PackageUsage::class, 'package_id', 'id')->latest();
     }
 
     public function payeds()
