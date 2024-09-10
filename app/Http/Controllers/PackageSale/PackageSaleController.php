@@ -45,7 +45,7 @@ class PackageSaleController extends Controller
             } else {
                 $q->whereDate('seller_date', now()->toDateString());
             }
-        })->get();
+        })->orderBy('seller_date', 'desc')->get();
         return response()->json(PackageSaleListResource::collection($packages));
     }
 
