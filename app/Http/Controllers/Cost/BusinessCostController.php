@@ -49,7 +49,7 @@ class BusinessCostController extends Controller
             } else {
                 $q->whereDate('created_at', now()->toDateString());
             }
-        })->get();
+        })->latest()->get();
         return response()->json(CostListResource::collection($costs));
     }
 
