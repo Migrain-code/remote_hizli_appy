@@ -150,21 +150,21 @@ class SpeedAppointmentController extends Controller
             return response()->json([
                 "status" => "error",
                 "message" => "İşletme bu tarihte hizmet vermemektedir"
-            ], 200);
+            ], 422);
         } else {
             //işletme kapalı değilse personel izin kontrolü
             if (in_array(Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek, $personel->restDays()->pluck('day_id')->toArray())) {
                 return response()->json([
                     "status" => "error",
                     "message" => "Personel bu tarihte hizmet vermemektedir"
-                ], 200);
+                ], 422);
             } else {
                 //personel kapalı değilse personel izin gün kontrolü
                 if ($personel->checkDateIsOff($getDate)) {
                     return response()->json([
                         "status" => "error",
                         "message" => "Personel bu tarihte hizmet vermemektedir"
-                    ], 200);
+                    ], 422);
                 } else {
                     //tüm koşullar sağlanmış ise personel saat takvimi
                     for ($i = Carbon::parse($personel->start_time); $i < Carbon::parse($personel->end_time); $i->addMinute($personel->appointmentRange->time)) {
@@ -189,7 +189,7 @@ class SpeedAppointmentController extends Controller
             return response()->json([
                'status' => "error",
                'message' => "Personelin Bugünkü Tüm Saatleri Dolu. Lütfen Başka bir tarih seçiniz"
-            ], 200);
+            ], 422);
         }
     }
 
