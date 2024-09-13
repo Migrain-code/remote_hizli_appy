@@ -72,6 +72,8 @@ class ServiceController extends Controller
         $newBusinessService->sub_category = $request->input('subCategoryId');
         $newBusinessService->time = $request->input('time');
         $newBusinessService->price = $request->input('price');
+        $newBusinessService->is_featured = $request->prefered;
+
         $newBusinessService->save();
 
         return response()->json([
@@ -121,6 +123,7 @@ class ServiceController extends Controller
             $service->sub_category = $request->input('subCategoryId');
             $service->time = $request->input('time');
             $service->price = $request->input('price');
+            $service->is_featured = $request->prefered;
             $service->save();
 
             return response()->json([
