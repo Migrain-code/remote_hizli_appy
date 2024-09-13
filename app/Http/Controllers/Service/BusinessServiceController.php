@@ -108,6 +108,7 @@ class BusinessServiceController extends Controller
             $businessService->sub_category = $request->input('subCategoryId');
             $businessService->time = $request->input('time');
             $businessService->price = $request->input('price');
+            $businessService->is_featured = $request->prefered;
             $businessService->save();
 
             return response()->json([
