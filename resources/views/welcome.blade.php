@@ -1,1 +1,0 @@
-Hi, Welcome HızlıRandevu Project
