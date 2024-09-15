@@ -59,8 +59,16 @@ class PackageSaleController extends Controller
         $user = $request->user();
         $business = $user->business;
         $packageTypes = PackageSale::PACKAGE_TYPES;
+        $customers = $business->customers()->has('customer')->with('customer')->select('id', 'customer_id', 'status', 'created_at')
+            ->when($request->filled('name'), function ($q) use ($request) {
+                $name = strtolower($request->input('name'));
+                $q->whereHas('customer', function ($q) use ($name) {
+                    $q->whereRaw('LOWER(name) like ?', ['%' . $name . '%']);
+                });
+            })
+            /*->take(30)*/->get();
         return response()->json([
-            'customers' => CustomerListResource::collection($business->customers),
+            'customers' => CustomerListResource::collection($customers),
             'packageTypes' => $packageTypes,
             'businessServices' => BusinessServiceResource::collection($business->services),
             'personels' => PersonelListResource::collection($business->personels),
