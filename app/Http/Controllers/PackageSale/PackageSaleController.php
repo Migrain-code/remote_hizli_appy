@@ -66,7 +66,7 @@ class PackageSaleController extends Controller
                     $q->whereRaw('LOWER(name) like ?', ['%' . $name . '%']);
                 });
             })
-            /*->take(30)*/->get();
+            ->take(30)->get();
         return response()->json([
             'customers' => CustomerListResource::collection($customers),
             'packageTypes' => $packageTypes,
