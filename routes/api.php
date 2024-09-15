@@ -282,7 +282,7 @@ Route::prefix('business')->group(function () {
         ]);
         /** -------------------------------- Bildirimler --------------------------------------- */
         Route::apiResource('notification', NotificationController::class)->only([
-            'index', 'show', 'destroy'
+            'index', 'store','show', 'destroy'
         ]);
         // parapuan bildirimleri
         Route::get('cash-point-notification', [NotificationController::class, 'cashPointNotification']);

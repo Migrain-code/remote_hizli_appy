@@ -30,4 +30,7 @@ use Illuminate\Database\Eloquent\Model;
 class BusinessNotification extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "status",
+    ];
 }

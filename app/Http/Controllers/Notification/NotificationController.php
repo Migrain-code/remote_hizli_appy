@@ -34,7 +34,16 @@ class NotificationController extends Controller
         return response()->json(NotificationListResource::collection($this->user->notifications));
     }
 
-
+    public function store()
+    {
+        BusinessNotification::where('business_id', $this->user->id)->update([
+            'status' => 1,
+        ]);
+        return response()->json([
+            'status' => "success",
+            'message' => "Tüm Bildirimleriniz Okundu Olarak İşaretlendi"
+        ]);
+    }
     /**
      * Bildirim Detayı
      *
@@ -43,6 +52,8 @@ class NotificationController extends Controller
      */
     public function show(BusinessNotification $notification)
     {
+        $notification->status = 1;
+        $notification->save();
         return response()->json(NotificationListResource::make($notification));
     }
 
