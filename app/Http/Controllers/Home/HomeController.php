@@ -96,7 +96,7 @@ class HomeController extends Controller
             'personels' => PersonelListResource::collection($personels),
             //'advert' => AdvertListResource::make($advert),
             'dates' => $dates,
-            'is_notification' => true, // true bildirim var false yok
+            'is_notification' => $this->user->isNotificationStatus(), // true bildirim var false yok
         ]);
     }
     /**

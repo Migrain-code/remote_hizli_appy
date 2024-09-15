@@ -81,6 +81,18 @@ class BusinessOfficial extends Authenticatable
     {
         return $this->hasMany(BusinessNotification::class, 'business_id', 'id');
     }
+    public function unreadNotifications()
+    {
+        return $this->notifications()->where('status', 0);//okunmamış bildirimleri al
+    }
+
+    public function isNotificationStatus()
+    {
+        if ($this->unreadNotifications->count() > 0) {
+            return true; // okunmamış bildirim sayısı 1 den büyükse
+        }
+        return false;
+    }
     public function menuNotifications()
     {
         return $this->notifications()->where('status', 0)->latest()->take(10);
