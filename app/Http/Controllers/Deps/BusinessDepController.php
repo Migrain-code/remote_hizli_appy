@@ -7,6 +7,7 @@ use App\Http\Requests\BusinessDep\DepListAddRequest;
 use App\Http\Resources\Customer\CustomerListResource;
 use App\Http\Resources\Dept\DeptResource;
 use App\Models\BusinessDep;
+use Illuminate\Http\Request;
 
 /**
  * @group Borçlar
@@ -39,9 +40,16 @@ class BusinessDepController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function create(Request $request)
     {
-        return response()->json(CustomerListResource::collection($this->business->customers));
+        $customers = $this->business->customers()->has('customer')->with('customer')->select('id', 'customer_id', 'status', 'created_at')
+            ->when($request->filled('name'), function ($q) use ($request) {
+                $name = strtolower($request->input('name'));
+                $q->whereHas('customer', function ($q) use ($name) {
+                    $q->whereRaw('LOWER(name) like ?', ['%' . $name . '%']);
+                });
+            })->take(30)->get();
+        return response()->json(CustomerListResource::collection($customers));
     }
 
     /**
