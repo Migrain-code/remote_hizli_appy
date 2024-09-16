@@ -30,7 +30,7 @@ class ServiceAddRequest extends FormRequest
             'categoryId' => 'required',
             'subCategoryId' => 'required',
             'time' => 'required',
-            'price' => 'required',
+            //'price' => 'required',
         ];
     }
 
@@ -42,7 +42,7 @@ class ServiceAddRequest extends FormRequest
             'categoryId' => 'Kategori',
             'subCategoryId' => 'Hizmet',
             'time' => 'Süre',
-            'price' => 'Fiyat',
+            //'price' => 'Fiyat',
         ];
     }
 
