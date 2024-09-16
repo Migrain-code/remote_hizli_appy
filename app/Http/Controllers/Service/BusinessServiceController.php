@@ -69,8 +69,15 @@ class BusinessServiceController extends Controller
         $newBusinessService->time = $request->input('time');
         $newBusinessService->price = $request->input('price');
         $newBusinessService->is_featured = $request->prefered;
-        $newBusinessService->save();
 
+        if ($request->input('price_type_id') == 1) {
+            $newBusinessService->price = $request->input('min_price');
+            $newBusinessService->max_price = $request->input('max_price');
+        } else {
+            $newBusinessService->price = $request->input('price');
+        }
+        $newBusinessService->price_type_id = $request->input('price_type_id');
+        $newBusinessService->save();
         return response()->json([
             'status' => "success",
             'message' => "Yeni Hizmet Eklendi",

@@ -71,7 +71,6 @@ class ServiceController extends Controller
         $newBusinessService->category = $request->input('categoryId');
         $newBusinessService->sub_category = $request->input('subCategoryId');
         $newBusinessService->time = $request->input('time');
-        $newBusinessService->price = $request->input('price');
         $newBusinessService->is_featured = $request->prefered;
         $newBusinessService->approve_type = $request->input('approve_type');
         if ($request->input('price_type_id') == 1) {
