@@ -25,6 +25,10 @@ class BusinessServiceResource extends JsonResource
             "price"=> $this->price,
             "time" => $this->time,
             "prefered" => $this->is_featured,
+            'price_type_id' =>  $this->price_type_id,
+            'min_price' => $this->price,
+            'max_price' => $this->max_price,
+            'approve_type' => $this->approve_type,
         ];
     }
 }

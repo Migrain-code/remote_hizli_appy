@@ -131,6 +131,14 @@ class ServiceController extends Controller
             $service->time = $request->input('time');
             $service->price = $request->input('price');
             $service->is_featured = $request->prefered;
+            if ($request->input('price_type_id') == 1) {
+                $service->price = $request->input('min_price');
+                $service->max_price = $request->input('max_price');
+            } else {
+                $service->price = $request->input('price');
+            }
+            $service->price_type_id = $request->input('price_type_id');
+            $service->approve_type = $request->input('approve_type');
             $service->save();
 
             return response()->json([
