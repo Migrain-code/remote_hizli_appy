@@ -26,7 +26,7 @@ class PersonalCustomPriceAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'business_service_id' => 'required',
+            'service_id' => 'required',
             'price' => 'required',
 
         ];
@@ -36,7 +36,7 @@ class PersonalCustomPriceAddRequest extends FormRequest
     {
 
         return [
-            'business_service_id' => 'Hizmet Kimliği',
+            'service_id' => 'Hizmet Kimliği',
             'price' => 'Hizmet Fiyatı',
 
         ];

@@ -49,7 +49,7 @@ class PersonelCustomerPriceListController extends Controller
     public function store(PersonalCustomPriceAddRequest $request, Personel $personel)
     {
         $existPersonelPrice = $personel->priceList()
-            ->where('business_service_id', $request->business_service_id)
+            ->where('business_service_id', $request->service_id)
             ->first();
         if ($existPersonelPrice){
             if ($existPersonelPrice->price == $request->price){
@@ -70,7 +70,7 @@ class PersonelCustomerPriceListController extends Controller
         }
         $personelCustomerPriceList = new PersonelCustomerPriceList();
         $personelCustomerPriceList->personel_id = $personel->id;
-        $personelCustomerPriceList->business_service_id = $request->business_service_id;
+        $personelCustomerPriceList->business_service_id = $request->service_id;
         $personelCustomerPriceList->price = $request->price;
         if ($personelCustomerPriceList->save()){
             return response()->json([
