@@ -161,7 +161,7 @@ Route::prefix('business')->group(function () {
         Route::prefix('personel')->group(function () {
             Route::get('{personel}/case', [PersonelController::class, 'case']);
             Route::get('{personel}/services', [PersonelController::class, 'personelServices']);
-            Route::get('{personel}/update/services', [PersonelController::class, 'updateServices']);
+            Route::post('{personel}/update/services', [PersonelController::class, 'updateServices']);
 
             Route::post('send/notification', [PersonelController::class, 'sendNotify']);
             Route::get('set-safe/{personel}', [PersonelController::class, 'setCase']);
