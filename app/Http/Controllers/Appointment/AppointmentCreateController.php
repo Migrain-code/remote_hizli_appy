@@ -620,7 +620,7 @@ class AppointmentCreateController extends Controller
                     $transformedServices[] = [
                         'id' => $service->id,
                         'name' => $service->subCategory->getName(),
-                        'price' => $service->price == 0 ? "Bilgi Alınız" : $service->price,
+                        'price' => $service->price,
                     ];
                 }
             }
