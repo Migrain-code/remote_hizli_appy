@@ -86,11 +86,11 @@ class PersonelCustomerPriceListController extends Controller
     public function destroy(Request $request, Personel $personel)
     {
         $existPersonelPrice = $personel->priceList()
-            ->where('business_service_id', $request->business_service_id)
+            ->where('business_service_id', $request->service_id)
             ->first();
         if ($existPersonelPrice){
             $existPersonelPrice->delete();
-            $findPrice = $this->business->services()->find($request->business_service_id);
+            $findPrice = $this->business->services()->find($request->service_id);
             $resPrice = 0;
             if ($findPrice->price_type_id == 1){
                 $resPrice = $findPrice->price. " - ".$findPrice->max_price;
@@ -107,7 +107,7 @@ class PersonelCustomerPriceListController extends Controller
             return response()->json([
                 'status' => "error",
                 'message' => "Bu hizmet personelin özel fiyat listesine eklenmemiş."
-            ]);
+            ], 422);
         }
     }
 }
