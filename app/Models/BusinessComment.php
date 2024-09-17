@@ -40,6 +40,6 @@ class BusinessComment extends Model
 
     public function customer()
     {
-        return $this->hasOne(Business::class, 'id', 'customer_id');
+        return $this->hasOne(Customer::class, 'id', 'customer_id');
     }
 }
