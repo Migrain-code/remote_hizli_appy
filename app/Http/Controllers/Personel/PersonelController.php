@@ -381,4 +381,45 @@ class PersonelController extends Controller
         ]);
     }
 
+    public function personelServices(Personel $personel,Request $request)
+    {
+        $user = $request->user();
+        $business = $user->business;
+        $services = $business->services;
+        $serviceList = [];
+        foreach ($services as $service){
+            $serviceList[] = [
+                "id"=> $service->id,
+                "sub_category"=> $service->subCategory->getName(),
+                'price_type_id' =>  $service->price_type_id,
+                "price"=> $personel->existCustomPrice($service->id)->price ?? $service->price,
+                'min_price' => $personel->existCustomPrice($service->id)->price ?? $service->price,
+                'max_price' => $service->max_price,
+                'is_personel_service' => in_array($service->id, $personel->services()->pluck('service_id')->toArray()),
+
+            ];
+        }
+        return response()->json($serviceList);
+    }
+    public function updateServices(Request $request, Personel $personel)
+    {
+        $this->saveService($personel, $request->services);
+        return response()->json([
+            'status' => "success",
+            'message' => "Personelin Hizmetleri Güncellendi"
+        ]);
+    }
+    public function saveService($personel, $services): void
+    {
+        foreach ($services as $serviceId) {
+            $existPersonelService = $personel->services()->where('service_id', $serviceId)->first();
+            if (!$existPersonelService) {
+                $personelService = new PersonelService();
+                $personelService->service_id = $serviceId;
+                $personelService->personel_id = $personel->id;
+                $personelService->save();
+            }
+        }
+        $personel->services()->whereNotIn('service_id', $services)->delete();
+    }
 }
