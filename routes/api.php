@@ -162,6 +162,9 @@ Route::prefix('business')->group(function () {
             Route::get('{personel}/case', [PersonelController::class, 'case']);
             Route::get('{personel}/services', [PersonelController::class, 'personelServices']);
             Route::post('{personel}/update/services', [PersonelController::class, 'updateServices']);
+            Route::post('{personel}/custom-service-list', [\App\Http\Controllers\PersonelCustomerPriceListController::class, 'index']); //hizmet listesi
+            Route::post('{personel}/add-custom-price', [\App\Http\Controllers\PersonelCustomerPriceListController::class, 'store']); //özel fiyat ekleme
+            Route::post('{personel}/delete-custom-price', [\App\Http\Controllers\PersonelCustomerPriceListController::class, 'destroy']); //özel fiyat kaldırma
 
             Route::post('send/notification', [PersonelController::class, 'sendNotify']);
             Route::get('set-safe/{personel}', [PersonelController::class, 'setCase']);
