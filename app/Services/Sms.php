@@ -1,20 +1,20 @@
 <?php
 
 namespace App\Services;
-
+use App\Models\SendedSms;
 class Sms
 {
     private static string $apiUrl = "https://api.netgsm.com.tr/bulkhttppost.asp";
     const username = '4646060976';
     const password = 'V3.7CHR5';
-    const title = 'N.YILDIZ';
+    const title = 'Hizlirandvu';
 
     public static function send($number, $message)
     {
-        /*$sms = new SendedSms();
+        $sms = new SendedSms();
         $sms->phone = $number;
         $sms->message = $message;
-        $sms->save();*/
+        $sms->save();
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => self::$apiUrl,
