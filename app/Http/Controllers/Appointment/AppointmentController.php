@@ -56,7 +56,7 @@ class AppointmentController extends Controller
             } else {
                 $q->whereDate('start_time', now()->toDateString());
             }
-        })->get();
+        })->take(40)->orderBy('start_time', 'desc')->get();
         return response()->json(AppointmentResource::collection($appoinments));
     }
 
