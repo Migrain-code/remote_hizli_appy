@@ -87,6 +87,13 @@ class AppointmentCreateController extends Controller
                     "percentage" => $room->price,
                 ];
             }
+        } else{// sonradan silinecek
+            $rooms[] = [
+                "id" => 0,
+                "name" => "Salon",
+                "color" => "#000",
+                "percentage" => 0,
+            ];
         }
         $ap_services = [];
         foreach ($getData as $id) {
