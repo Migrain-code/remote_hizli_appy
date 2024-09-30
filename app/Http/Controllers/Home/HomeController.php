@@ -415,13 +415,21 @@ class HomeController extends Controller
     public function updatePassword(PasswordUpdateRequest $request)
     {
         $user = $this->user;
-        $user->password = Hash::make($request->input('password'));
-        if ($user->save()) {
+        if (Hash::check($request->oldPassword, $user->password)) {
+            $user->password = Hash::make($request->input('password'));
+            if ($user->save()) {
+                return response()->json([
+                    'status' => "success",
+                    'message' => "Şifreniz Güncellendi"
+                ]);
+            }
+        } else{
             return response()->json([
-                'status' => "success",
-                'message' => "Şifreniz Güncellendi"
+                'status' => "error",
+                'message' => "Mevcut Şifrenizi Hatalı Tuşladınız"
             ]);
         }
+
     }
 
     public function notificationCount()
