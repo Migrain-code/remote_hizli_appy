@@ -619,24 +619,37 @@ class AppointmentCreateController extends Controller
     function transformServices($womanServiceCategories)
     {
         $transformedDataWoman = [];
-        foreach ($womanServiceCategories as $category => $services) {
 
+        foreach ($womanServiceCategories as $category => $services) {
             $transformedServices = [];
+            $transformedFeaturedServices = [];
+
             foreach ($services as $service) {
-                if ($service->personels->count() > 0) {
-                    $transformedServices[] = [
-                        'id' => $service->id,
-                        'name' => $service->subCategory->getName(),
-                        'price' => $service->price,
-                    ];
+                // Normal hizmetleri işleme
+                $serviceData = [
+                    'id' => $service->id,
+                    'name' => $service->subCategory->getName(),
+                    'price' => $service->price_type_id == 0 ? $service->price : $service->price . " - " . $service->max_price,
+                ];
+
+                // Öne çıkan hizmetleri toplama
+                if ($service->is_featured == 1) {
+                    $transformedFeaturedServices[] = $serviceData;
                 }
+
+                // Tüm hizmetleri toplama
+                $transformedServices[] = $serviceData;
             }
+
+            // Öne çıkan hizmetler listenin başında olacak şekilde tüm hizmetleri birleştirme
             $transformedDataWoman[] = [
                 'id' => $services->first()->category,
                 'name' => $category,
-                'services' => $transformedServices,
+                'services' => array_merge($transformedFeaturedServices, $transformedServices),
             ];
         }
+
         return $transformedDataWoman;
     }
+
 }
