@@ -619,10 +619,11 @@ class AppointmentCreateController extends Controller
     function transformServices($womanServiceCategories)
     {
         $transformedDataWoman = [];
+        $transformedFeaturedServices = [];
 
+        // Tüm hizmetleri ve öne çıkan hizmetleri işlemeye başla
         foreach ($womanServiceCategories as $category => $services) {
             $transformedServices = [];
-            $transformedFeaturedServices = [];
 
             foreach ($services as $service) {
                 // Normal hizmetleri işleme
@@ -641,12 +642,21 @@ class AppointmentCreateController extends Controller
                 $transformedServices[] = $serviceData;
             }
 
-            // Öne çıkan hizmetler listenin başında olacak şekilde tüm hizmetleri birleştirme
+            // Kategoriye göre hizmetleri toplama
             $transformedDataWoman[] = [
                 'id' => $services->first()->category,
                 'name' => $category,
-                'services' => array_merge($transformedFeaturedServices, $transformedServices),
+                'services' => $transformedServices,
             ];
+        }
+
+        // Eğer öne çıkan hizmetler varsa, bunları "Sık Kullanılan Hizmetler" olarak ekleme
+        if (count($transformedFeaturedServices) > 0) {
+            array_unshift($transformedDataWoman, [
+                'id' => 0,  // Özel id 0
+                'name' => 'Sık Kullanılan Hizmetler',  // Özel isim
+                'services' => $transformedFeaturedServices,  // Öne çıkan hizmetler
+            ]);
         }
 
         return $transformedDataWoman;
