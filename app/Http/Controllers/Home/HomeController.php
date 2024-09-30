@@ -427,7 +427,7 @@ class HomeController extends Controller
             return response()->json([
                 'status' => "error",
                 'message' => "Mevcut Şifrenizi Hatalı Tuşladınız"
-            ]);
+            ], 422);
         }
 
     }
