@@ -7,6 +7,8 @@ use App\Http\Resources\Appointment\AppointmentDetailResoruce;
 use App\Http\Resources\Appointment\AppointmentResource;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Queue;
 
 /**
  * @group Appointment
@@ -125,6 +127,7 @@ class AppointmentController extends Controller
             $service->status = 3;
             $service->save();
         }
+        DB::table('jobs')->where('id', $appointment->job_id)->delete();
         return response()->json([
             'status' => "success",
             'message' => "Randevu İptal Edildi"

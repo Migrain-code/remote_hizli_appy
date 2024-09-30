@@ -237,13 +237,17 @@ class Appointment extends Model
     }
     public function scheduleReminder()
     {
-        // Randevu başlangıç saatinden 2 saat öncesini hesaplayın
-
+        // Randevu başlangıç saatinden hatırlatma zamanını hesaplayın
         $reminderTime = $this->start_time->subMinutes($this->business->reminder_time);
 
-        SendReminderJob::dispatch($this)->delay($reminderTime);
-    }
+        // Job'u dispatch et ve job ID'sini alın
+        $job = new SendReminderJob($this);
+        $jobId = app('queue')->push($job->delay($reminderTime));
 
+        // Job ID'sini randevu kaydına kaydedin
+        $this->job_id = $jobId;
+        $this->save();
+    }
     public function sendPersonelNotification()
     {
         foreach ($this->services as $service){
