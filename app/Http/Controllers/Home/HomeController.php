@@ -415,7 +415,7 @@ class HomeController extends Controller
     public function updatePassword(PasswordUpdateRequest $request)
     {
         $user = $this->user;
-        if (Hash::check($request->oldPassword, $user->password)) {
+        if (Hash::check($request->old_password, $user->password)) {
             $user->password = Hash::make($request->input('password'));
             if ($user->save()) {
                 return response()->json([
