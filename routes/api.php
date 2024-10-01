@@ -90,6 +90,8 @@ Route::prefix('business')->group(function () {
         });
         Route::controller(HomeController::class)->prefix('setting')->group(function () {
             Route::get('/', 'setting');
+            Route::get('/editor', 'editorView');
+            Route::post('/editor/update', 'editorUpdate');
             Route::post('/update', 'settingUpdate');
         });
         /** -------------------------------- Kurulum Rotaları --------------------------------------- */

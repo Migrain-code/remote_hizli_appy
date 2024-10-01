@@ -100,11 +100,29 @@ class HomeController extends Controller
         ]);
     }
 
+    public function editorView()
+    {
+        $about = $this->business->about;
+        return response()->json([
+            'html' => view('editor', compact('about'))->render()
+        ]);
+    }
+
+    public function editorUpdate(Request $request)
+    {
+        $business =  $this->business;
+        $business->about = $request->get('about');
+        $business->save();
+        return response()->json([
+           'status' => "success",
+           'message' => "Hakkımızda Metni Güncellendi"
+        ]);
+    }
     /**
      * Today Apisi
      *
      */
-
+    
     public function todayAppointment(Request $request)
     {
         $appointmentsSummary = $this->business->personels->map(function ($staffMember) use ($request) {
