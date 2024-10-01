@@ -86,6 +86,7 @@ Route::prefix('business')->group(function () {
         Route::controller(HomeController::class)->prefix('home')->group(function () {
             Route::get('/', 'index');
             Route::get('personel-appointment/{personel}', 'getPersonelClock');
+            Route::get('today-appointment', 'todayAppointment');
         });
         Route::controller(HomeController::class)->prefix('setting')->group(function () {
             Route::get('/', 'setting');

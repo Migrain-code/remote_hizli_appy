@@ -99,6 +99,39 @@ class HomeController extends Controller
             'is_notification' => $this->user->isNotificationStatus(), // true bildirim var false yok
         ]);
     }
+
+    /**
+     * Today Apisi
+     *
+     */
+
+    public function todayAppointment(Request $request)
+    {
+        $appointmentsSummary = $this->business->personels->map(function ($staffMember) use ($request) {
+            $appointmentsForDate = $staffMember->appointments()
+                ->when($request->filled('appointment_date'), function ($query) use ($request) {
+                    $query->whereDate('start_time', Carbon::parse($request->appointment_date)->toDateString());
+                })
+                ->get()
+                ->map(function ($appointment) {
+                    return [
+                        'id' => $appointment->id,
+                        'start_time' => $appointment->start_time->format('H:i'),
+                        'end_time' => $appointment->end_time->format('H:i'),
+                        'services' => $appointment->service->subCategory->name,
+                        'customer' => $appointment->appointment->customer->name,
+                        'status_color' => $appointment->status('color_code'),
+                    ];
+                });
+
+            return [
+                'personel' => new PersonelListResource($staffMember),
+                'appointments' => $appointmentsForDate,
+            ];
+        });
+
+        return response()->json($appointmentsSummary);
+    }
     /**
      * İşletme anasayfa personel randevu apisi
      *
