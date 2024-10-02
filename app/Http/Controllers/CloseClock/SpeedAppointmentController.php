@@ -168,14 +168,15 @@ class SpeedAppointmentController extends Controller
                 } else {
                     //tüm koşullar sağlanmış ise personel saat takvimi
                     for ($i = Carbon::parse($personel->start_time); $i < Carbon::parse($personel->end_time); $i->addMinute($personel->appointmentRange->time)) {
-                        if (!in_array($getDate->format('d.m.Y ') . $i->format('H:i'), $disabledDays[0])) {
+
                             $clocks[] = [
                                 'id' => $getDate->format('d_m_Y_' . $i->format('H_i')),
                                 'saat' => $i->format('H:i'),
                                 'date' => $getDate->format('d.m.Y'),
                                 'value' => $getDate->format('d.m.Y ' . $i->format('H:i')),
+                                'status' => !in_array($getDate->format('d.m.Y ') . $i->format('H:i'), $disabledDays[0])
                             ];
-                        }
+
                     }
 
 
