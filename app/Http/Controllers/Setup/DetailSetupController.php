@@ -38,7 +38,16 @@ class DetailSetupController extends Controller
             'businessTypeList' => BusinnessType::all(),
             'appointmentRanges' => AppointmentRangeResource::collection(AppointmentRange::all()),
             'commissions' => $commissions,
-            'aboutText' => "Test Mesaj",
+            'aboutText' => "Salonumuza hoş geldiniz! Şıklığınıza, güzelliğinize ve saç bakımınıza özen gösteren profesyonel ekibimizle, sizlere en iyi hizmeti sunmak için buradayız.
+
+Yılların tecrübesiyle, müşteri memnuniyetini ön planda tutarak, modern ve yenilikçi yaklaşımlarla saç kesimi, boyama, bakım ve makyaj hizmetleri sunuyoruz. Salonumuzda kullanılan tüm ürünler, en yüksek kalitede ve sağlığınıza zarar vermeyecek şekilde seçilmiştir.
+
+Kendinize zaman ayırın ve uzmanlarımızın sihirli dokunuşlarıyla yenilenmiş bir görünüme kavuşun. Güler yüzlü personelimiz, rahat ve konforlu ortamımızla size keyifli bir deneyim sunmayı amaçlıyoruz. Sizin mutlu ayrılmanız, bizim en büyük ödülümüz.
+
+Sizleri aramızda görmekten büyük mutluluk duyarız. Unutmayın, güzellik bir ayrıcalıktır ve bu ayrıcalığı yaşamak çok yakınızda.
+
+Sevgilerimizle ,
+".$user->business->name." Ekibi",
         ]);
     }
 
