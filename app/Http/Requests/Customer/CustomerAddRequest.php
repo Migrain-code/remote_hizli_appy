@@ -28,10 +28,10 @@ class CustomerAddRequest extends FormRequest
         return [
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required',
+            //'email' => 'required',
             'password' => 'required',
-            'gender' => 'required',
-            'birthday'=> 'required',
+            //'gender' => 'required',
+            //'birthday'=> 'required',
         ];
     }
 
@@ -40,10 +40,10 @@ class CustomerAddRequest extends FormRequest
         return [
             'name' => 'Müşteri Adı',
             'phone' => 'Telefon Numarası',
-            'email' => 'E-posta',
+            //'email' => 'E-posta',
             'password' => 'Şifre',
-            'gender' => 'Cinsiyet',
-            'birthday' => 'Doğum Günü',
+            //'gender' => 'Cinsiyet',
+            //'birthday' => 'Doğum Günü',
         ];
     }
 
