@@ -118,7 +118,7 @@ class SpeedAppointmentController extends Controller
      */
     public function getPersonelServiceList(Personel $personel)
     {
-        $services = $personel->services;
+        $services = $personel->services()->has('service')->get();
         $roomCount = $personel->rooms->count();
         if ($roomCount > 1){
             $rooms = $personel->rooms;
