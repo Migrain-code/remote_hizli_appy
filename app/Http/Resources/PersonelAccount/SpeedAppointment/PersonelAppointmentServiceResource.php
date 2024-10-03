@@ -18,8 +18,8 @@ class PersonelAppointmentServiceResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"=> $this->service->id,
-            "name"=> $this->service->subCategory->getName(). " - ". $this->service->gender->name,
+            "id"=> $this->service->id ?? "",
+            "name"=> isset($this->service) ? $this->service->subCategory->getName(). " - ". $this->service->gender->name : "",
         ];
     }
 }
