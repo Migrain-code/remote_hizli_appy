@@ -172,7 +172,7 @@ class AuthController extends Controller
                     $this->addPermission($business->id);
 
                     Sms::send(clearPhone($request->input('phone')), config('settings.appy_site_title') . "Sistemine giriş için şifreniz " . $generatePassword);
-
+                    $user->sendWelcomeMessage();
                     return response()->json([
                         'status' => "success",
                         'message' => "Telefon Numaranız doğrulandı. Sisteme giriş için şifreniz gönderildi."
