@@ -19,7 +19,7 @@ class BusinessResource extends JsonResource
         return [
            'id' => $this->id,
            'name' => $this->name,
-           'shortName' => (strlen($this->name) > 15) ? substr($this->name, 0, 15) : $this->name,
+           'shortName' => $this->name,//(strlen($this->name) > 15) ? substr($this->name, 0, 15) : $this->name,
            'branchName' => $this->branch_name,
            'email' => $this->business_email,
            'year' => $this->year,
@@ -45,7 +45,7 @@ class BusinessResource extends JsonResource
            'off_day' => $this->offDay,
            'latitude' => $this->lat,
            'longitude' => $this->longitude,
-           'link' => env('CUSTOMER_URL')."salon/".$this->slug ,
+           'link' => "https://hizlirandevu.com.tr/salon/".$this->slug ,
            'setup' => $this->setup_status,
            'setup2' => $this->services->count() > 0 && $this->personels->count() > 0 ? 1 : 0,
         ];
