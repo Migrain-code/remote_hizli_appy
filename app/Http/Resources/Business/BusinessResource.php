@@ -19,7 +19,7 @@ class BusinessResource extends JsonResource
         return [
            'id' => $this->id,
            'name' => $this->name,
-           'shortName' => $this->name,//(strlen($this->name) > 15) ? substr($this->name, 0, 15) : $this->name,
+           'shortName' => (strlen($this->name) > 15) ? substr($this->name, 0, 15) : $this->name,
            'branchName' => $this->branch_name,
            'email' => $this->business_email,
            'year' => $this->year,
