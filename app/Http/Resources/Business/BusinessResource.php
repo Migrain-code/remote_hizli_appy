@@ -45,7 +45,8 @@ class BusinessResource extends JsonResource
            'off_day' => $this->offDay,
            'latitude' => $this->lat,
            'longitude' => $this->longitude,
-           'link' => "https://hizlirandevu.com.tr/salon/".$this->slug ,
+           'link' => "asd",
+           //'link' => "https://hizlirandevu.com.tr/salon/".$this->slug ,
            'setup' => $this->setup_status,
            'setup2' => $this->services->count() > 0 && $this->personels->count() > 0 ? 1 : 0,
         ];
