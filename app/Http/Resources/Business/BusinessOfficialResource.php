@@ -21,7 +21,7 @@ class BusinessOfficialResource extends JsonResource
           'email' => $this->email,
           'verify_phone' => $this->verify_phone == 1 ? true : false,
           'is_admin' => $this->is_admin == 1,
-          //'business' => new BusinessResource($this->business),
+          'business' => new BusinessResource($this->business),
           'user_type' => 0,
         ];
     }
