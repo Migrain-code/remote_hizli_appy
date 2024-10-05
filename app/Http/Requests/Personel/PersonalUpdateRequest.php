@@ -40,7 +40,7 @@ class PersonalUpdateRequest extends FormRequest
             'rate' => 'required',
             //'productRate' => 'required',
             'appointmentRange' => 'required',
-            'description' => 'required',
+            //'description' => 'required',
             'services' => 'required',
         ];
     }
@@ -63,7 +63,7 @@ class PersonalUpdateRequest extends FormRequest
             'rate' => 'Hizmet Payı',
             'productRate' => 'Satış Payı',
             'appointmentRange' => 'Randevu Aralığı',
-            'description' => 'Açıklama',
+            //'description' => 'Açıklama',
             'services' => 'Hizmetler',
         ];
     }
