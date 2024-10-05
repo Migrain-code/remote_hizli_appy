@@ -63,9 +63,9 @@ class BusinessServiceController extends Controller
 
         $newBusinessService = new BusinessService();
         $newBusinessService->business_id = $business->id;
-        $newBusinessService->type = $request->typeId;
         $newBusinessService->category = $request->input('categoryId');
         $newBusinessService->sub_category = $request->input('subCategoryId');
+        /*$newBusinessService->type = $request->typeId; // kurulumda hizmet eklerken bu bilgilere ihtiyaç olmadığı için kapatıldı
         $newBusinessService->time = $request->input('time');
         $newBusinessService->price = $request->input('price');
         $newBusinessService->is_featured = $request->prefered;
@@ -76,7 +76,7 @@ class BusinessServiceController extends Controller
         } else {
             $newBusinessService->price = $request->input('price');
         }
-        $newBusinessService->price_type_id = $request->input('price_type_id');
+        $newBusinessService->price_type_id = $request->input('price_type_id');*/
         $newBusinessService->save();
         return response()->json([
             'status' => "success",
