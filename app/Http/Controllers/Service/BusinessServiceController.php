@@ -98,7 +98,8 @@ class BusinessServiceController extends Controller
         $business = $user->business;
 
         foreach ($request->services as $serviceId) {
-            $findBusinessService = BusinessService::where('sub_category',$serviceId)->first();
+            $findBusinessService = BusinessService::whereBusinessId($business->id)
+                ->where('sub_category',$serviceId)->first();
             if (!$findBusinessService) {
                 $findService = ServiceSubCategory::find($serviceId);
                 $newBusinessService = new BusinessService();
