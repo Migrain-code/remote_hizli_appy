@@ -17,7 +17,6 @@ use Illuminate\Http\Request;
  * @group Setup
  *
  */
-
 class   SetupController extends Controller
 {
     /**
@@ -36,8 +35,8 @@ class   SetupController extends Controller
         $businessCategories = BusinessCategory::select('id', 'name')->get();
         $business_types = BusinnessType::select('id', 'name')->get();
         $dayList = DayList::orderBy('id', 'asc')->select('id', 'name')->get();
-        $monthlyPackages=BussinessPackage::where('type', 0)->get();
-        $yearlyPackages=BussinessPackage::where('type', 1)->get();
+        $monthlyPackages = BussinessPackage::where('type', 0)->get();
+        $yearlyPackages = BussinessPackage::where('type', 1)->get();
         $user = $request->user();
         $business = $user->business;
 
@@ -49,9 +48,19 @@ class   SetupController extends Controller
             'yearlyPackages' => BusinessPackageResource::collection($yearlyPackages),
             'business' => BusinessResource::make($business),
             'cards' => OfficialCardResource::collection($user->cards),
+            'aboutText' => "Salonumuza hoş geldiniz! Şıklığınıza, güzelliğinize ve saç bakımınıza özen gösteren profesyonel ekibimizle, sizlere en iyi hizmeti sunmak için buradayız.
 
+Yılların tecrübesiyle, müşteri memnuniyetini ön planda tutarak, modern ve yenilikçi yaklaşımlarla saç kesimi, boyama, bakım ve makyaj hizmetleri sunuyoruz. Salonumuzda kullanılan tüm ürünler, en yüksek kalitede ve sağlığınıza zarar vermeyecek şekilde seçilmiştir.
+
+Kendinize zaman ayırın ve uzmanlarımızın sihirli dokunuşlarıyla yenilenmiş bir görünüme kavuşun. Güler yüzlü personelimiz, rahat ve konforlu ortamımızla size keyifli bir deneyim sunmayı amaçlıyoruz. Sizin mutlu ayrılmanız, bizim en büyük ödülümüz.
+
+Sizleri aramızda görmekten büyük mutluluk duyarız. Unutmayın, güzellik bir ayrıcalıktır ve bu ayrıcalığı yaşamak çok yakınızda.
+
+Sevgilerimizle ,
+".$business->name." Ekibi",
         ]);
     }
+
     /**
      * POST api/setup/update
      *
@@ -81,19 +90,20 @@ class   SetupController extends Controller
     {
         $business = $request->user()->business;
         $business->category_id = $request->input('category_id');
-        $business->name = $request->input('name');
-        $business->type_id = $request->input('type_id');
-        $business->phone = $request->input('phone');
+        $business->appoinment_range = $request->input('appointmentRange');
+        $business->name = $request->input('name');//business name
+        $business->type_id = $request->input('type_id'); // business type
+        $business->phone = $request->input('phone'); // business phone number
         $business->city = $request->input('city_id');
         $business->district = $request->input('district_id');
-        $business->off_day = $request->input('off_day_id');
-        $business->about = $request->input('about_content');
+        $business->off_day = $request->input('off_day_id'); // close day
+        $business->about = $request->input('about_content'); // about text
         $business->start_time = $request->input('start_time');
         $business->end_time = $request->input('end_time');
-        $business->address=$request->input('address');
+        //$business->address = $request->input('address');
         $business->lat = $request->input('latitude');
         $business->longitude = $request->input('longitude');
-        $business->package_id=$request->input('package_id');
+        //$business->package_id = $request->input('package_id');
         $business->setup_status = 1;
         $business->save();
 
