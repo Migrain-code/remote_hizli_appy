@@ -27,7 +27,7 @@ class PersonalAddRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|unique:personels',
+            //'email' => 'required|unique:personels',
             'phone' => 'required|unique:personels',
             'password' => 'required',
             'approveType' => 'required',
@@ -50,7 +50,7 @@ class PersonalAddRequest extends FormRequest
 
         return [
             'name' => 'Personel Adı',
-            'email' => 'E-posta Adresi',
+            //'email' => 'E-posta Adresi',
             'phone' => 'Telefon Numarası',
             'password' => 'Şifre',
             'approveType' => 'Otomatik Onay Durumu',
