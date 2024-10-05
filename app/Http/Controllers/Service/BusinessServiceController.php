@@ -98,12 +98,16 @@ class BusinessServiceController extends Controller
         $business = $user->business;
 
         foreach ($request->services as $serviceId) {
-            $findService = ServiceSubCategory::find($serviceId);
-            $newBusinessService = new BusinessService();
-            $newBusinessService->business_id = $business->id;
-            $newBusinessService->category = $findService->category_id;
-            $newBusinessService->sub_category = $serviceId;
-            $newBusinessService->save();
+            $findBusinessService = BusinessService::where('sub_category',$serviceId)->first();
+            if (!isset($findBusinessService)) {
+                $findService = ServiceSubCategory::find($serviceId);
+                $newBusinessService = new BusinessService();
+                $newBusinessService->business_id = $business->id;
+                $newBusinessService->category = $findService->category_id ?? 1;
+                $newBusinessService->sub_category = $serviceId;
+                $newBusinessService->save();
+            }
+
         }
         return response()->json([
             'status' => "success",
