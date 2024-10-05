@@ -9,6 +9,7 @@ use App\Http\Resources\Service\ServiceCategoryResource;
 use App\Models\BusinessService;
 use App\Models\BusinnessType;
 use App\Models\ServiceCategory;
+use App\Models\ServiceSubCategory;
 use Illuminate\Http\Request;
 
 /**
@@ -65,7 +66,8 @@ class BusinessServiceController extends Controller
         $newBusinessService->business_id = $business->id;
         $newBusinessService->category = $request->input('categoryId');
         $newBusinessService->sub_category = $request->input('subCategoryId');
-        /*$newBusinessService->type = $request->typeId; // kurulumda hizmet eklerken bu bilgilere ihtiyaç olmadığı için kapatıldı
+
+        $newBusinessService->type = $request->typeId; // kurulumda hizmet eklerken bu bilgilere ihtiyaç olmadığı için kapatıldı
         $newBusinessService->time = $request->input('time');
         $newBusinessService->price = $request->input('price');
         $newBusinessService->is_featured = $request->prefered;
@@ -76,7 +78,7 @@ class BusinessServiceController extends Controller
         } else {
             $newBusinessService->price = $request->input('price');
         }
-        $newBusinessService->price_type_id = $request->input('price_type_id');*/
+        $newBusinessService->price_type_id = $request->input('price_type_id');
         $newBusinessService->save();
         return response()->json([
             'status' => "success",
@@ -85,6 +87,29 @@ class BusinessServiceController extends Controller
         ]);
     }
 
+    /**
+     * Çoklu Hizmet Ekleme
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function totalAddService(Request $request)
+    {
+        $user = $request->user();
+        $business = $user->business;
+
+        foreach ($request->services as $serviceId) {
+            $findService = ServiceSubCategory::find($serviceId);
+            $newBusinessService = new BusinessService();
+            $newBusinessService->business_id = $business->id;
+            $newBusinessService->category = $findService->category_id;
+            $newBusinessService->sub_category = $serviceId;
+            $newBusinessService->save();
+        }
+        return response()->json([
+            'status' => "success",
+            'message' => "Hizmetler Kayıt Edildi.",
+        ]);
+    }
     /**
      * POST api/business-service/update
      *

@@ -123,6 +123,7 @@ Route::prefix('business')->group(function () {
             Route::get('/', 'step2Get');
             Route::post('/get', 'step2GetService');
             Route::post('/add', 'step2AddService');
+            Route::post('/add/service', 'totalAddService');
             Route::post('/update', 'step2UpdateService');
             Route::post('/delete', 'step2DeleteService');
             /*Route::post('/update/logo', 'updateLogo');*/
