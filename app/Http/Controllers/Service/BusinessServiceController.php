@@ -104,7 +104,7 @@ class BusinessServiceController extends Controller
                 $findService = ServiceSubCategory::find($serviceId);
                 $newBusinessService = new BusinessService();
                 $newBusinessService->business_id = $business->id;
-                $newBusinessService->category = $findService->category_id;
+                $newBusinessService->category = $findService->category_id ?? 1;
                 $newBusinessService->sub_category = $serviceId;
                 $newBusinessService->save();
             }
