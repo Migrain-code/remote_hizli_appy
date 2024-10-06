@@ -5,6 +5,7 @@ namespace App\Http\Resources\Business;
 use App\Http\Resources\Location\CityResource;
 use App\Http\Resources\Location\DistrictResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class BusinessResource extends JsonResource
 {
@@ -19,7 +20,7 @@ class BusinessResource extends JsonResource
         return [
            'id' => $this->id,
            'name' => $this->name,
-           'shortName' => $this->name,//(strlen($this->name) > 15) ? substr($this->name, 0, 15) : $this->name,
+           'shortName' => Str::limit($this->name, 15),
            'branchName' => $this->branch_name,
            'email' => $this->business_email,
            'year' => $this->year,
@@ -51,4 +52,5 @@ class BusinessResource extends JsonResource
            'setup2' => $this->services->count() > 0 && $this->personels->count() > 0 ? 1 : 0,
         ];
     }
+
 }
