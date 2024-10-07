@@ -18,6 +18,7 @@ class CustomerListResource extends JsonResource
            'id' => $this->customer?->id,
            'name' => $this->customer?->name,
            'phone' => $this->customer?->phone,
+           'masked_phone' => maskPhone($this->customer?->phone)
         ];
     }
 }

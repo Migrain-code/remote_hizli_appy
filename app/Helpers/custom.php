@@ -11,13 +11,7 @@ function image($path)
 function setting($key){
     return config('settings.'.$key);
 }
-function maskPhone($phone){
-    if (strlen($phone) > 10){
-        $maskedPhone = substr_replace(clearPhone($phone), str_repeat('*', strlen($phone) - 2), 0, -2);
-        return $maskedPhone;
-    }
-    return $phone;
-}
+
 function authUser(){
     if (auth('official')->check()){
         return auth('official')->user();
@@ -35,6 +29,17 @@ function clearPhone($phoneNumber){
 
     return $newPhoneNumber;
 
+}
+function maskPhone($phone){
+    $phone = clearPhone($phone);
+    $phoneLength = strlen($phone);
+
+    if ($phoneLength > 2) {
+        $maskedPhone = str_repeat('*', $phoneLength - 2) . substr($phone, -2);
+        return $maskedPhone;
+    }
+
+    return $phone;
 }
 function calculateTotal($services)
 {
