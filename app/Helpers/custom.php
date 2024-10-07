@@ -34,8 +34,8 @@ function maskPhone($phone){
     $phone = clearPhone($phone);
     $phoneLength = strlen($phone);
 
-    if ($phoneLength > 2) {
-        $maskedPhone = str_repeat('*', $phoneLength - 2) . substr($phone, -2);
+    if ($phoneLength > 4) {
+        $maskedPhone = str_repeat('*', $phoneLength - 4) . substr($phone, -4);
         return $maskedPhone;
     }
 
