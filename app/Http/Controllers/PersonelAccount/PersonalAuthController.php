@@ -38,7 +38,7 @@ class PersonalAuthController extends Controller
      */
     public function login(PersonalLoginRequest $request)
     {
-        $user = Personel::where('phone', $request->phone)->first();
+        $user = Personel::where('phone', clearPhone($request->phone))->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
