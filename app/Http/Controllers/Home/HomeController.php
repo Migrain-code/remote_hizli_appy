@@ -23,6 +23,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
  * @group Yönetici Anasayfa
@@ -137,7 +138,7 @@ class HomeController extends Controller
                         'start_time' => $appointment->start_time->format('H:i'),
                         'end_time' => $appointment->end_time->format('H:i'),
                         'services' => isset($appointment->service) ? $appointment->service->subCategory->name : "Hizmet silindi",
-                        'customer' => $appointment->appointment->customer->name,
+                        'customer' => Str::limit($appointment->appointment->customer->name,13),
                         'status_color' => $appointment->status('hexColor'),
                     ];
                 });
