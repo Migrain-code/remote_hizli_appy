@@ -76,11 +76,16 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->user()->tokens->each(function ($token) {
-            $token->delete();
-        });
+        // İstemciden gelen tokenı al
+        $token = $request->user()->currentAccessToken();
 
-        return response()->json(['message' => 'Sistemden Çıkış Yapıldı']);
+        // Tokenı sil
+        $token->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Sistemden Çıkış Yapıldı'
+        ]);
     }
 
     /**
