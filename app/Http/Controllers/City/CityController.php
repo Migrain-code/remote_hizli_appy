@@ -64,7 +64,7 @@ class CityController extends Controller
 
     public function testNotify(Request $request)
     {
-        $response = NotificationService::sendPushNotification('ExponentPushToken[H3679qFru74yOcIOQ-HFCF]', 'Yeni talep var', 'Test Talep Açıklama');
+        $response = NotificationService::sendPushNotification('ExponentPushToken[QH16C6HAvJ9pFaVKJ8WKxu]', 'Yeni talep var', 'Test Talep Açıklama');
 
         return response()->json([
             'message' => 'Notification sent successfully',
