@@ -63,7 +63,10 @@ class BusinessOfficial extends Authenticatable
     {
         return $this->hasMany(OfficialCreatidCard::class, 'official_id', 'id')->latest('is_default');
     }
-
+    public function device()
+    {
+        return $this->hasOne(Device::class, 'customer_id', 'id')->where('type', 3);
+    }
     public function card()
     {
         return $this->hasOne(OfficialCreatidCard::class, 'official_id', 'id');
