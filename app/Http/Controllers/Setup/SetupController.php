@@ -12,6 +12,7 @@ use App\Models\BusinnessType;
 use App\Models\BussinessPackage;
 use App\Models\DayList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * @group Setup
@@ -92,6 +93,7 @@ Sevgilerimizle ,
         $business->category_id = $request->input('category_id');
         $business->appoinment_range = $request->input('appointmentRange');
         $business->name = $request->input('name');//business name
+        $business->slug = Str::slug($request->input('name'));//business name
         $business->type_id = $request->input('type_id'); // business type
         $business->phone = $request->input('phone'); // business phone number
         $business->city = $request->input('city_id');
