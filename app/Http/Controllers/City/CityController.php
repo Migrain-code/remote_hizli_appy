@@ -4,6 +4,7 @@ namespace App\Http\Controllers\City;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Location\CityResource;
+use App\Services\NotificationService;
 use App\Services\OneSignalNotification;
 use Illuminate\Http\Request;
 
@@ -63,8 +64,7 @@ class CityController extends Controller
 
     public function testNotify(Request $request)
     {
-        $oneSignalService = new OneSignalNotification();
-        $response = $oneSignalService->sendNotificationToUser($request->player_id,$request->message);
+        $response = NotificationService::sendPushNotification('ExponentPushToken[H3679qFru74yOcIOQ-HFCF]', 'Yeni talep var', 'Test Talep Açıklama');
 
         return response()->json([
             'message' => 'Notification sent successfully',
