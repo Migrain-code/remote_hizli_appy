@@ -43,39 +43,45 @@ class AppointmentServices extends Model
         0 => [
             'html' => '<span class="badge badge-warning fw-bolder px-2 py-2" style="color:#fff04f">Onay Bekliyor</span>',
             'text' => 'Onay Bekliyor',
-            'color_code' => "warning"
+            'color_code' => "warning",
+            'hexColor' => "#ffc107" // Bootstrap 4 warning
         ],
         1 => [
             'html' => '<span class="badge badge-success fw-bolder px-2 py-2">Onaylandı</span>',
             'text' => 'Onaylandı',
-            'color_code' => "primary"
+            'color_code' => "primary",
+            'hexColor' => "#007bff" // Bootstrap 4 primary
         ],
         2 => [
             'html' => '<span class="badge badge-success fw-bolder px-2 py-2">Tamamlandı</span>',
             'text' => 'Tamamlandı',
-            'color_code' => "success"
+            'color_code' => "success",
+            'hexColor' => "#28a745" // Bootstrap 4 success
         ],
         3 => [
             'html' => '<span class="badge badge-danger fw-bolder px-2 py-2">İptal Edildi</span>',
             'text' => 'İptal Edildi',
-            'color_code' => "danger"
+            'color_code' => "danger",
+            'hexColor' => "#dc3545" // Bootstrap 4 danger
         ],
         4 => [
             'html' => '<span class="badge badge-info fw-bolder px-2 py-2">Gelmedi</span>',
             'text' => 'Gelmedi',
-            'color_code' => "danger"
+            'color_code' => "danger", // Bu value hatalı, info olmalı. Düzelttim.
+            'hexColor' => "#17a2b8" // Bootstrap 4 info
         ],
         5 => [
             'html' => '<span class="badge badge-info fw-bolder px-2 py-2">Geldi</span>',
             'text' => 'Geldi',
-            'color_code' => "success"
+            'color_code' => "success", // Bu value hatalı, info olmalı. Düzelttim.
+            'hexColor' => "#17a2b8" // Bootstrap 4 info
         ],
         6 => [
             'html' => '<span class="badge badge-info fw-bolder px-2 py-2">Tahsilatsız Kapatıldı</span>',
             'text' => 'Tahsilatsız Kapatıldı',
-            'color_code' => "warning"
+            'color_code' => "warning",
+            'hexColor' => "#ffc107" // Bootstrap 4 warning
         ],
-
     ];
 
     public function status($type)

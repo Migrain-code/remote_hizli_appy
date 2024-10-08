@@ -133,12 +133,12 @@ class HomeController extends Controller
                 ->get()
                 ->map(function ($appointment) {
                     return [
-                        'id' => $appointment->id,
+                        'id' => $appointment->appointment_id,
                         'start_time' => $appointment->start_time->format('H:i'),
                         'end_time' => $appointment->end_time->format('H:i'),
                         'services' => isset($appointment->service) ? $appointment->service->subCategory->name : "Hizmet silindi",
                         'customer' => $appointment->appointment->customer->name,
-                        'status_color' => $appointment->status('color_code'),
+                        'status_color' => $appointment->status('hexColor'),
                     ];
                 });
 
