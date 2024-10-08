@@ -73,6 +73,7 @@ Route::prefix('business')->group(function () {
         Route::post('verify', [AuthController::class, 'verify']);
         Route::post('reset-password', [AuthController::class, 'passwordReset']);
         Route::post('verify-reset-password', [AuthController::class, 'verifyResetPassword']);
+        Route::post('save-token', [AuthController::class, 'saveToken']);
 
         Route::middleware('auth:official')->group(function () {
             Route::get('user', [AuthController::class, 'user']);

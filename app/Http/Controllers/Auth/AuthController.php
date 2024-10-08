@@ -9,7 +9,9 @@ use App\Models\Business;
 use App\Models\BusinessNotificationPermission;
 use App\Models\BusinessOfficial;
 use App\Models\CustomerNotificationPermission;
+use App\Models\Device;
 use App\Models\SmsConfirmation;
+use App\Services\NotificationService;
 use App\Services\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -97,7 +99,40 @@ class AuthController extends Controller
     {
         return response()->json(BusinessOfficialResource::make($request->user()));
     }
+    /**
+     * Bildiriim Tokenı Kaydetme
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function saveToken(Request $request)
+    {
+        $user = auth('official')->user();
+        $title = "Merhaba ". $user->name;
+        $message = "Hızlı Randevu Sistemine Hoşgeldiniz";
+        if (isset($user->device)){
+            $deviceToken = $request->input('device_token');
+            if (isset($deviceToken) && $user->device->token != $deviceToken) { // İŞTE BU SATIR
+                $device = $user->device;
+                $device->token = $deviceToken;
+                $device->save();
+            }
+            NotificationService::sendPushNotification($user->device->token, $title, $message);
+        } else{
+            if ($request->filled('device_token')){
+                $device = new Device();
+                $device->customer_id = $user->id;
+                $device->token = $request->input('device_token');
+                $device->type = 3;//personel token => 2, business Token => 3
+                $device->save();
+                NotificationService::sendPushNotification($device->token, $title, $message);
 
+            }
+        }
+        return response()->json([
+            'status' => "success",
+            'message' => "Cihaz Kayıt Edildi"
+        ]);
+    }
     /**
      * POST api/auth/check-phone
      *
