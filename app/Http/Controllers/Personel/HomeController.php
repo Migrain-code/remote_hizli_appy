@@ -97,13 +97,39 @@ class HomeController extends Controller
      *
      * appointment_date gönderilecek
      * @param Request $request
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getClock(Request $request)
     {
         $personel = $this->personel;
+        $business = $personel->business;
         $clocks = [];
         $getDate = Carbon::parse($request->appointment_date);
+        if (Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek == $business->off_day) {
+            return response()->json([
+                "status" => "error",
+                "message" => "İşletme bu tarihte hizmet vermemektedir"
+            ], 200);
+        } else {
+            //işletme kapalı değilse personel izin kontrolü
+            if (in_array(Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek, $personel->restDays()->pluck('day_id')->toArray())) {
+                return response()->json([
+                    "status" => "error",
+                    "message" => "Personel bu tarihte hizmet vermemektedir"
+                ], 200);
+            } else {
+                //personel kapalı değilse personel izin gün kontrolü
+                if ($personel->checkDateIsOff($getDate)) {
+                    return response()->json([
+                        "status" => "error",
+                        "message" => "Personel bu tarihte hizmet vermemektedir"
+                    ], 200);
+                } else {
+
+                }
+            }
+        }
+
         $checkCustomWorkTime = $personel->isCustomWorkTime($request->appointment_date);
         $appointmentRange = $personel->appointmentRange->time; // Assuming this is in minutes
 
