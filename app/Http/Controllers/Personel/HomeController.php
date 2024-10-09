@@ -109,21 +109,21 @@ class HomeController extends Controller
             return response()->json([
                 "status" => "error",
                 "message" => "İşletme bu tarihte hizmet vermemektedir"
-            ], 422);
+            ], 404);
         } else {
             //işletme kapalı değilse personel izin kontrolü
             if (in_array(Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek, $personel->restDays()->pluck('day_id')->toArray())) {
                 return response()->json([
                     "status" => "error",
                     "message" => "Personel bu tarihte hizmet vermemektedir"
-                ], 422);
+                ], 404);
             } else {
                 //personel kapalı değilse personel izin gün kontrolü
                 if ($personel->checkDateIsOff($getDate)) {
                     return response()->json([
                         "status" => "error",
                         "message" => "Personel bu tarihte hizmet vermemektedir"
-                    ], 422);
+                    ], 404);
                 } else {
                     $checkCustomWorkTime = $personel->isCustomWorkTime($request->appointment_date);
                     $appointmentRange = $personel->appointmentRange->time; // Assuming this is in minutes
