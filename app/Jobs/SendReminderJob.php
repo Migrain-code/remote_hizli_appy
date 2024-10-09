@@ -14,6 +14,7 @@ class SendReminderJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     protected $appointment;
+
     /**
      * Create a new job instance.
      */
@@ -27,10 +28,17 @@ class SendReminderJob implements ShouldQueue
      */
     public function handle()
     {
+        // Randevunun hala mevcut olup olmadığını kontrol et
+        $appointment = Appointment::find($this->appointment->id);
+        if (!$appointment) {
+            // Eğer randevu bulunamazsa, job'u sonlandır
+            return;
+        }
+
         // Hatırlatma mesajını gönderme kodu buraya gelecek
-        $customer = $this->appointment->customer;
-        $business = $this->appointment->business;
-        $message = "Değerli Müşterimiz, {$business->name} işletmesinden aldığınız {$this->appointment->start_time->format('d.m.Y H:i')} randevusu için bir hatırlatma mesajıdır. Zamanında gelmenizi rica ederiz. Teşekkürler.";
+        $customer = $appointment->customer;
+        $business = $appointment->business;
+        $message = "Değerli Müşterimiz, {$business->name} işletmesinden aldığınız {$appointment->start_time->format('d.m.Y H:i')} randevusu için bir hatırlatma mesajıdır. Zamanında gelmenizi rica ederiz. Teşekkürler.";
         //Sms::send($customer->phone, $message);
         $customer->sendNotification('Randevu Hatırlatma', $message);
     }

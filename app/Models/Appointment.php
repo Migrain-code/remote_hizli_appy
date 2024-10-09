@@ -242,7 +242,7 @@ class Appointment extends Model
 
         // Job'u dispatch et ve job ID'sini alın
         $job = new SendReminderJob($this);
-        $jobId = app('queue')->push($job->delay($reminderTime));
+        $jobId = app('queue')->later($reminderTime, $job);
 
         // Job ID'sini randevu kaydına kaydedin
         $this->job_id = $jobId;
