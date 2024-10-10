@@ -53,11 +53,14 @@ class CaseController extends Controller
     public function index(Request $request)
     {
         $business = $this->business;
-        /*if (!$request->filled('min_date') && !$request->filled('max_date')) {
-            $request->merge(['date_range' => now()->format('d.m.Y') . ' - ' . now()->format('d.m.Y')]);
-        } else{
-            $request->merge(["date_range" => Carbon::parse($request->min_date)->format('d.m.Y'). ' - ' .Carbon::parse($request->max_date)->format('d.m.Y')]);
-        }*/
+        if (!isset($request->date_range)){
+            if (!$request->filled('min_date') && !$request->filled('max_date')) {
+                $request->merge(['date_range' => now()->format('d.m.Y') . ' - ' . now()->format('d.m.Y')]);
+            } else{
+                $request->merge(["date_range" => Carbon::parse($request->min_date)->format('d.m.Y'). ' - ' .Carbon::parse($request->max_date)->format('d.m.Y')]);
+            }
+        }
+
 
         $this->adissionCalculator($business, $request);
         $this->productSaleCalculator($business, $request);
