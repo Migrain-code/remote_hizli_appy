@@ -7,6 +7,7 @@ use App\Http\Resources\Appointment\AppointmentDetailResoruce;
 use App\Http\Resources\Appointment\AppointmentResource;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 /**
  * @group Adisyonlar
@@ -33,9 +34,14 @@ class AdissionController extends Controller
     {
         $user = $request->user();
         $business = $user->business;
-        //$reqDate = Carbon::parse($request->date)->format('Y-m-d');
-        //$appoinments = $business->appointments()->whereDate('start_time', $reqDate)->orderBy('start_time', 'asc')->get();
-        $appoinments = $business->appointments()->when($request->filled('listType'), function ($q) use ($request) {
+        if (!isset($request->date_range)){
+            if (!$request->filled('start_date') && !$request->filled('end_date')) {
+                $request->merge(['date_range' => now()->format('d.m.Y') . ' - ' . now()->format('d.m.Y')]);
+            } else{
+                $request->merge(["date_range" => Carbon::parse($request->start_date)->format('d.m.Y'). ' - ' .Carbon::parse($request->end_date)->format('d.m.Y')]);
+            }
+        }
+       $appoinments = $business->appointments()->when($request->filled('listType'), function ($q) use ($request) {
             if ($request->listType == "open") {
                 $q->whereIn('status', [2]);//or add 1
             } elseif ($request->listType == "closed") {
@@ -45,8 +51,16 @@ class AdissionController extends Controller
             } else {
                 $q->whereNotIn('status', [0])->whereIn('status', [2]);//or add 1
             }
-        })/*->where('start_time', now()->toDateString())*/
-            ->latest()->take(30)->get();
+        })->when($request->filled('date_range'), function ($q) use ($request) {
+            $startTime = now();
+            $endTime = now();
+            if ($request->filled('date_range')) {
+                $timePartition = explode('-', $request->date_range);
+                $startTime = Carbon::parse(clearPhone($timePartition[0]))->toDateString();
+                $endTime = Carbon::parse(clearPhone($timePartition[1]))->toDateString();
+            }
+            $q->whereBetween('start_time', [$startTime, $endTime]);
+        })->latest()->take(30)->get();
 
         return response()->json(AppointmentResource::collection($appoinments));
     }
