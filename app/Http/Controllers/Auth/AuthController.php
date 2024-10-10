@@ -8,7 +8,6 @@ use App\Http\Resources\Business\BusinessOfficialResource;
 use App\Models\Business;
 use App\Models\BusinessNotificationPermission;
 use App\Models\BusinessOfficial;
-use App\Models\CustomerNotificationPermission;
 use App\Models\Device;
 use App\Models\SmsConfirmation;
 use App\Services\NotificationService;
@@ -48,18 +47,22 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Telefon Numarası veya şifre yanlış'
             ], 401);
-        }
-        if ($user->status == 0){
-            return response()->json([
-                'message' => 'Telefon Numarası veya şifre yanlış'
-            ], 401);
-        }
-        $token = $user->createToken('Access Token')->accessToken;
+        } else {
+            if ($user->status == 0) {
+                return response()->json([
+                    'message' => 'Telefon Numarası veya şifre yanlış'
+                ], 401);
+            } else{
+                $token = $user->createToken('Access Token')->accessToken;
 
-        return response()->json([
-            'token' => $token,
-            'user' => BusinessOfficialResource::make($user),
-        ]);
+                return response()->json([
+                    'token' => $token,
+                    'user' => BusinessOfficialResource::make($user),
+                ]);
+            }
+        }
+
+
     }
 
     /**
@@ -87,6 +90,7 @@ class AuthController extends Controller
             'message' => 'Sistemden Çıkış Yapıldı'
         ]);
     }
+
     /**
      * GET api/auth/user
      *
@@ -103,6 +107,7 @@ class AuthController extends Controller
     {
         return response()->json(BusinessOfficialResource::make($request->user()));
     }
+
     /**
      * Bildiriim Tokenı Kaydetme
      * @param Request $request
@@ -111,9 +116,9 @@ class AuthController extends Controller
     public function saveToken(Request $request)
     {
         $user = auth('official')->user();
-        $title = "Merhaba ". $user->name;
+        $title = "Merhaba " . $user->name;
         $message = "Hızlı Randevu Sistemine Hoşgeldiniz";
-        if (isset($user->device)){
+        if (isset($user->device)) {
             $deviceToken = $request->input('device_token');
             if (isset($deviceToken) && $user->device->token != $deviceToken) { // İŞTE BU SATIR
                 $device = $user->device;
@@ -121,8 +126,8 @@ class AuthController extends Controller
                 $device->save();
             }
             NotificationService::sendPushNotification($user->device->token, $title, $message);
-        } else{
-            if ($request->filled('device_token')){
+        } else {
+            if ($request->filled('device_token')) {
                 $device = new Device();
                 $device->customer_id = $user->id;
                 $device->token = $request->input('device_token');
@@ -137,6 +142,7 @@ class AuthController extends Controller
             'message' => "Cihaz Kayıt Edildi"
         ]);
     }
+
     /**
      * POST api/auth/check-phone
      *
@@ -297,7 +303,7 @@ class AuthController extends Controller
                     ]);
                 }
             }
-        } else{
+        } else {
             return response()->json([
                 'status' => "danger",
                 'message' => "Doğrulama Kodu Hatalı veya Yanlış Tuşladınız"
