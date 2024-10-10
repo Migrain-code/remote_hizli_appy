@@ -103,10 +103,9 @@ class SpeedAppointmentController extends Controller
             ->when($request->filled('name'), function ($q) use ($request) {
                 $name = strtolower($request->input('name'));
                 $q->whereHas('customer', function ($q) use ($name) {
-                    $q->whereRaw('LOWER(name) like ?', ['%' . $name . '%']);
+                    $q->whereRaw('LOWER(name) like ?', ['%' . $name . '%'])->orWhere('phone', 'like', '%' . $name . '%');
                 });
-            })
-            ->take(30)->get();
+            })->take(50)->get();
         return response()->json(CustomerListResource::collection($customers));
     }
 
