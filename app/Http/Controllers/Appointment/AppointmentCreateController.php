@@ -560,9 +560,19 @@ class AppointmentCreateController extends Controller
             $appointmentService->end_time = $appointmentStartTime->addMinutes($findService->time);
             $appointmentService->appointment_id = $appointment->id;
             $appointmentService->save();
+            $result = $this->checkPersonelClock($personelIds[$index], $appointmentService->start_time, $appointmentService->end_time, $appointment->id);
 
-            $approve_types[] = $findService->approve_type;
+            if ($result) {
+                $appointment->services()->delete();
+                $appointment->delete();
+                return response()->json([
+                    'status' => "error",
+                    'message' => "Üzgünüz, seçmiş olduğunuz randevu saati doludur. Lütfen farklı bir saat seçmeyi deneyin ya da bir süre sonra tekrar kontrol edin."
+                ], 422);
 
+            } else{
+                $approve_types[] = $findService->approve_type;
+            }
         }
 
         $appointment->start_time = $appointment->services()->first()->start_time;
@@ -598,8 +608,8 @@ class AppointmentCreateController extends Controller
             }
             //$appointment->customer->sendSms($message);
             $title = "Randevunuz Oluşturuldu";
-           // $appointment->customer->sendNotification($title, $message);
-          //  $appointment->sendPersonelNotification();
+            $appointment->customer->sendNotification($title, $message);
+             $appointment->sendPersonelNotification();
             $appointment->scheduleReminder();
             $appointment->calculateTotal();
             return response()->json([
@@ -615,6 +625,52 @@ class AppointmentCreateController extends Controller
         ], 422);
     }
 
+    public function checkPersonelClock($personelId, $startTime, $endTime, $appointmentId = null)
+    {
+
+        $findPersonel = Personel::find($personelId);
+        $disabledTimes = $this->findDisabledTimes($findPersonel, $startTime, $appointmentId);
+
+        $disableds = [];
+        $currentDateTime = $startTime->copy();
+
+        while ($currentDateTime < $endTime) {
+            $disableds[] = $currentDateTime->format('d.m.Y H:i');
+            $currentDateTime->addMinutes(intval($findPersonel->appointmentRange->time));
+        }
+
+        foreach ($disableds as $disabledTime) {
+            if (in_array($disabledTime, $disabledTimes)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    public function findDisabledTimes($personel, $appointmentStartTime, $appointmentId = null)
+    {
+        $appointments = $personel->appointments()
+            ->when(isset($appointmentId), function ($q) use ($appointmentId){
+                $q->whereNotIn('appointment_id', [$appointmentId]);
+            })
+            ->whereDate('start_time', $appointmentStartTime->toDateString())
+            ->whereNotIn('status', [3])
+            ->get();
+        $disabledTimes = [];
+        foreach ($appointments as $appointment) {
+            $startDateTime = $appointment->start_time;
+            $endDateTime = $appointment->end_time;
+
+            $currentDateTime = $startDateTime->copy();
+            while ($currentDateTime < $endDateTime) {
+
+                $disabledTimes[] = $currentDateTime->format('d.m.Y H:i');
+
+                $currentDateTime->addMinutes(intval($personel->appointmentRange->time));
+            }
+        }
+        return $disabledTimes;
+    }
 
     function transformServices($womanServiceCategories)
     {
