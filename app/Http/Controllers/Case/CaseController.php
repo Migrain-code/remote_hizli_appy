@@ -82,7 +82,7 @@ class CaseController extends Controller
 
     public function adissionCalculator($business, $request)
     {
-        $adissions = $business->appointments()->whereIn('status', [5, 6])
+        $adissions = $business->appointments()->whereIn('status', [2, 5, 6])
             ->when($request->filled('date_range'), function ($q) use ($request) {
                 $timePartition = explode('-', $request->date_range);
                 $startTime = Carbon::createFromFormat('d.m.Y', trim($timePartition[0]))->startOfDay();

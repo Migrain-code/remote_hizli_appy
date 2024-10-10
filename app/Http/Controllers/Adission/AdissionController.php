@@ -43,13 +43,10 @@ class AdissionController extends Controller
             } elseif ($request->listType == "canceled") {
                 $q->whereIn('status', [3, 4]);
             } else {
-                $q->whereNotIn('status', [0])->whereIn('status', [1,2]);
+                $q->whereNotIn('status', [0])->whereIn('status', [2]);
             }
         })/*->where('start_time', now()->toDateString())*/
             ->latest()->take(30)->get();
-        /*foreach ($business->appointments as $appointment){
-            $appointment->delete();
-        }*/
 
         return response()->json(AppointmentResource::collection($appoinments));
     }
