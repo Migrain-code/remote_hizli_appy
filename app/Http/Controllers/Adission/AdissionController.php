@@ -30,40 +30,64 @@ class AdissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private const OPEN_STATUS = [2];//açık
+    private const CLOSED_STATUS = [5, 6];//kapatılmış
+    private const CANCELED_STATUS = [3, 4];//iptal edilmiş
+    private const DEFAULT_STATUS = [2];//default açık
+
     public function index(Request $request)
     {
         $user = $request->user();
         $business = $user->business;
-        if (!isset($request->date_range)){
+        $this->handleDateRange($request);
+
+        $appointments = $business->appointments()
+            ->when($request->filled('listType'), fn($q) => $this->applyListTypeFilter($q, $request->listType))
+            ->when($request->filled('date_range'), fn($q) => $this->applyDateRangeFilter($q, $request->date_range))
+            ->when(!$request->filled('listType'), function($q) use ($request) {
+                $q->whereIn('status', self::OPEN_STATUS);
+            })
+            ->latest()
+            ->take(30)
+            ->get();
+
+        return response()->json(AppointmentResource::collection($appointments));
+    }
+
+    private function handleDateRange(Request $request): void
+    {
+        if (!isset($request->date_range)) {
             if (!$request->filled('start_date') && !$request->filled('end_date')) {
                 $request->merge(['date_range' => now()->format('d.m.Y') . ' - ' . now()->format('d.m.Y')]);
-            } else{
-                $request->merge(["date_range" => Carbon::parse($request->start_date)->format('d.m.Y'). ' - ' .Carbon::parse($request->end_date)->format('d.m.Y')]);
+            } else {
+                $request->merge([
+                    'date_range' => Carbon::parse($request->start_date)->format('d.m.Y') . ' - ' . Carbon::parse($request->end_date)->format('d.m.Y')
+                ]);
             }
         }
-       $appoinments = $business->appointments()->when($request->filled('listType'), function ($q) use ($request) {
-            if ($request->listType == "open") {
-                $q->whereIn('status', [2]);//or add 1
-            } elseif ($request->listType == "closed") {
-                $q->whereIn('status', [5, 6]);
-            } elseif ($request->listType == "canceled") {
-                $q->whereIn('status', [3, 4]);
-            } else {
-                $q->whereNotIn('status', [0])->whereIn('status', [2]);//or add 1
-            }
-        })->when($request->filled('date_range'), function ($q) use ($request) {
-            $startTime = now();
-            $endTime = now();
-            if ($request->filled('date_range')) {
-                $timePartition = explode('-', $request->date_range);
-                $startTime = Carbon::parse(clearPhone($timePartition[0]))->toDateString();
-                $endTime = Carbon::parse(clearPhone($timePartition[1]))->toDateString();
-            }
-            $q->whereBetween('start_time', [$startTime, $endTime]);
-        })->latest()->take(30)->get();
-
-        return response()->json(AppointmentResource::collection($appoinments));
     }
+
+    private function applyListTypeFilter($query, string $listType)
+    {
+        $statusMap = [
+            'open' => self::OPEN_STATUS,
+            'closed' => self::CLOSED_STATUS,
+            'canceled' => self::CANCELED_STATUS,
+            'default' => self::DEFAULT_STATUS
+        ];
+
+        $statuses = $statusMap[$listType] ?? [];
+        return empty($statuses) ? $query->whereNotIn('status', [0])->whereIn('status', self::DEFAULT_STATUS)
+            : $query->whereIn('status', $statuses);
+    }
+
+    private function applyDateRangeFilter($query, string $dateRange)
+    {
+        [$startTime, $endTime] = array_map(fn($date) => Carbon::parse(clearPhone(trim($date)))->toDateString(), explode('-', $dateRange));
+        return $query->whereBetween('start_time', [$startTime, $endTime]);
+    }
+
 
     /**
      * Adisyon Detayı
