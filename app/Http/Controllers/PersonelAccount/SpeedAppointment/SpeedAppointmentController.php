@@ -108,7 +108,7 @@ class SpeedAppointmentController extends Controller
                 });
             })
             /*->take(30)*/->get();
-        return response()->json(CustomerListResource::collection($customers));
+        return response()->json(\App\Http\Resources\Customer\Personel\CustomerListResource::collection($customers));
     }
 
     /**
