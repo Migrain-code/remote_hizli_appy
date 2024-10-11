@@ -92,6 +92,9 @@ class PersonalProfileUpdateController extends Controller
             $personel->image = $response["image"]["way"];
         }
         if ($personel->save()) {
+            if ($personel->restDayAll->count() > 0) {
+                $personel->restDayAll()->delete();
+            }
             foreach ($dayList as $day) {
                 $restDay = new PersonelRestDay();
                 $restDay->personel_id = $personel->id;
