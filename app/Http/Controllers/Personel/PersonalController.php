@@ -90,8 +90,8 @@ class PersonalController extends Controller
         $personel->accept = $request->accept;
         $personel->start_time = $request->startTime;
         $personel->end_time = $request->endTime;
-        $personel->food_start = $request->foodStart;
-        $personel->food_end = $request->foodEnd;
+       // $personel->food_start = $request->foodStart;
+        //$personel->food_end = $request->foodEnd;
         $personel->gender = $request->gender;
         $personel->rate = $request->rate;
         $personel->range = $request->appointmentRange;
@@ -215,8 +215,8 @@ class PersonalController extends Controller
            // $personel->rest_day = $request->restDay;
             $personel->start_time = $request->startTime;
             $personel->end_time = $request->endTime;
-            $personel->food_start = $request->foodStart;
-            $personel->food_end = $request->foodEnd;
+            //$personel->food_start = $request->foodStart;
+            //$personel->food_end = $request->foodEnd;
             $personel->gender = $request->gender;
             $personel->rate = $request->rate;
             $personel->range = $request->appointmentRange;
@@ -227,7 +227,9 @@ class PersonalController extends Controller
             }
             $dayList = DayList::all();
             if ($personel->save()) {
-                $personel->restDays()->delete();
+                if ($personel->restDayAll->count() > 0) {
+                    $personel->restDayAll()->delete();
+                }
                 foreach ($dayList as $day){
                     $restDay = new PersonelRestDay();
                     $restDay->personel_id = $personel->id;
