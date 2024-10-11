@@ -125,7 +125,7 @@ class AuthController extends Controller
                 $device->token = $deviceToken;
                 $device->save();
             }
-            NotificationService::sendPushNotification($user->device->token, $title, $message);
+            NotificationService::sendPushNotification($user->device->token, $title, $message, "https://hizlirandevu.com.tr/");
         } else {
             if ($request->filled('device_token')) {
                 $device = new Device();
@@ -133,7 +133,7 @@ class AuthController extends Controller
                 $device->token = $request->input('device_token');
                 $device->type = 3;//personel token => 2, business Token => 3
                 $device->save();
-                NotificationService::sendPushNotification($device->token, $title, $message);
+                NotificationService::sendPushNotification($device->token, $title, $message, 'https://hizlirandevu.com.tr/');
 
             }
         }
