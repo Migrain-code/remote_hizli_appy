@@ -5,6 +5,7 @@ namespace App\Http\Controllers\City;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Location\CityResource;
 use App\Models\Appointment;
+use App\Models\CustomerNotificationMobile;
 use App\Services\NotificationService;
 use App\Services\OneSignalNotification;
 use Illuminate\Http\Request;
@@ -75,7 +76,14 @@ class CityController extends Controller
         $message = "Değerli Müşterimiz, {$business->name} işletmesinden aldığınız {$appointment->start_time->format('d.m.Y H:i')} randevusu için bir hatırlatma mesajıdır. Zamanında gelmenizi rica ederiz. Teşekkürler.";
         //Sms::send($customer->phone, $message);*/
         $message = $business->name . " İşletmesine " . $appointment->start_time->format('d.m.Y H:i') . " tarihine randevunuz oluşturuldu. Konum : ".'https://www.google.com/maps?q=' . $business->lat .','. $business->longitude;
-
+        $notification = new CustomerNotificationMobile();
+        $notification->notification_id = 1;
+        $notification->title = 'Randevunuz Oluşturuldu';
+        $notification->content = $message;
+        $notification->status = 0;
+        $notification->slug = uniqid();
+        $notification->customer_id = $customer->id;
+        $notification->save();
         $response = NotificationService::sendPushNotification('ExponentPushToken[XjuhgWGCUle6TuRCxPMDTi]', 'Randevu Hatırlatma', $message);
 
         return response()->json([
