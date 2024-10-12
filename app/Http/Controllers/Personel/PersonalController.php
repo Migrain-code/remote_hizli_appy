@@ -14,6 +14,7 @@ use App\Models\BusinnessType;
 use App\Models\DayList;
 use App\Models\Personel;
 use App\Models\PersonelRestDay;
+use App\Models\PersonelRoom;
 use App\Models\PersonelService;
 use App\Models\ServiceCut;
 use App\Services\UploadFile;
@@ -236,6 +237,17 @@ class PersonalController extends Controller
                     $restDay->day_id = $day->id;
                     $restDay->status = in_array($day->id, explode(',',$request->restDay)) ? 1 : 0;
                     $restDay->save();
+                }
+                if($request->filled('rooms')){
+                    $personel->rooms()->delete();
+
+                    foreach (explode(',', $request->rooms) as $salonId){
+                        $personelRoom = new PersonelRoom();
+                        $personelRoom->business_id = $business->id;
+                        $personelRoom->personel_id = $personel->id;
+                        $personelRoom->room_id = $salonId;
+                        $personelRoom->save();
+                    }
                 }
                 PersonelService::where('personel_id', $personel->id)->delete();
                 if (in_array('all', explode(',', $request->services))) {
