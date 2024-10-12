@@ -19,6 +19,7 @@ use App\Models\DayList;
 use App\Models\Personel;
 use App\Models\PersonelNotification;
 use App\Models\PersonelRestDay;
+use App\Models\PersonelRoom;
 use App\Models\PersonelService;
 use App\Services\UploadFile;
 use Illuminate\Http\Request;
@@ -140,6 +141,7 @@ class PersonelController extends Controller
             $response = UploadFile::uploadFile($request->file('logo'), 'personel_images');
             $personel->image = $response["image"]["way"];
         }
+
         if ($personel->save()) {
             foreach ($dayList as $day) {
                 $restDay = new PersonelRestDay();
@@ -161,6 +163,16 @@ class PersonelController extends Controller
                     $personelService->service_id = $service;
                     $personelService->personel_id = $personel->id;
                     $personelService->save();
+                }
+            }
+            if($request->has('rooms')){
+
+                foreach (explode(',', $request->rooms) as $salonId){
+                    $personelRoom = new PersonelRoom();
+                    $personelRoom->business_id = $business->id;
+                    $personelRoom->personel_id = $personel->id;
+                    $personelRoom->room_id = $salonId;
+                    $personelRoom->save();
                 }
             }
             return response()->json([
@@ -255,6 +267,17 @@ class PersonelController extends Controller
             $personel->image = $response["image"]["way"];
         }
         if ($personel->save()) {
+            if($request->has('rooms')){
+                $personel->rooms()->delete();
+
+                foreach (explode(',', $request->rooms) as $salonId){
+                    $personelRoom = new PersonelRoom();
+                    $personelRoom->business_id = $business->id;
+                    $personelRoom->personel_id = $personel->id;
+                    $personelRoom->room_id = $salonId;
+                    $personelRoom->save();
+                }
+            }
             if ($personel->restDayAll->count() > 0) {
                 $personel->restDayAll()->delete();
             }
