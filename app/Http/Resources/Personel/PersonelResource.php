@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Personel;
 
+use App\Http\Resources\PersonelAccount\Rooms\RoomsListResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PersonelResource extends JsonResource
@@ -32,6 +33,7 @@ class PersonelResource extends JsonResource
           'description' => $this->description,
           'services' => PersonelServiceResource::collection($this->services),
           'rest_day' => PersonelRestDayResource::collection($this->restDays),
+          'rooms' => RoomsListResource::collection($this->rooms),
           'appointmentRange' => $this->appointmentRange,
           'safe' => $this->safe,
           'user_type' => 1,
