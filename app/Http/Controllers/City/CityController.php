@@ -4,6 +4,7 @@ namespace App\Http\Controllers\City;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Location\CityResource;
+use App\Models\Appointment;
 use App\Services\NotificationService;
 use App\Services\OneSignalNotification;
 use Illuminate\Http\Request;
@@ -64,7 +65,16 @@ class CityController extends Controller
 
     public function testNotify(Request $request)
     {
-        $response = NotificationService::sendPushNotification('ExponentPushToken[QH16C6HAvJ9pFaVKJ8WKxu]', 'Yeni talep var', 'Test Talep Açıklama');
+        //$response = NotificationService::sendPushNotification('ExponentPushToken[QH16C6HAvJ9pFaVKJ8WKxu]', 'Yeni talep var', 'Test Talep Açıklama');
+        $response = NotificationService::sendPushNotification('ExponentPushToken[XjuhgWGCUle6TuRCxPMDTi]', 'Yeni talep var', 'Test Talep Açıklama');
+        $appointment = Appointment::find(12269);
+
+        // Hatırlatma mesajını gönderme kodu buraya gelecek
+        $customer = $appointment->customer;
+        $business = $appointment->business;
+        $message = "Değerli Müşterimiz, {$business->name} işletmesinden aldığınız {$appointment->start_time->format('d.m.Y H:i')} randevusu için bir hatırlatma mesajıdır. Zamanında gelmenizi rica ederiz. Teşekkürler.";
+        //Sms::send($customer->phone, $message);
+        $response = NotificationService::sendPushNotification('ExponentPushToken[XjuhgWGCUle6TuRCxPMDTi]', 'Randevu Hatırlatma', $message);
 
         return response()->json([
             'message' => 'Notification sent successfully',
