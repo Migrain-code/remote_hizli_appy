@@ -267,7 +267,7 @@ class PersonelController extends Controller
             $personel->image = $response["image"]["way"];
         }
         if ($personel->save()) {
-            if($request->has('rooms')){
+            if($request->filled('rooms')){
                 $personel->rooms()->delete();
 
                 foreach (explode(',', $request->rooms) as $salonId){
