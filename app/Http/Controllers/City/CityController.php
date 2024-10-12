@@ -66,7 +66,7 @@ class CityController extends Controller
     public function testNotify(Request $request)
     {
         //$response = NotificationService::sendPushNotification('ExponentPushToken[QH16C6HAvJ9pFaVKJ8WKxu]', 'Yeni talep var', 'Test Talep Açıklama');
-        $response = NotificationService::sendPushNotification('ExponentPushToken[XjuhgWGCUle6TuRCxPMDTi]', 'Yeni talep var', 'Test Talep Açıklama');
+        //$response = NotificationService::sendPushNotification('ExponentPushToken[XjuhgWGCUle6TuRCxPMDTi]', 'Yeni talep var', 'Test Talep Açıklama');
         $appointment = Appointment::find(12269);
 
         // Hatırlatma mesajını gönderme kodu buraya gelecek
