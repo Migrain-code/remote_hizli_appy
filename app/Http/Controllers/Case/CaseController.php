@@ -65,6 +65,7 @@ class CaseController extends Controller
         $this->adissionCalculator($business, $request);
         $this->productSaleCalculator($business, $request);
         $this->paymentsCalculator($business, $request);
+        $this->packageSaleCalculator($business, $request);
 
         $closingBalance = $this->case;
         $totalExpense = $this->payments;
@@ -160,6 +161,43 @@ class CaseController extends Controller
                 $this->case["otherTotal"] += $sale->total;
             }
         }
+        $this->case["total"] = $this->case["cashTotal"] + $this->case["creditTotal"] + $this->case["eftTotal"] + $this->case["otherTotal"];
+
+        return $this->case;
+    }
+    public function packageSaleCalculator($business, $request)
+    {
+        $sales = $business->packages()
+            ->when($request->filled('listType'), function ($q) use ($request) {
+                if ($request->listType == "thisWeek") {
+                    $startOfWeek = now()->startOfWeek();
+                    $endOfWeek = now()->endOfWeek();
+                    $q->whereBetween('seller_date', [$startOfWeek, $endOfWeek]);
+                } elseif ($request->listType == "thisMonth") {
+                    $startOfMonth = now()->startOfMonth();
+                    $endOfMonth = now()->endOfMonth();
+                    $q->whereBetween('seller_date', [$startOfMonth, $endOfMonth]);
+                } elseif ($request->listType == "thisYear") {
+                    $startOfYear = now()->startOfYear();
+                    $endOfYear = now()->endOfYear();
+                    $q->whereBetween('seller_date', [$startOfYear, $endOfYear]);
+                } else {
+                    $q->whereDate('seller_date', now()->toDateString());
+                }
+            })
+            ->when($request->filled('date_range'), function ($q) use ($request) {
+                $startTime = now();
+                $endTime = now();
+                if ($request->filled('date_range')) {
+                    $timePartition = explode('-', $request->date_range);
+                    $startTime = Carbon::parse(clearPhone($timePartition[0]))->toDateString();
+                    $endTime = Carbon::parse(clearPhone($timePartition[1]))->toDateString();
+                }
+                $q->whereBetween('seller_date', [$startTime, $endTime]);
+            })
+            ->pluck('id')->toArray();
+        $paymentTotal = PackagePayment::whereIn('package_id', $sales)->sum('price');
+        $this->case["cashTotal"] += $paymentTotal->total;
         $this->case["total"] = $this->case["cashTotal"] + $this->case["creditTotal"] + $this->case["eftTotal"] + $this->case["otherTotal"];
 
         return $this->case;
