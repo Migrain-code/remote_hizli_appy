@@ -197,7 +197,7 @@ class CaseController extends Controller
             })
             ->pluck('id')->toArray();
         $paymentTotal = PackagePayment::whereIn('package_id', $sales)->sum('price');
-        $this->case["cashTotal"] += $paymentTotal->total;
+        $this->case["cashTotal"] += $paymentTotal;
         $this->case["total"] = $this->case["cashTotal"] + $this->case["creditTotal"] + $this->case["eftTotal"] + $this->case["otherTotal"];
 
         return $this->case;
