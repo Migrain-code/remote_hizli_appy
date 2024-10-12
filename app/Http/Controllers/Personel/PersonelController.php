@@ -69,6 +69,30 @@ class PersonelController extends Controller
                 'name' => $j . "%",
             ];
         }
+        $rooms = [];
+        if ($business->rooms->count() > 0) {
+            $rooms[] = [
+                "id" => 0,
+                "name" => "Salon",
+                "color" => "#000",
+                "percentage" => 0,
+            ];
+            foreach ($business->rooms as $room) {
+                $rooms[] = [
+                    "id" => $room->id,
+                    "name" => $room->name,
+                    "color" => $room->color,
+                    "percentage" => $room->price,
+                ];
+            }
+        } else {// sonradan silinecek
+            $rooms[] = [
+                "id" => 0,
+                "name" => "Salon",
+                "color" => "#000",
+                "percentage" => 0,
+            ];
+        }
         return response()->json([
             'dayList' => DayListResource::collection(DayList::all()),
             'services' => BusinessServiceResource::collection($business->services),
@@ -76,6 +100,7 @@ class PersonelController extends Controller
             'rates' => $rates,
             'productRate' => $product_rates,
             'genders' => BusinnessType::all(),
+            'rooms' => $rooms
         ]);
     }
 
