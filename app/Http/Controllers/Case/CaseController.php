@@ -165,44 +165,6 @@ class CaseController extends Controller
 
         return $this->case;
     }
-    public function packageSaleCalculator($business, $request)
-    {
-        $sales = $business->packages()
-            ->when($request->filled('listType'), function ($q) use ($request) {
-                if ($request->listType == "thisWeek") {
-                    $startOfWeek = now()->startOfWeek();
-                    $endOfWeek = now()->endOfWeek();
-                    $q->whereBetween('seller_date', [$startOfWeek, $endOfWeek]);
-                } elseif ($request->listType == "thisMonth") {
-                    $startOfMonth = now()->startOfMonth();
-                    $endOfMonth = now()->endOfMonth();
-                    $q->whereBetween('seller_date', [$startOfMonth, $endOfMonth]);
-                } elseif ($request->listType == "thisYear") {
-                    $startOfYear = now()->startOfYear();
-                    $endOfYear = now()->endOfYear();
-                    $q->whereBetween('seller_date', [$startOfYear, $endOfYear]);
-                } else {
-                    $q->whereDate('seller_date', now()->toDateString());
-                }
-            })
-            ->when($request->filled('date_range'), function ($q) use ($request) {
-                $startTime = now();
-                $endTime = now();
-                if ($request->filled('date_range')) {
-                    $timePartition = explode('-', $request->date_range);
-                    $startTime = Carbon::parse(clearPhone($timePartition[0]))->toDateString();
-                    $endTime = Carbon::parse(clearPhone($timePartition[1]))->toDateString();
-                }
-                $q->whereBetween('seller_date', [$startTime, $endTime]);
-            })
-            ->pluck('id')->toArray();
-        $paymentTotal = PackagePayment::whereIn('package_id', $sales)->sum('price');
-        $this->case["cashTotal"] += $paymentTotal;
-        $this->case["total"] = $this->case["cashTotal"] + $this->case["creditTotal"] + $this->case["eftTotal"] + $this->case["otherTotal"];
-
-        return $this->case;
-    }
-
     public function paymentsCalculator($business, $request)
     {
         $costs = $business->costs()
@@ -250,5 +212,67 @@ class CaseController extends Controller
 
         return $this->payments;
     }
+
+    public function packageSaleCalculator($business, $request)
+    {
+        $sales = $business->packages()
+            ->when($request->filled('listType'), function ($q) use ($request) {
+                $this->applyListTypeFilter($request->listType, $q);
+            })
+            ->when($request->filled('date_range'), function ($q) use ($request) {
+                $this->applyDateRangeFilter($request->date_range, $q);
+            })
+            ->pluck('id')->toArray();
+
+        $paymentTotal = PackagePayment::whereIn('package_id', $sales)->sum('price');
+
+        $this->case["cashTotal"] += $paymentTotal;
+        $this->case["total"] = $this->case["cashTotal"] + $this->case["creditTotal"] + $this->case["eftTotal"] + $this->case["otherTotal"];
+
+        return $this->case;
+    }
+
+    /**
+     * Verilen listType değerine göre tarih aralığını ayarlar
+     *
+     * @param string $listType
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return void
+     */
+    public function applyListTypeFilter($listType, $query) {
+        switch ($listType) {
+            case 'thisWeek':
+                $start = now()->startOfWeek();
+                $end = now()->endOfWeek();
+                break;
+            case 'thisMonth':
+                $start = now()->startOfMonth();
+                $end = now()->endOfMonth();
+                break;
+            case 'thisYear':
+                $start = now()->startOfYear();
+                $end = now()->endOfYear();
+                break;
+            default:
+                $query->whereDate('seller_date', now()->toDateString());
+                return;
+        }
+        $query->whereBetween('seller_date', [$start, $end]);
+    }
+
+    /**
+     * Verilen date_range değerine göre zaman aralığını ayarlar
+     *
+     * @param string $dateRange
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return void
+     */
+    public function applyDateRangeFilter($dateRange, $query) {
+        $timePartition = explode('-', $dateRange);
+        $startTime = Carbon::parse(clearPhone($timePartition[0]))->toDateString();
+        $endTime = Carbon::parse(clearPhone($timePartition[1]))->toDateString();
+        $query->whereBetween('seller_date', [$startTime, $endTime]);
+    }
+
 
 }
