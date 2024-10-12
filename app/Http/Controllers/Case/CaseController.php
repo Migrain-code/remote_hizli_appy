@@ -65,7 +65,7 @@ class CaseController extends Controller
         $this->adissionCalculator($business, $request);
         $this->productSaleCalculator($business, $request);
         $this->paymentsCalculator($business, $request);
-        $this->packageSaleCalculator($business, $request);
+       // $this->packageSaleCalculator($business, $request);
 
         $closingBalance = $this->case;
         $totalExpense = $this->payments;
