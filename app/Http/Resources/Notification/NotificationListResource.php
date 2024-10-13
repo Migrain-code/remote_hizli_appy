@@ -4,7 +4,6 @@ namespace App\Http\Resources\Notification;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Str;
 
 class NotificationListResource extends JsonResource
 {
@@ -18,7 +17,7 @@ class NotificationListResource extends JsonResource
     {
         return [
           'id' => $this->id,
-          'title' => Str::limit($this->title, 12),
+          'title' => $this->title,
           'description' => $this->message,
           'created_at' => $this->created_at->format('d.m.Y'),
           'created_clock' => $this->created_at->format('H:i'),
