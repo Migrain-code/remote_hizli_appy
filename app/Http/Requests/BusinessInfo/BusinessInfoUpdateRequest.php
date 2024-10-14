@@ -32,15 +32,15 @@ class BusinessInfoUpdateRequest extends FormRequest
             'phone' => 'required|string|min:10|max:11',
             'startTime' => 'required|string',
             'endTime' => 'required|string',
-            'email' => 'required|string',
-            'year' => 'required|date',
-            'address' => 'required|string',
+            //'email' => 'required|string',
+            // 'year' => 'required|date',
+            //'address' => 'required|string',
             'cityId' => 'required|numeric',
             'districtId' => 'required|numeric',
-            'commission' => 'required|numeric',
-            'personalCount' => 'required',
+            //'commission' => 'required|numeric',
+            //'personalCount' => 'required',
             'offDay' => 'required|numeric',
-            'aboutText' => 'required|string',
+            //'aboutText' => 'required|string',
         ];
     }
 
@@ -53,15 +53,15 @@ class BusinessInfoUpdateRequest extends FormRequest
             'phone' => "İşletme Telefon Numarası",
             'startTime' => "İşletme Açılış Saati",
             'endTime' => "İşletme Kapanış Saati",
-            'email' => "İşletme E-posta Adresi",
-            'year' => "İşletme Kuruluş Tarihi",
-            'address' => "İşletme Address Metni",
+            //'email' => "İşletme E-posta Adresi",
+            //'year' => "İşletme Kuruluş Tarihi",
+            '//address' => "İşletme Address Metni",
             'cityId' => "Şehir",
             'districtId' => "İlçe",
-            'commission' => "Personel Komisyonu",
-            'personalCount' => "Personel Sayısı",
+            //'commission' => "Personel Komisyonu",
+            //'personalCount' => "Personel Sayısı",
             'offDay' => "Kapalı Olduğu Gün",
-            'aboutText' => "İşletme Hakkında Yazısı",
+            //'aboutText' => "İşletme Hakkında Yazısı",
         ];
     }
 
