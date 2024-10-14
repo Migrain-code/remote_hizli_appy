@@ -74,6 +74,6 @@ class PersonalAddRequest extends FormRequest
             'status' => 'error',
             'message' => 'Eksik Alanlar Var',
             'errors' => $validator->errors()->all(),
-        ], 404));
+        ], 422));
     }
 }
