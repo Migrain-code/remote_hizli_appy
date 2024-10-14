@@ -66,15 +66,15 @@ class CityController extends Controller
 
     public function testNotify(Request $request)
     {
-        //$response = NotificationService::sendPushNotification('ExponentPushToken[QH16C6HAvJ9pFaVKJ8WKxu]', 'Yeni talep var', 'Test Talep Açıklama');
-        $appointment = Appointment::find(12269);
+        $response = NotificationService::sendPushNotification('ExponentPushToken[QH16C6HAvJ9pFaVKJ8WKxu]', 'Yeni talep var', 'Test Talep Açıklama');
+       /* $appointment = Appointment::find(12269);
 
         // Hatırlatma mesajını gönderme kodu buraya gelecek
         $customer = $appointment->customer;
         $business = $appointment->business;
-        /*
+
         $message = "Değerli Müşterimiz, {$business->name} işletmesinden aldığınız {$appointment->start_time->format('d.m.Y H:i')} randevusu için bir hatırlatma mesajıdır. Zamanında gelmenizi rica ederiz. Teşekkürler.";
-        //Sms::send($customer->phone, $message);*/
+        //Sms::send($customer->phone, $message);
         $message = $business->name . " İşletmesine " . $appointment->start_time->format('d.m.Y H:i') . " tarihine randevunuz oluşturuldu. Konum : ".'https://www.google.com/maps?q=' . $business->lat .','. $business->longitude;
         $notification = new CustomerNotificationMobile();
         $notification->notification_id = 1;
@@ -85,7 +85,7 @@ class CityController extends Controller
         $notification->customer_id = $customer->id;
         $notification->save();
         $response = NotificationService::sendPushNotification('ExponentPushToken[XjuhgWGCUle6TuRCxPMDTi]', 'Randevu Hatırlatma', $message);
-
+*/
         return response()->json([
             'message' => 'Notification sent successfully',
             'response' => $response,
