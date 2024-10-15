@@ -284,7 +284,7 @@ class AppointmentCreateController extends Controller
 
                                     $newStartTime = $getDate->addDays(1);
 
-                                    for ($i = $newStartTime; $i < Carbon::parse($newStartTime->toDateString() . $checkCustomWorkTime->end_time); $i->addMinute($personel->appointmentRange->time)) {
+                                    for ($i = $newStartTime; $i < Carbon::parse($newStartTime->toDateString() . $checkCustomWorkTime->end_time->format('H:i')); $i->addMinute($personel->appointmentRange->time)) {
                                         $clocks[] = [
                                             'id' => $i->format('d_m_Y_' . $i->format('H_i')),
                                             'saat' => $i->format('H:i'),
