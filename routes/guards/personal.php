@@ -47,6 +47,9 @@ Route::prefix('personel')->group(function () {
         Route::apiResource('appointment', \App\Http\Controllers\PersonelAccount\Appointment\PersonelAppointmentController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
+        Route::prefix('appointment/{appointment}')->group(function () {
+            Route::get('approve', [\App\Http\Controllers\PersonelAccount\Appointment\PersonelAppointmentController::class, 'approve']);
+        });
         /*------- Randevu Fotoğrafları----------*/
         Route::prefix('appointment')->group(function () {
             Route::get('/{appointment}/photo/list', [\App\Http\Controllers\Appointment\AppointmentPhotoController::class, 'index']);

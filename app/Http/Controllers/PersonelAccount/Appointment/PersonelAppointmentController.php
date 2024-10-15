@@ -92,7 +92,25 @@ class PersonelAppointmentController extends Controller
             'message' => "Randevuya Durumu Başarılı Bir Şekilde Güncellendi"
         ]);
     }
-
+    /**
+     * Randevu Onayla
+     *
+     * @param Appointment $appointment
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function approve(Appointment $appointment)
+    {
+        $appointment->status = 1;
+        $appointment->save();
+        foreach ($appointment->services as $service){
+            $service->status = 1;
+            $service->save();
+        }
+        return response()->json([
+            'status' => "success",
+            'message' => "Randevu Durumu Başarılı Bir Şekilde Güncellendi"
+        ]);
+    }
     /**
      * Randevu Notu Kaydet
      *

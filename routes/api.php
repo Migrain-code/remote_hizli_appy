@@ -205,6 +205,9 @@ Route::prefix('business')->group(function () {
         Route::apiResource('appointment', AppointmentController::class)->only([
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
+        Route::prefix('appointment/{appointment}')->group(function () {
+            Route::get('approve', [AppointmentController::class, 'approve']);
+        });
         /** -----------------------------Randevuya Hizmet Ekleme ---------------------- */
         Route::prefix('appointment')->group(function () {
             Route::get('/{appointment}/service/list', [AppointmentServicesController::class, 'index']);
