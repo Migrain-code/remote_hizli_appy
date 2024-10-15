@@ -17,6 +17,10 @@ class BusinessBrancesResource extends JsonResource
         return [
            'id' => $this->id,
            'name' => $this->branch_name ?? $this->name,
+           'officialName' => $this->official->name,
+           'appointmentCount' => $this->appointments->count(),
+           'personelCount' => $this->personels->count(),
+           'case' => 30,
         ];
     }
 }
