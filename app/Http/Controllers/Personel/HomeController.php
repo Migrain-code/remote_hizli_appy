@@ -46,7 +46,7 @@ class HomeController extends Controller
      */
     public function getDate()
     {
-        $i = -10; // Başlangıç değerini -10 gün öncesine alın
+        $i = -1; // Başlangıç değerini -10 gün öncesine alın
         $remainingDate = [];
         while ($i <= 30) { // 40 gün ileriye kadar devam edin
             $remainingDate[] = Carbon::now()->addDays($i);
