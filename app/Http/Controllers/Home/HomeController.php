@@ -242,7 +242,7 @@ class HomeController extends Controller
                             }
                             $i = $startTime->startOfDay();
 
-                            $endTime = Carbon::parse($getDate->addDays(1)->format('Y-m-d').' '.$checkCustomWorkTime->end_time);
+                            $endTime = Carbon::parse($getDate->addDays(1)->format('Y-m-d').' '.$checkCustomWorkTime->end_time->format("H:i"));
                             while ($i < $endTime) {
                                 $slotStart = $i->copy();
                                 $slotEnd = $i->copy()->addMinutes($appointmentRange);
