@@ -163,7 +163,7 @@ class Personel extends Authenticatable
 
     public function appointments()
     {
-        return $this->hasMany(AppointmentServices::class, 'personel_id', 'id');
+        return $this->hasMany(AppointmentServices::class, 'personel_id', 'id')->orderBy('start_time');
     }
 
     public function todayAppointments()
