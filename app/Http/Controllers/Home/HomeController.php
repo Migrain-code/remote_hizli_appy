@@ -162,270 +162,8 @@ class HomeController extends Controller
         $getDate = Carbon::parse($request->input('date'));
         $business = $this->business;
 
-        $checkCustomWorkTime = $personel->isCustomWorkTime($request->input('date'));
-        $appointmentRange = $personel->appointmentRange->time; // Assuming this is in minutes
 
-        $startOfDay = $getDate->copy()->startOfDay(); // 2024-06-14 00:00:00
-        $endOfNextDay = $getDate->copy()->addDays(1)->endOfDay(); // 2024-06-15 23:59:59
-        // Get all appointments for the given date
-        $appointments = $personel->appointments()
-            //->whereDate('start_time', $getDate)
-            ->whereBetween('start_time', [$startOfDay, $endOfNextDay])
-            ->whereNotIn('status', [3])
-            ->orderBy('start_time')
-            ->get();
-
-        $lastAppointment = null;
-        if (isset($checkCustomWorkTime)) { // özel saat aralığı verilmişmi kontrol et
-
-            $startTime = Carbon::parse($getDate->format('Y-m-d').' '.$checkCustomWorkTime->start_time->format("H:i:s"));
-            $endTime = Carbon::parse($getDate->format('Y-m-d').' '.$checkCustomWorkTime->end_time->format("H:i:s"));
-            $i = $startTime;
-            if ($endTime < $i){ // verilmişse  ve bitiş tarihi başlangıç saatinden küçükse örneğin bitiş 03:00 başlangıç 09:00
-                while ($i < $endTime->endOfDay()) {
-                    $slotStart = $i->copy();
-                    $slotEnd = $i->copy()->addMinutes($appointmentRange);
-
-                    // Check if the current slot overlaps with any appointment
-                    $isBooked = false;
-                    $appointmentDetails = null;
-
-                    foreach ($appointments as $appointment) {
-                        $appointmentStart = Carbon::parse($appointment->start_time);
-                        $appointmentEnd = Carbon::parse($appointment->end_time);
-
-                        // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
-                        if (
-                            ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
-                            ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
-                            ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
-                        ) {
-                            $isBooked = true;
-                            $appointmentDetails = $appointment;
-                            break;
-                        }
-                    }
-
-                    if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
-                        // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
-                        $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
-                    } else {
-                        $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
-                    }
-
-                    // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
-                    $lastAppointment = $isBooked ? $appointmentDetails : null;
-
-                    // Move to the next slot
-                    $i->addMinutes($appointmentRange);
-                }
-                $i = $startTime->startOfDay();
-
-                $endTime = Carbon::parse($getDate->addDays(1)->format('Y-m-d').' '.$checkCustomWorkTime->end_time);
-                while ($i < $endTime) {
-                    $slotStart = $i->copy();
-                    $slotEnd = $i->copy()->addMinutes($appointmentRange);
-
-                    // Check if the current slot overlaps with any appointment
-                    $isBooked = false;
-                    $appointmentDetails = null;
-
-                    foreach ($appointments as $appointment) {
-                        $appointmentStart = Carbon::parse($appointment->start_time);
-                        $appointmentEnd = Carbon::parse($appointment->end_time);
-
-                        // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
-                        if (
-                            ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
-                            ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
-                            ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
-                        ) {
-                            $isBooked = true;
-                            $appointmentDetails = $appointment;
-                            break;
-                        }
-                    }
-
-                    if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
-                        // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
-                        $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
-                    } else {
-                        $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
-
-                    }
-
-                    // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
-                    $lastAppointment = $isBooked ? $appointmentDetails : null;
-
-                    // Move to the next slot
-                    $i->addMinutes($appointmentRange);
-                }
-            } else{ // özel aralığa normal saat aralığı verilmişse
-                while ($i < $endTime) {
-                    $slotStart = $i->copy();
-                    $slotEnd = $i->copy()->addMinutes($appointmentRange);
-
-                    // Check if the current slot overlaps with any appointment
-                    $isBooked = false;
-                    $appointmentDetails = null;
-
-                    foreach ($appointments as $appointment) {
-                        $appointmentStart = Carbon::parse($appointment->start_time);
-                        $appointmentEnd = Carbon::parse($appointment->end_time);
-
-                        // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
-                        if (
-                            ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
-                            ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
-                            ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
-                        ) {
-                            $isBooked = true;
-                            $appointmentDetails = $appointment;
-                            break;
-                        }
-                    }
-
-                    if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
-                        // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
-                        $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
-                    } else {
-                        $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
-
-                    }
-
-                    // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
-                    $lastAppointment = $isBooked ? $appointmentDetails : null;
-
-                    // Move to the next slot
-                    $i->addMinutes($appointmentRange);
-                }
-            }
-
-        } else{ // özel saat aralığı yoksa. sadece personel kendi saatleri varsa
-            $startTime = Carbon::parse($getDate->format('Y-m-d').' '.$personel->start_time);
-            $endTime = Carbon::parse($getDate->format('Y-m-d').' '.$personel->end_time);
-            $i = $startTime;
-            if ($endTime < $i){ // kendi saatlerine ve bitiş tarihi başlangıç saatinden küçükse örneğin bitiş 03:00 başlangıç 09:00
-                while ($i < $endTime->endOfDay()) {
-                    $slotStart = $i->copy();
-                    $slotEnd = $i->copy()->addMinutes($appointmentRange);
-
-                    // Check if the current slot overlaps with any appointment
-                    $isBooked = false;
-                    $appointmentDetails = null;
-
-                    foreach ($appointments as $appointment) {
-                        $appointmentStart = Carbon::parse($appointment->start_time);
-                        $appointmentEnd = Carbon::parse($appointment->end_time);
-
-                        // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
-                        if (
-                            ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
-                            ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
-                            ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
-                        ) {
-                            $isBooked = true;
-                            $appointmentDetails = $appointment;
-                            break;
-                        }
-                    }
-
-                    if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
-                        // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
-                        $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
-                    } else {
-                        $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
-
-                    }
-
-                    // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
-                    $lastAppointment = $isBooked ? $appointmentDetails : null;
-
-                    // Move to the next slot
-                    $i->addMinutes($appointmentRange);
-                }
-                $i = $startTime->startOfDay();
-
-                $endTime = Carbon::parse($getDate->addDays(1)->format('Y-m-d').' '.$checkCustomWorkTime->end_time);
-                while ($i < $endTime) {
-                    $slotStart = $i->copy();
-                    $slotEnd = $i->copy()->addMinutes($appointmentRange);
-
-                    // Check if the current slot overlaps with any appointment
-                    $isBooked = false;
-                    $appointmentDetails = null;
-
-                    foreach ($appointments as $appointment) {
-                        $appointmentStart = Carbon::parse($appointment->start_time);
-                        $appointmentEnd = Carbon::parse($appointment->end_time);
-
-                        // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
-                        if (
-                            ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
-                            ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
-                            ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
-                        ) {
-                            $isBooked = true;
-                            $appointmentDetails = $appointment;
-                            break;
-                        }
-                    }
-
-                    if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
-                        // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
-                        $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
-                    } else {
-                        $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
-                    }
-
-                    // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
-                    $lastAppointment = $isBooked ? $appointmentDetails : null;
-
-                    // Move to the next slot
-                    $i->addMinutes($appointmentRange);
-                }
-            } else{ // kendi saatine normal saat aralığı verilmişse
-                while ($i < $endTime) {
-                    $slotStart = $i->copy();
-                    $slotEnd = $i->copy()->addMinutes($appointmentRange);
-
-                    // Check if the current slot overlaps with any appointment
-                    $isBooked = false;
-                    $appointmentDetails = null;
-
-                    foreach ($appointments as $appointment) {
-                        $appointmentStart = Carbon::parse($appointment->start_time);
-                        $appointmentEnd = Carbon::parse($appointment->end_time);
-
-                        // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
-                        if (
-                            ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
-                            ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
-                            ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
-                        ) {
-                            $isBooked = true;
-                            $appointmentDetails = $appointment;
-                            break;
-                        }
-                    }
-
-                    if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
-                        // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
-                        $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
-                    } else {
-                        $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
-                    }
-
-                    // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
-                    $lastAppointment = $isBooked ? $appointmentDetails : null;
-
-                    // Move to the next slot
-                    $i->addMinutes($appointmentRange);
-                }
-            }
-        }
-        return $clocks;
-        /*if (Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek == $business->off_day) {
+        if (Carbon::parse($getDate->format('d.m.Y'))->dayOfWeek == $business->off_day) {
             return response()->json([
                 "status" => "error",
                 "message" => "İşletme bu tarihte hizmet vermemektedir"
@@ -445,10 +183,272 @@ class HomeController extends Controller
                         "message" => "Personel bu tarihte hizmet vermemektedir"
                     ], 404);
                 } else {
-                    // buraya sonradan saatler gelecek
+                    $checkCustomWorkTime = $personel->isCustomWorkTime($request->input('date'));
+                    $appointmentRange = $personel->appointmentRange->time; // Assuming this is in minutes
+
+                    $startOfDay = $getDate->copy()->startOfDay(); // 2024-06-14 00:00:00
+                    $endOfNextDay = $getDate->copy()->addDays(1)->endOfDay(); // 2024-06-15 23:59:59
+                    // Get all appointments for the given date
+                    $appointments = $personel->appointments()
+                        //->whereDate('start_time', $getDate)
+                        ->whereBetween('start_time', [$startOfDay, $endOfNextDay])
+                        ->whereNotIn('status', [3])
+                        ->orderBy('start_time')
+                        ->get();
+
+                    $lastAppointment = null;
+                    if (isset($checkCustomWorkTime)) { // özel saat aralığı verilmişmi kontrol et
+
+                        $startTime = Carbon::parse($getDate->format('Y-m-d').' '.$checkCustomWorkTime->start_time->format("H:i:s"));
+                        $endTime = Carbon::parse($getDate->format('Y-m-d').' '.$checkCustomWorkTime->end_time->format("H:i:s"));
+                        $i = $startTime;
+                        if ($endTime < $i){ // verilmişse  ve bitiş tarihi başlangıç saatinden küçükse örneğin bitiş 03:00 başlangıç 09:00
+                            while ($i < $endTime->endOfDay()) {
+                                $slotStart = $i->copy();
+                                $slotEnd = $i->copy()->addMinutes($appointmentRange);
+
+                                // Check if the current slot overlaps with any appointment
+                                $isBooked = false;
+                                $appointmentDetails = null;
+
+                                foreach ($appointments as $appointment) {
+                                    $appointmentStart = Carbon::parse($appointment->start_time);
+                                    $appointmentEnd = Carbon::parse($appointment->end_time);
+
+                                    // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
+                                    if (
+                                        ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
+                                        ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
+                                        ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
+                                    ) {
+                                        $isBooked = true;
+                                        $appointmentDetails = $appointment;
+                                        break;
+                                    }
+                                }
+
+                                if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
+                                    // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
+                                    $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
+                                } else {
+                                    $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
+                                }
+
+                                // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
+                                $lastAppointment = $isBooked ? $appointmentDetails : null;
+
+                                // Move to the next slot
+                                $i->addMinutes($appointmentRange);
+                            }
+                            $i = $startTime->startOfDay();
+
+                            $endTime = Carbon::parse($getDate->addDays(1)->format('Y-m-d').' '.$checkCustomWorkTime->end_time);
+                            while ($i < $endTime) {
+                                $slotStart = $i->copy();
+                                $slotEnd = $i->copy()->addMinutes($appointmentRange);
+
+                                // Check if the current slot overlaps with any appointment
+                                $isBooked = false;
+                                $appointmentDetails = null;
+
+                                foreach ($appointments as $appointment) {
+                                    $appointmentStart = Carbon::parse($appointment->start_time);
+                                    $appointmentEnd = Carbon::parse($appointment->end_time);
+
+                                    // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
+                                    if (
+                                        ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
+                                        ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
+                                        ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
+                                    ) {
+                                        $isBooked = true;
+                                        $appointmentDetails = $appointment;
+                                        break;
+                                    }
+                                }
+
+                                if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
+                                    // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
+                                    $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
+                                } else {
+                                    $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
+
+                                }
+
+                                // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
+                                $lastAppointment = $isBooked ? $appointmentDetails : null;
+
+                                // Move to the next slot
+                                $i->addMinutes($appointmentRange);
+                            }
+                        } else{ // özel aralığa normal saat aralığı verilmişse
+                            while ($i < $endTime) {
+                                $slotStart = $i->copy();
+                                $slotEnd = $i->copy()->addMinutes($appointmentRange);
+
+                                // Check if the current slot overlaps with any appointment
+                                $isBooked = false;
+                                $appointmentDetails = null;
+
+                                foreach ($appointments as $appointment) {
+                                    $appointmentStart = Carbon::parse($appointment->start_time);
+                                    $appointmentEnd = Carbon::parse($appointment->end_time);
+
+                                    // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
+                                    if (
+                                        ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
+                                        ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
+                                        ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
+                                    ) {
+                                        $isBooked = true;
+                                        $appointmentDetails = $appointment;
+                                        break;
+                                    }
+                                }
+
+                                if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
+                                    // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
+                                    $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
+                                } else {
+                                    $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
+
+                                }
+
+                                // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
+                                $lastAppointment = $isBooked ? $appointmentDetails : null;
+
+                                // Move to the next slot
+                                $i->addMinutes($appointmentRange);
+                            }
+                        }
+
+                    } else{ // özel saat aralığı yoksa. sadece personel kendi saatleri varsa
+                        $startTime = Carbon::parse($getDate->format('Y-m-d').' '.$personel->start_time);
+                        $endTime = Carbon::parse($getDate->format('Y-m-d').' '.$personel->end_time);
+                        $i = $startTime;
+                        if ($endTime < $i){ // kendi saatlerine ve bitiş tarihi başlangıç saatinden küçükse örneğin bitiş 03:00 başlangıç 09:00
+                            while ($i < $endTime->endOfDay()) {
+                                $slotStart = $i->copy();
+                                $slotEnd = $i->copy()->addMinutes($appointmentRange);
+
+                                // Check if the current slot overlaps with any appointment
+                                $isBooked = false;
+                                $appointmentDetails = null;
+
+                                foreach ($appointments as $appointment) {
+                                    $appointmentStart = Carbon::parse($appointment->start_time);
+                                    $appointmentEnd = Carbon::parse($appointment->end_time);
+
+                                    // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
+                                    if (
+                                        ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
+                                        ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
+                                        ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
+                                    ) {
+                                        $isBooked = true;
+                                        $appointmentDetails = $appointment;
+                                        break;
+                                    }
+                                }
+
+                                if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
+                                    // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
+                                    $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
+                                } else {
+                                    $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
+
+                                }
+
+                                // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
+                                $lastAppointment = $isBooked ? $appointmentDetails : null;
+
+                                // Move to the next slot
+                                $i->addMinutes($appointmentRange);
+                            }
+                            $i = $startTime->startOfDay();
+
+                            $endTime = Carbon::parse($getDate->addDays(1)->format('Y-m-d').' '.$checkCustomWorkTime->end_time);
+                            while ($i < $endTime) {
+                                $slotStart = $i->copy();
+                                $slotEnd = $i->copy()->addMinutes($appointmentRange);
+
+                                // Check if the current slot overlaps with any appointment
+                                $isBooked = false;
+                                $appointmentDetails = null;
+
+                                foreach ($appointments as $appointment) {
+                                    $appointmentStart = Carbon::parse($appointment->start_time);
+                                    $appointmentEnd = Carbon::parse($appointment->end_time);
+
+                                    // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
+                                    if (
+                                        ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
+                                        ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
+                                        ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
+                                    ) {
+                                        $isBooked = true;
+                                        $appointmentDetails = $appointment;
+                                        break;
+                                    }
+                                }
+
+                                if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
+                                    // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
+                                    $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
+                                } else {
+                                    $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
+                                }
+
+                                // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
+                                $lastAppointment = $isBooked ? $appointmentDetails : null;
+
+                                // Move to the next slot
+                                $i->addMinutes($appointmentRange);
+                            }
+                        } else{ // kendi saatine normal saat aralığı verilmişse
+                            while ($i < $endTime) {
+                                $slotStart = $i->copy();
+                                $slotEnd = $i->copy()->addMinutes($appointmentRange);
+
+                                // Check if the current slot overlaps with any appointment
+                                $isBooked = false;
+                                $appointmentDetails = null;
+
+                                foreach ($appointments as $appointment) {
+                                    $appointmentStart = Carbon::parse($appointment->start_time);
+                                    $appointmentEnd = Carbon::parse($appointment->end_time);
+
+                                    // SlotStart veya slotEnd'in bir randevu aralığına denk gelip gelmediğini kontrol edin
+                                    if (
+                                        ($slotStart >= $appointmentStart && $slotStart < $appointmentEnd) ||
+                                        ($slotEnd > $appointmentStart && $slotEnd <= $appointmentEnd) ||
+                                        ($slotStart <= $appointmentStart && $slotEnd >= $appointmentEnd)
+                                    ) {
+                                        $isBooked = true;
+                                        $appointmentDetails = $appointment;
+                                        break;
+                                    }
+                                }
+
+                                if ($isBooked && $lastAppointment && $lastAppointment->id == $appointmentDetails->id) {
+                                    // Eğer mevcut randevu aynı randevunun devamıysa, sadece bitiş saatini güncelle
+                                    $clocks[count($clocks) - 1]['clock'] = $clocks[count($clocks) - 1]['clock_start'] . "-" . $slotEnd->format('H:i');
+                                } else {
+                                    $clocks[] = $this->generateClockEntry($slotStart, $slotEnd, $isBooked, $appointmentDetails);
+                                }
+
+                                // Eğer randevu devam ediyorsa lastAppointment'ı güncelle
+                                $lastAppointment = $isBooked ? $appointmentDetails : null;
+
+                                // Move to the next slot
+                                $i->addMinutes($appointmentRange);
+                            }
+                        }
+                    }
+                    return $clocks;
                 }
             }
-        }*/
+        }
 
     }
     private function generateClockEntry(Carbon $slotStart, Carbon $slotEnd, bool $isBooked, $appointmentDetails): array
