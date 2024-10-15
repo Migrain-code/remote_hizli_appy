@@ -20,7 +20,7 @@ class BusinessBrancesResource extends JsonResource
            'officialName' => $this->official->name,
            'appointmentCount' => $this->appointments->count(),
            'personelCount' => $this->personels->count(),
-           'case' => 30,
+           'case' => "30 TL",
         ];
     }
 }
