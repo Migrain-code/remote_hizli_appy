@@ -46,20 +46,20 @@ class HomeController extends Controller
      */
     public function getDate()
     {
-        $i = 0;
+        $i = -10; // Başlangıç değerini -10 gün öncesine alın
         $remainingDate = [];
-
-        while ($i <= 40) {
+        while ($i <= 30) { // 40 gün ileriye kadar devam edin
             $remainingDate[] = Carbon::now()->addDays($i);
             $i++;
         }
 
+        $dates = [];
         foreach ($remainingDate as $date) {
             $dateStartOfDay = clone $date;
             $dateStartOfDay->startOfDay();
-
             $today = Carbon::now()->startOfDay();
             $tomorrow = Carbon::now()->addDays(1)->startOfDay();
+            $yesterday = Carbon::now()->subDays(1)->startOfDay(); // Dün için kontrol
 
             if ($dateStartOfDay->eq($today)) {
                 $dates[] = [
@@ -77,6 +77,14 @@ class HomeController extends Controller
                     'month' => $date->translatedFormat('F'),
                     'value' => $date->toDateString(),
                 ];
+            } else if ($dateStartOfDay->eq($yesterday)) { // Dün için ekleme
+                $dates[] = [
+                    'date' => $date->translatedFormat('d'),
+                    'day' => "Dün",
+                    'text' => "Dün",
+                    'month' => $date->translatedFormat('F'),
+                    'value' => $date->toDateString(),
+                ];
             } else {
                 $dates[] = [
                     'date' => $date->translatedFormat('d'),
@@ -87,7 +95,6 @@ class HomeController extends Controller
                 ];
             }
         }
-
         return response()->json($dates);
     }
     /**
