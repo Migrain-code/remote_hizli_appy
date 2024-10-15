@@ -60,7 +60,7 @@ class AdissionController extends Controller
     {
         if (!isset($request->date_range)) {
             if (!$request->filled('start_date') && !$request->filled('end_date')) {
-                $request->merge(['date_range' => now()->format('d.m.Y') . ' - ' . now()->format('d.m.Y')]);
+               // $request->merge(['date_range' => now()->format('d.m.Y') . ' - ' . now()->format('d.m.Y')]);
             } else {
                 $request->merge([
                     'date_range' => Carbon::parse($request->start_date)->format('d.m.Y') . ' - ' . Carbon::parse($request->end_date)->format('d.m.Y')
