@@ -33,9 +33,9 @@ class AdissionController extends Controller
 
     private const OPEN_STATUS = [2];//açık
     private const CLOSED_STATUS = [5, 6];//kapatılmış
-    private const CANCELED_STATUS = [3, 4];//iptal edilmiş
+    private const CANCELED_STATUS = [3];//iptal edilmiş
     private const DEFAULT_STATUS = [2];//default açık
-    private const ALLSTATUS = [2, 3, 4, 5, 6];
+    private const ALLSTATUS = [2, 5, 6];// sadece aktif olanlar
 
     public function index(Request $request)
     {
@@ -79,7 +79,7 @@ class AdissionController extends Controller
         ];
 
         $statuses = $statusMap[$listType] ?? [];
-        return empty($statuses) ? $query->whereNotIn('status', [0])->whereIn('status', self::DEFAULT_STATUS)
+        return empty($statuses) ? $query->whereNotIn('status', [0, 1])->whereIn('status', self::DEFAULT_STATUS)
             : $query->whereIn('status', $statuses);
     }
 
