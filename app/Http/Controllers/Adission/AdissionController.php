@@ -35,6 +35,7 @@ class AdissionController extends Controller
     private const CLOSED_STATUS = [5, 6];//kapatılmış
     private const CANCELED_STATUS = [3, 4];//iptal edilmiş
     private const DEFAULT_STATUS = [2];//default açık
+    private const ALLSTATUS=[2,3,4,5,6];
 
     public function index(Request $request)
     {
@@ -46,7 +47,7 @@ class AdissionController extends Controller
             ->when($request->filled('listType'), fn($q) => $this->applyListTypeFilter($q, $request->listType))
             ->when($request->filled('date_range'), fn($q) => $this->applyDateRangeFilter($q, $request->date_range))
             ->when(!$request->filled('listType'), function($q) use ($request) {
-                $q->whereIn('status', self::OPEN_STATUS);
+                $q->whereIn('status', self::ALLSTATUS);
             })
             ->latest()
             ->take(30)
