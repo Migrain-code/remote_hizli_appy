@@ -49,7 +49,7 @@ class HomeController extends Controller
         $i = 0;
         $remainingDate = [];
 
-        while ($i <= 30) {
+        while ($i <= 40) {
             $remainingDate[] = Carbon::now()->addDays($i);
             $i++;
         }

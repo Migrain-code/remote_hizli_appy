@@ -31,7 +31,8 @@ class AbsentCustomerController extends Controller
      * <ul>
      * <li>15 Gün Gelmeyenler listType = 15 </li>
      * <li>30 Gün Gelmeyenler listType = 30 </li>
-     * <li>60 Gün Gelmeyenler listType = 60 </li>
+     * <li>30-60 Gün Gelmeyenler listType = 30-60 </li>
+     * <li>60 Gün Üstü Gelmeyenler listType = 60+ </li>
      * </ul>
      * @return JsonResponse
      *
@@ -39,28 +40,51 @@ class AbsentCustomerController extends Controller
     public function index(Request $request)
     {
         $business = $this->business;
-        $listType = 15;
-
+        $listType = '15';
         if ($request->filled('listType')) {
             $listType = $request->listType;
         }
 
-        // 15 veya 30 gün önceki tarihi alıyoruz
-        $fifteenDaysAgo = Carbon::today()->subDays($listType);
+        // Date ranges
+        $today = Carbon::today();
+        switch ($listType) {
+            case '15':
+                $startDate = $today->subDays(15);
+                $endDate = $today;
+                break;
+            case '30':
+                $startDate = $today->subDays(30);
+                $endDate = $today->subDays(15);
+                break;
+            case '60+':
+                $startDate = null;
+                $endDate = $today->subDays(60);
+                break;
+            default:
+                return response()->json(['error' => 'Invalid listType'], 400);
+        }
 
-        // İşletmeye ait müşterilerin son randevularına göre filtreleme
-        $customers = Customer::whereIn('id', function ($query) use ($business) {
+        // Müşterileri filtreleme
+        $customersQuery = Customer::whereIn('id', function ($query) use ($business) {
             $query->select('customer_id')
                 ->from('appointments')
                 ->where('business_id', $business->id);
-        })
-            ->whereDoesntHave('appointments', function ($query) use ($fifteenDaysAgo) {
-                $query->where('start_time', '>=', $fifteenDaysAgo);
-            })
-            ->with(['appointments' => function ($query) {
-                $query->latest('start_time');
-            }])
-            ->get();
+        });
+
+        // Tarih aralıklarına göre filtreleme
+        if ($listType === '60+') {
+            $customersQuery->whereDoesntHave('appointments', function ($query) use ($endDate) {
+                $query->where('start_time', '>=', $endDate);
+            });
+        } else {
+            $customersQuery->whereDoesntHave('appointments', function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('start_time', [$startDate, $endDate]);
+            });
+        }
+
+        $customers = $customersQuery->with(['appointments' => function ($query) {
+            $query->latest('start_time');
+        }])->get();
 
         return response()->json(AbsentListResoruce::collection($customers));
     }
