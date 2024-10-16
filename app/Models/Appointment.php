@@ -70,7 +70,7 @@ class Appointment extends Model
         0 => [
             'html' => '<span class="badge badge-warning fw-bolder px-2 py-2" style="color:#fff04f">Onay Bekliyor</span>',
             'text' => 'Onay Bekliyor',
-            "color" => "#fff04f"
+            "color" => "#ffa500"
         ],
         1 => [
             'html' => '<span class="badge badge-success fw-bolder px-2 py-2">Onaylandı</span>',

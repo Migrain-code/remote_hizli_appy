@@ -44,7 +44,7 @@ class AppointmentServices extends Model
             'html' => '<span class="badge badge-warning fw-bolder px-2 py-2" style="color:#fff04f">Onay Bekliyor</span>',
             'text' => 'Onay Bekliyor',
             'color_code' => "warning",
-            'hexColor' => "#ffc107" // Bootstrap 4 warning
+            'hexColor' => "#ffa500" // Bootstrap 4 warning
         ],
         1 => [
             'html' => '<span class="badge badge-success fw-bolder px-2 py-2">Onaylandı</span>',
