@@ -40,6 +40,11 @@ class PackageSaleOperationController extends Controller
         return response()->json(PackageSaleUsagesListResource::collection($packageSale->usages));
     }
 
+    public function paymentTypes()
+    {
+        $paymentTypes = PackagePayment::PAYMENT_TYPES;
+        return response()->json($paymentTypes);
+    }
     /**
      * Paket Satışı Kullanım Ekle
      *
@@ -81,6 +86,7 @@ class PackageSaleOperationController extends Controller
     {
         $payment = new PackagePayment();
         $payment->package_id = $packageSale->id;
+        $payment->payment_type_id = $request->payment_type;
         $payment->price = $request->price;
         $payment->amount = $request->amount;
         if ($payment->save()) {

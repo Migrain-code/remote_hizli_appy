@@ -184,6 +184,7 @@ Route::prefix('business')->group(function () {
         Route::apiResource('package-sale', PackageSaleController::class)->only([
             'index', 'create', 'store', 'edit', 'update', 'destroy'
         ]);
+        Route::get('payment-types', [PackageSaleOperationController::class, 'paymentTypes']);
         Route::prefix('package-sale')->group(function () {
             Route::get('/{packageSale}/payments', [PackageSaleOperationController::class, 'payments']);
             Route::get('/{packageSale}/usages', [PackageSaleOperationController::class, 'usages']);
