@@ -572,6 +572,7 @@ class HomeController extends Controller
         $business->city = $request->input('cityId');
         $business->district = $request->input('districtId');
         $business->commission = $request->input('commission');
+        $business->auto_adission = $request->input('adissionType');
         if ($request->hasFile('logo')) {
             $response = UploadFile::uploadFile($request->file('logo'), 'business_logos');
             $business->logo = $response["image"]["way"];
