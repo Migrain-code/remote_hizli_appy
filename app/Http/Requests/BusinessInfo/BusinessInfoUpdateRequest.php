@@ -39,7 +39,7 @@ class BusinessInfoUpdateRequest extends FormRequest
             'districtId' => 'required|numeric',
             //'commission' => 'required|numeric',
             //'personalCount' => 'required',
-            'offDay' => 'required|numeric',
+            //'offDay' => 'required|numeric',
             //'aboutText' => 'required|string',
         ];
     }
@@ -60,7 +60,7 @@ class BusinessInfoUpdateRequest extends FormRequest
             'districtId' => "İlçe",
             //'commission' => "Personel Komisyonu",
             //'personalCount' => "Personel Sayısı",
-            'offDay' => "Kapalı Olduğu Gün",
+            //'offDay' => "Kapalı Olduğu Gün",
             //'aboutText' => "İşletme Hakkında Yazısı",
         ];
     }

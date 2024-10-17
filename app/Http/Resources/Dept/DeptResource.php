@@ -13,6 +13,22 @@ class DeptResource extends JsonResource
      * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
+    protected function calculateStatus()
+    {
+        $daysDifference = now()->diffInDays($this->payment_date);
+
+        if ($this->status == 1){
+            return "Ödendi";
+        }else {
+            if ($this->payment_date < now()) {
+                return "{$daysDifference} Gün Geçti";
+            }  else {
+                return "{$daysDifference} Gün Kaldı";
+            }
+        }
+
+    }
+
     public function toArray($request)
     {
         return [
@@ -21,7 +37,7 @@ class DeptResource extends JsonResource
             'paymentDate' => $this->payment_date,
             'paymentDateFormatted' => $this->payment_date->format('d.m.Y'),
             'price' => $this->price,
-            'status' => $this->payment_date < now() ? now()->diffInDays($this->payment_date) . " Gün Geçti" : ($this->status == 1 ? "Ödendi" : now()->diffInDays($this->payment_date) . " Gün Kaldı"),
+            'status' => $this->calculateStatus(),
             'note' => $this->note,
         ];
     }
