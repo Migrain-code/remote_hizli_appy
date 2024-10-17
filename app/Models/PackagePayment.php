@@ -35,4 +35,9 @@ class PackagePayment extends Model
         2 => ["id" => 2, "name" => "EFT / Havale"],
         3 => ["id" => 3, "name" => "Diğer"],
     ];
+
+    public function type()
+    {
+        return self::PAYMENT_TYPES[$this->payment_type_id] ?? null;
+    }
 }
