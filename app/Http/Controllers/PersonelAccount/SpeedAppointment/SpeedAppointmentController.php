@@ -83,7 +83,7 @@ class SpeedAppointmentController extends Controller
         if ($customer->save()) {
             $message = "Merhaba " . $customer->name . ", Hızlı Randevu'ya hoş geldiniz! Giriş Bilgileriniz: Tel: " . $customer->phone . ", Şifre: " . $generatePassword . ". İyi günler , Hızlı Randevu";
 
-            Sms::send($customer->phone, $message);
+            //Sms::send($customer->phone, $message);
             $this->addPermission($customer->id);
             $this->addBusinessCustomerList($customer->id);
             return response()->json([
