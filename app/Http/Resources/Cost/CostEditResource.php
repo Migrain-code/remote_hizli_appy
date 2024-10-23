@@ -22,7 +22,7 @@ class CostEditResource extends JsonResource
            'personel' => new PersonelListResource($this->personel),
            'paymentType' => $this->type(),
            'price' => $this->price,
-           'operation_date' => $this->operation_date->toIso8601String(),
+           'operationDate' => $this->operation_date->format('Y-m-d\TH:i:s.v\Z'),
            'description' => $this->description,
         ];
     }
