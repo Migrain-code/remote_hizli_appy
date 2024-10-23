@@ -229,18 +229,26 @@ class Personel extends Authenticatable
     public function checkDateIsOff($getDate)
     {
         // stayOffDays ilişkisini kullanarak izin tarihlerini alıyoruz.
-        $getDate = Carbon::parse($getDate)->format('Y-m-d');
-        $offDays = $this->stayOffDays();
+        $getDate = Carbon::parse($getDate); // Hem tarih hem de zaman
+        $offDays = $this->stayOffDays()->get();
+
+        $existLeave = null;
+
         if ($offDays->count() > 0) {
-            $existLeave = $offDays->whereDate('start_time', '<=', $getDate)
-                ->whereDate('end_time', '>=', $getDate)
-                ->first();
+            $existLeave = $offDays->filter(function($offDay) use ($getDate) {
+                $startTime = Carbon::parse($offDay->start_time);
+                $endTime = Carbon::parse($offDay->end_time);
+                // Hem tarih hem de saat karşılaştırması yapılıyor
+                return $getDate->betweenIncluded($startTime, $endTime);
+            })->first();
+            return $existLeave;
             if ($existLeave) {
-                return true;
+                return $existLeave;
             }
         }
-        // Eğer tarih izin tarihleri arasında değilse,false döndürüyoruz.
-        return false;
+
+        // Eğer tarih ve saat izin tarihleri arasında değilse, null döndürüyoruz.
+        return $existLeave;
     }
 
     public function getCustomer()
