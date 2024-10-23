@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cost;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cost\CostAddRequest;
 use App\Http\Resources\Cost\CostCategoryListResource;
+use App\Http\Resources\Cost\CostEditResource;
 use App\Http\Resources\Cost\CostListResource;
 use App\Http\Resources\Personel\PersonelListResource;
 use App\Models\BusinessCost;
@@ -94,7 +95,7 @@ class BusinessCostController extends Controller
      */
     public function edit(BusinessCost $cost)
     {
-        return response()->json(CostListResource::make($cost));
+        return response()->json(CostEditResource::make($cost));
     }
 
     /**
