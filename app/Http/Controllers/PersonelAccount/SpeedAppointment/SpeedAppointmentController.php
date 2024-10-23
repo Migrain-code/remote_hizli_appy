@@ -159,7 +159,8 @@ class SpeedAppointmentController extends Controller
                 ], 200);
             } else {
                 //personel kapalı değilse personel izin gün kontrolü
-                if ($personel->checkDateIsOff($getDate)) {
+                $personelRestDay = $personel->checkDateIsOff($getDate);
+                if (isset($personelRestDay) && ($personelRestDay->end_time->format("Y-m-d") != $getDate->format('Y-m-d'))) {
                     return response()->json([
                         "status" => "error",
                         "message" => "Personel bu tarihte hizmet vermemektedir"
@@ -393,6 +394,21 @@ class SpeedAppointmentController extends Controller
         for ($i = $startTime; $i < $endTime; $i->addMinutes(intval($personel->appointmentRange->time))) {
             if ($i < now()->addMinutes(5)) {
                 $disableds[] = $i->format('d.m.Y H:i');
+            }
+        }
+        //personel izin saatlerini de ekle
+        $offDays = $personel->stayOffDays()
+            ->whereDate('start_time', '<=', Carbon::parse($appointment_date))
+            ->whereDate('end_time', '>=', Carbon::parse($appointment_date))->get();
+
+        foreach ($offDays as $offDay) {
+            $leaveStart = Carbon::parse($offDay->start_time);
+            $leaveEnd = Carbon::parse($offDay->end_time);
+
+            $leaveDateTime = $leaveStart->copy();
+            while ($leaveDateTime < $leaveEnd) {
+                $disableds[] = $leaveDateTime->format('d.m.Y H:i');
+                $leaveDateTime->addMinutes(intval($personel->appointmentRange->time));
             }
         }
         $business = $personel->business;

@@ -506,6 +506,7 @@ class AppointmentCreateController extends Controller
                 $disableds[] = $i->format('d.m.Y H:i');
             }
         }
+        //personel izin saatlerini de ekle
         $offDays = $personel->stayOffDays()
             ->whereDate('start_time', '<=', Carbon::parse($appointment_date))
             ->whereDate('end_time', '>=', Carbon::parse($appointment_date))->get();
