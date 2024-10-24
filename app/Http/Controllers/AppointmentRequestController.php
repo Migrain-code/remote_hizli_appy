@@ -51,14 +51,13 @@ class AppointmentRequestController extends Controller
         $appointmentRequest->user_name = $request->input('name');
         $appointmentRequest->call_date = $request->call_date;
         $appointmentRequest->status = $request->input('status');
-        $appointmentRequest->answer = $request->input('answer');
+        $appointmentRequest->sms_content = $request->input('answer');
 
         if ($appointmentRequest->save()) {
             if ($appointmentRequest->contact_type == 2 && $appointmentRequest->status != 4) {
                 $message = $appointmentRequest->business->name . " İşletmesi Talebinizi Yanıtladı: " . $request->input('answer');
                 Sms::send(clearPhone($appointmentRequest->phone), $message);
                 $appointmentRequest->status = 4; // sms ile cevaplandı
-                $appointmentRequest->sms_content = $request->input('answer'); // cevap
                /* if (!isset($appointmentRequest->sms_content)){
 
                 }*/
