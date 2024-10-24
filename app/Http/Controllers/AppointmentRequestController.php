@@ -51,6 +51,7 @@ class AppointmentRequestController extends Controller
         $appointmentRequest->user_name = $request->input('name');
         $appointmentRequest->call_date = $request->call_date;
         $appointmentRequest->status = $request->input('status');
+        $appointmentRequest->answer = $request->input('answer');
 
         if ($appointmentRequest->save()) {
             if ($appointmentRequest->contact_type == 2 && $appointmentRequest->status != 4) {
