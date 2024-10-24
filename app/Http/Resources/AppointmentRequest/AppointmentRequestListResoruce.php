@@ -29,7 +29,7 @@ class AppointmentRequestListResoruce extends JsonResource
             'statusCode' => $this->status,
             'phone' => $phone,
             'call_date' => $this->call_date ? $this->call_date->toIso8601String() : null,
-            'answer' => $this->answer,
+            'answer' => $this->sms_content,
         ];
     }
 }
