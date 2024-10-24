@@ -7,6 +7,7 @@ use App\Http\Resources\AppointmentRequest\AppointmentRequestListResoruce;
 use App\Models\BusinessAppointmentRequest;
 use App\Services\Sms;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class AppointmentRequestController extends Controller
 {
@@ -49,7 +50,7 @@ class AppointmentRequestController extends Controller
     public function update(Request $request,BusinessAppointmentRequest $appointmentRequest)
     {
         $appointmentRequest->user_name = $request->input('name');
-        $appointmentRequest->call_date = $request->call_date;
+        $appointmentRequest->call_date = Carbon::parse($request->input('call_date'))->addHours(3);
         $appointmentRequest->status = $request->input('status');
         $appointmentRequest->sms_content = $request->input('answer');
 

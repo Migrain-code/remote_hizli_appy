@@ -62,10 +62,10 @@ class CaseController extends Controller
         }
 
 
-        $this->adissionCalculator($business, $request);
-        $this->productSaleCalculator($business, $request);
+        $adissionTotal = $this->adissionCalculator($business, $request);
+        $productSaleTotal = $this->productSaleCalculator($business, $request);
         $this->paymentsCalculator($business, $request);
-       // $this->packageSaleCalculator($business, $request);
+        $packageSaleTotal = $this->packageSaleCalculator($business, $request);
 
         $closingBalance = $this->case;
         $totalExpense = $this->payments;
@@ -79,8 +79,11 @@ class CaseController extends Controller
 
         return response()->json([
             'remainingTotal' => $totals,
+            'expense' => $totalExpense,
             'revenues' => $closingBalance,
-            'expense' => $totalExpense
+            'adissionTotal' => $adissionTotal,
+            'productSaleTotal' => $productSaleTotal,
+            'packageSaleTotal' => $packageSaleTotal,
         ]);
     }
 
@@ -100,22 +103,37 @@ class CaseController extends Controller
             })
             ->get();
 
+        $adissionTotal = [
+            'cashTotal' => 0,
+            'creditTotal' => 0,
+            'eftTotal' => 0,
+            'otherTotal' => 0,
+            'total' => 0
+        ];
+
         foreach ($adissions as $adission) {
             foreach ($adission->payments as $payment) {
                 if ($payment->payment_type_id == 0) {
                     $this->case["cashTotal"] += $payment->price;
+                    $adissionTotal["cashTotal"] += $payment->price;
                 } elseif ($payment->payment_type_id == 1) {
                     $this->case["creditTotal"] += $payment->price;
+                    $adissionTotal["creditTotal"] += $payment->price;
                 } elseif ($payment->payment_type_id == 2) {
                     $this->case["eftTotal"] += $payment->price;
+                    $adissionTotal["eftTotal"] += $payment->price;
                 } else {
                     $this->case["otherTotal"] += $payment->price;
+                    $adissionTotal["otherTotal"] += $payment->price;
                 }
             }
 
         }
+
         $this->case["total"] = $this->case["cashTotal"] + $this->case["creditTotal"] + $this->case["eftTotal"] + $this->case["otherTotal"];
-        return $this->case;
+        $adissionTotal["total"] = $adissionTotal["cashTotal"] + $adissionTotal["creditTotal"] + $adissionTotal["eftTotal"] + $adissionTotal["otherTotal"];
+
+        return $adissionTotal;
     }
 
     public function productSaleCalculator($business, $request)
@@ -149,21 +167,36 @@ class CaseController extends Controller
                 $q->whereBetween('created_at', [$startTime, $endTime]);
             })
             ->get();
+        $productSaleTotal = [
+            'cashTotal' => 0,
+            'creditTotal' => 0,
+            'eftTotal' => 0,
+            'otherTotal' => 0,
+            'total' => 0
+        ];
 
         foreach ($sales as $sale) {
             if ($sale->payment_type == 0) {
                 $this->case["cashTotal"] += $sale->total;
+                $productSaleTotal["cashTotal"] += $sale->total;
+
             } elseif ($sale->payment_type == 1) {
                 $this->case["creditTotal"] += $sale->total;
+                $productSaleTotal["creditTotal"] += $sale->total;
+
             } elseif ($sale->payment_type == 2) {
                 $this->case["eftTotal"] += $sale->total;
+                $productSaleTotal["eftTotal"] += $sale->total;
+
             } else {
                 $this->case["otherTotal"] += $sale->total;
+                $productSaleTotal["otherTotal"] += $sale->total;
             }
         }
         $this->case["total"] = $this->case["cashTotal"] + $this->case["creditTotal"] + $this->case["eftTotal"] + $this->case["otherTotal"];
+        $productSaleTotal["total"] = $productSaleTotal["cashTotal"] + $productSaleTotal["creditTotal"] + $productSaleTotal["eftTotal"] + $productSaleTotal["otherTotal"];
 
-        return $this->case;
+        return $productSaleTotal;
     }
     public function paymentsCalculator($business, $request)
     {
@@ -217,22 +250,67 @@ class CaseController extends Controller
     {
         $packageSales = $business->packages()
             ->when($request->filled('listType'), function ($q) use ($request) {
-                $this->applyListTypeFilter($request->listType, $q);
+                if ($request->listType == "thisWeek") {
+                    $startOfWeek = now()->startOfWeek();
+                    $endOfWeek = now()->endOfWeek();
+                    $q->whereBetween('created_at', [$startOfWeek, $endOfWeek]);
+                } elseif ($request->listType == "thisMonth") {
+                    $startOfMonth = now()->startOfMonth();
+                    $endOfMonth = now()->endOfMonth();
+                    $q->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+                } elseif ($request->listType == "thisYear") {
+                    $startOfYear = now()->startOfYear();
+                    $endOfYear = now()->endOfYear();
+                    $q->whereBetween('created_at', [$startOfYear, $endOfYear]);
+                } else {
+                    $q->whereDate('created_at', now()->toDateString());
+                }
             })
             ->when($request->filled('date_range'), function ($q) use ($request) {
-                $this->applyDateRangeFilter($request->date_range, $q);
+                $startTime = now();
+                $endTime = now();
+                if ($request->filled('date_range')) {
+                    $timePartition = explode('-', $request->date_range);
+                    $startTime = Carbon::parse(clearPhone($timePartition[0]))->toDateString();
+                    $endTime = Carbon::parse(clearPhone($timePartition[1]))->toDateString();
+                }
+                $q->whereBetween('created_at', [$startTime, $endTime]);
             })
             ->get();
+        $packageSaleTotal = [
+            'cashTotal' => 0,
+            'creditTotal' => 0,
+            'eftTotal' => 0,
+            'otherTotal' => 0,
+            'total' => 0
+        ];
 
         foreach ($packageSales as $packageSale) {
-            foreach ($packageSale->payments as $payment) {
-                $this->case["cashTotal"] += $payment->price;
+            foreach ($packageSale->payeds as $payment) {
+
+                if ($payment->payment_type == 0) {
+                    $this->case["cashTotal"] += $payment->price;
+                    $packageSaleTotal["cashTotal"] += $payment->price;
+
+                } elseif ($payment->payment_type == 1) {
+                    $this->case["creditTotal"] += $payment->price;
+                    $packageSaleTotal["creditTotal"] += $payment->price;
+
+                } elseif ($payment->payment_type == 2) {
+                    $this->case["eftTotal"] += $payment->price;
+                    $packageSaleTotal["eftTotal"] += $payment->price;
+
+                } else {
+                    $this->case["otherTotal"] += $payment->price;
+                    $packageSaleTotal["otherTotal"] += $payment->price;
+                }
             }
         }
 
         $this->case["total"] = $this->case["cashTotal"] + $this->case["creditTotal"] + $this->case["eftTotal"] + $this->case["otherTotal"];
+        $packageSaleTotal["total"] = $packageSaleTotal["cashTotal"] + $packageSaleTotal["creditTotal"] + $packageSaleTotal["eftTotal"] + $packageSaleTotal["otherTotal"];
 
-        return $this->case;
+        return $packageSaleTotal;
     }
 
 
